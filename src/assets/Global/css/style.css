@@ -1,0 +1,23 @@
+
+
+.pageLogo{
+
+    color: #fff;
+font-size: 40px;
+margin-left: 80px;
+}
+<<<<<<< HEAD
+
+/* FIREFOX FIX OF UGLY SELECT BOXES */
+@supports (-moz-appearance:none) {
+
+  SELECT
+  {
+  -moz-appearance:none !important;
+  background:  url('data:image/gif;base64,R0lGODlhBgAGAKEDAFVVVX9/f9TU1CgmNyH5BAEKAAMALAAAAAAGAAYAAAIODA4hCDKWxlhNvmCnGwUAOw==') right  no-repeat ;
+  background-position: calc(100% - 5px) center !important;
+  }
+
+}
+=======
+>>>>>>> d1529e67b92945833da71c3a91d3195547ed01aa
