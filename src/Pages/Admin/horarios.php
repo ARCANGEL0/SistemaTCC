@@ -555,7 +555,6 @@ data-column="1" class="btn btn-outline-info" name="filtroTurma" id="filtroTurma"
 <th class="text-cyan bg-primary ">Quarta</th>
 <th class="text-cyan bg-primary ">Quinta</th>
 <th class="text-cyan bg-primary ">Sexta</th>
-               <th style="width:18%">Ações</th>
       </tr>
         </thead>
       <tbody>
@@ -612,21 +611,6 @@ else{
   echo "<td class='text-cyan bg-danger'>" . $row['Horario_Sexta'] . "</td>";
 
 }
-echo '<td><a class="btn-sm  btn-secondary btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
-&nbsp;
-
-  <a class="btn-sm btn-danger btnProfessores" name="professores" href="#"><i class="fa fa-graduation-cap"></i></a>
-
-
-  <a class="btn-sm btn-success btnAlunos" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
-
-
-  <a class="btn-sm btn-info  btnHorários" name="horarios" href="#"><i class="fa fa-clock"></i></a>
-
-  <a class="btn-sm btn-warning text-white btnTurmas" name="turmas" href="#"><i class="fa fa-chalkboard-teacher"></i></a>
-
-
-</td>';
 echo "</tr>";
 }
 
@@ -790,7 +774,7 @@ mysqli_close($conn);
     "columnDefs": [
                 {
                     "targets": [ 0 ],
-                    "visible": true,
+                    "visible": false,
                     "searchable": true
                 }],
           "language": {

@@ -257,20 +257,17 @@ Logado como ADMINISTRADOR             </h3>
                 </a>
               </li>
               <li class="nav-item">
-<<<<<<< HEAD
                 <a href="horarios.php" class="nav-link">
-=======
-                <a href="turmas.php" class="nav-link">
->>>>>>> d1529e67b92945833da71c3a91d3195547ed01aa
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Horários</p>
                 </a>
               </li>
 
+
             </ul>
           </li>
 
-<br>
+
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -531,7 +528,7 @@ echo $rows;
 
                         '</div>'+
                         '<span class="text">Criar outras páginas do painel Admin</span>'+
-<<<<<<< HEAD
+
                         '<li>'+
 
                           '<div  class="icheck-primary d-inline ml-2">'+
@@ -552,9 +549,7 @@ echo $rows;
                           '<span class="text">professores que trabalham em mais de uma escola </span>'+
 
                         '</li>'+
-=======
 
->>>>>>> d1529e67b92945833da71c3a91d3195547ed01aa
                     '</ul>';
 
           var todo2 ='<ul class="todo-list" data-widget="todo-list">'+
@@ -585,7 +580,7 @@ echo $rows;
                               '<span class="text">Fazer modals da página de turmas</span>'+
 
                             '</li>'+
-<<<<<<< HEAD
+
                               '<li>'+
 
                               '<div class="icheck-primary d-inline ml-2">'+
@@ -595,8 +590,7 @@ echo $rows;
                               '<span class="text">Fazer overlay em todas as modals</span>'+
 
                             '</li>'+
-=======
->>>>>>> d1529e67b92945833da71c3a91d3195547ed01aa
+2
                             '<li>'+
 
                               '<div class="icheck-primary d-inline ml-2">'+

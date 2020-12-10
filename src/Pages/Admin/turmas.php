@@ -219,11 +219,7 @@ Logado como ADMINISTRADOR             </h3>
                 </a>
               </li>
               <li class="nav-item">
-<<<<<<< HEAD
                 <a href="horarios.php" class="nav-link">
-=======
-                <a href="turmas.php" class="nav-link">
->>>>>>> d1529e67b92945833da71c3a91d3195547ed01aa
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Horários</p>
                 </a>
