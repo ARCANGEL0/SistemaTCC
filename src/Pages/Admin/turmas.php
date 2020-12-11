@@ -344,7 +344,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     <select class="form-control" required type="text" id="nomeCoord" name="nomeCoord" >
       <option selected hidden disabled value="">Selecione um professor</option>
 <?php
-$queryCoord =  mysqli_query($conn,"SELECT * FROM Professores");
+$queryCoord =  mysqli_query($conn,"SELECT * FROM Professores WHERE Escola_Código = 'EscolaSELECT'");
 while($row = mysqli_fetch_array($queryCoord))
 {
 echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';

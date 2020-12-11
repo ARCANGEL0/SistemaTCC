@@ -844,6 +844,7 @@ mysqli_close($conn);
                }
            }
        };
+       table.search("Sem turma").draw();
 
     var parametro = parametroUrl("turma");
     $('#filtroTurma').on('change', function(){
