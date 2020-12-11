@@ -829,7 +829,7 @@ mysqli_close($conn);
 
     $('#EditarTurma').modal('show');
     });
-
+// Essa função serve para identificar o URL com um parametro de um script php e identificar o parametro
     var parametroUrl = function parametroUrl(sParam) {
            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
                sURLVar = sPageURL.split('&'),
@@ -844,14 +844,15 @@ mysqli_close($conn);
                }
            }
        };
-       table.search("Sem turma").draw();
+       table.search("Sem turma").draw(); // Isto serve para impedir a visualização de conteudo
+       //ao carregar a página, e forçar o filtro por turma
 
     var parametro = parametroUrl("turma");
-    $('#filtroTurma').on('change', function(){
+    $('#filtroTurma').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
        table.search(this.value).draw();
     });
 
-
+pu
 
     $('#filtroTurma').val(parametro);
 
