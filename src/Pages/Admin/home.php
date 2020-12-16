@@ -285,7 +285,7 @@ Logado como ADMINISTRADOR             </h3>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="professores.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Professores</p>
                 </a>
