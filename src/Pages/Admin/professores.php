@@ -30,7 +30,8 @@ include('../../Scripts/Database/Connection.php');
 
   <!-- Theme style -->
   <link rel="stylesheet" href="../../assets/Global/css/adminlte.min.css">
-  <link rel="stylesheet" href="../../assets/Global/css/styles.css">
+  <link rel="stylesheet" href="../../assets/Global/css/style.css">
+
 
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
@@ -41,6 +42,18 @@ include('../../Scripts/Database/Connection.php');
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<!-- Aqui vai alguns css para corrigir bugs da tabela -->
+<style>
+
+.wrapper{
+width: 150vw;}
+#tabela_paginate{
+  padding-left: 500px;
+}
+#tabela_filter{
+  margin-left: -890px;
+}
+</style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -212,13 +225,19 @@ Logado como ADMINISTRADOR             </h3>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="turmas.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Turmas</p>
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a href="horarios.php" class="nav-link">
 
+                  <i class="fa fa-caret-right nav-icon"></i>
+                  <p>Horários</p>
+                </a>
+              </li>
             </ul>
           </li>
 
@@ -299,11 +318,12 @@ Logado como ADMINISTRADOR             </h3>
       if (texto.substring(0,1) != saida){
                 documento.value += texto.substring(0,1);
       }
-RegistrarProfessor
+RegistrarEscola
     }
     </script>
 
 <!-- MODAL DE REGISTRAR -->
+
 
 <div id="RegistrarProfessor" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -320,12 +340,12 @@ RegistrarProfessor
     <br>
     <label for="nome">Nome</label>
     <input  type="text" id="nome" name="nome">
-    <br>	
-	<label for="dn">Data Nascimento</label>    
+    <br>
+	<label for="dn">Data Nascimento</label>
 	<input  maxlength="8" OnKeyPress="formatar('##-##-####', this)" type="date"id="dn" name="dn">
-    <br>		
+    <br>
     <label for="email">E-Mail</label>
-    <input  type="text" id="email" name="email">	
+    <input  type="text" id="email" name="email">
     <br>
     <label for="rg">RG</label>
     <input  type="text" id="rg" name="rg">
@@ -343,8 +363,8 @@ RegistrarProfessor
     <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cep" name="cep">
 	<br>
     <label for="codigoescola">Cód. Escola</label>
-    <input  type="text" id="codigoescolar" name="codigoescola">        
-	
+    <input  type="text" id="codigoescolar" name="codigoescola">
+
     </div>
           <div class="modal-footer">
           <button type="submit" name="registrar" id="registrar" class="btn btn-success">Registrar</button>
@@ -359,57 +379,52 @@ RegistrarProfessor
 
 
 <!-- MODAL EDITAR -->
-
 <div id="EditarProfessor" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
-
         <div class="modal-content">
           <div class="modal-header">
-
-            <h4 class="modal-title">Editar Professor</h4>
-          </div>
-          <div class="modal-body">
-          <form action="../../Scripts/Manipulations/Admin/Professores/editarProfessor.php" method="POST" name="editarform" id="editarform">
-
-	<input type="number" id="idEdit" name="idEdit">
-	
-    <label for="cpfEdit">CPF</label>
-    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="cpfEdit" name="cpfEdit" >
+            <h4 class="modal-title">Editar professor</h4>          </div>
+          <div class="modal-body registrarProfessor_corpo">
+          <form action="../../Scripts/Manipulations/Admin/Professores/editarProfessor.php" method="POST" id="modalform">
+    <input  type="hidden" id="edit_rm" name="edit_rm">
     <br>
-    <label for="nomeEdit">Nome</label>
-    <input  type="text" id="nomeEdit" name="nomeEdit">
-    <br>	
-    <label for="dnEdit">Data Nascimento</label>    
-    <input  maxlength="8" OnKeyPress="formatar('##-##-####', this)" type="date"id="dnEdit" name="dnEdit">
-    <br>		
-    <label for="emailEdit">E-Mail</label>
-    <input  type="text" id="emailEdit" name="emailEdit">	
+    <label for="edit_cpf">CPF</label>
+    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_cpf" name="edit_cpf" >
     <br>
-    <label for="rgEdit">RG</label>
-    <input  type="text" id="rgEdit" name="rgEdit">
+    <label for="edit_nome">Nome</label>
+    <input  type="text" id="edit_nome" name="edit_nome">
     <br>
-    <label for="municipioEdit">Munincípio</label>
-    <input  type="text" id="municipioEdit" name="municipioEdit">
+	<label for="edit_dn">Data Nascimento</label>
+	<input   value="2020-06-06" type="date" id="edit_dn" name="edit_dn">
     <br>
-    <label for="enderecoEdit">Endereço</label>
-    <input  type="text" id="enderecoEdit" name="enderecoEdit">
+    <label for="edit_email">E-Mail</label>
+    <input  type="text" id="edit_email" name="edit_email">
     <br>
-    <label for="bairroEdit">Bairro</label>
-    <input  type="text" id="bairroEdit" name="bairroEdit">
+    <label for="edit_rg">RG</label>
+    <input  type="text" id="edit_rg" name="edit_rg">
     <br>
-    <label for="cepEdit">CEP</label>
-    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cepEdit" name="cepEdit">
+    <label for="edit_muninc">Munincípio</label>
+    <input  type="text" id="edit_muninc" name="edit_muninc">
+    <br>
+    <label for="edit_endereco">Endereço</label>
+    <input  type="text" id="edit_endereco" name="edit_endereco">
+    <br>
+    <label for="edit_bairro">Bairro</label>
+    <input  type="text" id="edit_bairro" name="edit_bairro">
+    <br>
+    <label for="edit_cep">CEP</label>
+    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
 	<br>
-    <label for="codigoescolaEdit">Cód. Escola</label>
-    <input  type="text" id="codigoescolar" name="codigoescolaEdit">        
+    <label for="edit_codEscola">Cód. Escola</label>
+    <input  type="text" id="edit_codEscolar" name="edit_codEscola">
 
-          </div>
+    </div>
           <div class="modal-footer">
           <button type="submit" name="salvar" id="salvar" class="btn btn-success">Salvar</button>
             <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
             </form>
           </div>
-        </div>
+    </div>
 
       </div>
     </div>
@@ -420,12 +435,14 @@ RegistrarProfessor
 <!-- MODAL APAGAR -->
 
 
-<div id="professorDeletar" class="modal fade" role="dialog">
+<div id="escolaDeletar" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
+
 
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Deletar Professor</h4>
+
+          <h4 class="modal-title">Deletar escola</h4>
         </div>
         <div class="modal-body">
 
@@ -446,7 +463,7 @@ RegistrarProfessor
 
 
 
-  <h5>Você tem certeza que deseja deletar este Professor ?</h5>
+  <h5>Você tem certeza que deseja deletar esta escola e todos os seus dependentes?</h5>
 
         </div>
         <div class="modal-footer">
@@ -482,7 +499,7 @@ RegistrarProfessor
       <div class="container-fluid">
 
 
-        <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarProfessor"><i class="fa fa-plus"></i> &nbsp;  Cadastrar um novo Professor</button>
+        <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarProfessor"><i class="fa fa-plus"></i> &nbsp;  Cadastrar um novo professor</button>
 
         <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
           <form action="" id="myform">
@@ -519,7 +536,7 @@ echo "<td>" . $row['Prof_Endereço'] . "</td>";
 echo "<td>" . $row['Prof_Bairro'] . "</td>";
 echo "<td>" . $row['Prof_CEP'] . "</td>";
 echo "<td>" . $row['Prof_IDEscola'] . "</td>";
-echo '<td><a class="btn-sm  btn-secondary btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
+echo '<td><a class="btn-sm  btn-secondary text-white btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
 &nbsp;
   <a class="btn-sm btn-danger btnProfessores" name="professores" href="#"><i class="fa fa-graduation-cap"></i></a>
   <a class="btn-sm btn-success btnAlunos" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
@@ -534,6 +551,10 @@ mysqli_close($conn);
       </tbody>
       </table>
       </form>
+
+
+
+
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -597,10 +618,10 @@ mysqli_close($conn);
 <script src="../../plugins/toastr/toastr.min.js"></script>
 
 
-<!-- AQUI SÃO OS EVENTOS DE SESSÃO PARA REGISTRO DE PROFESSORES -->
-<!-- Se o professor for registrado, o php irá redirecionar para esta página com a sessão de registro, exibindo um alerta de succeso -->
+<!-- AQUI SÃO OS EVENTOS DE SESSÃO PARA REGISTRO DE PROFS -->
+<!-- Se o prof for registrado, o php irá redirecionar para esta página com a sessão de registro, exibindo um alerta de succeso -->
 <?php
-          if(isset($_SESSION['professor_registrado'])):
+          if(isset($_SESSION['prof_registrado'])):
           ?>
         <script>
 
@@ -612,7 +633,7 @@ mysqli_close($conn);
          </script>
           <?php
           endif;
-          unset($_SESSION['professor_registrada']);
+          unset($_SESSION['prof_registrado']);
 
           ?>
 
@@ -621,10 +642,10 @@ mysqli_close($conn);
                     if(isset($_SESSION['registro_erro'])):
                     ?>
                   <script>
-					
+
                   $(function () {
                     $(document).ready(function(){
-                          toastr.error('Erro ao registrar o Professor!');
+                          toastr.error('Erro ao registrar o professor!');
                         });
                       });
                    </script>
@@ -635,7 +656,7 @@ mysqli_close($conn);
                     ?>
 
                     <?php
-                              if(isset($_SESSION['professor_registrado'])):
+                              if(isset($_SESSION['prof_registrado'])):
                               ?>
                             <script>
 
@@ -647,14 +668,14 @@ mysqli_close($conn);
                              </script>
                               <?php
                               endif;
-                              unset($_SESSION['professor_registrada']);
+                              unset($_SESSION['prof_registrado']);
 
                               ?>
-<!-- Mesma coisa, mas agora para atualização das escolas -->
+<!-- Mesma coisa, mas agora para atualização dos prof -->
 <!-- Este é para caso de sucesso -->
 
                   <?php
-                        if(isset($_SESSION['professor_atualizada'])):
+                        if(isset($_SESSION['prof_atualizado'])):
                       ?>
                           <script>
 
@@ -666,12 +687,12 @@ mysqli_close($conn);
                           </script>
           <?php
                       endif;
-                      unset($_SESSION['professor_atualizada']);
+                      unset($_SESSION['prof_atualizado']);
 
            ?>
 <!-- E este, para caso de erro -->
            <?php
-                     if(isset($_SESSION['professor_atualizacao_erro'])):
+                     if(isset($_SESSION['erro_edit_prof'])):
                      ?>
                    <script>
 
@@ -683,7 +704,7 @@ mysqli_close($conn);
                     </script>
                      <?php
                      endif;
-                     unset($_SESSION['professor_atualizacao_erro']);
+                     unset($_SESSION['erro_edit_prof']);
 
                      ?>
 
@@ -714,6 +735,9 @@ mysqli_close($conn);
               "sLast": "Último"
           },
           "oAria": {
+
+
+
               "sSortAscending": ": Ordenar colunas de forma ascendente",
               "sSortDescending": ": Ordenar colunas de forma descendente"
           }},
@@ -729,30 +753,43 @@ mysqli_close($conn);
 
      table.on('click','.btnEditar',function(){
 
+
       $tr=$(this).closest('tr');
 
       var data = table.row($tr).data();
-      data.splice(11,1);
+      data.splice(6,1);
+      function FormataStringData(data) {
+        var dia  = data.split("/")[0];
+        var mes  = data.split("/")[1];
+        var ano  = data.split("/")[2];
+
+        return ano + '-' + ("0"+mes).slice(-2) + '-' + ("0"+dia).slice(-2);
+        // Utilizo o .slice(-2) para garantir o formato com 2 digitos.
+      }
 
       console.log(data);
-      $('#idEdit').val(data[0])
-      $('#cpfEdit').val(data[1]);
-      $('#nomeEdit').val(data[2]);
-      $('#dnEdit').val(data[3]);
-      $('#emailEdit').val(data[4]);
-      $('#rgEdit').val(data[5]);
-	  $('#municipioEdit').val(data[6]);
-	  $('#enderecoEdit').val(data[7]);
-	  $('#bairroEdit').val(data[8]);
-	  $('#cepEdit').val(data[9]);
-	  $('#codigoescolaEdit').val(data[10]);	  
+      console.log(data[3]);
+      $('#edit_rm').val(data[0])
+      $('#edit_cpf').val(data[1]);
+      $('#edit_nome').val(data[2]);
+      $('#edit_dn').val(FormataStringData(data[3]));
+      $('#edit_email').val(data[4]);
+      $('#edit_rg').val(data[5]);
+      $('#edit_muninc').val(data[6]);
+      $('#edit_endereco').val(data[7]);
+      $('#edit_bairro').val(data[8]);
+      $('#edit_cep').val(data[9]);
+      $('#edit_codEscola').val(data[10]);
+
+
     $('#EditarProfessor').modal('show');
     });
 
 
 
-  });	 
-}  
+  });
+
+
 
 </script>
 

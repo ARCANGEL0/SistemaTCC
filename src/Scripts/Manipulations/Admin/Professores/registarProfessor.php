@@ -19,7 +19,7 @@ if(isset($_POST['registrar'])){
 	$query = "INSERT INTO Professores (RM_Prof,Prof_Nome,Prof_DataDeNascimento,Prof_Email,Prof_CPF,Prof_RG,Prof_CEP, Prof_Cidade,Prof_Endereço,Prof_Bairro,  Prof_IDEscola)
 	                           VALUES (  '$rm',  '$nome','                $dn',  '$email',  '$cpf',  '$rg',  '$cep','$municipio',  '$endereco',  '$bairro','$codigo_escola')";
 	if(mysqli_query($conn,$query)){
-    $_SESSION['professor_registrado'] = true;
+    $_SESSION['prof_registrado'] = true;
       header("Location: ../../../../Pages/Admin/professores.php");
     	exit();
 	}
