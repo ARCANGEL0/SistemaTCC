@@ -248,7 +248,7 @@ Logado como ADMINISTRADOR             </h3>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="professores.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Professores</p>
                 </a>
@@ -340,24 +340,75 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
 ?>
                   </select>
     <br>
-    <label for="nomeCoord">Coordenador</label>
-    <select class="form-control" required type="text" id="nomeCoord" name="nomeCoord" >
-      <option selected hidden disabled value="">Selecione um professor</option>
+<label for="nomeTurma">Turma</label>
+    <select class="form-control" required type="text"onchange="buscaProfessores(this.value)" id="nomeEscola" name="nomeEscola" >
+      <option hidden disabled selected value="#">Selecione uma turma</option>
+
+      <?php
+      $queryTurmas =  mysqli_query($conn,"SELECT * FROM Turmas");
+      while($row = mysqli_fetch_array($queryTurmas))
+      {
+      echo '<option value="'.$row['Turma'].'">' . $row['Turma'] . '</td>';
+      };
+
+      ?>
+    </select>
+    <br><br>
+    <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
+      <form action="" id="myform">
+    <thead>
+
+     <tr>
+       <th>Horário</th>
+  <th>Segunda</th>
+    <th>Terça</th>
+    <th>Quarta</th>
+    <th>Quinta</th>
+<th>Sexta </th>
+
+  </tr>
+    </thead>
+  <tbody>
 <?php
-$queryCoord =  mysqli_query($conn,"SELECT * FROM Professores");
-while($row = mysqli_fetch_array($queryCoord))
-{
-echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
-};
+// array para horarios
+$horarios = array("8 às 9","9 às 10","10 às 11","11 às 12","13 às 14","14 às 15","15 às 16","16 às 17","17 às 18");
+$result =  mysqli_query($conn,"SELECT * FROM Disciplinas");
 
+for ($x = 0; $x <= 8; $x++) {
+  echo '<tr>';
+  echo '<td>'.$horarios[$x].'</td>'; // aqui ele cria o proximo horario para o novo registro
+  // aqui começam os selects
+  echo '<td><select id="segunda'.$x.'"> <option selected disabled hidden value="">MATÉRIA</option>';
+  while($row = mysqli_fetch_array($result))
+  {
+  echo '<option value="'.$row['Materia_Abrev'].'">' . $row['Materia_Abrev'] . '</option>';
+} // este while aqui pega todas as materias. Quero fazer isto para todos os selects
+
+echo '  </select ></td>';
+  echo '<td><select id="terca'.$x.'">
+  <option selected disabled hidden value="">MATÉRIA</option>
+
+  <option value="1">1</option>
+  <option value="2">2</option>
+
+  </select></td>';
+  echo '<td><select id="quarta'.$x.'">
+  <option selected disabled hidden value="">MATÉRIA</option>
+
+  </select></td>';
+  echo '<td><select id="quinta'.$x.'">
+  <option selected disabled hidden value="">MATÉRIA</option>
+
+  </select></td>';
+  echo '<td><select id="sexta'.$x.'">
+  <option selected disabled hidden value="">MATÉRIA</option>
+
+  </select></td>';
+  echo '</tr>';
+}
 ?>
-                  </select>
-    <br>
-    <label for="nomeTurma">Turma</label>
-    <input required  type="text" id="nomeTurma" name="nomeTurma">
-
-
-
+  </tbody>
+  </table>
           </div>
           <div class="modal-footer">
           <button type="submit" name="registrar" id="registrar" class="btn btn-success">Registrar</button>
@@ -512,7 +563,7 @@ echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
     function filtrarTurma(turma) {
       var turma = turma.value;
        window.location = '?turma=' + escola;
-      console.log(escola);
+      console.log(turma);
     }
 </script>
         <select onchange="filtrarEscola(this)"

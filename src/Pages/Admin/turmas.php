@@ -248,7 +248,7 @@ Logado como ADMINISTRADOR             </h3>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="professores.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Professores</p>
                 </a>
@@ -506,15 +506,8 @@ echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
         <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarTurma"><i class="fa fa-plus"></i> &nbsp;  Registrar uma nova turma</button>
 
 <br><br>
-<script type="text/javascript">
 
-    function filtrarEscola(Valorescola) {
-      var escola = Valorescola.value;
-       window.location = '?escola=' + escola;
-      console.log(escola);
-    }
-</script>
-        <select onchange="filtrarEscola(this)"
+        <select
         data-column="2" class="btn btn-outline-info" name="filtroEscola" id="filtroEscola">
           <option selected value="">Todas as escolas</option>
 
@@ -795,18 +788,22 @@ mysqli_close($conn);
                }
            }
        };
+       // Isto serve para impedir a visualização de conteudo
+       //ao carregar a página, e forçar o filtro por turma
 
     var parametro = parametroUrl("escola");
-           table.search(parametro).draw();
+    $('#filtroEscola').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
+       table.search(this.value).draw();
+    });
 
-
-
+pu
 
     $('#filtroEscola').val(parametro);
 
 
 
   });
+
 
 // Aqui vai opções para sSelect para professor com base na escola
 

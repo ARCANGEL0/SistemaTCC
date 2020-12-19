@@ -210,7 +210,7 @@ Logado como ADMINISTRADOR             </h3>
           </li>
         <br>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-building"></i>
               <p>
                 Escolas
@@ -244,7 +244,7 @@ Logado como ADMINISTRADOR             </h3>
 <br>
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Usuários
@@ -259,7 +259,7 @@ Logado como ADMINISTRADOR             </h3>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="professores.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Professores</p>
                 </a>
