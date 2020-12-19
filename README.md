@@ -2,7 +2,7 @@
 <center><p><img src="logo.png"></img>
 <br><br>
 &nbsp;
- <a href="https://github.com/Ryuusakii/SistemaTCC/tree/master/Documentation/Backlog.md"><img src="https://img.shields.io/badge/Backlog-green"></a> &nbsp;<a href="https://github.com/Ryuusakii/SistemaTCC/tree/master/Documentation/VisãoDeProjeto.md"> <img src="https://img.shields.io/badge/Visão%20De%20Projeto-red"> </a>&nbsp;<a href="https://github.com/Ryuusakii/SistemaTCC/blob/master/Documentation/DiagramaDeUso.png"> <img src="https://img.shields.io/badge/Diagrama%20De%20Uso-lightgrey"> </a></p><a href="https://github.com/Ryuusakii/SistemaTCC/tree/master/Database/Diagrams/modeloERD.png"> <img src="https://img.shields.io/badge/Modelo%20ERD-yellow"> </a>&nbsp;<a href="https://github.com/Ryuusakii/SistemaTCC/tree/master/Database/Models/ModeloFisico2.png"> <img src="https://img.shields.io/badge/Modelo%20Físico-orange"> </a></p>
+ <a href="https://github.com/Ryuusakii/SistemaTCC/tree/master/Documentation/Backlog.md"><img src="https://img.shields.io/badge/Backlog-green"></a> &nbsp;<a href="https://github.com/Ryuusakii/SistemaTCC/tree/master/Documentation/VisãoDeProjeto.md"> <img src="https://img.shields.io/badge/Visão%20De%20Projeto-red"> </a>&nbsp;<a href="https://github.com/Ryuusakii/SistemaTCC/tree/master/Documentation/DiagramaDeUso.png"> <img src="https://img.shields.io/badge/Diagrama%20De%20Uso-lightgrey"> </a></p><a href="https://github.com/Ryuusakii/SistemaTCC/tree/master/Database/Diagrams/modeloERD.png"> <img src="https://img.shields.io/badge/Modelo%20ERD-yellow"> </a>&nbsp;<a href="https://github.com/Ryuusakii/SistemaTCC/tree/master/Database/Models/ModeloFisico2.png"> <img src="https://img.shields.io/badge/Modelo%20Físico-orange"> </a></p>
 
 </center>
 </div>
