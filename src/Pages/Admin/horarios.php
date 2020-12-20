@@ -372,38 +372,70 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
 <?php
 // array para horarios
 $horarios = array("8 às 9","9 às 10","10 às 11","11 às 12","13 às 14","14 às 15","15 às 16","16 às 17","17 às 18");
-$result =  mysqli_query($conn,"SELECT * FROM Disciplinas");
+$queryTurmas =  mysqli_query($conn,"SELECT Materia_Abrev FROM Disciplinas");
+$aulas = array();
+while($row = mysqli_fetch_array($queryTurmas))
+{
+  $aulas[] = $row['Materia_Abrev'];
+
+
+};
 
 for ($x = 0; $x <= 8; $x++) {
   echo '<tr>';
   echo '<td>'.$horarios[$x].'</td>'; // aqui ele cria o proximo horario para o novo registro
   // aqui começam os selects
-  echo '<td><select id="segunda'.$x.'"> <option selected disabled hidden value="">MATÉRIA</option>';
-  while($row = mysqli_fetch_array($result))
-  {
-  echo '<option value="'.$row['Materia_Abrev'].'">' . $row['Materia_Abrev'] . '</option>';
-} // este while aqui pega todas as materias. Quero fazer isto para todos os selects
 
-echo '  </select ></td>';
+  echo '<td><select id="segunda'.$x.'">
+  <option selected disabled hidden value="">MATÉRIA</option>';
+  echo '<option value="">ーーー</option>';
+
+  for($i = 0; $i <= 10; $i++){
+echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
+}
+
+  echo '</select></td>';
+
+
+
+
   echo '<td><select id="terca'.$x.'">
-  <option selected disabled hidden value="">MATÉRIA</option>
+  <option selected disabled hidden value="">MATÉRIA</option>';
+  echo '<option value="">ーーー</option>';
+  for($i = 0; $i <= 10; $i++){
+echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
+}
+  echo '</select></td>';
 
-  <option value="1">1</option>
-  <option value="2">2</option>
 
-  </select></td>';
+
+
   echo '<td><select id="quarta'.$x.'">
-  <option selected disabled hidden value="">MATÉRIA</option>
+  <option selected disabled hidden value="">MATÉRIA</option>';
+  echo '<option value="">ーーー</option>';
 
-  </select></td>';
+  for($i = 0; $i <= 10; $i++){
+echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
+}
+  echo '</select></td>';
   echo '<td><select id="quinta'.$x.'">
-  <option selected disabled hidden value="">MATÉRIA</option>
+  <option selected disabled hidden value="">MATÉRIA</option>';
+  echo '<option value="">ーーー</option>';
 
-  </select></td>';
+  for($i = 0; $i <= 10; $i++){
+echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
+}
+  ECHO '</select></td>';
   echo '<td><select id="sexta'.$x.'">
-  <option selected disabled hidden value="">MATÉRIA</option>
+  <option selected disabled hidden value="">MATÉRIA</option>';
+  echo '<option value="">ーーー</option>';
 
-  </select></td>';
+
+
+  for($i = 0; $i <= 10; $i++){
+echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
+}
+echo '  </select></td>';
   echo '</tr>';
 }
 ?>
