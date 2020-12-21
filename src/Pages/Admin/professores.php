@@ -546,8 +546,39 @@ echo '<td><a class="btn-sm  btn-secondary text-white btnEditar" id="editar" href
 echo "</tr>";
 }
 
+//mysqli_close($conn);
+?>
+   <section class="content">
+      <div class="container-fluid">
+        <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
+		  <h1 class="m-0 text-dark">Escolas com o Professor cadastrado</h1>
+          <form action="" id="myform">
+        <thead>
+        <tr>
+        <th>Código</th>
+		<th>Nome</th>        
+        <th>Endereço</th>
+		<th>Município</th>        
+      </tr>
+        </thead>
+      <tbody>
+<?php
+//$cod_pro =  $_GET["rm_prof"]
+$cod_pro = '1';
+$result =  mysqli_query($conn,"select * from professor_escola WHERE RM_Prof = $cod_pro"); // Foi criado uma VIEW chamada PROFESSOR_ESCOLA no Banco de dados para consulta
+while($row = mysqli_fetch_array($result))
+{
+echo "<tr>";
+echo "<td>" . $row['escola_cod'] . "</td>";
+echo "<td>" . $row['escola_nome'] . "</td>";
+echo "<td>" . $row['escola_endereco'] . "</td>";
+echo "<td>" . $row['escola_munincipio'] . "</td>";
+echo "</tr>";
+}
+
 mysqli_close($conn);
 ?>
+
       </tbody>
       </table>
       </form>
