@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 21-Nov-2020 às 20:51
+-- Tempo de geração: 09-Nov-2020 às 17:58
 -- Versão do servidor: 10.3.24-MariaDB-2
 -- versão do PHP: 7.4.9
 
@@ -149,8 +149,8 @@ CREATE TABLE `Escolas` (
 --
 
 INSERT INTO `Escolas` (`Escola_Codigo`, `Escola_CNPJ`, `Escola_Nome`, `Escola_CEP`, `Escola_Munincipio`, `Escola_Endereco`) VALUES
-(1, '21.312.90/8401-928', 'EB.I Pedro Almeida', '12292-948', 'Guarujá', 'Av. XXSS'),
-(2, '44.4242.4232/42324-23', 'Dirce Valério Gracia', '22452-582', 'Guarujá', 'Av. Dom Pedro I');
+(1, '29.284.285/8275-52', 'EB.I Pedro Almeida', '11955-294', 'Itaubaté', 'R. Almirante Fonsa'),
+(2, '44.4242.4232/42324-23', 'Escola 2', '22452-582', 'Guarujá', 'Av. Pugsli, 285');
 
 -- --------------------------------------------------------
 
@@ -368,6 +368,15 @@ CREATE TABLE `Relacao_TurmaDisciplina` (
   `Matéria` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `Relacao_TurmaDisciplina`
+--
+
+INSERT INTO `Relacao_TurmaDisciplina` (`Cod_DisciplinaTurma`, `Turma`, `Matéria`) VALUES
+('Prof1Cod', '1B', 'Biologia'),
+('Prof1Codigo2', '1NB', 'Física'),
+('Prof1Codigo2', '1NB', 'Biologia');
+
 -- --------------------------------------------------------
 
 --
@@ -427,8 +436,6 @@ INSERT INTO `Secretaria` (`RM_Secretaria`, `Sec_Escola`, `Sec_Nome`, `Sec_DataDe
 --
 
 CREATE TABLE `Turmas` (
-  `Escola` varchar(255) NOT NULL,
-  `Prof_Coordenador` varchar(255) NOT NULL,
   `ID_Ano` bigint(20) NOT NULL,
   `Turma` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -437,9 +444,9 @@ CREATE TABLE `Turmas` (
 -- Extraindo dados da tabela `Turmas`
 --
 
-INSERT INTO `Turmas` (`Escola`, `Prof_Coordenador`, `ID_Ano`, `Turma`) VALUES
-('EB.I Pedro Almeida', 'Pedro Sate', 13, '1N1'),
-('EB.I Pedro Almeida', 'Pedro Sate', 14, '1R1');
+INSERT INTO `Turmas` (`ID_Ano`, `Turma`) VALUES
+(1, '1B'),
+(2, '1NB');
 
 -- --------------------------------------------------------
 
@@ -511,8 +518,7 @@ ALTER TABLE `Disciplinas`
 --
 ALTER TABLE `Escolas`
   ADD PRIMARY KEY (`Escola_Codigo`),
-  ADD UNIQUE KEY `Escola_CNPJ` (`Escola_CNPJ`),
-  ADD KEY `Escola_Nome` (`Escola_Nome`);
+  ADD UNIQUE KEY `Escola_CNPJ` (`Escola_CNPJ`);
 
 --
 -- Índices para tabela `Login_ADMIN`
@@ -549,8 +555,7 @@ ALTER TABLE `Login_Secretaria`
 --
 ALTER TABLE `Professores`
   ADD PRIMARY KEY (`RM_Prof`),
-  ADD KEY `Prof_Escola` (`Prof_IDEscola`),
-  ADD KEY `Prof_Nome` (`Prof_Nome`);
+  ADD KEY `Prof_Escola` (`Prof_IDEscola`);
 
 --
 -- Índices para tabela `Relacao_AlunosEscolas`
@@ -609,9 +614,7 @@ ALTER TABLE `Secretaria`
 --
 ALTER TABLE `Turmas`
   ADD PRIMARY KEY (`ID_Ano`),
-  ADD KEY `Turma` (`Turma`),
-  ADD KEY `Escola` (`Escola`),
-  ADD KEY `Prof_Coordenador` (`Prof_Coordenador`);
+  ADD KEY `Turma` (`Turma`);
 
 --
 -- Índices para tabela `Turma_Horario`
@@ -645,7 +648,7 @@ ALTER TABLE `Alunos_Notas`
 -- AUTO_INCREMENT de tabela `Escolas`
 --
 ALTER TABLE `Escolas`
-  MODIFY `Escola_Codigo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Escola_Codigo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `Login_ADMIN`
@@ -660,12 +663,6 @@ ALTER TABLE `Relacao_ProfessorEscola`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de tabela `Turmas`
---
-ALTER TABLE `Turmas`
-  MODIFY `ID_Ano` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
 -- AUTO_INCREMENT de tabela `Turma_Horario`
 --
 ALTER TABLE `Turma_Horario`
@@ -674,6 +671,12 @@ ALTER TABLE `Turma_Horario`
 --
 -- Restrições para despejos de tabelas
 --
+
+--
+-- Limitadores para a tabela `Alunos`
+--
+ALTER TABLE `Alunos`
+  ADD CONSTRAINT `Alunos_ibfk_1` FOREIGN KEY (`Aluno_Ano`) REFERENCES `Turmas` (`Turma`);
 
 --
 -- Limitadores para a tabela `Alunos_Faltas`
@@ -754,15 +757,10 @@ ALTER TABLE `Secretaria`
   ADD CONSTRAINT `Secretaria_ibfk_1` FOREIGN KEY (`Sec_Escola`) REFERENCES `Escolas` (`Escola_Codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `Turmas`
---
-ALTER TABLE `Turmas`
-  ADD CONSTRAINT `Turmas_ibfk_1` FOREIGN KEY (`Prof_Coordenador`) REFERENCES `Professores` (`Prof_Nome`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Limitadores para a tabela `Turma_Horario`
 --
 ALTER TABLE `Turma_Horario`
+  ADD CONSTRAINT `Turma_Horario_ibfk_1` FOREIGN KEY (`Turma_Ano`) REFERENCES `Turmas` (`Turma`),
   ADD CONSTRAINT `Turma_Horario_ibfk_2` FOREIGN KEY (`Horario_Segunda`) REFERENCES `Disciplinas` (`Materia_Abrev`),
   ADD CONSTRAINT `Turma_Horario_ibfk_3` FOREIGN KEY (`Horario_Terça`) REFERENCES `Disciplinas` (`Materia_Abrev`),
   ADD CONSTRAINT `Turma_Horario_ibfk_4` FOREIGN KEY (`Horario_Quarta`) REFERENCES `Disciplinas` (`Materia_Abrev`),
