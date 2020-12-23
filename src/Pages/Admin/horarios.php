@@ -323,7 +323,7 @@ Logado como ADMINISTRADOR             </h3>
             <h4 class="modal-title">Registrar uma nova turma</h4>
           </div>
           <div class="modal-body registrarTurma_corpo">
-          <form action="../../Scripts/Manipulations/Admin/Turmas/registrarTurma.php" method="POST" id="modalform">
+          <form action="../../Scripts/Manipulations/Admin/Horarios/registrarHorario.php" method="POST" id="modalform">
 
 
     <label for="nomeEscola">Escola</label>
@@ -341,7 +341,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
                   </select>
     <br>
 <label for="nomeTurma">Turma</label>
-    <select class="form-control" required type="text"onchange="buscaProfessores(this.value)" id="nomeEscola" name="nomeEscola" >
+    <select class="form-control" required type="text" onchange="" id="nomeTurmas" name="nomeTurmas" >
       <option hidden disabled selected value="#">Selecione uma turma</option>
 
       <?php
@@ -386,7 +386,7 @@ for ($x = 0; $x <= 8; $x++) {
   echo '<td>'.$horarios[$x].'</td>'; // aqui ele cria o proximo horario para o novo registro
   // aqui começam os selects
 
-  echo '<td><select id="segunda'.$x.'">
+  echo '<td><select required name="segunda'.$x.'" id="segunda'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">ーーー</option>';
 
@@ -399,7 +399,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 
 
 
-  echo '<td><select id="terca'.$x.'">
+  echo '<td><select required id="terca'.$x.'" name="terca'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">ーーー</option>';
   for($i = 0; $i <= 10; $i++){
@@ -410,7 +410,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 
 
 
-  echo '<td><select id="quarta'.$x.'">
+  echo '<td><select required id="quarta'.$x.'" name="quarta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">ーーー</option>';
 
@@ -418,7 +418,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 }
   echo '</select></td>';
-  echo '<td><select id="quinta'.$x.'">
+  echo '<td><select required name="quinta'.$x.'" id="quinta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">ーーー</option>';
 
@@ -426,7 +426,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 }
   ECHO '</select></td>';
-  echo '<td><select id="sexta'.$x.'">
+  echo '<td><select required name="sexta'.$x.'"id="sexta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">ーーー</option>';
 
@@ -587,6 +587,7 @@ echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
 
 
         <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarTurma"><i class="fa fa-plus"></i> &nbsp;  Registrar um horário</button>
+        <button class="btn btn-danger" type="button" name="button" data-toggle="modal" data-target="#RegistrarTurma"><i class="fa fa-edit"></i> &nbsp;  Editar um horário</button>
 
 <br><br>
 <script type="text/javascript">
@@ -775,19 +776,19 @@ mysqli_close($conn);
 <!-- AQUI SÃO OS EVENTOS DE SESSÃO PARA REGISTRO DE Turmas -->
 <!-- Se a Turma for registrada, o php irá redirecionar para esta página com a sessão de registro, exibindo um alerta de succeso -->
 <?php
-          if(isset($_SESSION['turma_registrada'])):
+          if(isset($_SESSION['horario_registrado'])):
           ?>
         <script>
 
         $(function () {
           $(document).ready(function(){
-                toastr.success('Turma registrada com sucesso!');
+                toastr.success('Horario registrado com sucesso!');
               });
             });
          </script>
           <?php
           endif;
-          unset($_SESSION['turma_registrada']);
+          unset($_SESSION['horario_registrado']);
 
           ?>
 
