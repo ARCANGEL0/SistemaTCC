@@ -810,6 +810,22 @@ mysqli_close($conn);
 
                     ?>
 
+                    <?php
+                              if(isset($_SESSION['registro_existente'])):
+                              ?>
+                            <script>
+
+                            $(function () {
+                              $(document).ready(function(){
+                                    toastr.error('Horário já existente!');
+                                  });
+                                });
+                             </script>
+                              <?php
+                              endif;
+                              unset($_SESSION['registro_existente']);
+
+                              ?>
 
 <!-- Mesma coisa, mas agora para atualização das Turmas -->
 <!-- Este é para caso de sucesso -->
