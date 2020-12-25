@@ -313,7 +313,7 @@ Logado como ADMINISTRADOR             </h3>
 
 <!-- MODAL DE REGISTRAR -->
 
-<div id="RegistrarTurma" class="modal fade" role="dialog">
+<div id="RegistrarHorario" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
 
 
@@ -322,7 +322,7 @@ Logado como ADMINISTRADOR             </h3>
 
             <h4 class="modal-title">Registrar uma nova turma</h4>
           </div>
-          <div class="modal-body registrarTurma_corpo">
+          <div class="modal-body RegistrarHorario_corpo">
           <form action="../../Scripts/Manipulations/Admin/Horarios/registrarHorario.php" method="POST" id="modalform">
 
 
@@ -457,23 +457,23 @@ echo '  </select></td>';
 
 <!-- MODAL EDITAR -->
 
-<div id="EditarTurma" class="modal fade" role="dialog">
+<div id="EditarHorario" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
 
 
         <div class="modal-content">
           <div class="modal-header">
 
-            <h4 class="modal-title">Editar Turma</h4>
+            <h4 class="modal-title">Editar Horario</h4>
           </div>
           <div class="modal-body">
-          <form action="../../Scripts/Manipulations/Admin/Turmas/editarTurma.php" method="POST" name="editarform" id="editarform">
+          <form action="../../Scripts/Manipulations/Admin/Horarios/editarHorario.php" method="POST" name="editarform" id="editarform">
 
 <input type="hidden" id="idEdit" name="idEdit">
 
 
-    <label for="editEscola">Escola</label>
-    <select class="form-control" required type="text" id="editEscola" name="editEscola" >
+    <label for="nomeEscola">Escola</label>
+    <select class="form-control" required type="text"onchange="buscaProfessores(this.value)" id="nomeEscola" name="nomeEscola" >
       <option selected hidden disabled value="">Selecione uma escola</option>
 
 <?php
@@ -486,27 +486,110 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
 ?>
                   </select>
     <br>
-    <label for="nomeCoord">Coordenador</label>
-    <select class="form-control" required type="text" id="editCoord" name="editCoord" >
-      <option selected hidden disabled value="">Selecione um professor</option>
+<label for="nomeTurma">Turma</label>
+    <select class="form-control" required type="text" onchange="" id="nomeTurmas" name="nomeTurmas" >
+      <option hidden disabled selected value="#">Selecione uma turma</option>
+
+      <?php
+      $queryTurmas =  mysqli_query($conn,"SELECT * FROM Turmas");
+      while($row = mysqli_fetch_array($queryTurmas))
+      {
+      echo '<option value="'.$row['Turma'].'">' . $row['Turma'] . '</td>';
+      };
+
+      ?>
+    </select>
+    <br><br>
+    <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
+      <form action="" id="myform">
+    <thead>
+
+     <tr>
+       <th>Horário</th>
+  <th>Segunda</th>
+    <th>Terça</th>
+    <th>Quarta</th>
+    <th>Quinta</th>
+<th>Sexta </th>
+
+  </tr>
+    </thead>
+  <tbody>
 <?php
-$queryCoord =  mysqli_query($conn,"SELECT * FROM Professores");
-while($row = mysqli_fetch_array($queryCoord))
+// array para horarios
+$horarios = array("8 às 9","9 às 10","10 às 11","11 às 12","13 às 14","14 às 15","15 às 16","16 às 17","17 às 18");
+$queryTurmas =  mysqli_query($conn,"SELECT Materia_Abrev FROM Disciplinas");
+$aulas = array();
+while($row = mysqli_fetch_array($queryTurmas))
 {
-echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
+  $aulas[] = $row['Materia_Abrev'];
+
+
 };
 
+for ($x = 0; $x <= 8; $x++) {
+  echo '<tr>';
+  echo '<td>'.$horarios[$x].'</td>'; // aqui ele cria o proximo horario para o novo registro
+  // aqui começam os selects
+
+  echo '<td><select required name="Editsegunda'.$x.'" id="Editsegunda'.$x.'">
+  <option selected disabled hidden value="">MATÉRIA</option>';
+  echo '<option value="">ーーー</option>';
+
+  for($i = 0; $i <= 10; $i++){
+echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
+}
+
+  echo '</select></td>';
+
+
+
+
+  echo '<td><select required id="Editterca'.$x.'" name="Editterca'.$x.'">
+  <option selected disabled hidden value="">MATÉRIA</option>';
+  echo '<option value="">ーーー</option>';
+  for($i = 0; $i <= 10; $i++){
+echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
+}
+  echo '</select></td>';
+
+
+
+
+  echo '<td><select required id="Editquarta'.$x.'" name="Editquarta'.$x.'">
+  <option selected disabled hidden value="">MATÉRIA</option>';
+  echo '<option value="">ーーー</option>';
+
+  for($i = 0; $i <= 10; $i++){
+echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
+}
+  echo '</select></td>';
+  echo '<td><select required name="Editquinta'.$x.'" id="Editquinta'.$x.'">
+  <option selected disabled hidden value="">MATÉRIA</option>';
+  echo '<option value="">ーーー</option>';
+
+  for($i = 0; $i <= 10; $i++){
+echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
+}
+  ECHO '</select></td>';
+  echo '<td><select required name="Editsexta'.$x.'"id="Editsexta'.$x.'">
+  <option selected disabled hidden value="">MATÉRIA</option>';
+  echo '<option value="">ーーー</option>';
+
+
+
+  for($i = 0; $i <= 10; $i++){
+echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
+}
+echo '  </select></td>';
+  echo '</tr>';
+}
 ?>
-                  </select>
-                  <br>
-    <label for="editTurma">Turma</label>
-    <input required  type="text" id="editTurma" name="editTurma">
-
-
-
+  </tbody>
+  </table>
           </div>
           <div class="modal-footer">
-          <button type="submit" name="salvar" id="salvar" class="btn btn-success">Salvar</button>
+          <button type="submit" name="editar" id="editar" class="btn btn-success">Alterar</button>
 
             <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
             </form>
@@ -515,7 +598,6 @@ echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
 
       </div>
     </div>
-
 <!-- FIM MODAL EDITAR -->
 
 
@@ -586,8 +668,8 @@ echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
       <div class="container-fluid">
 
 
-        <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarTurma"><i class="fa fa-plus"></i> &nbsp;  Registrar um horário</button>
-        <button class="btn btn-danger" type="button" name="button" data-toggle="modal" data-target="#RegistrarTurma"><i class="fa fa-edit"></i> &nbsp;  Editar um horário</button>
+        <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarHorario"><i class="fa fa-plus"></i> &nbsp;  Registrar um horário</button>
+        <button class="btn btn-danger" type="button" name="button" data-toggle="modal" data-target="#EditarHorario"><i class="fa fa-edit"></i> &nbsp;  Editar um horário</button>
 
 <br><br>
 <script type="text/javascript">
@@ -800,7 +882,7 @@ mysqli_close($conn);
 
                   $(function () {
                     $(document).ready(function(){
-                          toastr.error('Erro ao registrar a Turma!');
+                          toastr.error('Erro ao registrar o horário!');
                         });
                       });
                    </script>
@@ -831,36 +913,36 @@ mysqli_close($conn);
 <!-- Este é para caso de sucesso -->
 
                   <?php
-                        if(isset($_SESSION['turma_atualizada'])):
+                        if(isset($_SESSION['horario_atualizado'])):
                       ?>
                           <script>
 
                     $(function () {
                         $(document).ready(function(){
-                           toastr.success('Turma atualizada com sucesso!');
+                           toastr.success('Horário  atualizado com sucesso!');
                              });
                                           });
                           </script>
           <?php
                       endif;
-                      unset($_SESSION['turma_atualizada']);
+                      unset($_SESSION['horario_atualizado']);
 
            ?>
 <!-- E este, para caso de erro -->
            <?php
-                     if(isset($_SESSION['turma_atualizacao_erro'])):
+                     if(isset($_SESSION['horario_edit_erro'])):
                      ?>
                    <script>
 
                    $(function () {
                      $(document).ready(function(){
-                           toastr.error('Erro ao atualizar a turma!');
+                           toastr.error('Erro ao atualizar horário!');
                          });
                        });
                     </script>
                      <?php
                      endif;
-                     unset($_SESSION['turma_atualizacao_erro']);
+                     unset($_SESSION['horario_edit_erro']);
 
                      ?>
 
@@ -906,7 +988,7 @@ mysqli_close($conn);
       "lengthChange": false,
       "searching": true,
       "ordering": true,
-      "info": true,
+      "info": false,
       "autoWidth": true,
       "responsive": true,
     });
