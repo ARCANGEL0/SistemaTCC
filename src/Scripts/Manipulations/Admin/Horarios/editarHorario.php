@@ -2,8 +2,8 @@
 include('../../../Database/Connection.php');
 session_start();
 
-$escola = $_POST['nomeEscola'];
-$turma = $_POST['nomeTurmas'];
+$escola = $_POST['escolaEdit'];
+$turma = $_POST['turmaEdit'];
 $segunda1 = $_POST['Editsegunda0'];
 
 $segunda2 = $_POST['Editsegunda1'];

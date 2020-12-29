@@ -41,6 +41,11 @@ include('../../Scripts/Database/Connection.php');
   <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -327,7 +332,7 @@ Logado como ADMINISTRADOR             </h3>
 
 
     <label for="nomeEscola">Escola</label>
-    <select class="form-control" required type="text"onchange="buscaProfessores(this.value)" id="nomeEscola" name="nomeEscola" >
+    <select class="form-control" required type="text"onchange="teste(this.value)" id="nomeEscola" name="nomeEscola" >
       <option selected hidden disabled value="">Selecione uma escola</option>
 
 <?php
@@ -471,9 +476,8 @@ echo '  </select></td>';
 
 <input type="hidden" id="idEdit" name="idEdit">
 
-
     <label for="nomeEscola">Escola</label>
-    <select class="form-control" required type="text"onchange="buscaProfessores(this.value)" id="nomeEscola" name="nomeEscola" >
+    <select class="form-control" required type="text" id="escolaEdit" name="escolaEdit" >
       <option selected hidden disabled value="">Selecione uma escola</option>
 
 <?php
@@ -487,11 +491,15 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
                   </select>
     <br>
 <label for="nomeTurma">Turma</label>
-    <select class="form-control" required type="text" onchange="" id="nomeTurmas" name="nomeTurmas" >
-      <option hidden disabled selected value="#">Selecione uma turma</option>
+    <select class="form-control" required type="text" onchange="" id="turmaEdit" name="turmaEdit" >
+      <option hidden disabled selected value="">Selecione uma turma</option>';
+
 
       <?php
-      $queryTurmas =  mysqli_query($conn,"SELECT * FROM Turmas");
+      $escola = $_POST['escola'];
+
+
+      $queryTurmas =  mysqli_query($conn,"SELECT * FROM Turmas WHERE Escola = '$escola'");
       while($row = mysqli_fetch_array($queryTurmas))
       {
       echo '<option value="'.$row['Turma'].'">' . $row['Turma'] . '</td>';
@@ -502,8 +510,31 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     <br><br>
     <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
       <form action="" id="myform">
+        <?php echo $escola ?>
+
     <thead>
 
+      <script>
+var select = document.getElementById('escolaEdit');
+      $(function(){
+  $('#escolaEdit').change(function(){
+    var valor = select.value
+    console.log(valor);
+
+    $.ajax({
+     type: "POST",
+     url: "horarios.php", // url to request
+     data: {
+      escola: valor  // send data
+     },
+     success : function(data){
+       // populate data here
+
+     }
+    });
+  });
+});
+      </script>
      <tr>
        <th>Horário</th>
   <th>Segunda</th>
@@ -698,7 +729,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
 
 <select onchange="filtrarTurma(this)"
 data-column="1" class="btn btn-outline-info" name="filtroTurma" id="filtroTurma">
-  <option hidden disabled selected value="#">Selecione uma turma</option>
+  <option hidden disabled selected value="">Selecione uma turma</option>
 
   <?php
   $queryTurmas =  mysqli_query($conn,"SELECT * FROM Turmas");
@@ -812,10 +843,6 @@ mysqli_close($conn);
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -1034,7 +1061,7 @@ mysqli_close($conn);
        table.search(this.value).draw();
     });
 
-pu
+
 
     $('#filtroTurma').val(parametro);
 
