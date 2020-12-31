@@ -472,7 +472,7 @@ echo '  </select></td>';
             <h4 class="modal-title">Editar Horario</h4>
           </div>
           <div class="modal-body">
-          <form action="../../Scripts/Manipulations/Admin/Horarios/editarHorario.php" method="POST" name="editarform" id="editarform">
+          <form action="test.php" method="POST" name="editarform" id="editarform">
 
 <input type="hidden" id="idEdit" name="idEdit">
 
@@ -492,47 +492,41 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     <br>
 <label for="nomeTurma">Turma</label>
     <select class="form-control" required type="text" onchange="" id="turmaEdit" name="turmaEdit" >
-      <option hidden disabled selected value="">Selecione uma turma</option>';
+      <option hidden  disabled selected value="">Selecione uma turma</option>';
 
-
-      <?php
-      $escola = $_POST['escola'];
-
-
-      $queryTurmas =  mysqli_query($conn,"SELECT * FROM Turmas WHERE Escola = '$escola'");
-      while($row = mysqli_fetch_array($queryTurmas))
-      {
-      echo '<option value="'.$row['Turma'].'">' . $row['Turma'] . '</td>';
-      };
-
-      ?>
     </select>
     <br><br>
     <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
       <form action="" id="myform">
-        <?php echo $escola ?>
+      <div id="test"></div>
 
     <thead>
 
       <script>
-var select = document.getElementById('escolaEdit');
-      $(function(){
-  $('#escolaEdit').change(function(){
-    var valor = select.value
-    console.log(valor);
+      $(document).ready(function(){
+// script quqe usa ajax para detectar escola selecionada, rodar um sql para selecionar turmas e colocar no segundo select
+    $("#escolaEdit").change(function(){
+        var escolanome = $(this).val();
+        $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
 
-    $.ajax({
-     type: "POST",
-     url: "horarios.php", // url to request
-     data: {
-      escola: valor  // send data
-     },
-     success : function(data){
-       // populate data here
+                var len = response.length;
 
-     }
+                $("#turmaEdit").empty();
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+
+                    $("#turmaEdit").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+            }
+        });
     });
-  });
+
 });
       </script>
      <tr>
