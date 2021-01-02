@@ -527,6 +527,31 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
         });
     });
 
+    $("#filtroEscola").change(function(){
+        var escolanome = $(this).val();
+        $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+                $("#filtroTurma").empty();
+                $("#filtroTurma").append("<option disabled hidden selected value='none'>Selecione uma turma</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+
+                    $("#filtroTurma").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+            }
+        });
+    });
+
 });
       </script>
      <tr>
@@ -697,17 +722,8 @@ echo '  </select></td>';
         <button class="btn btn-danger" type="button" name="button" data-toggle="modal" data-target="#EditarHorario"><i class="fa fa-edit"></i> &nbsp;  Editar um horário</button>
 
 <br><br>
-<script type="text/javascript">
 
-
-    function filtrarTurma(turma) {
-      var turma = turma.value;
-       window.location = '?turma=' + escola;
-      console.log(turma);
-    }
-</script>
-        <select onchange="filtrarEscola(this)"
-        data-column="2" class="btn btn-outline-info" name="filtroEscola" id="filtroEscola">
+        <select class="btn btn-outline-info" name="filtroEscola" id="filtroEscola">
           <option hidden disabled selected value="">Selecione uma escola</option>
 
 <?php
@@ -721,18 +737,10 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
 
 </select>
 
-<select onchange="filtrarTurma(this)"
-data-column="1" class="btn btn-outline-info" name="filtroTurma" id="filtroTurma">
-  <option hidden disabled selected value="">Selecione uma turma</option>
+<select
+class="btn btn-outline-info" name="filtroTurma" id="filtroTurma">
+  <option disabled selected value=""></option>
 
-  <?php
-  $queryTurmas =  mysqli_query($conn,"SELECT * FROM Turmas");
-  while($row = mysqli_fetch_array($queryTurmas))
-  {
-  echo '<option value="'.$row['Turma'].'">' . $row['Turma'] . '</td>';
-  };
-
-  ?>
 </select>
 <br><br>
      <table class="table table-bordered display text-center" id="tabelaTurmas" width="100%" cellspacing="0">
