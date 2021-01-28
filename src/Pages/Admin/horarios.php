@@ -2,7 +2,7 @@
 <?php
 // Aqui o PHP inicia uma sessão, e inclui o arquivo verifyLogin.php ao carregar
 session_start();
-include('../../Scripts/Login/verifyLogin.php');
+include('../../Scripts/Login/Verify/adminVerify.php');
 
 include('../../Scripts/Database/Connection.php');
 ?>
@@ -472,7 +472,7 @@ echo '  </select></td>';
             <h4 class="modal-title">Editar Horario</h4>
           </div>
           <div class="modal-body">
-          <form action="test.php" method="POST" name="editarform" id="editarform">
+          <form action="../../Scripts/Manipulations/Admin/Horarios/editarHorario.php" method="POST" name="editarform" id="editarform">
 
 <input type="hidden" id="idEdit" name="idEdit">
 
@@ -517,6 +517,8 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
                 var len = response.length;
 
                 $("#turmaEdit").empty();
+                $("#turmaEdit").append("<option disabled hidden selected value='none'>Selecione uma turma</option>");
+
                 for( var i = 0; i<len; i++){
                     var turma = response[i]['name'];
 
@@ -536,18 +538,49 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
             dataType: 'json',
             success:function(response){
 
-                var len = response.length;
+                var len1 = response.length;
 
                 $("#filtroTurma").empty();
                 $("#filtroTurma").append("<option disabled hidden selected value='none'>Selecione uma turma</option>");
 
 
-                for( var i = 0; i<len; i++){
+                for( var i = 0; i<len1; i++){
                     var turma = response[i]['name'];
 
                     $("#filtroTurma").append("<option value='"+turma+"'>"+turma+"</option>");
 
                 }
+
+            }
+        });
+    });
+    $("#turmaEdit").change(function(){
+        var className = $(this).val();
+        $.ajax({
+          url: '../../Scripts/Manipulations/Admin/Horarios/selectHorarioEdit.php',
+            type: 'post',
+            data: {turmaNome:className},
+            dataType: 'json',
+            success:function(data){
+
+                alert(data);
+                var len = data.length;
+                alert(len);
+
+                $("#Editsegunda0").empty();
+                $("#Editsegunda0").append("<option disabled hidden selected value='none'>Fodase </option>");
+
+
+
+                                    for( var i = 0; i<9; i++){
+                                        var aula = datap['segunda'];
+                                        $("#Editsegunda0").append("<option value='"+aula+"'>"+aula+"</option>");
+
+
+                                    }
+
+
+
             }
         });
     });

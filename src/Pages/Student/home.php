@@ -2,7 +2,7 @@
 <?php
 // Aqui o PHP inicia uma sessão, e inclui o arquivo verifyLogin.php ao carregar
 session_start();
-include('../../Scripts/Login/Verify/adminVerify.php');
+include('../../Scripts/Login/Verify/studentVerify.php');
 
 include('../../Scripts/Database/Connection.php');
 ?>
@@ -12,7 +12,7 @@ include('../../Scripts/Database/Connection.php');
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>EdSys | Sistema Escolar</title>
+  <title>ALUNO | EdSys</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -189,7 +189,7 @@ echo $_SESSION["usuario"];
             <div class="media">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-Logado como ADMINISTRADOR             </h3>
+Logado como ALUNO             </h3>
                 <div class="dropdown-divider"></div>
               </div>
             </div>
@@ -217,7 +217,7 @@ Logado como ADMINISTRADOR             </h3>
         <div class="image">
         </div>
         <div class="pageLogo">
-       <i class="fa fa-cogs"></i>
+       <i class="fa fa-book-reader"></i>
         </div>
       </div>
 
@@ -239,87 +239,30 @@ Logado como ADMINISTRADOR             </h3>
             </a>
           </li>
         <br>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-building"></i>
-              <p>
-                Escolas
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="escolas.php" class="nav-link">
-                  <i class="fa fa-caret-right nav-icon"></i>
-                  <p>Escolas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="turmas.php" class="nav-link">
-                  <i class="fa fa-caret-right nav-icon"></i>
-                  <p>Turmas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="horarios.php" class="nav-link">
-                  <i class="fa fa-caret-right nav-icon"></i>
-                  <p>Horários</p>
-                </a>
-              </li>
+
+        <li class="nav-item ">
+          <a href="#" class="nav-link">
+            <i class="nav-icon far fa-calendar-alt"></i>
+            <p>
+              Horário
+            </p>
+          </a>
+        </li>
+      <br>
 
 
-            </ul>
-          </li>
+      <li class="nav-item ">
+        <a href="#" class="nav-link">
+          <i class="nav-icon far fa-check-square"></i>
+          <p>
+            Boletim
+          </p>
+        </a>
+      </li>
+    <br>
 
 
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Usuários
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
-                  <i class="fa fa-caret-right nav-icon"></i>
-                  <p>Funcionários</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="professores.php" class="nav-link">
-                  <i class="fa fa-caret-right nav-icon"></i>
-                  <p>Professores</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="fa fa-caret-right nav-icon"></i>
-                  <p>Alunos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="fa fa-caret-right nav-icon"></i>
-                  <p>Responsáveis</p>
-                </a>
-              </li>
-            </ul>
-          </li><br>
-
-
-          <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Calendário
-                <span class="badge badge-info right">2</span>
-              </p>
-            </a>
-          </li>
-         <br>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>

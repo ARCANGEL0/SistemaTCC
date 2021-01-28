@@ -2,7 +2,7 @@
 <?php
 // Aqui o PHP inicia uma sessão, e inclui o arquivo verifyLogin.php ao carregar
 session_start();
-include('../../Scripts/Login/verifyLogin.php');
+include('../../Scripts/Login/Verify/adminVerify.php');
 
 include('../../Scripts/Database/Connection.php');
 ?>
@@ -556,9 +556,9 @@ echo "</tr>";
         <thead>
         <tr>
         <th>Código</th>
-		<th>Nome</th>        
+		<th>Nome</th>
         <th>Endereço</th>
-		<th>Município</th>        
+		<th>Município</th>
       </tr>
         </thead>
       <tbody>
