@@ -77,7 +77,7 @@ $_SESSION['usuario'] = $usuario;
 			exit();
 	}
 	else if($rowsProf ==1){
-		$_SESSION['loginFuncionario'] = true;
+		$_SESSION['loginProf'] = true;
 		$_SESSION['usuario'] = $usuario;
 
 		 //define a sessão loginAdmin e redireciona para o painel
@@ -86,7 +86,7 @@ $_SESSION['usuario'] = $usuario;
 			exit();
 	}
 	else if($rowsResp ==1){
-		$_SESSION['loginFuncionario'] = true;
+		$_SESSION['loginResp'] = true;
 		$_SESSION['usuario'] = $usuario;
 
 		 //define a sessão loginAdmin e redireciona para o painel

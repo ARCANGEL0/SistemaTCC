@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 09-Nov-2020 às 17:58
--- Versão do servidor: 10.3.24-MariaDB-2
--- versão do PHP: 7.4.9
+-- Generation Time: Feb 01, 2021 at 04:19 PM
+-- Server version: 10.3.24-MariaDB-2
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `TCC`
+-- Database: `TCC`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Alunos`
+-- Table structure for table `Alunos`
 --
 
 CREATE TABLE `Alunos` (
@@ -43,7 +43,7 @@ CREATE TABLE `Alunos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Alunos`
+-- Dumping data for table `Alunos`
 --
 
 INSERT INTO `Alunos` (`RM_Aluno`, `Aluno_Ano`, `Aluno_Nome`, `Aluno_RG`, `Aluno_Email`, `Aluno_DataDeNascimento`, `Aluno_Telefone`, `Aluno_CEP`, `Aluno_Cidade`, `Aluno_Endereço`, `Aluno_Bairro`) VALUES
@@ -53,7 +53,7 @@ INSERT INTO `Alunos` (`RM_Aluno`, `Aluno_Ano`, `Aluno_Nome`, `Aluno_RG`, `Aluno_
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Alunos_Faltas`
+-- Table structure for table `Alunos_Faltas`
 --
 
 CREATE TABLE `Alunos_Faltas` (
@@ -63,7 +63,7 @@ CREATE TABLE `Alunos_Faltas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Alunos_Faltas`
+-- Dumping data for table `Alunos_Faltas`
 --
 
 INSERT INTO `Alunos_Faltas` (`ID`, `Codigo_Falta`, `Data`) VALUES
@@ -75,7 +75,7 @@ INSERT INTO `Alunos_Faltas` (`ID`, `Codigo_Falta`, `Data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Alunos_Notas`
+-- Table structure for table `Alunos_Notas`
 --
 
 CREATE TABLE `Alunos_Notas` (
@@ -93,7 +93,7 @@ CREATE TABLE `Alunos_Notas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Alunos_Notas`
+-- Dumping data for table `Alunos_Notas`
 --
 
 INSERT INTO `Alunos_Notas` (`ID`, `RM_Aluno`, `Aluno_Ano`, `Aluno_Bimestre`, `Aluno_Disciplina`, `Aluno_Nota1`, `Aluno_Nota2`, `Aluno_Nota3`, `Aluno_Nota4`, `Aluno_MencaoFinal`, `FK_AlunoFaltas`) VALUES
@@ -103,7 +103,7 @@ INSERT INTO `Alunos_Notas` (`ID`, `RM_Aluno`, `Aluno_Ano`, `Aluno_Bimestre`, `Al
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Disciplinas`
+-- Table structure for table `Disciplinas`
 --
 
 CREATE TABLE `Disciplinas` (
@@ -113,7 +113,7 @@ CREATE TABLE `Disciplinas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Disciplinas`
+-- Dumping data for table `Disciplinas`
 --
 
 INSERT INTO `Disciplinas` (`Materia_Nome`, `Materia_Descricao`, `Materia_Abrev`) VALUES
@@ -132,7 +132,7 @@ INSERT INTO `Disciplinas` (`Materia_Nome`, `Materia_Descricao`, `Materia_Abrev`)
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Escolas`
+-- Table structure for table `Escolas`
 --
 
 CREATE TABLE `Escolas` (
@@ -145,17 +145,17 @@ CREATE TABLE `Escolas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Escolas`
+-- Dumping data for table `Escolas`
 --
 
 INSERT INTO `Escolas` (`Escola_Codigo`, `Escola_CNPJ`, `Escola_Nome`, `Escola_CEP`, `Escola_Munincipio`, `Escola_Endereco`) VALUES
-(1, '29.284.285/8275-52', 'EB.I Pedro Almeida', '11955-294', 'Itaubaté', 'R. Almirante Fonsa'),
-(2, '44.4242.4232/42324-23', 'Escola 2', '22452-582', 'Guarujá', 'Av. Pugsli, 285');
+(1, '21.312.90/8401-928', 'EB.I Pedro Almeida', '12292-948', 'Guarujá', 'Av. XXSS'),
+(2, '44.4242.4232/42324-23', 'Dirce Valério Gracia', '22452-582', 'Guarujá', 'Av. Dom Pedro I');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Login_ADMIN`
+-- Table structure for table `Login_ADMIN`
 --
 
 CREATE TABLE `Login_ADMIN` (
@@ -165,7 +165,7 @@ CREATE TABLE `Login_ADMIN` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Login_ADMIN`
+-- Dumping data for table `Login_ADMIN`
 --
 
 INSERT INTO `Login_ADMIN` (`ID`, `Usuario`, `Senha`) VALUES
@@ -174,84 +174,88 @@ INSERT INTO `Login_ADMIN` (`ID`, `Usuario`, `Senha`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Login_Aluno`
+-- Table structure for table `Login_Aluno`
 --
 
 CREATE TABLE `Login_Aluno` (
   `RM_Aluno` bigint(20) NOT NULL,
+  `Email` varchar(255) NOT NULL,
   `Usuario` varchar(255) NOT NULL,
   `Senha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Login_Aluno`
+-- Dumping data for table `Login_Aluno`
 --
 
-INSERT INTO `Login_Aluno` (`RM_Aluno`, `Usuario`, `Senha`) VALUES
-(1000, 'guii', 'guiisantos1\r\n'),
-(1001, 'frikz', 'frik123');
+INSERT INTO `Login_Aluno` (`RM_Aluno`, `Email`, `Usuario`, `Senha`) VALUES
+(1000, 'ryuusakis@gmail.com', 'guii', '7e74e8'),
+(1001, '', 'frikz', 'frik123');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Login_Prof`
+-- Table structure for table `Login_Prof`
 --
 
 CREATE TABLE `Login_Prof` (
   `RM_Prof` bigint(20) NOT NULL,
+  `Email` varchar(255) NOT NULL,
   `Usuario` varchar(255) NOT NULL,
   `Senha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Login_Prof`
+-- Dumping data for table `Login_Prof`
 --
 
-INSERT INTO `Login_Prof` (`RM_Prof`, `Usuario`, `Senha`) VALUES
-(1, 'prof1', 'profsenha1');
+INSERT INTO `Login_Prof` (`RM_Prof`, `Email`, `Usuario`, `Senha`) VALUES
+(1, '', 'prof1', 'profsenha1');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Login_Resp`
+-- Table structure for table `Login_Resp`
 --
 
 CREATE TABLE `Login_Resp` (
   `RM_Resp` bigint(20) NOT NULL,
+  `Email` varchar(255) NOT NULL,
   `Usuario` varchar(255) NOT NULL,
   `Senha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Login_Resp`
+-- Dumping data for table `Login_Resp`
 --
 
-INSERT INTO `Login_Resp` (`RM_Resp`, `Usuario`, `Senha`) VALUES
-(1000, 'claudinz', 'claudio1335');
+INSERT INTO `Login_Resp` (`RM_Resp`, `Email`, `Usuario`, `Senha`) VALUES
+(1000, '', 'claudinz', 'claudio1335');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Login_Secretaria`
+-- Table structure for table `Login_Secretaria`
 --
 
 CREATE TABLE `Login_Secretaria` (
   `RM_Secretaria` bigint(20) NOT NULL,
+  `Email` varchar(255) NOT NULL,
   `Usuario` varchar(255) NOT NULL,
   `Senha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Login_Secretaria`
+-- Dumping data for table `Login_Secretaria`
 --
 
-INSERT INTO `Login_Secretaria` (`RM_Secretaria`, `Usuario`, `Senha`) VALUES
-(112, 'luizmait', 'luizmaia1950');
+INSERT INTO `Login_Secretaria` (`RM_Secretaria`, `Email`, `Usuario`, `Senha`) VALUES
+(112, '', 'luizmait', 'luizmaia1950');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Professores`
+-- Table structure for table `Professores`
 --
 
 CREATE TABLE `Professores` (
@@ -269,16 +273,18 @@ CREATE TABLE `Professores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Professores`
+-- Dumping data for table `Professores`
 --
 
 INSERT INTO `Professores` (`RM_Prof`, `Prof_IDEscola`, `Prof_Nome`, `Prof_DataDeNascimento`, `Prof_Email`, `Prof_CPF`, `Prof_RG`, `Prof_CEP`, `Prof_Cidade`, `Prof_Endereço`, `Prof_Bairro`) VALUES
-(1, '0000AA1', 'Pedro Sate', '1998-04-15', 'pedro@gmail.com', '449.228.285-85', '82.582.852-7', '11857-852', 'Santos', 'R. sadfasf ', 'Vila Mathias');
+(1, '0000AA1', 'Pedro Sate', '1998-04-15', 'pedro@gmail.com', '449.228.285-85', '82.582.852-7', '11857-852', 'Santos', 'R. sadfasf ', 'Vila Mathias'),
+(92, '', 'jioejo', '2020-11-22', '1921903109@homc.m', '91.239.012-83', '1092380980', '98098-09', '980810293801293809', '8081029380192830', '809128309180'),
+(298, '', 'Kurokuro', '2020-11-11', 'risa@gm.com', '09.812.038-10', '92123098123098', '', '08080', '8098098', '09809-809');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Relacao_AlunosEscolas`
+-- Table structure for table `Relacao_AlunosEscolas`
 --
 
 CREATE TABLE `Relacao_AlunosEscolas` (
@@ -291,7 +297,7 @@ CREATE TABLE `Relacao_AlunosEscolas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Relacao_AlunosEscolas`
+-- Dumping data for table `Relacao_AlunosEscolas`
 --
 
 INSERT INTO `Relacao_AlunosEscolas` (`RM_Aluno`, `Escola_Codigo`, `Ano`, `Status`, `DataDeMatricula`, `DataFim`) VALUES
@@ -301,7 +307,7 @@ INSERT INTO `Relacao_AlunosEscolas` (`RM_Aluno`, `Escola_Codigo`, `Ano`, `Status
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Relacao_AlunosResponsaveis`
+-- Table structure for table `Relacao_AlunosResponsaveis`
 --
 
 CREATE TABLE `Relacao_AlunosResponsaveis` (
@@ -310,7 +316,7 @@ CREATE TABLE `Relacao_AlunosResponsaveis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Relacao_AlunosResponsaveis`
+-- Dumping data for table `Relacao_AlunosResponsaveis`
 --
 
 INSERT INTO `Relacao_AlunosResponsaveis` (`RM_Aluno`, `Responsavel_Filhos`) VALUES
@@ -320,7 +326,7 @@ INSERT INTO `Relacao_AlunosResponsaveis` (`RM_Aluno`, `Responsavel_Filhos`) VALU
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Relacao_ProfessorEscola`
+-- Table structure for table `Relacao_ProfessorEscola`
 --
 
 CREATE TABLE `Relacao_ProfessorEscola` (
@@ -331,7 +337,7 @@ CREATE TABLE `Relacao_ProfessorEscola` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Relacao_ProfessorEscola`
+-- Dumping data for table `Relacao_ProfessorEscola`
 --
 
 INSERT INTO `Relacao_ProfessorEscola` (`ID`, `Escola_Cod`, `Prof_Escola`, `Prof_Turmas`) VALUES
@@ -340,7 +346,7 @@ INSERT INTO `Relacao_ProfessorEscola` (`ID`, `Escola_Cod`, `Prof_Escola`, `Prof_
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Relacao_ProfessorTurma`
+-- Table structure for table `Relacao_ProfessorTurma`
 --
 
 CREATE TABLE `Relacao_ProfessorTurma` (
@@ -349,7 +355,7 @@ CREATE TABLE `Relacao_ProfessorTurma` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Relacao_ProfessorTurma`
+-- Dumping data for table `Relacao_ProfessorTurma`
 --
 
 INSERT INTO `Relacao_ProfessorTurma` (`Prof_Turma`, `Cod_DisTurma`) VALUES
@@ -359,7 +365,7 @@ INSERT INTO `Relacao_ProfessorTurma` (`Prof_Turma`, `Cod_DisTurma`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Relacao_TurmaDisciplina`
+-- Table structure for table `Relacao_TurmaDisciplina`
 --
 
 CREATE TABLE `Relacao_TurmaDisciplina` (
@@ -368,19 +374,10 @@ CREATE TABLE `Relacao_TurmaDisciplina` (
   `Matéria` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Extraindo dados da tabela `Relacao_TurmaDisciplina`
---
-
-INSERT INTO `Relacao_TurmaDisciplina` (`Cod_DisciplinaTurma`, `Turma`, `Matéria`) VALUES
-('Prof1Cod', '1B', 'Biologia'),
-('Prof1Codigo2', '1NB', 'Física'),
-('Prof1Codigo2', '1NB', 'Biologia');
-
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Responsáveis`
+-- Table structure for table `Responsáveis`
 --
 
 CREATE TABLE `Responsáveis` (
@@ -396,7 +393,7 @@ CREATE TABLE `Responsáveis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Responsáveis`
+-- Dumping data for table `Responsáveis`
 --
 
 INSERT INTO `Responsáveis` (`RM_Responsável`, `Resp_Filhos`, `Resp_Nome`, `Resp_Email`, `Resp_DataDeNascimento`, `Resp_RG`, `Resp_CPF`, `Resp_Telefone`, `Resp_Celular`) VALUES
@@ -405,7 +402,7 @@ INSERT INTO `Responsáveis` (`RM_Responsável`, `Resp_Filhos`, `Resp_Nome`, `Res
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Secretaria`
+-- Table structure for table `Secretaria`
 --
 
 CREATE TABLE `Secretaria` (
@@ -423,7 +420,7 @@ CREATE TABLE `Secretaria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Secretaria`
+-- Dumping data for table `Secretaria`
 --
 
 INSERT INTO `Secretaria` (`RM_Secretaria`, `Sec_Escola`, `Sec_Nome`, `Sec_DataDeNascimento`, `Sec_Email`, `Sec_CPF`, `Sec_RG`, `Sec_CEP`, `Sec_Cidade`, `Sec_Endereço`, `Sec_Bairro`) VALUES
@@ -432,26 +429,30 @@ INSERT INTO `Secretaria` (`RM_Secretaria`, `Sec_Escola`, `Sec_Nome`, `Sec_DataDe
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Turmas`
+-- Table structure for table `Turmas`
 --
 
 CREATE TABLE `Turmas` (
+  `Escola` varchar(255) NOT NULL,
+  `Prof_Coordenador` varchar(255) NOT NULL,
   `ID_Ano` bigint(20) NOT NULL,
   `Turma` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Turmas`
+-- Dumping data for table `Turmas`
 --
 
-INSERT INTO `Turmas` (`ID_Ano`, `Turma`) VALUES
-(1, '1B'),
-(2, '1NB');
+INSERT INTO `Turmas` (`Escola`, `Prof_Coordenador`, `ID_Ano`, `Turma`) VALUES
+('EB.I Pedro Almeida', 'Pedro Sate', 13, '1N3'),
+('EB.I Pedro Almeida', 'Pedro Sate', 14, '1R1'),
+('Dirce Valério Gracia', 'Pedro Sate', 15, '1R4'),
+('EB.I Pedro Almeida', 'Pedro Sate', 16, '9RR9');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Turma_Horario`
+-- Table structure for table `Turma_Horario`
 --
 
 CREATE TABLE `Turma_Horario` (
@@ -466,39 +467,58 @@ CREATE TABLE `Turma_Horario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `Turma_Horario`
+-- Dumping data for table `Turma_Horario`
 --
 
 INSERT INTO `Turma_Horario` (`ID`, `Turma_Ano`, `Turma_Horario`, `Horario_Segunda`, `Horario_Terça`, `Horario_Quarta`, `Horario_Quinta`, `Horario_Sexta`) VALUES
-(33, '1B', '8 às 9', 'MAT', 'PORT', NULL, 'HIS', NULL),
-(34, '1B', '9 às 10', 'MAT', 'PORT', 'HIS', NULL, NULL),
-(35, '1B', '10 às 11', 'GEO\r\n', 'ING', 'ING', 'MAT', 'QUI\r\n'),
-(36, '1B', '11 às 12', 'BIO', 'QUI\r\n', 'ING', 'MAT', 'FIS'),
-(37, '1B', '13 às 14', 'BIO', 'QUI\r\n', 'FIS', 'ESP', 'HIS'),
-(38, '1B', '15 às 16', 'HIS', 'GEO\r\n', 'FIS', 'ESP', 'HIS'),
-(39, '1B', '16 às 17', 'HIS', 'Ed. FIS', 'BIO', 'PORT', 'PORT'),
-(40, '1B', '17 às 18', 'ESP', 'Ed. FIS', 'BIO', 'PORT', NULL);
+(33, '1R4', '8 às 9', 'MAT', 'PORT', NULL, 'HIS', NULL),
+(34, '1R4', '9 às 10', 'MAT', 'PORT', 'HIS', NULL, NULL),
+(35, '1R4', '10 às 11', 'GEO\r\n', 'ING', 'ING', 'MAT', 'QUI\r\n'),
+(36, '1R4', '11 às 12', 'BIO', 'QUI\r\n', 'ING', 'MAT', 'FIS'),
+(37, '1R4', '13 às 14', 'BIO', 'QUI\r\n', 'FIS', 'ESP', 'HIS'),
+(38, '1R4', '15 às 16', 'HIS', 'GEO\r\n', 'FIS', 'ESP', 'HIS'),
+(39, '1R4', '16 às 17', '', '', '', '', ''),
+(40, '1R4', '17 às 18', '', '', '', '', ''),
+(41, '1R1', '8 às 9', '', '', '', '', ''),
+(42, '1R1', '9 às 10', '', '', 'ART', '', ''),
+(43, '1R1', '10 às 11', '', '', '', '', ''),
+(44, '1R1', '11 às 12', '', '', '', '', 'ART'),
+(45, '1R1', '13 às 14', '', '', '', '', ''),
+(46, '1R1', '14 às 15', '', '', '', '', ''),
+(47, '1R1', '15 às 16', '', '', '', '', ''),
+(48, '1R1', '16 às 17', '', '', '', '', ''),
+(49, '1R1', '17 às 18', '', '', '', '', ''),
+(50, '1R4', '14 às 15', 'BIO', 'Ed. FIS', NULL, 'QUI\r\n', 'QUI\r\n'),
+(101, '9RR9', '8 às 9', 'Ed. FIS', '', '', '', ''),
+(102, '9RR9', '9 às 10', '', '', '', '', ''),
+(103, '9RR9', '10 às 11', 'ART', '', '', '', ''),
+(104, '9RR9', '11 às 12', '', '', '', '', ''),
+(105, '9RR9', '13 às 14', '', '', '', '', ''),
+(106, '9RR9', '14 às 15', '', '', '', '', ''),
+(107, '9RR9', '15 às 16', '', 'ART', '', '', ''),
+(108, '9RR9', '16 às 17', '', '', '', '', ''),
+(109, '9RR9', '17 às 18', '', '', '', '', '');
 
 --
--- Índices para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices para tabela `Alunos`
+-- Indexes for table `Alunos`
 --
 ALTER TABLE `Alunos`
   ADD PRIMARY KEY (`RM_Aluno`),
   ADD KEY `Aluno_Ano` (`Aluno_Ano`);
 
 --
--- Índices para tabela `Alunos_Faltas`
+-- Indexes for table `Alunos_Faltas`
 --
 ALTER TABLE `Alunos_Faltas`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_AlunoFaltas` (`Codigo_Falta`);
 
 --
--- Índices para tabela `Alunos_Notas`
+-- Indexes for table `Alunos_Notas`
 --
 ALTER TABLE `Alunos_Notas`
   ADD PRIMARY KEY (`ID`),
@@ -507,72 +527,74 @@ ALTER TABLE `Alunos_Notas`
   ADD KEY `Aluno_Disciplina` (`Aluno_Disciplina`);
 
 --
--- Índices para tabela `Disciplinas`
+-- Indexes for table `Disciplinas`
 --
 ALTER TABLE `Disciplinas`
   ADD PRIMARY KEY (`Materia_Nome`),
   ADD KEY `Materia_Abrev` (`Materia_Abrev`);
 
 --
--- Índices para tabela `Escolas`
+-- Indexes for table `Escolas`
 --
 ALTER TABLE `Escolas`
   ADD PRIMARY KEY (`Escola_Codigo`),
-  ADD UNIQUE KEY `Escola_CNPJ` (`Escola_CNPJ`);
+  ADD UNIQUE KEY `Escola_CNPJ` (`Escola_CNPJ`),
+  ADD KEY `Escola_Nome` (`Escola_Nome`);
 
 --
--- Índices para tabela `Login_ADMIN`
+-- Indexes for table `Login_ADMIN`
 --
 ALTER TABLE `Login_ADMIN`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Índices para tabela `Login_Aluno`
+-- Indexes for table `Login_Aluno`
 --
 ALTER TABLE `Login_Aluno`
   ADD PRIMARY KEY (`RM_Aluno`);
 
 --
--- Índices para tabela `Login_Prof`
+-- Indexes for table `Login_Prof`
 --
 ALTER TABLE `Login_Prof`
   ADD PRIMARY KEY (`RM_Prof`);
 
 --
--- Índices para tabela `Login_Resp`
+-- Indexes for table `Login_Resp`
 --
 ALTER TABLE `Login_Resp`
   ADD PRIMARY KEY (`RM_Resp`);
 
 --
--- Índices para tabela `Login_Secretaria`
+-- Indexes for table `Login_Secretaria`
 --
 ALTER TABLE `Login_Secretaria`
   ADD PRIMARY KEY (`RM_Secretaria`);
 
 --
--- Índices para tabela `Professores`
+-- Indexes for table `Professores`
 --
 ALTER TABLE `Professores`
   ADD PRIMARY KEY (`RM_Prof`),
-  ADD KEY `Prof_Escola` (`Prof_IDEscola`);
+  ADD KEY `Prof_Escola` (`Prof_IDEscola`),
+  ADD KEY `Prof_Nome` (`Prof_Nome`);
 
 --
--- Índices para tabela `Relacao_AlunosEscolas`
+-- Indexes for table `Relacao_AlunosEscolas`
 --
 ALTER TABLE `Relacao_AlunosEscolas`
   ADD KEY `RM_Aluno` (`RM_Aluno`,`Escola_Codigo`),
   ADD KEY `Escola_Codigo` (`Escola_Codigo`);
 
 --
--- Índices para tabela `Relacao_AlunosResponsaveis`
+-- Indexes for table `Relacao_AlunosResponsaveis`
 --
 ALTER TABLE `Relacao_AlunosResponsaveis`
   ADD KEY `RM_Aluno` (`RM_Aluno`),
   ADD KEY `Responsavel_Filhos` (`Responsavel_Filhos`);
 
 --
--- Índices para tabela `Relacao_ProfessorEscola`
+-- Indexes for table `Relacao_ProfessorEscola`
 --
 ALTER TABLE `Relacao_ProfessorEscola`
   ADD PRIMARY KEY (`ID`),
@@ -581,14 +603,14 @@ ALTER TABLE `Relacao_ProfessorEscola`
   ADD KEY `Prof_Turmas` (`Prof_Turmas`);
 
 --
--- Índices para tabela `Relacao_ProfessorTurma`
+-- Indexes for table `Relacao_ProfessorTurma`
 --
 ALTER TABLE `Relacao_ProfessorTurma`
   ADD KEY `Prof_Turma` (`Prof_Turma`,`Cod_DisTurma`),
   ADD KEY `ID_Turma` (`Cod_DisTurma`);
 
 --
--- Índices para tabela `Relacao_TurmaDisciplina`
+-- Indexes for table `Relacao_TurmaDisciplina`
 --
 ALTER TABLE `Relacao_TurmaDisciplina`
   ADD KEY `Matéria` (`Matéria`),
@@ -596,32 +618,33 @@ ALTER TABLE `Relacao_TurmaDisciplina`
   ADD KEY `Turma` (`Turma`);
 
 --
--- Índices para tabela `Responsáveis`
+-- Indexes for table `Responsáveis`
 --
 ALTER TABLE `Responsáveis`
   ADD PRIMARY KEY (`RM_Responsável`),
   ADD KEY `Resp_Filhos` (`Resp_Filhos`);
 
 --
--- Índices para tabela `Secretaria`
+-- Indexes for table `Secretaria`
 --
 ALTER TABLE `Secretaria`
   ADD PRIMARY KEY (`RM_Secretaria`),
   ADD KEY `Sec_Escola` (`Sec_Escola`);
 
 --
--- Índices para tabela `Turmas`
+-- Indexes for table `Turmas`
 --
 ALTER TABLE `Turmas`
   ADD PRIMARY KEY (`ID_Ano`),
-  ADD KEY `Turma` (`Turma`);
+  ADD KEY `Turma` (`Turma`),
+  ADD KEY `Escola` (`Escola`),
+  ADD KEY `Prof_Coordenador` (`Prof_Coordenador`);
 
 --
--- Índices para tabela `Turma_Horario`
+-- Indexes for table `Turma_Horario`
 --
 ALTER TABLE `Turma_Horario`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `Turma_Ano` (`Turma_Ano`),
   ADD KEY `Horario_Segunda` (`Horario_Segunda`),
   ADD KEY `Horario_Terça` (`Horario_Terça`),
   ADD KEY `Horario_Quarta` (`Horario_Quarta`),
@@ -629,121 +652,121 @@ ALTER TABLE `Turma_Horario`
   ADD KEY `Horario_Sexta` (`Horario_Sexta`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `Alunos_Faltas`
+-- AUTO_INCREMENT for table `Alunos_Faltas`
 --
 ALTER TABLE `Alunos_Faltas`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de tabela `Alunos_Notas`
+-- AUTO_INCREMENT for table `Alunos_Notas`
 --
 ALTER TABLE `Alunos_Notas`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de tabela `Escolas`
+-- AUTO_INCREMENT for table `Escolas`
 --
 ALTER TABLE `Escolas`
-  MODIFY `Escola_Codigo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Escola_Codigo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT de tabela `Login_ADMIN`
+-- AUTO_INCREMENT for table `Login_ADMIN`
 --
 ALTER TABLE `Login_ADMIN`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de tabela `Relacao_ProfessorEscola`
+-- AUTO_INCREMENT for table `Relacao_ProfessorEscola`
 --
 ALTER TABLE `Relacao_ProfessorEscola`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de tabela `Turma_Horario`
+-- AUTO_INCREMENT for table `Turmas`
+--
+ALTER TABLE `Turmas`
+  MODIFY `ID_Ano` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `Turma_Horario`
 --
 ALTER TABLE `Turma_Horario`
-  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
--- Restrições para despejos de tabelas
+-- Constraints for dumped tables
 --
 
 --
--- Limitadores para a tabela `Alunos`
---
-ALTER TABLE `Alunos`
-  ADD CONSTRAINT `Alunos_ibfk_1` FOREIGN KEY (`Aluno_Ano`) REFERENCES `Turmas` (`Turma`);
-
---
--- Limitadores para a tabela `Alunos_Faltas`
+-- Constraints for table `Alunos_Faltas`
 --
 ALTER TABLE `Alunos_Faltas`
   ADD CONSTRAINT `Alunos_Faltas_ibfk_1` FOREIGN KEY (`Codigo_Falta`) REFERENCES `Alunos_Notas` (`FK_AlunoFaltas`);
 
 --
--- Limitadores para a tabela `Alunos_Notas`
+-- Constraints for table `Alunos_Notas`
 --
 ALTER TABLE `Alunos_Notas`
   ADD CONSTRAINT `Alunos_Notas_ibfk_1` FOREIGN KEY (`RM_Aluno`) REFERENCES `Alunos` (`RM_Aluno`),
   ADD CONSTRAINT `Alunos_Notas_ibfk_3` FOREIGN KEY (`Aluno_Disciplina`) REFERENCES `Disciplinas` (`Materia_Abrev`);
 
 --
--- Limitadores para a tabela `Login_Aluno`
+-- Constraints for table `Login_Aluno`
 --
 ALTER TABLE `Login_Aluno`
   ADD CONSTRAINT `Login_Aluno_ibfk_1` FOREIGN KEY (`RM_Aluno`) REFERENCES `Alunos` (`RM_Aluno`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `Login_Prof`
+-- Constraints for table `Login_Prof`
 --
 ALTER TABLE `Login_Prof`
   ADD CONSTRAINT `Login_Prof_ibfk_1` FOREIGN KEY (`RM_Prof`) REFERENCES `Professores` (`RM_Prof`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `Login_Resp`
+-- Constraints for table `Login_Resp`
 --
 ALTER TABLE `Login_Resp`
   ADD CONSTRAINT `Login_Resp_ibfk_1` FOREIGN KEY (`RM_Resp`) REFERENCES `Responsáveis` (`RM_Responsável`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `Login_Secretaria`
+-- Constraints for table `Login_Secretaria`
 --
 ALTER TABLE `Login_Secretaria`
   ADD CONSTRAINT `Login_Secretaria_ibfk_1` FOREIGN KEY (`RM_Secretaria`) REFERENCES `Secretaria` (`RM_Secretaria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `Relacao_AlunosEscolas`
+-- Constraints for table `Relacao_AlunosEscolas`
 --
 ALTER TABLE `Relacao_AlunosEscolas`
   ADD CONSTRAINT `Relacao_AlunosEscolas_ibfk_1` FOREIGN KEY (`RM_Aluno`) REFERENCES `Alunos` (`RM_Aluno`),
   ADD CONSTRAINT `Relacao_AlunosEscolas_ibfk_2` FOREIGN KEY (`Escola_Codigo`) REFERENCES `Escolas` (`Escola_Codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `Relacao_AlunosResponsaveis`
+-- Constraints for table `Relacao_AlunosResponsaveis`
 --
 ALTER TABLE `Relacao_AlunosResponsaveis`
   ADD CONSTRAINT `Relacao_AlunosResponsaveis_ibfk_1` FOREIGN KEY (`RM_Aluno`) REFERENCES `Alunos` (`RM_Aluno`),
   ADD CONSTRAINT `Relacao_AlunosResponsaveis_ibfk_2` FOREIGN KEY (`Responsavel_Filhos`) REFERENCES `Responsáveis` (`Resp_Filhos`);
 
 --
--- Limitadores para a tabela `Relacao_ProfessorEscola`
+-- Constraints for table `Relacao_ProfessorEscola`
 --
 ALTER TABLE `Relacao_ProfessorEscola`
   ADD CONSTRAINT `Relacao_ProfessorEscola_ibfk_1` FOREIGN KEY (`Prof_Escola`) REFERENCES `Professores` (`Prof_IDEscola`),
   ADD CONSTRAINT `Relacao_ProfessorEscola_ibfk_2` FOREIGN KEY (`Escola_Cod`) REFERENCES `Escolas` (`Escola_Codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `Relacao_ProfessorTurma`
+-- Constraints for table `Relacao_ProfessorTurma`
 --
 ALTER TABLE `Relacao_ProfessorTurma`
   ADD CONSTRAINT `Relacao_ProfessorTurma_ibfk_1` FOREIGN KEY (`Prof_Turma`) REFERENCES `Relacao_ProfessorEscola` (`Prof_Turmas`);
 
 --
--- Limitadores para a tabela `Relacao_TurmaDisciplina`
+-- Constraints for table `Relacao_TurmaDisciplina`
 --
 ALTER TABLE `Relacao_TurmaDisciplina`
   ADD CONSTRAINT `Relacao_TurmaDisciplina_ibfk_1` FOREIGN KEY (`Turma`) REFERENCES `Turmas` (`Turma`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -751,21 +774,16 @@ ALTER TABLE `Relacao_TurmaDisciplina`
   ADD CONSTRAINT `Relacao_TurmaDisciplina_ibfk_4` FOREIGN KEY (`Cod_DisciplinaTurma`) REFERENCES `Relacao_ProfessorTurma` (`Cod_DisTurma`);
 
 --
--- Limitadores para a tabela `Secretaria`
+-- Constraints for table `Secretaria`
 --
 ALTER TABLE `Secretaria`
   ADD CONSTRAINT `Secretaria_ibfk_1` FOREIGN KEY (`Sec_Escola`) REFERENCES `Escolas` (`Escola_Codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `Turma_Horario`
+-- Constraints for table `Turmas`
 --
-ALTER TABLE `Turma_Horario`
-  ADD CONSTRAINT `Turma_Horario_ibfk_1` FOREIGN KEY (`Turma_Ano`) REFERENCES `Turmas` (`Turma`),
-  ADD CONSTRAINT `Turma_Horario_ibfk_2` FOREIGN KEY (`Horario_Segunda`) REFERENCES `Disciplinas` (`Materia_Abrev`),
-  ADD CONSTRAINT `Turma_Horario_ibfk_3` FOREIGN KEY (`Horario_Terça`) REFERENCES `Disciplinas` (`Materia_Abrev`),
-  ADD CONSTRAINT `Turma_Horario_ibfk_4` FOREIGN KEY (`Horario_Quarta`) REFERENCES `Disciplinas` (`Materia_Abrev`),
-  ADD CONSTRAINT `Turma_Horario_ibfk_5` FOREIGN KEY (`Horario_Quinta`) REFERENCES `Disciplinas` (`Materia_Abrev`),
-  ADD CONSTRAINT `Turma_Horario_ibfk_6` FOREIGN KEY (`Horario_Sexta`) REFERENCES `Disciplinas` (`Materia_Abrev`);
+ALTER TABLE `Turmas`
+  ADD CONSTRAINT `Turmas_ibfk_1` FOREIGN KEY (`Prof_Coordenador`) REFERENCES `Professores` (`Prof_Nome`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

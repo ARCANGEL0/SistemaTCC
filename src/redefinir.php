@@ -52,14 +52,14 @@ session_start();
           <!-- /.col -->
           <div class="col-12">
           <?php
-                    if(isset($_SESSION['nao_autenticado'])):
+                    if(isset($_SESSION['noEmail'])):
                     ?>
                     <div class="alert alert-danger">
-                      ERRO: Usuário ou senha inválidos!
+                      ERRO: Email errado ou inexistente!!
                     </div>
                     <?php
                     endif;
-                    unset($_SESSION['nao_autenticado']);
+                    unset($_SESSION['noEmail']);
 
                     if(isset($_SESSION['campoVazio'])):
                     ?>
@@ -70,15 +70,31 @@ session_start();
                     endif;
                     unset($_SESSION['campoVazio']);
 
-                    if(isset($_SESSION['semSenha'])):
+
                     ?>
-                    <div class="alert alert-danger">
-                      ERRO: Digite uma senha!
+
+                  <?php
+                    if(isset($_SESSION['emailEnviado'])):
+                    ?>
+                    <div class="alert alert-success">
+                    <p>Sua senha foi alterada com sucesso!</p>
+                    <p> A nova senha foi enviada para o seu email!</p>
                     </div>
                     <?php
                     endif;
-                    unset($_SESSION['semSenha']);
-                    ?>
+                    unset($_SESSION['emailEnviado']); ?>
+                    <?php
+                      if(isset($_SESSION['emailNaoEnviado'])):
+                      ?>
+                      <div class="alert alert-danger">
+                        Opa! <br>
+                      Houve um problema em redefinir sua senha!
+
+                      </div>
+                      <?php
+                      endif;
+                      unset($_SESSION['emailNaoEnviado']); ?>
+
             <button type="submit" class="btn btn-primary btn-block">Solicitar redefinição</button>
           </div>
           <!-- /.col -->

@@ -1,0 +1,10 @@
+{
+    "name": "arc/src",
+    "authors": [
+        {
+            "name": "ARCANGELO",
+            "email": "ryuusakis@gmail.com"
+        }
+    ],
+    "require": {}
+}

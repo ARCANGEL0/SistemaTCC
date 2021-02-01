@@ -2,7 +2,7 @@
 <?php
 // Aqui o PHP inicia uma sessão, e inclui o arquivo verifyLogin.php ao carregar
 session_start();
-include('../../Scripts/Login/Verify/employVerify.php');
+include('../../Scripts/Login/Verify/employeeVerify.php');
 
 include('../../Scripts/Database/Connection.php');
 ?>
