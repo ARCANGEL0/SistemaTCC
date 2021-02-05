@@ -1,11 +1,11 @@
 <?php
 
 
-require '../../PHPMailer/src/Exception.php';
-require '../../PHPMailer/src/PHPMailer.php';
-require '../../PHPMailer/src/SMTP.php';
+require '../../plugins/PHPMailer/src/Exception.php';
+require '../../plugins/PHPMailer/src/PHPMailer.php';
+require '../../plugins/PHPMailer/src/SMTP.php';
 
-require '../../PHPMailer/src/OAuth.php';
+require '../../plugins/PHPMailer/src/OAuth.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 

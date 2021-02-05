@@ -84,7 +84,7 @@ if(isset($_POST['registrar'])){
 $check = "SELECT * FROM Turma_Horario WHERE Turma_Ano ='$turma'";
 $queryCheck = mysqli_query($conn,$check);
 $rowCheck = mysqli_fetch_array($queryCheck);
-	$query = "INSERT INTO Turma_Horario (Turma_Ano,Turma_Horario,Horario_Segunda,Horario_Terça,Horario_Quarta,Horario_Quinta,Horario_Sexta)
+  $query = "INSERT INTO Turma_Horario (Turma_Ano,Turma_Horario,Horario_Segunda,Horario_Terça,Horario_Quarta,Horario_Quinta,Horario_Sexta)
 
   VALUES ('$turma','8 às 9','$segunda1','$terca1','$quarta1','$quinta1','$sexta1'),
    ('$turma','9 às 10','$segunda2','$terca2','$quarta2','$quinta2','$sexta2'),
@@ -99,14 +99,14 @@ $rowCheck = mysqli_fetch_array($queryCheck);
   ";
 
 if (! $rowCheck) {
-	if(mysqli_query($conn,$query)){
+  if(mysqli_query($conn,$query)){
     $_SESSION['horario_registrado'] = true;
       header("Location: ../../../../Pages/Admin/horarios.php");
-    	exit();
+      exit();
 
 
-	}
-	else {
+  }
+  else {
 
 
 
@@ -118,19 +118,19 @@ if (! $rowCheck) {
        exit();
 
 
-	}
+  }
 }
 else {
-	$_SESSION['registro_existente'] = true;
+  $_SESSION['registro_existente'] = true;
 
-		header("Location: ../../../../Pages/Admin/horarios.php");
+    header("Location: ../../../../Pages/Admin/horarios.php");
 
-		exit();
+    exit();
 
 }
 
 
-	mysqli_close($conn);
+  mysqli_close($conn);
 }
 
 

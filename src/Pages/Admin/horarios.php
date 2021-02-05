@@ -347,17 +347,41 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     <br>
 <label for="nomeTurma">Turma</label>
     <select class="form-control" required type="text" onchange="" id="nomeTurmas" name="nomeTurmas" >
-      <option hidden disabled selected value="#">Selecione uma turma</option>
+      <option hidden disabled selected value="#"></option>
 
-      <?php
-      $queryTurmas =  mysqli_query($conn,"SELECT * FROM Turmas");
-      while($row = mysqli_fetch_array($queryTurmas))
-      {
-      echo '<option value="'.$row['Turma'].'">' . $row['Turma'] . '</td>';
-      };
-
-      ?>
+   
     </select>
+     <script>
+      $(document).ready(function(){
+// script quqe usa ajax para detectar escola selecionada, rodar um sql para selecionar turmas e colocar no segundo select
+    $("#nomeEscola").change(function(){
+        var escolanome = $(this).val();
+        $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+                $("#nomeTurmas").empty();
+
+                $("#nomeTurmas").append("<option disabled hidden selected value='none'>Selecione uma turma</option>");
+
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+
+                    $("#nomeTurmas").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+            }
+        });
+    });
+
+   
+});
+  </script>
     <br><br>
     <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
       <form action="" id="myform">
@@ -393,7 +417,7 @@ for ($x = 0; $x <= 8; $x++) {
 
   echo '<td><select required name="segunda'.$x.'" id="segunda'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
-  echo '<option value="">ーーー</option>';
+  echo '<option value="">   </option>';
 
   for($i = 0; $i <= 10; $i++){
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
@@ -406,7 +430,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 
   echo '<td><select required id="terca'.$x.'" name="terca'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
-  echo '<option value="">ーーー</option>';
+  echo '<option value="">   </option>';
   for($i = 0; $i <= 10; $i++){
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 }
@@ -417,7 +441,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 
   echo '<td><select required id="quarta'.$x.'" name="quarta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
-  echo '<option value="">ーーー</option>';
+  echo '<option value="">   </option>';
 
   for($i = 0; $i <= 10; $i++){
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
@@ -425,7 +449,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
   echo '</select></td>';
   echo '<td><select required name="quinta'.$x.'" id="quinta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
-  echo '<option value="">ーーー</option>';
+  echo '<option value="">   </option>';
 
   for($i = 0; $i <= 10; $i++){
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
@@ -433,7 +457,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
   ECHO '</select></td>';
   echo '<td><select required name="sexta'.$x.'"id="sexta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
-  echo '<option value="">ーーー</option>';
+  echo '<option value="">   </option>';
 
 
 
@@ -506,11 +530,11 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
       $(document).ready(function(){
 // script quqe usa ajax para detectar escola selecionada, rodar um sql para selecionar turmas e colocar no segundo select
     $("#escolaEdit").change(function(){
-        var escolanome = $(this).val();
+        var escolanome2= $(this).val();
         $.ajax({
             url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
             type: 'post',
-            data: {escola:escolanome},
+            data: {escola:escolanome2},
             dataType: 'json',
             success:function(response){
 
@@ -554,36 +578,156 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
             }
         });
     });
-    $("#turmaEdit").change(function(){
-        var className = $(this).val();
+     $("#turmaEdit").change(function(){
+        var aula = $(this).val();
         $.ajax({
-          url: '../../Scripts/Manipulations/Admin/Horarios/selectHorarioEdit.php',
+            url: '../../Scripts/Manipulations/Admin/Horarios/ClassSelect.php',
             type: 'post',
-            data: {turmaNome:className},
+            data: {turmaNome:aula},
             dataType: 'json',
             success:function(data){
 
-                alert(data);
+                alert(data.segunda5);
+                 var aulaS0 = data.segunda0;
+                 var aulaS1 = data.segunda1;
+                 var aulaS2 = data.segunda2;
+                 var aulaS3 = data.segunda3;
+                 var aulaS4 = data.segunda4;
+                 var aulaS5 = data.segunda5;
+                 var aulaS6 = data.segunda6;
+                 var aulaS7 = data.segunda7;
+                 var aulaS8 = data.segunda8;
+
+                 var aulaTer0 = data.terca0;
+                 var aulaTer1 = data.terca1;
+                 var aulaTer2 = data.terca2;
+                 var aulaTer3 = data.terca3;
+                 var aulaTer4 = data.terca4;
+                 var aulaTer5 = data.terca5;
+                 var aulaTer6 = data.terca6;
+                 var aulaTer7 = data.terca7;
+                 var aulaTer8 = data.terca8;
+            
+
+                 var aulaQua0 = data.quarta0;
+                 var aulaQua1 = data.quarta1;
+                 var aulaQua2 = data.quarta2;
+                 var aulaQua3 = data.quarta3;
+                 var aulaQua4 = data.quarta4;
+                 var aulaQua5 = data.quarta5;
+                 var aulaQua6 = data.quarta6;
+                 var aulaQua7 = data.quarta7;
+                 var aulaQua8 = data.quarta8;
+            
+
+                 var aulaQui0 = data.quinta0;
+                 var aulaQui1 = data.quinta1;
+                 var aulaQui2 = data.quinta2;
+                 var aulaQui3 = data.quinta3;
+                 var aulaQui4 = data.quinta4;
+                 var aulaQui5 = data.quinta5;
+                 var aulaQui6 = data.quinta6;
+                 var aulaQui7 = data.quinta7;
+                 var aulaQui8 = data.quinta8;
+            
+
+                 var aulaSex0 = data.sexta0;
+                 var aulaSex1 = data.sexta1;
+                 var aulaSex2 = data.sexta2;
+                 var aulaSex3 = data.sexta3;
+                 var aulaSex4 = data.sexta4;
+                 var aulaSex5 = data.sexta5;
+                 var aulaSex6 = data.sexta6;
+                 var aulaSex7 = data.sexta7;
+                 var aulaSex8 = data.sexta8;
+            
+            
                 var len = data.length;
-                alert(len);
 
-                $("#Editsegunda0").empty();
-                $("#Editsegunda0").append("<option disabled hidden selected value='none'>Fodase </option>");
+                $("#Editsegunda0").append("<option  hidden selected value='"+aulaS0+"'>"+aulaS0+" </option>");
+                $("#Editsegunda1").append("<option  hidden selected value='"+aulaS1+"'>"+aulaS1+" </option>");
+                $("#Editsegunda2").append("<option  hidden selected value='"+aulaS2+"'>"+aulaS2+" </option>");
+                $("#Editsegunda3").append("<option  hidden selected value='"+aulaS3+"'>"+aulaS3+" </option>");
+                $("#Editsegunda4").append("<option  hidden selected value='"+aulaS4+"'>"+aulaS4+" </option>");
+                $("#Editsegunda5").append("<option  hidden selected value='"+aulaS5+"'>"+aulaS5+" </option>");
+                $("#Editsegunda6").append("<option  hidden selected value='"+aulaS6+"'>"+aulaS6+" </option>");
+                $("#Editsegunda7").append("<option  hidden selected value='"+aulaS7+"'>"+aulaS7+" </option>");
+                $("#Editsegunda8").append("<option  hidden selected value='"+aulaS8+"'>"+aulaS8+" </option>");
 
+                 $("#Editterca0").append("<option  hidden selected value='"+aulaTer0+"'>"+aulaTer0+" </option>");
+                $("#Editterca1").append("<option  hidden selected value='"+aulaTer1+"'>"+aulaTer1+" </option>");
+                $("#Editterca2").append("<option  hidden selected value='"+aulaTer2+"'>"+aulaTer2+" </option>");
+                $("#Editterca3").append("<option  hidden selected value='"+aulaTer3+"'>"+aulaTer3+" </option>");
+                $("#Editterca4").append("<option  hidden selected value='"+aulaTer4+"'>"+aulaTer4+" </option>");
+                $("#Editterca5").append("<option  hidden selected value='"+aulaTer5+"'>"+aulaTer5+" </option>");
+                $("#Editterca6").append("<option  hidden selected value='"+aulaTer6+"'>"+aulaTer6+" </option>");
+                $("#Editterca7").append("<option  hidden selected value='"+aulaTer7+"'>"+aulaTer7+" </option>");
+                $("#Editterca8").append("<option  hidden selected value='"+aulaTer8+"'>"+aulaTer8+" </option>");
 
+                 $("#Editquarta0").append("<option  hidden selected value='"+aulaQua0+"'>"+aulaQua0+" </option>");
+                $("#Editquarta1").append("<option  hidden selected value='"+aulaQua1+"'>"+aulaQua1+" </option>");
+                $("#Editquarta2").append("<option  hidden selected value='"+aulaQua2+"'>"+aulaQua2+" </option>");
+                $("#Editquarta3").append("<option  hidden selected value='"+aulaQua3+"'>"+aulaQua3+" </option>");
+                $("#Editquarta4").append("<option  hidden selected value='"+aulaQua4+"'>"+aulaQua4+" </option>");
+                $("#Editquarta5").append("<option  hidden selected value='"+aulaQua5+"'>"+aulaQua5+" </option>");
+                $("#Editquarta6").append("<option  hidden selected value='"+aulaQua6+"'>"+aulaQua6+" </option>");
+                $("#Editquarta7").append("<option  hidden selected value='"+aulaQua7+"'>"+aulaQua7+" </option>");
+                $("#Editquarta8").append("<option  hidden selected value='"+aulaQua8+"'>"+aulaQua8+" </option>");
 
-                                    for( var i = 0; i<9; i++){
-                                        var aula = datap['segunda'];
-                                        $("#Editsegunda0").append("<option value='"+aula+"'>"+aula+"</option>");
+                 $("#Editquinta0").append("<option  hidden selected value='"+aulaQui0+"'>"+aulaQui0+" </option>");
+                $("#Editquinta1").append("<option  hidden selected value='"+aulaQui1+"'>"+aulaQui1+" </option>");
+                $("#Editquinta2").append("<option  hidden selected value='"+aulaQui2+"'>"+aulaQui2+" </option>");
+                $("#Editquinta3").append("<option  hidden selected value='"+aulaQui3+"'>"+aulaQui3+" </option>");
+                $("#Editquinta4").append("<option  hidden selected value='"+aulaQui4+"'>"+aulaQui4+" </option>");
+                $("#Editquinta5").append("<option  hidden selected value='"+aulaQui5+"'>"+aulaQui5+" </option>");
+                $("#Editquinta6").append("<option  hidden selected value='"+aulaQui6+"'>"+aulaQui6+" </option>");
+                $("#Editquinta7").append("<option  hidden selected value='"+aulaQui7+"'>"+aulaQui7+" </option>");
+                $("#Editquinta8").append("<option  hidden selected value='"+aulaQui8+"'>"+aulaQui8+" </option>");
 
-
-                                    }
-
-
-
+                 $("#Editsexta0").append("<option  hidden selected value='"+aulaSex0+"'>"+aulaSex0+" </option>");
+                $("#Editsexta1").append("<option  hidden selected value='"+aulaSex1+"'>"+aulaSex1+" </option>");
+                $("#Editsexta2").append("<option  hidden selected value='"+aulaSex2+"'>"+aulaSex2+" </option>");
+                $("#Editsexta3").append("<option  hidden selected value='"+aulaSex3+"'>"+aulaSex3+" </option>");
+                $("#Editsexta4").append("<option  hidden selected value='"+aulaSex4+"'>"+aulaSex4+" </option>");
+                $("#Editsexta5").append("<option  hidden selected value='"+aulaSex5+"'>"+aulaSex5+" </option>");
+                $("#Editsexta6").append("<option  hidden selected value='"+aulaSex6+"'>"+aulaSex6+" </option>");
+                $("#Editsexta7").append("<option  hidden selected value='"+aulaSex7+"'>"+aulaSex7+" </option>");
+                $("#Editsexta8").append("<option  hidden selected value='"+aulaSex8+"'>"+aulaSex8+" </option>");
+             
             }
         });
     });
+    // Aqui é a função para pegar as aulas ja existentes do horário
+    // $("#turmaEdit").change(function(){
+    //     var className = $(this).val();
+    //     $.ajax({
+    //       url: '../../Scripts/Manipulations/Admin/Horarios/ClassSelect.php',
+    //         type: 'post',
+    //         data: {turmaNome:className},
+    //         dataType: 'json',
+    //         success:function(data){
+
+    //             alert(data);
+    //             var len = data.length;
+    //             alert(len);
+
+    //             $("#Editsegunda0").empty();
+    //             $("#Editsegunda0").append("<option disabled hidden selected value='none'>Fodase </option>");
+
+
+
+    //                                 for( var i = 0; i<9; i++){
+    //                                     var aula = data['segunda'];
+    //                                     $("#Editsegunda0").append("<option value='"+aula+"'>"+aula+"</option>");
+
+
+    //                                 }
+
+
+
+    //         }
+    //     });
+    // });
 
 });
       </script>
@@ -617,7 +761,7 @@ for ($x = 0; $x <= 8; $x++) {
 
   echo '<td><select required name="Editsegunda'.$x.'" id="Editsegunda'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
-  echo '<option value="">ーーー</option>';
+  echo '<option value="">   </option>';
 
   for($i = 0; $i <= 10; $i++){
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
@@ -630,7 +774,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 
   echo '<td><select required id="Editterca'.$x.'" name="Editterca'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
-  echo '<option value="">ーーー</option>';
+  echo '<option value="">   </option>';
   for($i = 0; $i <= 10; $i++){
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 }
@@ -641,7 +785,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 
   echo '<td><select required id="Editquarta'.$x.'" name="Editquarta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
-  echo '<option value="">ーーー</option>';
+  echo '<option value="">   </option>';
 
   for($i = 0; $i <= 10; $i++){
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
@@ -649,7 +793,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
   echo '</select></td>';
   echo '<td><select required name="Editquinta'.$x.'" id="Editquinta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
-  echo '<option value="">ーーー</option>';
+  echo '<option value="">   </option>';
 
   for($i = 0; $i <= 10; $i++){
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
@@ -657,7 +801,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
   ECHO '</select></td>';
   echo '<td><select required name="Editsexta'.$x.'"id="Editsexta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
-  echo '<option value="">ーーー</option>';
+  echo '<option value="">   </option>';
 
 
 
