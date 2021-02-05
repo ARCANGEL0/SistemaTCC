@@ -587,7 +587,6 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
             dataType: 'json',
             success:function(data){
 
-                alert(data.segunda5);
                  var aulaS0 = data.segunda0;
                  var aulaS1 = data.segunda1;
                  var aulaS2 = data.segunda2;
