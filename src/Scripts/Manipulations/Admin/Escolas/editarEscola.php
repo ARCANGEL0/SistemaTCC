@@ -15,9 +15,10 @@ echo $_GET['salvar'];
 
 if(isset($_POST['salvar'])){
 
-$query= "UPDATE `Escolas` SET `Escola_Nome` = '$nome', `Escola_CEP` = '$cep', `Escola_Munincipio` = '$munincipio', `Escola_Endereco` = '$endereco' WHERE `Escolas`.`Escola_Codigo` = $id";
+$query= "UPDATE `Escolas` SET `Escola_Nome` = '$nome', `Escola_CEP` = '$cep', `Escola_Munincipio` = '$munincipio', `Escola_Endereco` = '$endereco' WHERE `Escolas`.`Escola_Codigo` = $id;";
+$query .="UPDATE `Turmas` SET `Escola` = '$nome' WHERE ID_Escola=$id;";
 
-	if(mysqli_query($conn,$query)){
+	if(mysqli_multi_query($conn,$query)){
     $_SESSION['escola_atualizada'] = true;
       header("Location: ../../../../Pages/Admin/escolas.php");
     	exit();

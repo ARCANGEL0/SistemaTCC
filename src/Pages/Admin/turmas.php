@@ -12,7 +12,7 @@ include('../../Scripts/Database/Connection.php');
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>EdSys | Sistema Escolar</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -503,7 +503,7 @@ echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
       <div class="container-fluid">
 
 
-        <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarTurma"><i class="fa fa-plus"></i> &nbsp;  Registrar uma nova turma</button>
+        <button class="btn btn-success" type="button" name="button" data-toggle="modal" id="registrarNovaTurma" data-target="#RegistrarTurma"><i class="fa fa-plus"></i> &nbsp;  Registrar uma nova turma</button>
 
 <br><br>
 
@@ -554,7 +554,7 @@ echo '<td><a class="btn-sm  btn-secondary btnEditar" id="editar" href="#"> <i cl
   <a class="btn-sm btn-success btnAlunos" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
 
 
-  <a class="btn-sm btn-info  btnHorários" name="horarios" href="#"><i class="fa fa-clock"></i></a>
+  <a class="btn-sm btn-info  btnHorários" href="#" id="horarios" name="horarios" ><i class="fa fa-clock"></i></a>
 
   <a class="btn-sm btn-warning text-white btnTurmas" name="turmas" href="#"><i class="fa fa-chalkboard-teacher"></i></a>
 
@@ -565,7 +565,6 @@ echo "</tr>";
 
 mysqli_close($conn);
 ?>
-
 
 
       </tbody>
@@ -753,6 +752,35 @@ mysqli_close($conn);
       "info": true,
       "autoWidth": true,
       "responsive": true,
+    });
+
+
+     table.on('click','.btnHorários',function(){
+      $tr=$(this).closest('tr');
+
+      var data = table.row($tr).data();
+  data.splice(4,1);
+var turma = data[3];
+var escola = data[1];
+      
+       $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Turmas/getDataTurma.php',
+            type: 'post',
+            async: false,
+            data: {idturma:turma,
+                    idescola: escola},
+            dataType: 'json',
+            success:function(response){
+
+             var turma = response['SelectTurma']
+             var escola = response['SelectEscola']
+               window.location.href="horarios.php?escola="+escola+"&turma="+turma;
+
+
+            },
+          
+        });
+
     });
 
 

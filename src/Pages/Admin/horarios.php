@@ -12,7 +12,7 @@ include('../../Scripts/Database/Connection.php');
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>EdSys | Sistema Escolar</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -529,6 +529,11 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
       <script>
       $(document).ready(function(){
 // script quqe usa ajax para detectar escola selecionada, rodar um sql para selecionar turmas e colocar no segundo select
+    function getEscola() {
+
+      
+    }
+
     $("#escolaEdit").change(function(){
         var escolanome2= $(this).val();
         $.ajax({
@@ -942,11 +947,11 @@ echo "<td>".$row['Turma_Ano']."</td>";
 echo "<td class='text-cyan bg-primary ' >" . $row['Turma_Horario'] . "</td>";
 
 // Segunda
-if (empty($row['Horario_Quarta'])) {
+if (empty($row['Horario_Segunda'])) {
   echo "<td class='bg-danger disabled'>" . "---" . "</td>";
 }
 else{
-  echo "<td class='text-cyan bg-danger'>" . $row['Horario_Quarta'] . "</td>";
+  echo "<td class='text-cyan bg-danger'>" . $row['Horario_Segunda'] . "</td>";
 
 }
 // Terça
@@ -1233,21 +1238,53 @@ mysqli_close($conn);
        };
        table.search("Sem turma").draw(); // Isto serve para impedir a visualização de conteudo
        //ao carregar a página, e forçar o filtro por turma
+    var parametroEscola = parametroUrl("escola");
 
-    var parametro = parametroUrl("turma");
+    var parametroTurma = parametroUrl("turma");
     $('#filtroTurma').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
        table.search(this.value).draw();
     });
 
 
 
-    $('#filtroTurma').val(parametro);
+
+  $('#filtroEscola').val(parametroEscola);
+
+  function getTurma(){ // Essa função serve para detectar se houve um redirecionamento pelo URL e filtrar automaticamente atraves dos parametros
+    // do url
+   var escolanome = $('#filtroEscola').val();
+        $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
+
+                var len1 = response.length;
+
+                $("#filtroTurma").empty();
+            
+                for( var i = 0; i<len1; i++){
+                    var turma = response[i]['name'];
+
+                    $("#filtroTurma").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                } // aqui o for pega todas as turmas
 
 
+                    $("#filtroTurma").val(parametroTurma).change(); // aqui ele insere automaticamente a turma do parametro
+                
 
+ table.search(parametroTurma.value).draw(); // aqui ele seleciona o horário da turma
+
+            }
+        });
+
+  } 
+
+
+getTurma(); // aqui ele chama a função
   });
-
-// Aqui vai opções para sSelect para professor com base na escola
 
 
 
