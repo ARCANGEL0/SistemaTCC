@@ -47,11 +47,15 @@ include('../../Scripts/Database/Connection.php');
 
 .wrapper{
 width: 150vw;}
-#tabela_paginate{
-  padding-left: 500px;
+
+
+#tabelaAlunos_filter {
+  margin-top: 20px;
+  margin-left: -892px;}
+#tabelaAlunos_paginate{
+  margin-left: 810px;
 }
-#tabela_filter{
-  margin-left: -890px;
+
 }
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -265,13 +269,13 @@ Logado como ADMINISTRADOR             </h3>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="alunos.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Alunos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="alunos.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Responsáveis</p>
                 </a>
@@ -335,21 +339,45 @@ RegistrarEscola
     <label for="rm">RM</label>
     <input  type="large_number" id="rm" name="rm">
     <br>
-    <label for="cpf">CPF</label>
-    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="cpf" name="cpf" >
+    <label for="cpf">Escola</label>
+    <select class="form-control" name="createAlunoEscola" id="createAlunoEscola">
+      <option hidden disabled selected value="">Selecione uma escola</option>
+
+    <?php
+    $queryEscolas =  mysqli_query($conn,"SELECT * FROM Escolas");
+    while($row = mysqli_fetch_array($queryEscolas))
+    {
+    echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+    };
+
+    ?>
+
+    </select>    <br>
+    <label >Turma</label>
+        <select class="form-control" required type="text" onchange="" id="createAlunoTurma" name="createAlunoTurma" >
+          <option hidden disabled selected value="#">Escolha uma escola primeiro</option>
+
+
+        </select><br>
+        <label for="nome">Nome</label>
+        <input  type="text" id="nome" name="nome">
+        <br>
+    <label for="rg">RG</label>
+    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="rg" name="rg" >
     <br>
-    <label for="nome">Nome</label>
-    <input  type="text" id="nome" name="nome">
-    <br>
+
 	<label for="dn">Data Nascimento</label>
-	<input  maxlength="8" OnKeyPress="formatar('##-##-####', this)" type="date"id="dn" name="dn">
+	<input  maxlength="8" OnKeyPress="formatar('##-##-####', this)" type="date" id="dn" name="dn">
     <br>
     <label for="email">E-Mail</label>
     <input  type="text" id="email" name="email">
     <br>
-    <label for="rg">RG</label>
-    <input  type="text" id="rg" name="rg">
-    <br>
+      <label for="telefone">Telefone</label>
+    <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="telefone" name="telefone">
+  <br>
+    <label for="cep">CEP</label>
+    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cep" name="cep">
+	<br>
     <label for="municipio">Munincípio</label>
     <input  type="text" id="municipio" name="municipio">
     <br>
@@ -359,11 +387,11 @@ RegistrarEscola
     <label for="bairro">Bairro</label>
     <input  type="text" id="bairro" name="bairro">
     <br>
-    <label for="cep">CEP</label>
-    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cep" name="cep">
-	<br>
-    <label for="codigoescola">Cód. Escola</label>
-    <input  type="text" id="codigoescolar" name="codigoescola">
+
+    <input    id="codigoescola" name="codigoescola">
+  </input>
+    <input  id="codigoturma"  name="codigoturma">
+</input>
 
     </div>
           <div class="modal-footer">
@@ -383,26 +411,52 @@ RegistrarEscola
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Editar professor</h4>          </div>
+            <h4 class="modal-title">Editar Aluno</h4>          </div>
           <div class="modal-body registrarProfessor_corpo">
           <form action="../../Scripts/Manipulations/Admin/Alunos/editarAluno.php" method="POST" id="modalform">
     <input  type="hidden" id="edit_rm" name="edit_rm">
-    <br>
-    <label for="edit_cpf">CPF</label>
-    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_cpf" name="edit_cpf" >
-    <br>
+
+
     <label for="edit_nome">Nome</label>
     <input  type="text" id="edit_nome" name="edit_nome">
     <br>
-	<label for="edit_dn">Data Nascimento</label>
-	<input   value="2020-06-06" type="date" id="edit_dn" name="edit_dn">
+    <label for="cpf">Escola</label>
+    <select class="form-control" name="editAlunoEscola" id="editAlunoEscola">
+      <option hidden disabled selected value="">Selecione uma escola</option>
+
+    <?php
+    $queryEscolas =  mysqli_query($conn,"SELECT * FROM Escolas");
+    while($row = mysqli_fetch_array($queryEscolas))
+    {
+    echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+    };
+
+    ?>
+
+    </select>    <br>
+    <label >Turma</label>
+        <select class="form-control" required type="text" onchange="" id="editAlunoTurma" name="editAlunoTurma" >
+          <option hidden disabled selected value="#">Escolha uma escola primeiro</option>
+
+
+        </select><br>
+
+<label for="edit_dn">Data Nascimento</label>
+  <input   type="date" id="edit_dn" name="edit_dn">
     <br>
     <label for="edit_email">E-Mail</label>
     <input  type="text" id="edit_email" name="edit_email">
     <br>
+     <label for="edit_telefone">Telefone</label>
+    <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="edit_telefone" name="edit_telefone">
+  <br>
     <label for="edit_rg">RG</label>
-    <input  type="text" id="edit_rg" name="edit_rg">
+    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_rg" name="edit_rg" >
     <br>
+
+      <label for="edit_cep">CEP</label>
+    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
+  <br>
     <label for="edit_muninc">Munincípio</label>
     <input  type="text" id="edit_muninc" name="edit_muninc">
     <br>
@@ -412,15 +466,13 @@ RegistrarEscola
     <label for="edit_bairro">Bairro</label>
     <input  type="text" id="edit_bairro" name="edit_bairro">
     <br>
-    <label for="edit_cep">CEP</label>
-    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
-	<br>
-    <label for="edit_codEscola">Cód. Escola</label>
-    <input  type="text" id="edit_codEscolar" name="edit_codEscola">
+  
+    <input  type="hidden" id="edit_codEscolar" name="edit_codEscola">
+    <input  type="hidden" id="edit_codTurma" name="edit_codTurma">
 
     </div>
           <div class="modal-footer">
-          <button type="submit" name="salvar" id="salvar" class="btn btn-success">Salvar</button>
+          <button type="submit" name="salvarEdicao" id="salvarEdicao" class="btn btn-success">Salvar</button>
             <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
             </form>
           </div>
@@ -501,41 +553,49 @@ RegistrarEscola
 
         <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#registrarAluno"><i class="fa fa-plus"></i> &nbsp;  Cadastrar um novo Aluno</button>
 
-        <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
+        <table class="table table-bordered display" id="tabelaAlunos" width="100%" cellspacing="0">
           <form action="" id="myform">
         <thead>
         <tr>
         <th>RM</th>
-		<th>CPF</th>
-        <th>Nome</th>
-        <th>Data Nascimento</th>
-		<th>E-Mail</th>
-		<th>RG</th>
-		<th>Munincípio</th>
+		<th>Nome</th>
+        <th>Escola</th>
+        <th>Ano</th>
+		<th>Data de Nascimento</th>
+		<th>Email</th>
+    <th>Telefone</th>
+    <th>RG</th>
+		<th>CEP</th>
+		<th>Cidade</th>
 		<th>Endereço</th>
 		<th>Bairro</th>
-		<th>CEP</th>
-		<th>Código Escolar</th>
+    <th>ID Escola</th>
+    <th>ID Turma</th>
         <th>Ações</th>
       </tr>
         </thead>
       <tbody>
 <?php
-$result =  mysqli_query($conn,"SELECT * FROM Professores");
+$result =  mysqli_query($conn,"SELECT * FROM Alunos");
 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";
-echo "<td>" . $row['RM_Prof'] . "</td>";
-echo "<td>" . $row['Prof_CPF'] . "</td>";
-echo "<td>" . $row['Prof_Nome'] . "</td>";
-echo "<td>" . date("d/m/Y", strtotime($row['Prof_DataDeNascimento'])) . "</td>";
-echo "<td>" . $row['Prof_Email'] . "</td>";
-echo "<td>" . $row['Prof_RG'] . "</td>";
-echo "<td>" . $row['Prof_Cidade'] . "</td>";
-echo "<td>" . $row['Prof_Endereço'] . "</td>";
-echo "<td>" . $row['Prof_Bairro'] . "</td>";
-echo "<td>" . $row['Prof_CEP'] . "</td>";
-echo "<td>" . $row['Prof_IDEscola'] . "</td>";
+echo "<td>" . $row['RM_Aluno'] . "</td>";
+echo "<td>" . $row['Aluno_Nome'] . "</td>";
+echo "<td>" . $row['Aluno_Escola'] . "</td>";
+echo "<td>" . $row['Aluno_Ano'] . "</td>";
+echo "<td>" . date("d/m/Y", strtotime($row['Aluno_DataDeNascimento'])) . "</td>";
+echo "<td>" . $row['Aluno_Email'] . "</td>";
+
+echo "<td>" . $row['Aluno_Telefone'] . "</td>";
+echo "<td>" . $row['Aluno_RG'] . "</td>";
+echo "<td>" . $row['Aluno_CEP'] . "</td>";
+echo "<td>" . $row['Aluno_Cidade'] . "</td>";
+echo "<td>" . $row['Aluno_Endereço'] . "</td>";
+echo "<td>" . $row['Aluno_Bairro'] . "</td>";
+echo "<td>" . $row['ID_Escola'] . "</td>";
+echo "<td>" . $row['ID_Turma'] . "</td>";
+
 echo '<td><a class="btn-sm  btn-secondary text-white btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
 &nbsp;
   <a class="btn-sm btn-danger btnProfessores" name="professores" href="#"><i class="fa fa-graduation-cap"></i></a>
@@ -616,7 +676,6 @@ mysqli_close($conn);
 <!-- AdminLTE for demo purposes -->
 <script src="../../assets/Global/js/demo.js"></script>
 <script src="../../plugins/toastr/toastr.min.js"></script>
-
 
 <!-- AQUI SÃO OS EVENTOS DE SESSÃO PARA REGISTRO DOS ALUNOS -->
 <!-- Se o aluno for registrado, o php irá redirecionar para esta página com a sessão de registro, exibindo um alerta de succeso -->
@@ -714,8 +773,20 @@ mysqli_close($conn);
 <script>
   $(function () {
 
-  var table =  $('#tabela').DataTable({
+  var table =  $('#tabelaAlunos').DataTable({
+ "columnDefs": [
+                 {
+                     "targets": [ 12 ],
+                     "visible": false,
+                     "searchable": true
+                 },
+                 {
+                     "targets": [ 13 ],
+                     "visible": false,
+                     "searchable": true
+                 }
 
+                 ],
           "language": {
           "sEmptyTable": "Nenhum registro encontrado",
           "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -757,7 +828,6 @@ mysqli_close($conn);
       $tr=$(this).closest('tr');
 
       var data = table.row($tr).data();
-      data.splice(6,1);
       function FormataStringData(data) {
         var dia  = data.split("/")[0];
         var mes  = data.split("/")[1];
@@ -767,31 +837,161 @@ mysqli_close($conn);
         // Utilizo o .slice(-2) para garantir o formato com 2 digitos.
       }
 
-      console.log(data);
-      console.log(data[3]);
       $('#edit_rm').val(data[0])
-      $('#edit_cpf').val(data[1]);
-      $('#edit_nome').val(data[2]);
-      $('#edit_dn').val(FormataStringData(data[3]));
-      $('#edit_email').val(data[4]);
-      $('#edit_rg').val(data[5]);
-      $('#edit_muninc').val(data[6]);
-      $('#edit_endereco').val(data[7]);
-      $('#edit_bairro').val(data[8]);
-      $('#edit_cep').val(data[9]);
-      $('#edit_codEscola').val(data[10]);
+      $('#edit_nome').val(data[1]);
+      $('#editAlunoEscola').val(data[2]);
+      $('#edit_dn').val(FormataStringData(data[4]));
+      $('#edit_email').val(data[5]);
+      $('#edit_telefone').val(data[6]);
+      $('#edit_rg').val(data[7]);
+      $('#edit_cep').val(data[8]);
+      $('#edit_muninc').val(data[9]);
+      $('#edit_endereco').val(data[10]);
+      $('#edit_bairro').val(data[11]);
+      $('#edit_codEscolar').val(data[12]);
+     $('#edit_codTurma').val(data[13]);
+
+     $("#editAlunoTurma").append("<option disabled hidden selected value='"+data[3]+"'>"+data[3]+"</option>");
+
+     var nomeEscola = data[2];
+       $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:nomeEscola},
+            dataType: 'json',
+            success:function(response){
+              var turma = response[0]['turma'];
+
+                var len = response.length;
+
+            $('#editAlunoTurma').empty();
 
 
-    $('#editarAluno').modal('show');
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+                    $("#editAlunoTurma").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+
+
+            }
+
+    });
+
+
+
+    $('#EditarAluno').modal('show');
     });
 
 
 
   });
+//essa função pega o ID da turma apos selecionar ela
+  $("#createAlunoTurma").change(function(){
+    var turmanome =$("#createAlunoTurma").val();
+
+    $.ajax({
+        url: '../../Scripts/Manipulations/Admin/Global/turmaIDDependency.php',
+        type: 'post',
+        data: {turmaID:turmanome},
+        dataType: 'json',
+        success:function(response){
+        var turma = response[0]['turma'];
+      $("#codigoturma").val(turma);
+        }
+
+});
+  });
+
+  //essa função pega o ID da escola dps de selecionar
+  $("#createAlunoEscola").change(function(){
+      var escolanome = $(this).val();
+
+        var escolanome = $(this).val();
+        $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
+              var escola = response[0]['escola'];
+              var turma = response[0]['turma'];
+
+                var len = response.length;
+
+                $("#createAlunoTurma").empty();
+
+                $("#createAlunoTurma").append("<option disabled hidden selected value='none'>Selecione uma turma</option>");
+
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+                    $("#createAlunoTurma").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+                $("#codigoescola").val(escola);
 
 
+            }
+
+    });
+
+  });
+
+  //estas para o editar
+
+
+  $("#editAlunoTurma").change(function(){
+    var turmanome =$("#editAlunoTurma").val();
+
+    $.ajax({
+        url: '../../Scripts/Manipulations/Admin/Global/turmaIDDependency.php',
+        type: 'post',
+        data: {turmaID:turmanome},
+        dataType: 'json',
+        success:function(response){
+        var turma = response[0]['turma'];
+      $("#edit_codTurma").val(turma);
+        }
+
+});
+  });
+
+  //essa função pega o ID da escola dps de selecionar
+  $("#editAlunoEscola").change(function(){
+      var escolanome = $(this).val();
+
+        var escolanome = $(this).val();
+        $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
+              var escola = response[0]['escola'];
+              var turma = response[0]['turma'];
+
+                var len = response.length;
+
+                $("#editAlunoTurma").empty();
+
+                $("#editAlunoTurma").append("<option disabled hidden selected value='none'>Selecione uma turma</option>");
+
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+                    $("#editAlunoTurma").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+                $("#edit_codEscolar").val(escola);
+
+
+            }
+
+    });
+
+  });
 
 </script>
+
 
 </body>
 </html>

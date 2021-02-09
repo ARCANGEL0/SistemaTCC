@@ -16,8 +16,9 @@ $array = array();
 
     while( $row = mysqli_fetch_array($result) ){
         $name = $row['Turma'];
-
-        $array[] = array("name" => $name);
+        $idturma = $row['ID_Ano'];
+        $idescola = $row['ID_Escola'];
+        $array[] = array("name" => $name, "escola" => $idescola, "turma" => $idturma);
     }
 
 

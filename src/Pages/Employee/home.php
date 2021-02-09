@@ -295,13 +295,13 @@ Logado como ADMINISTRADOR             </h3>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="alunos.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Alunos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="alunos.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Responsáveis</p>
                 </a>
