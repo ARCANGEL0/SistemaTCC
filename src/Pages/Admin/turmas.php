@@ -17,7 +17,6 @@ include('../../Scripts/Database/Connection.php');
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-<link rel="stylesheet" href="../../assets/Admin/css/style.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
@@ -26,6 +25,8 @@ include('../../Scripts/Database/Connection.php');
   <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
   <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="../../assets/Admin/css/style.css">
+
   <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
 
   <!-- Theme style -->
@@ -436,51 +437,48 @@ echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
 <!-- FIM MODAL EDITAR -->
 
 
-<!-- MODAL APAGAR -->
+<!-- MODAL AULAS -->
+
+<div id="turmaAulas" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
 
 
-<div id="turmaDeletar" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
 
+            <h4 class="modal-title">Aulas da turma</h4>
+          </div>
+          <div class="modal-body">
+          <form action="../../Scripts/Manipulations/Admin/Turmas/editarTurma.php" method="POST" name="aulasform" id="aulasform">
 
-      <div class="modal-content">
-        <div class="modal-header">
+<input type="text" id="aulaidEdit" name="aulaidEdit">
+<br><br><br><br>
 
-          <h4 class="modal-title">Deletar turma</h4>
+<?php
+$queryAulas =  mysqli_query($conn,"SELECT Materia_Abrev FROM Disciplinas");
+while($row = mysqli_fetch_array($queryAulas))
+{
+  echo '<div class="form-group">';
+echo '<label class="materia">' . $row['Materia_Abrev'] . '</label> <label class="professor form-control" style="width:40%"> PROFESSOR </label> <br>';
+echo '</div>';
+};
+
+?>
+
+          </div>
+          <div class="modal-footer">
+          <button type="submit" name="salvar" id="salvar" class="btn btn-success">Editar</button>
+
+            <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+            </form>
+          </div>
         </div>
-        <div class="modal-body">
 
-        <form class="deletar" action="#" method="POST" id="deletar" >
-
-       <input type="hidden" value="" id="idDel" name="idDel">
-       <input id="cnpjDel" value="" type="hidden" name="cnpjDel">
-
-       <input id="nomeDel" type="hidden" name="nomeDel">
-
-       <input id="cidadeDel" type="hidden" name="cidadeDel">
-
-       <input id="enderecoDel" type="hidden" name="enderecoDel">
-
-       <input id="cepDel" type="hidden" name="cepDel">
-
-
-
-
-
-  <h5>Você tem certeza que deseja deletar esta turma e todos os seus dependentes?</h5>
-
-        </div>
-        <div class="modal-footer">
-        <button type="submit" class="btn btn-danger apagar">Deletar</button>
-
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
-          </form>
-        </div>
       </div>
-
     </div>
-  </div>
-<!-- FIM MODAL APAGAR -->
+
+<!-- FIM MODAL AULAS -->
+
   <!-- Content Wrapper. Início do conteudo -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -556,7 +554,7 @@ echo '<td><a class="btn-sm  btn-secondary btnEditar" id="editar" href="#"> <i cl
 
   <a class="btn-sm btn-info  btnHorários" href="#" id="horarios" name="horarios" ><i class="fa fa-clock"></i></a>
 
-  <a class="btn-sm btn-warning text-white btnTurmas" name="turmas" href="#"><i class="fa fa-chalkboard-teacher"></i></a>
+  <a class="btn-sm btn-warning text-white btnAulas" name="turmas" href="#"><i class="fa fa-chalkboard-teacher"></i></a>
 
 
 </td>';
@@ -801,6 +799,31 @@ var escola = data[1];
 
     $('#EditarTurma').modal('show');
     });
+
+     // btnAulas
+
+     table.on('click','.btnAulas',function(){
+   $tr=$(this).closest('tr');
+
+      var data = table.row($tr).data();
+      data.splice(4,1);
+
+      console.log(data);
+      $('#aulaidEdit').val(data[0]);
+
+      $('#turmaAulas').modal('show');
+     });
+
+
+
+
+
+
+
+
+
+
+
 
     var parametroUrl = function parametroUrl(sParam) {
            var sPageURL = decodeURIComponent(window.location.search.substring(1)),

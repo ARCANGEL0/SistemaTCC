@@ -48,7 +48,7 @@ include('../../Scripts/Database/Connection.php');
 .wrapper{
 width: 150vw;}
 #tabela_paginate{
-  padding-left: 500px;
+  padding-left: 420px;
 }
 #tabela_filter{
   margin-left: -890px;
@@ -335,12 +335,35 @@ RegistrarEscola
     <label for="rm">RM</label>
     <input  type="large_number" id="rm" name="rm">
     <br>
-    <label for="cpf">CPF</label>
-    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="cpf" name="cpf" >
-    <br>
+   
     <label for="nome">Nome</label>
     <input  type="text" id="nome" name="nome">
     <br>
+    <label for="profEscola">Escola</label>
+    <select class="form-control" required type="text" id="profEscola" name="profEscola" >
+      <option selected hidden disabled value="">Selecione uma escola</option>
+
+<?php
+$queryEscolas =  mysqli_query($conn,"SELECT * FROM Escolas");
+while($row = mysqli_fetch_array($queryEscolas))
+{
+echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+};
+
+?>
+                  </select>
+
+    
+
+    <br>
+<label for="profTurma">Turma</label>
+    <select class="form-control" required type="text" onchange="" id="profTurma" name="profTurma" >
+      <option hidden disabled selected value="#"></option>
+
+   
+    </select><br>
+        
+
 	<label for="dn">Data Nascimento</label>
 	<input  maxlength="8" OnKeyPress="formatar('##-##-####', this)" type="date"id="dn" name="dn">
     <br>
@@ -548,37 +571,6 @@ echo "</tr>";
 
 //mysqli_close($conn);
 ?>
-   <section class="content">
-      <div class="container-fluid">
-        <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
-		  <h1 class="m-0 text-dark">Escolas com o Professor cadastrado</h1>
-          <form action="" id="myform">
-        <thead>
-        <tr>
-        <th>Código</th>
-		<th>Nome</th>
-        <th>Endereço</th>
-		<th>Município</th>
-      </tr>
-        </thead>
-      <tbody>
-<?php
-//$cod_pro =  $_GET["rm_prof"]
-$cod_pro = '1';
-$result =  mysqli_query($conn,"select * from professor_escola WHERE RM_Prof = $cod_pro"); // Foi criado uma VIEW chamada PROFESSOR_ESCOLA no Banco de dados para consulta
-while($row = mysqli_fetch_array($result))
-{
-echo "<tr>";
-echo "<td>" . $row['escola_cod'] . "</td>";
-echo "<td>" . $row['escola_nome'] . "</td>";
-echo "<td>" . $row['escola_endereco'] . "</td>";
-echo "<td>" . $row['escola_munincipio'] . "</td>";
-echo "</tr>";
-}
-
-mysqli_close($conn);
-?>
-
       </tbody>
       </table>
       </form>
@@ -817,12 +809,34 @@ mysqli_close($conn);
     });
 
 
+$("#profEscola").change(function(){
+        var escolanome = $(this).val();
+        $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
 
-  });
+                var len = response.length;
 
+                $("#profTurma").empty();
 
+                $("#profTurma").append("<option disabled hidden selected value='none'>Selecione uma turma</option>");
 
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+
+                    $("#profTurma").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+            }
+        });
+    });
+
+  }); // fim document.ready
 </script>
+
 
 </body>
 </html>

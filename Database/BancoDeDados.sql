@@ -6,11 +6,12 @@
 -- Generation Time: Feb 01, 2021 at 04:19 PM
 -- Server version: 10.3.24-MariaDB-2
 -- PHP Version: 7.4.9
-
+create database TCC;
+use TCC;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "-03:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;

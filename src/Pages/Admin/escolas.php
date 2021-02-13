@@ -404,52 +404,7 @@ RegistrarEscola
 
 <!-- FIM MODAL EDITAR -->
 
-
-<!-- MODAL APAGAR -->
-
-
-<div id="escolaDeletar" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
-
-
-      <div class="modal-content">
-        <div class="modal-header">
-
-          <h4 class="modal-title">Deletar escola</h4>
-        </div>
-        <div class="modal-body">
-
-        <form class="deletar" action="#" method="POST" id="deletar" >
-
-       <input type="hidden" value="" id="idDel" name="idDel">
-       <input id="cnpjDel" value="" type="hidden" name="cnpjDel">
-
-       <input id="nomeDel" type="hidden" name="nomeDel">
-
-       <input id="cidadeDel" type="hidden" name="cidadeDel">
-
-       <input id="enderecoDel" type="hidden" name="enderecoDel">
-
-       <input id="cepDel" type="hidden" name="cepDel">
-
-
-
-
-
-  <h5>Você tem certeza que deseja deletar esta escola e todos os seus dependentes?</h5>
-
-        </div>
-        <div class="modal-footer">
-        <button type="submit" class="btn btn-danger apagar">Deletar</button>
-
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
-          </form>
-        </div>
-      </div>
-
-    </div>
-  </div>
-<!-- FIM MODAL APAGAR -->
+toor
   <!-- Content Wrapper. Início do conteudo -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -470,6 +425,7 @@ RegistrarEscola
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+
 
 
         <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarEscola"><i class="fa fa-plus"></i> &nbsp;  Cadastrar uma nova escola</button>
