@@ -142,7 +142,7 @@ width: 150vw;}
           </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-   Notificação 2
+          Notificação 2
           </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
@@ -156,14 +156,16 @@ width: 150vw;}
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-user"></i>&nbsp;
-ADMIN        </a>
+          ADMIN        
+        </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-Logado como ADMINISTRADOR             </h3>
+                  Logado como ADMINISTRADOR             
+                </h3>
                 <div class="dropdown-divider"></div>
               </div>
             </div>
@@ -214,7 +216,7 @@ Logado como ADMINISTRADOR             </h3>
           </li>
         <br>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-building"></i>
               <p>
                 Escolas
@@ -248,7 +250,7 @@ Logado como ADMINISTRADOR             </h3>
 <br>
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Usuários
@@ -536,7 +538,7 @@ RegistrarEscola
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Professores</h1>
+            <h1 class="m-0 text-dark">Alunos</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -557,22 +559,22 @@ RegistrarEscola
           <form action="" id="myform">
         <thead>
         <tr>
-        <th>RM</th>
-		<th>Nome</th>
-        <th>Escola</th>
-        <th>Ano</th>
-		<th>Data de Nascimento</th>
-		<th>Email</th>
-    <th>Telefone</th>
-    <th>RG</th>
-		<th>CEP</th>
-		<th>Cidade</th>
-		<th>Endereço</th>
-		<th>Bairro</th>
-    <th>ID Escola</th>
-    <th>ID Turma</th>
-        <th>Ações</th>
-      </tr>
+          <th>RM</th>
+		      <th>Nome</th>
+          <th>Escola</th>
+          <th>Ano</th>
+		      <th>Data de Nascimento</th>
+		      <th>Email</th>
+          <th>Telefone</th>
+          <th>RG</th>
+		      <th>CEP</th>
+		      <th>Cidade</th>
+		      <th>Endereço</th>
+		      <th>Bairro</th>
+          <th>ID Escola</th>
+          <th>ID Turma</th>
+          <th>Ações</th>
+        </tr>
         </thead>
       <tbody>
 <?php
@@ -586,12 +588,11 @@ echo "<td>" . $row['Aluno_Escola'] . "</td>";
 echo "<td>" . $row['Aluno_Ano'] . "</td>";
 echo "<td>" . date("d/m/Y", strtotime($row['Aluno_DataDeNascimento'])) . "</td>";
 echo "<td>" . $row['Aluno_Email'] . "</td>";
-
 echo "<td>" . $row['Aluno_Telefone'] . "</td>";
 echo "<td>" . $row['Aluno_RG'] . "</td>";
 echo "<td>" . $row['Aluno_CEP'] . "</td>";
 echo "<td>" . $row['Aluno_Cidade'] . "</td>";
-echo "<td>" . $row['Aluno_Endereço'] . "</td>";
+echo "<td>" . $row['Aluno_Endereco'] . "</td>";
 echo "<td>" . $row['Aluno_Bairro'] . "</td>";
 echo "<td>" . $row['ID_Escola'] . "</td>";
 echo "<td>" . $row['ID_Turma'] . "</td>";

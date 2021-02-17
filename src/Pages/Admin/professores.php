@@ -555,7 +555,7 @@ echo "<td>" . date("d/m/Y", strtotime($row['Prof_DataDeNascimento'])) . "</td>";
 echo "<td>" . $row['Prof_Email'] . "</td>";
 echo "<td>" . $row['Prof_RG'] . "</td>";
 echo "<td>" . $row['Prof_Cidade'] . "</td>";
-echo "<td>" . $row['Prof_Endereço'] . "</td>";
+echo "<td>" . $row['Prof_Endereco'] . "</td>";
 echo "<td>" . $row['Prof_Bairro'] . "</td>";
 echo "<td>" . $row['Prof_CEP'] . "</td>";
 echo "<td>" . $row['Prof_IDEscola'] . "</td>";
