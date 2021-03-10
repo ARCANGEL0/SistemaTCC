@@ -32,6 +32,7 @@ include('../../Scripts/Database/Connection.php');
   <link rel="stylesheet" href="../../assets/Global/css/adminlte.min.css">
   <link rel="stylesheet" href="../../assets/Global/css/style.css">
 
+  <link rel="stylesheet" href="../../assets/Prof/css/style.css">
 
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
@@ -409,23 +410,31 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
             <h4 class="modal-title">Editar professor</h4>          </div>
           <div class="modal-body registrarProfessor_corpo">
           <form action="../../Scripts/Manipulations/Admin/Professores/editarProfessor.php" method="POST" id="modalform">
-    <input  type="hidden" id="edit_rm" name="edit_rm">
+    <input  type="text" id="edit_rm" name="edit_rm">
     <br>
-    <label for="edit_cpf">CPF</label>
-    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_cpf" name="edit_cpf" >
-    <br>
+
     <label for="edit_nome">Nome</label>
     <input  type="text" id="edit_nome" name="edit_nome">
     <br>
 	<label for="edit_dn">Data Nascimento</label>
 	<input   value="2020-06-06" type="date" id="edit_dn" name="edit_dn">
     <br>
-    <label for="edit_email">E-Mail</label>
+  <label for="edit_telefone">Telefone</label>
+    <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)"type="text" id="edit_telefone" name="edit_telefone" >
+    <br>
+ 
+        <label for="edit_email">E-Mail</label>
     <input  type="text" id="edit_email" name="edit_email">
+    <br>
+        <label for="edit_cpf">CPF</label>
+    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_cpf" name="edit_cpf" >
     <br>
     <label for="edit_rg">RG</label>
     <input  type="text" id="edit_rg" name="edit_rg">
     <br>
+       <label for="edit_cep">CEP</label>
+    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
+  <br>
     <label for="edit_muninc">Munincípio</label>
     <input  type="text" id="edit_muninc" name="edit_muninc">
     <br>
@@ -435,11 +444,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     <label for="edit_bairro">Bairro</label>
     <input  type="text" id="edit_bairro" name="edit_bairro">
     <br>
-    <label for="edit_cep">CEP</label>
-    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
-	<br>
-    <label for="edit_codEscola">Cód. Escola</label>
-    <input  type="text" id="edit_codEscolar" name="edit_codEscola">
+ 
 
     </div>
           <div class="modal-footer">
@@ -455,7 +460,113 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
 <!-- FIM MODAL EDITAR -->
 
 
-<!-- MODAL APAGAR -->
+<!-- MODAL Modal escolas -->
+
+
+<div id="profEscolas" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <h4 class="modal-title">Escolas registradas</h4>
+        </div>
+        <div class="modal-body">
+
+
+       <input type="hidden" value="" id="rm_esc" name="rm_esc">
+  <style type="text/css">
+    .collap:hover, .activeTurmas {
+  background-color: #56D7CC11;
+  border: 1px solid #56D7CC;
+
+}
+    .turmas {
+padding-top: 10px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+
+
+}
+  </style>
+
+<div class="form-group" id="listagemEscolas" "> 
+ 
+
+
+
+ <button class="form-control collap">Escola 1 </button>
+<div class="turmas">
+  <p class="bg-turma">
+<a class="bg-nomeTurma"> 1N4 </a> 
+
+<a class="bg-identifier"> - </a>
+
+<a class="bg-nomeMateria">Materia </a> 
+
+</p>
+
+  <p class="bg-turma">
+<a class="bg-nomeTurma"> 1N4 </a> 
+
+<a class="bg-identifier"> - </a>
+
+<a class="bg-nomeMateria">Materia </a> 
+
+</p>
+</div>
+ <button class="form-control collap">Escola 2 </button>
+
+<div class="turmas">
+  <p>Turma 1 - Materia </p>
+  <p> Turma 2 - Materia</p>
+</div>
+
+
+<script>
+
+var coll = document.getElementsByClassName("collap");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+
+
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+      content.style.border = null;
+      content.style.background = null;
+      content.style.margin = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+
+      content.style.border = "1px solid #56D7CC";
+      content.style.background = "#56D7CC22";
+      content.style.margin = "10px 0 10px 0";
+
+         } 
+  });
+}
+</script>
+ <p class="form-control">Escola 2</p>
+</div>
+  
+        </div>
+        <div class="modal-footer">
+        <button type="submit" class="btn btn-danger apagar">Editar</button>
+
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- FIM Modal escolas -->
+
 
 
 <div id="escolaDeletar" class="modal fade" role="dialog">
@@ -500,6 +611,8 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     </div>
   </div>
 <!-- FIM MODAL APAGAR -->
+
+
   <!-- Content Wrapper. Início do conteudo -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -515,6 +628,13 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     <!-- /.content-header -->
 
 
+<!-- 
+
+Escolas
+
+
+
+ -->
 
 
     <!-- Main content -->
@@ -529,41 +649,43 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
         <thead>
         <tr>
         <th>RM</th>
-		<th>CPF</th>
-        <th>Nome</th>
+		<th>Nome</th>
         <th>Data Nascimento</th>
-		<th>E-Mail</th>
+		<th>Telefone</th>
+		<th>Email</th>
+		<th>CPF</th>
 		<th>RG</th>
-		<th>Munincípio</th>
-		<th>Endereço</th>
-		<th>Bairro</th>
 		<th>CEP</th>
-		<th>Código Escolar</th>
+		<th>Cidade</th>
+    <th>Endereço</th>
+    <th>Bairro</th>
         <th>Ações</th>
       </tr>
         </thead>
       <tbody>
 <?php
 $result =  mysqli_query($conn,"SELECT * FROM Professores");
+
 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";
 echo "<td>" . $row['RM_Prof'] . "</td>";
-echo "<td>" . $row['Prof_CPF'] . "</td>";
 echo "<td>" . $row['Prof_Nome'] . "</td>";
 echo "<td>" . date("d/m/Y", strtotime($row['Prof_DataDeNascimento'])) . "</td>";
+echo "<td>" . $row['Prof_Telefone'] . "</td>";
 echo "<td>" . $row['Prof_Email'] . "</td>";
+
+echo "<td>" . $row['Prof_CPF'] . "</td>";
 echo "<td>" . $row['Prof_RG'] . "</td>";
-echo "<td>" . $row['Prof_Cidade'] . "</td>";
-echo "<td>" . $row['Prof_Endereco'] . "</td>";
-echo "<td>" . $row['Prof_Bairro'] . "</td>";
 echo "<td>" . $row['Prof_CEP'] . "</td>";
-echo "<td>" . $row['Prof_IDEscola'] . "</td>";
+echo "<td>" . $row['Prof_Cidade'] . "</td>";
+echo "<td>" . $row['Prof_Endereço'] . "</td>";
+echo "<td>" . $row['Prof_Bairro'] . "</td>";
 echo '<td><a class="btn-sm  btn-secondary text-white btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
 &nbsp;
   <a class="btn-sm btn-danger btnProfessores" name="professores" href="#"><i class="fa fa-graduation-cap"></i></a>
   <a class="btn-sm btn-success btnAlunos" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
-  <a class="btn-sm btn-info  btnFuncionarios" name="funcionarios" href="#"><i class="fa fa-briefcase"></i></a>
+  <a class="btn-sm btn-info btnEscolas" name="escolas" href="#"><i class="fa fa-school"></i></a>
   <a class="btn-sm btn-warning text-white btnTurmas" name="turmas" href="#"><i class="fa fa-chalkboard-teacher"></i></a>
 </td>';
 echo "</tr>";
@@ -773,6 +895,42 @@ echo "</tr>";
       "responsive": true,
     });
 
+ table.on('click','.btnEscolas',function(){
+
+ $tr=$(this).closest('tr');
+
+  var data = table.row($tr).data();
+  var RM = data[0];
+
+  $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Professores/listagemEscolas.php',
+            type: 'POST',
+            data: {RMPost:RM},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+                 for( var i = 0; i<len; i++){
+                    var escolanomes = response[0]['escolas'];
+                    var turma = response[i]['turmas'];
+                    var materia = response[i]['materias'];
+                    console.log(escolanomes);
+                    console.log(turma);
+                    console.log(materia);
+
+                    $("#listagemEscolas").append("<p class='form-control collap' value='"+escolanomes+"'>"+escolanomes+"</option>");
+                  $("#listagemEscolas").append("<p class='form-control collap' value='"+escolanomes+"'>"+turma+"</option>");
+                          $("#listagemEscolas").append("<p class='form-control collap' value='"+escolanomes+"'>"+materia+"</option>");
+
+
+                }
+
+            }
+        });
+
+$("#profEscolas").modal('show');
+});
 
      table.on('click','.btnEditar',function(){
 
@@ -780,7 +938,7 @@ echo "</tr>";
       $tr=$(this).closest('tr');
 
       var data = table.row($tr).data();
-      data.splice(6,1);
+      data.splice(11,1);
       function FormataStringData(data) {
         var dia  = data.split("/")[0];
         var mes  = data.split("/")[1];
@@ -793,17 +951,17 @@ echo "</tr>";
       console.log(data);
       console.log(data[3]);
       $('#edit_rm').val(data[0])
-      $('#edit_cpf').val(data[1]);
-      $('#edit_nome').val(data[2]);
-      $('#edit_dn').val(FormataStringData(data[3]));
+      $('#edit_nome').val(data[1]);
+      $('#edit_dn').val(FormataStringData(data[2]));
       $('#edit_email').val(data[4]);
-      $('#edit_rg').val(data[5]);
-      $('#edit_muninc').val(data[6]);
-      $('#edit_endereco').val(data[7]);
-      $('#edit_bairro').val(data[8]);
-      $('#edit_cep').val(data[9]);
-      $('#edit_codEscola').val(data[10]);
+      $('#edit_cpf').val(data[5]);
+      $('#edit_telefone').val(data[3]);
 
+      $('#edit_rg').val(data[6]);
+      $('#edit_muninc').val(data[8]);
+      $('#edit_endereco').val(data[9]);
+      $('#edit_bairro').val(data[10]);
+      $('#edit_cep').val(data[7]);
 
     $('#EditarProfessor').modal('show');
     });

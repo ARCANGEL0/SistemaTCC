@@ -1,0 +1,30 @@
+.bg-turma{ 
+
+margin-left: 40px;
+}
+
+.bg-nomeTurma {
+
+	border: 1px solid #74BAE8;
+	background: #BBDEF5;
+	border-radius: 0.4rem;
+	padding: 0px 8px 0px 8px;
+
+}
+
+.bg-identifier {
+	border: 1px solid #3B3B3B55;
+	background: #6B6B6B44;
+	border-radius: 0.25rem;
+	padding: 0px 4px 0px 8px;
+	margin-left: 3px;
+	margin-right: 3px;
+
+}
+
+.bg-nomeMateria {
+	border: 1px solid #35B9D1;
+	background: #BEDEF5;
+	border-radius: 0.4rem;
+	padding: 0px 8px 0px 8px;
+}
