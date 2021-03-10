@@ -477,6 +477,9 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
 
        <input type="hidden" value="" id="rm_esc" name="rm_esc">
   <style type="text/css">
+    .collap{
+      margin-bottom: 16px;
+    }
     .collap:hover, .activeTurmas {
   background-color: #56D7CC11;
   border: 1px solid #56D7CC;
@@ -497,64 +500,7 @@ padding-top: 10px;
 
 
 
- <button class="form-control collap">Escola 1 </button>
-<div class="turmas">
-  <p class="bg-turma">
-<a class="bg-nomeTurma"> 1N4 </a> 
-
-<a class="bg-identifier"> - </a>
-
-<a class="bg-nomeMateria">Materia </a> 
-
-</p>
-
-  <p class="bg-turma">
-<a class="bg-nomeTurma"> 1N4 </a> 
-
-<a class="bg-identifier"> - </a>
-
-<a class="bg-nomeMateria">Materia </a> 
-
-</p>
 </div>
- <button class="form-control collap">Escola 2 </button>
-
-<div class="turmas">
-  <p>Turma 1 - Materia </p>
-  <p> Turma 2 - Materia</p>
-</div>
-
-
-<script>
-
-var coll = document.getElementsByClassName("collap");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-
-
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-      content.style.border = null;
-      content.style.background = null;
-      content.style.margin = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-
-      content.style.border = "1px solid #56D7CC";
-      content.style.background = "#56D7CC22";
-      content.style.margin = "10px 0 10px 0";
-
-         } 
-  });
-}
-</script>
- <p class="form-control">Escola 2</p>
-</div>
-  
         </div>
         <div class="modal-footer">
         <button type="submit" class="btn btn-danger apagar">Editar</button>
@@ -911,23 +857,21 @@ echo "</tr>";
 
                 var len = response.length;
 
+                  $("#listagemEscolas").empty();
                  for( var i = 0; i<len; i++){
-                    var escolanomes = response[0]['escolas'];
-                    var turma = response[i]['turmas'];
-                    var materia = response[i]['materias'];
-                    console.log(escolanomes);
-                    console.log(turma);
-                    console.log(materia);
-
-                    $("#listagemEscolas").append("<p class='form-control collap' value='"+escolanomes+"'>"+escolanomes+"</option>");
-                  $("#listagemEscolas").append("<p class='form-control collap' value='"+escolanomes+"'>"+turma+"</option>");
-                          $("#listagemEscolas").append("<p class='form-control collap' value='"+escolanomes+"'>"+materia+"</option>");
-
+                    var escolanomes = response[i]['escola'];
+       
+                    $("#listagemEscolas").append("<button class='form-control collap' id='escola"+i+"'>"+escolanomes+"</button>");
+  
+                 
 
                 }
 
+
             }
+
         });
+   
 
 $("#profEscolas").modal('show');
 });

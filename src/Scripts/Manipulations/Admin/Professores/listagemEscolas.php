@@ -12,20 +12,18 @@ $array2 = array();
  
 
   $sql = "  
-
-SELECT RPT.Matéria, turma.Turma from Relacao_ProfessorTurma RPT
-inner join Professores P on RPT.Prof_Turma = P.RM_Prof
-inner join Turmas turma on turma.ID_Ano = RPT.Cod_DisTurma
-where P.RM_Prof=".$rm."
+ SELECT esc.Escola_Nome from Escolas esc
+inner join Relacao_ProfessorEscola RPE ON esc.Escola_Codigo = RPE.Escola_Cod
+inner join Professores P on RPE.Prof_Escola = P.RM_Prof
+where P.RM_Prof=".$rm.";
     ";
 
     $result = mysqli_query($conn,$sql);
   
  
     while( $row = mysqli_fetch_array($result) ){
-     	$turma = $row['Turma'];
-     	$materia = $row['Matéria'];
-        $array2[] = array("turmas" => $turma, "materias" => $materia);
+     	$escola = $row['Escola_Nome'];
+        $array2[] = array("escola" => $escola);
 
     
     }
