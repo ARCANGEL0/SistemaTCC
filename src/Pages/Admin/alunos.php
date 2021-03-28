@@ -277,7 +277,7 @@ width: 150vw;}
                 </a>
               </li>
               <li class="nav-item">
-                <a href="alunos.php" class="nav-link">
+                <a href="responsaveis.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Responsáveis</p>
                 </a>

@@ -48,10 +48,10 @@ include('../../Scripts/Database/Connection.php');
 width: 150vw;}
 
 
-#tabelaAlunos_filter {
+#tabelaResp_filter {
   margin-top: 20px;
   margin-left: -892px;}
-#tabelaAlunos_paginate{
+#tabelaResp_paginate{
   margin-left: 810px;
 }
 
@@ -485,42 +485,29 @@ RegistrarEscola
 <!-- FIM MODAL EDITAR -->
 
 
-<!-- MODAL APAGAR -->
+<!-- MODAL FILHOS -->
 
 
-<div id="escolaDeletar" class="modal fade" role="dialog">
+<div id="modalFilhos" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
 
 
       <div class="modal-content">
         <div class="modal-header">
 
-          <h4 class="modal-title">Deletar escola</h4>
+          <h4 class="modal-title">Dependentes</h4>
         </div>
         <div class="modal-body">
 
-        <form class="deletar" action="#" method="POST" id="deletar" >
-
-       <input type="hidden" value="" id="idDel" name="idDel">
-       <input id="cnpjDel" value="" type="hidden" name="cnpjDel">
-
-       <input id="nomeDel" type="hidden" name="nomeDel">
-
-       <input id="cidadeDel" type="hidden" name="cidadeDel">
-
-       <input id="enderecoDel" type="hidden" name="enderecoDel">
-
-       <input id="cepDel" type="hidden" name="cepDel">
+        <form class="formFilhos" action="#" method="POST" id="formFilhos" >
 
 
-
-
-
-  <h5>Você tem certeza que deseja deletar esta escola e todos os seus dependentes?</h5>
+        <h1 class="filhos"></h1>
+  
 
         </div>
         <div class="modal-footer">
-        <button type="submit" class="btn btn-danger apagar">Deletar</button>
+        <button type="submit" class="btn btn-success">Ok</button>
 
           <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
           </form>
@@ -529,7 +516,7 @@ RegistrarEscola
 
     </div>
   </div>
-<!-- FIM MODAL APAGAR -->
+<!-- FIM MODAL FILHOS -->
   <!-- Content Wrapper. Início do conteudo -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -560,40 +547,41 @@ RegistrarEscola
             <tr>
                 <th>RM</th>
 		        <th>Nome</th>
-                <th>Dependentes</th>
 		        <th>Data de Nascimento</th>
 		        <th>Email</th>
                 <th>Telefone</th>
                 <th>Celular</th>
                 <th>RG</th>
 		        <th>CPF</th>
-                <th>ID Resp_Aluno</th>
+            <th>CEP</th>
+                <th>Cidade</th>
+<th>Endereço</th>
                 <th>Ações</th>
             </tr>
         </thead>
       <tbody>
 <?php
-$result =  mysqli_query($conn,"SELECT * FROM Responsaveis");
+$result =  mysqli_query($conn,"SELECT * FROM Responsáveis");
 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";
-echo "<td>" . $row['RM_Responsavel'] . "</td>";
+echo "<td>" . $row['RM_Responsável'] . "</td>";
 echo "<td>" . $row['Resp_Nome'] . "</td>";
-echo "<td>" . $row['Resp_Dp'] . "</td>";
 echo "<td>" . date("d/m/Y", strtotime($row['Resp_DataDeNascimento'])) . "</td>";
 echo "<td>" . $row['Resp_Email'] . "</td>";
 echo "<td>" . $row['Resp_Telefone'] . "</td>";
 echo "<td>" . $row['Resp_Celular'] . "</td>";
 echo "<td>" . $row['Resp_RG'] . "</td>";
 echo "<td>" . $row['Resp_CPF'] . "</td>";
-echo "<td>" . $row['ID_Resp_Dp'] . "</td>";
+echo "<td>" . $row['Resp_CEP'] . "</td>";
+echo "<td>" . $row['Resp_Cidade'] . "</td>";
+echo "<td>" . $row['Resp_Endereco'] . "</td>";
+
 
 echo '<td><a class="btn-sm  btn-secondary text-white btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
 &nbsp;
-  <a class="btn-sm btn-danger btnProfessores" name="professores" href="#"><i class="fa fa-graduation-cap"></i></a>
-  <a class="btn-sm btn-success btnAlunos" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
-  <a class="btn-sm btn-info  btnFuncionarios" name="funcionarios" href="#"><i class="fa fa-briefcase"></i></a>
-  <a class="btn-sm btn-warning text-white btnTurmas" name="turmas" href="#"><i class="fa fa-chalkboard-teacher"></i></a>
+  <a class="btn-sm btn-info btnFilhos" name="filhos" href="#"><i class="fa fa-child"></i></a>
+
 </td>';
 echo "</tr>";
 }
@@ -812,6 +800,50 @@ mysqli_close($conn);
       "autoWidth": true,
       "responsive": true,
     });
+
+   table.on('click','.btnFilhos',function(){
+
+ $tr=$(this).closest('tr');
+
+  var data = table.row($tr).data();
+  var RM = data[0];
+
+  $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Resp/getDependentes\.php',
+            type: 'POST',
+            data: {RMPost:RM},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+
+  
+               $(".filhos").empty();
+
+                console.log(response[0]['turmas']);
+                console.log(response[0]['materias']);
+
+                 for( var i = 0; i<len; i++){
+                    var escolanomes = response[i]['escola'];
+                    var turma = response[i]['turmas'];
+                    var materia = response[i]['materias'];
+
+
+             
+
+
+                    $(".filhos").append("<button class='form-control collap' id='escola"+i+"'>"+escolanomes+"</button>");
+                    
+                    $("#escola"+i).after("<div class='turmas'><p class='bg-turma'><a class='bg-nomeTurma'>1N4</a>                                            <a class='bg-identifier'> - </a>                                        <a class='bg-nomeMateria'> Materia </a>        </p>                                                                                                 </div>");
+
+                 
+
+                }
+
+            }
+
+        });
 
 
      table.on('click','.btnEditar',function(){
