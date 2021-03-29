@@ -385,7 +385,6 @@ CREATE TABLE `relacao_turmadisciplina` (
 
 CREATE TABLE `responsáveis` (
   `RM_Responsável` bigint(20) NOT NULL,
-  `Resp_Filhos` bigint(20) NOT NULL,
   `Resp_Nome` varchar(255) NOT NULL,
   `Resp_Email` varchar(255) NOT NULL,
   `Resp_DataDeNascimento` date NOT NULL,
@@ -403,8 +402,8 @@ CREATE TABLE `responsáveis` (
 -- Extraindo dados da tabela `responsáveis`
 --
 
-INSERT INTO `responsáveis` (`RM_Responsável`, `Resp_Filhos`, `Resp_Nome`, `Resp_Email`, `Resp_DataDeNascimento`, `Resp_RG`, `Resp_CPF`, `Resp_Telefone`, `Resp_Celular`, `Resp_CEP`,`Resp_Cidade`,`Resp_Endereco`) VALUES
-(1000, 1000, 'Claudio Nunes', 'claudnun@gmail.com', '1980-12-11', '55.284.552-52', '495.284.285-39', '(13) 3385-2298', '(13) 9985-28492','11492-492','Arujá','Mariano Peixoto, 294');
+INSERT INTO `responsáveis` (`RM_Responsável`, `Resp_Nome`, `Resp_Email`, `Resp_DataDeNascimento`, `Resp_RG`, `Resp_CPF`, `Resp_Telefone`, `Resp_Celular`, `Resp_CEP`,`Resp_Cidade`,`Resp_Endereco`) VALUES
+(1000, 'Claudio Nunes', 'claudnun@gmail.com', '1980-12-11', '55.284.552-52', '495.284.285-39', '(13) 3385-2298', '(13) 9985-28492','11492-492','Arujá','Mariano Peixoto, 294');
 
 -- --------------------------------------------------------
 

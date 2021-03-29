@@ -2,8 +2,8 @@
 include('../../../Database/Connection.php');
 
 
-if(isset($_POST['RMPost'])){
-   $rm = mysqli_real_escape_string($conn,$_POST['RMPost']); // department id
+if(isset($_POST['rmresp'])){
+$rm = mysqli_real_escape_string($conn,$_POST['rmresp']); // department id
 }
 
 
@@ -12,18 +12,19 @@ $array2 = array();
  
 
   $sql = "  
- SELECT esc.Escola_Nome from Escolas esc
-inner join Relacao_ProfessorEscola RPE ON esc.Escola_Codigo = RPE.Escola_Cod
-inner join Professores P on RPE.Prof_Escola = P.RM_Prof
-where P.RM_Prof=".$rm.";
+SELECT al.Aluno_Nome, Aluno_Escola from Alunos al
+inner join Relacao_AlunosResponsaveis RAR on al.RM_Aluno = RAR.RM_Aluno
+inner join Responsáveis R on RAR.Responsavel_Filhos = R.RM_Responsável
+where R.RM_Responsável=".$rm.";
     ";
 
     $result = mysqli_query($conn,$sql);
   
  
     while( $row = mysqli_fetch_array($result) ){
-     	$escola = $row['Escola_Nome'];
-        $array2[] = array("escola" => $escola);
+     	$alunoNome = $row['Aluno_Nome'];
+     	$alunoEscola = $row['Aluno_Escola'];
+        $array2[] = array("escola" => $alunoEscola, "nome" => $alunoNome);
 
     
     }

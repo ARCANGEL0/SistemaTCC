@@ -16,7 +16,7 @@ include('../../Scripts/Database/Connection.php');
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-<link rel="stylesheet" href="../../assets/Admin/css/style.css">
+>
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
@@ -30,6 +30,7 @@ include('../../Scripts/Database/Connection.php');
   <!-- Theme style -->
   <link rel="stylesheet" href="../../assets/Global/css/adminlte.min.css">
   <link rel="stylesheet" href="../../assets/Global/css/style.css">
+<link rel="stylesheet" href="../../assets/Resp/css/styles.css">
 
 
   <!-- overlayScrollbars -->
@@ -43,6 +44,14 @@ include('../../Scripts/Database/Connection.php');
 </head>
 <!-- Aqui vai alguns css para corrigir bugs da tabela -->
 <style>
+.escolas{ 
+
+padding-top: 10px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
 
 .wrapper{
 width: 150vw;}
@@ -415,61 +424,44 @@ RegistrarEscola
             <h4 class="modal-title">Editar Aluno</h4>          </div>
           <div class="modal-body registrarProfessor_corpo">
           <form action="../../Scripts/Manipulations/Admin/Alunos/editarAluno.php" method="POST" id="modalform">
-    <input  type="hidden" id="edit_rm" name="edit_rm">
+    <input class="form-control" type="text" id="edit_rm" name="edit_rm">
 
 
     <label for="edit_nome">Nome</label>
-    <input  type="text" id="edit_nome" name="edit_nome">
+    <input  class="form-control" type="text" id="edit_nome" name="edit_nome">
     <br>
-    <label for="cpf">Escola</label>
-    <select class="form-control" name="editAlunoEscola" id="editAlunoEscola">
-      <option hidden disabled selected value="">Selecione uma escola</option>
-
-    <?php
-    $queryEscolas =  mysqli_query($conn,"SELECT * FROM Escolas");
-    while($row = mysqli_fetch_array($queryEscolas))
-    {
-    echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
-    };
-
-    ?>
-
-    </select>    <br>
-    <label >Turma</label>
-        <select class="form-control" required type="text" onchange="" id="editAlunoTurma" name="editAlunoTurma" >
-          <option hidden disabled selected value="#">Escolha uma escola primeiro</option>
-
-
-        </select><br>
-
+   
+  
 <label for="edit_dn">Data Nascimento</label>
-  <input   type="date" id="edit_dn" name="edit_dn">
+  <input class="form-control"   type="date" id="edit_dn" name="edit_dn">
     <br>
     <label for="edit_email">E-Mail</label>
-    <input  type="text" id="edit_email" name="edit_email">
+    <input class="form-control"  type="text" id="edit_email" name="edit_email">
     <br>
      <label for="edit_telefone">Telefone</label>
-    <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="edit_telefone" name="edit_telefone">
+    <input class="form-control"  maxlength="12" OnKeyPress="formatar('## ####-####', this)" type="text" id="edit_telefone" name="edit_telefone">
+    <br>
+     <label for="edit_cel">Celular</label>
+    <input class="form-control"  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="edit_cel" name="edit_cel">
   <br>
     <label for="edit_rg">RG</label>
-    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_rg" name="edit_rg" >
+    <input class="form-control"  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_rg" name="edit_rg" >
+    <br>
+   <label for="edit_cpf">CPF</label>
+    <input class="form-control" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"type="text" id="edit_cpf" name="edit_cpf" >
     <br>
 
       <label for="edit_cep">CEP</label>
-    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
+    <input class="form-control"  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
   <br>
     <label for="edit_muninc">Munincípio</label>
-    <input  type="text" id="edit_muninc" name="edit_muninc">
+    <input class="form-control"  type="text" id="edit_muninc" name="edit_muninc">
     <br>
     <label for="edit_endereco">Endereço</label>
-    <input  type="text" id="edit_endereco" name="edit_endereco">
+    <input class="form-control"  type="text" id="edit_endereco" name="edit_endereco">
     <br>
-    <label for="edit_bairro">Bairro</label>
-    <input  type="text" id="edit_bairro" name="edit_bairro">
-    <br>
-  
-    <input  type="hidden" id="edit_codEscolar" name="edit_codEscola">
-    <input  type="hidden" id="edit_codTurma" name="edit_codTurma">
+ 
+ 
 
     </div>
           <div class="modal-footer">
@@ -499,7 +491,7 @@ RegistrarEscola
         </div>
         <div class="modal-body">
 
-        <form class="formFilhos" action="#" method="POST" id="formFilhos" >
+        <form class="formFilhos"  id="formFilhos" >
 
 
         <h1 class="filhos"></h1>
@@ -754,19 +746,7 @@ mysqli_close($conn);
   $(function () {
 
   var table =  $('#tabelaResp').DataTable({
- "columnDefs": [
-                 {
-                     "targets": [ 8 ],
-                     "visible": false,
-                     "searchable": true
-                 },
-                 {
-                     "targets": [ 9 ],
-                     "visible": false,
-                     "searchable": true
-                 }
 
-                 ],
           "language": {
           "sEmptyTable": "Nenhum registro encontrado",
           "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -801,6 +781,8 @@ mysqli_close($conn);
       "responsive": true,
     });
 
+
+// ajax para pegar os dependentes do responsavel
    table.on('click','.btnFilhos',function(){
 
  $tr=$(this).closest('tr');
@@ -809,9 +791,9 @@ mysqli_close($conn);
   var RM = data[0];
 
   $.ajax({
-            url: '../../Scripts/Manipulations/Admin/Resp/getDependentes\.php',
+            url: '../../Scripts/Manipulations/Admin/Resp/getDependentes.php',
             type: 'POST',
-            data: {RMPost:RM},
+            data: {rmresp:RM},
             dataType: 'json',
             success:function(response){
 
@@ -821,21 +803,15 @@ mysqli_close($conn);
   
                $(".filhos").empty();
 
-                console.log(response[0]['turmas']);
-                console.log(response[0]['materias']);
 
                  for( var i = 0; i<len; i++){
-                    var escolanomes = response[i]['escola'];
-                    var turma = response[i]['turmas'];
-                    var materia = response[i]['materias'];
+                    var escola = response[i]['escola'];
+                    var nome = response[i]['nome'];
 
 
-             
-
-
-                    $(".filhos").append("<button class='form-control collap' id='escola"+i+"'>"+escolanomes+"</button>");
+                    $(".filhos").append("<button class='form-control collap' id='escola"+i+"'>"+nome+"</button>");
                     
-                    $("#escola"+i).after("<div class='turmas'><p class='bg-turma'><a class='bg-nomeTurma'>1N4</a>                                            <a class='bg-identifier'> - </a>                                        <a class='bg-nomeMateria'> Materia </a>        </p>                                                                                                 </div>");
+                    $("#escola"+i).after("<div class='escolas'><p class='escolaBG'><a> "+escola+" </a>        </p>                                                                                                 </div>");
 
                  
 
@@ -844,6 +820,36 @@ mysqli_close($conn);
             }
 
         });
+      $('#modalFilhos').modal('show');
+
+});
+
+   // script para fazer a animação no modal de Dependentes
+
+  $(".filhos").on('click','.collap',function() {
+  this.classList.toggle("active");
+
+
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+      content.style.border = null;
+      content.style.background = null;
+      content.style.margin = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+
+      content.style.border = "1px solid #56D7CC";
+      content.style.background = "#56D7CC22";
+      content.style.margin = "-2px 0 10px 0";
+      content.style.fontSize = "24px";
+
+         } 
+  });
+
+   // fim animação
+
+   // modal Editar
 
 
      table.on('click','.btnEditar',function(){
@@ -863,17 +869,15 @@ mysqli_close($conn);
 
       $('#edit_rm').val(data[0])
       $('#edit_nome').val(data[1]);
-      $('#editAlunoEscola').val(data[2]);
-      $('#edit_dn').val(FormataStringData(data[4]));
-      $('#edit_email').val(data[5]);
-      $('#edit_telefone').val(data[6]);
-      $('#edit_rg').val(data[7]);
+      $('#edit_dn').val(FormataStringData(data[2]));
+      $('#edit_email').val(data[3]);
+      $('#edit_telefone').val(data[4]);
+      $('#edit_cel').val(data[5]);
+      $('#edit_rg').val(data[6]);
+      $('#edit_cpf').val(data[7]);
       $('#edit_cep').val(data[8]);
       $('#edit_muninc').val(data[9]);
       $('#edit_endereco').val(data[10]);
-      $('#edit_bairro').val(data[11]);
-      $('#edit_codEscolar').val(data[12]);
-     $('#edit_codTurma').val(data[13]);
 
      $("#editAlunoTurma").append("<option disabled hidden selected value='"+data[3]+"'>"+data[3]+"</option>");
 

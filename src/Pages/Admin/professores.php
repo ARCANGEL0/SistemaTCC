@@ -669,7 +669,7 @@ echo "</tr>";
 
 
       </div><!-- /.container-fluid -->
-    </section>1
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
