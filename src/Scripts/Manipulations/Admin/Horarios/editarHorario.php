@@ -119,13 +119,9 @@ $_SESSION['horario_atualizado'] = true;
 }
 else{
 
-	echo mysqli_error($conn);
-//
-// $_SESSION['horario_edit_erro'] = true;
-//
-//   header("Location: ../../../../Pages/Admin/horarios.php");
-//
-//   exit();
+ $_SESSION['horario_edit_erro'] = true;
+   header("Location: ../../../../Pages/Admin/horarios.php");
+   exit();
 }
 	mysqli_close($conn);
 }

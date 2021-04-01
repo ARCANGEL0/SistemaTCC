@@ -30,7 +30,7 @@ include('../../Scripts/Database/Connection.php');
   <!-- Theme style -->
   <link rel="stylesheet" href="../../assets/Global/css/adminlte.min.css">
   <link rel="stylesheet" href="../../assets/Global/css/style.css">
-<link rel="stylesheet" href="../../assets/Resp/css/styles.css">
+<link rel="stylesheet" href="../../assets/Resp/css/style.css">
 
 
   <!-- overlayScrollbars -->
@@ -49,6 +49,9 @@ include('../../Scripts/Database/Connection.php');
 padding-top: 10px;
   max-height: 0;
   overflow: hidden;
+ align-content: center;
+ align-items:center;
+ justify-content: center;
   transition: max-height 0.2s ease-out;
 }
 
@@ -354,7 +357,7 @@ RegistrarEscola
       <option hidden disabled selected value="">Selecione uma escola</option>
 
     <?php
-    $queryEscolas =  mysqli_query($conn,"SELECT * FROM Escolas");
+    $queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
     while($row = mysqli_fetch_array($queryEscolas))
     {
     echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
@@ -417,13 +420,13 @@ RegistrarEscola
 
 
 <!-- MODAL EDITAR -->
-<div id="EditarAluno" class="modal fade" role="dialog">
+<div id="EditarResp" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Editar Aluno</h4>          </div>
-          <div class="modal-body registrarProfessor_corpo">
-          <form action="../../Scripts/Manipulations/Admin/Alunos/editarAluno.php" method="POST" id="modalform">
+            <h4 class="modal-title">Editar Responsável</h4>          </div>
+          <div class="modal-body">
+          <form action="../../Scripts/Manipulations/Admin/Resp/editarResp.php" method="POST" id="modalform">
     <input class="form-control" type="text" id="edit_rm" name="edit_rm">
 
 
@@ -441,7 +444,7 @@ RegistrarEscola
      <label for="edit_telefone">Telefone</label>
     <input class="form-control"  maxlength="12" OnKeyPress="formatar('## ####-####', this)" type="text" id="edit_telefone" name="edit_telefone">
     <br>
-     <label for="edit_cel">Celular</label>
+     <label for="edit_cel">Celular</label >
     <input class="form-control"  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="edit_cel" name="edit_cel">
   <br>
     <label for="edit_rg">RG</label>
@@ -553,7 +556,7 @@ RegistrarEscola
         </thead>
       <tbody>
 <?php
-$result =  mysqli_query($conn,"SELECT * FROM Responsáveis");
+$result =  mysqli_query($conn,"SELECT * FROM responsáveis");
 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";
@@ -652,19 +655,19 @@ mysqli_close($conn);
 <!-- AQUI SÃO OS EVENTOS DE SESSÃO PARA REGISTRO DOS ALUNOS -->
 <!-- Se o aluno for registrado, o php irá redirecionar para esta página com a sessão de registro, exibindo um alerta de succeso -->
 <?php
-          if(isset($_SESSION['Aluno_registrado'])):
+          if(isset($_SESSION['resp_registrado'])):
           ?>
         <script>
 
         $(function () {
           $(document).ready(function(){
-                toastr.success('Aluno registrado com sucesso!');
+                toastr.success('Responsável registrado com sucesso!');
               });
             });
          </script>
           <?php
           endif;
-          unset($_SESSION['Aluno_registrado']);
+          unset($_SESSION['resp_registrado']);
 
           ?>
 
@@ -676,7 +679,7 @@ mysqli_close($conn);
 
                   $(function () {
                     $(document).ready(function(){
-                          toastr.error('Erro ao registrar o Aluno!');
+                          toastr.error('Erro ao registrar o Responsável!');
                         });
                       });
                    </script>
@@ -686,44 +689,29 @@ mysqli_close($conn);
 
                     ?>
 
-                    <?php
-                              if(isset($_SESSION['Aluno_registrado'])):
-                              ?>
-                            <script>
-
-                            $(function () {
-                              $(document).ready(function(){
-                                    toastr.success('Aluno registrado com sucesso!');
-                                  });
-                                });
-                             </script>
-                              <?php
-                              endif;
-                              unset($_SESSION['Aluno_registrado']);
-
-                              ?>
+                  
 <!-- Mesma coisa, mas agora para atualização dos Alunos -->
 <!-- Este é para caso de sucesso -->
 
                   <?php
-                        if(isset($_SESSION['Aluno_atualizado'])):
+                        if(isset($_SESSION['resp_atualizado'])):
                       ?>
                           <script>
 
                     $(function () {
                         $(document).ready(function(){
-                           toastr.success('Aluno atualizado com sucesso!');
+                           toastr.success('Responsável atualizado com sucesso!');
                              });
                                           });
                           </script>
           <?php
                       endif;
-                      unset($_SESSION['Aluno_atualizado']);
+                      unset($_SESSION['resp_atualizado']);
 
            ?>
 <!-- E este, para caso de erro -->
            <?php
-                     if(isset($_SESSION['erro_edit_Aluno'])):
+                     if(isset($_SESSION['erro_edit_Alunoresp_erro_atualizacao'])):
                      ?>
                    <script>
 
@@ -735,7 +723,7 @@ mysqli_close($conn);
                     </script>
                      <?php
                      endif;
-                     unset($_SESSION['erro_edit_Aluno']);
+                     unset($_SESSION['resp_erro_atualizacao']);
 
                      ?>
 
@@ -879,36 +867,11 @@ mysqli_close($conn);
       $('#edit_muninc').val(data[9]);
       $('#edit_endereco').val(data[10]);
 
-     $("#editAlunoTurma").append("<option disabled hidden selected value='"+data[3]+"'>"+data[3]+"</option>");
-
-     var nomeEscola = data[2];
-       $.ajax({
-            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
-            type: 'post',
-            data: {escola:nomeEscola},
-            dataType: 'json',
-            success:function(response){
-              var turma = response[0]['turma'];
-
-                var len = response.length;
-
-            $('#editAlunoTurma').empty();
-
-
-                for( var i = 0; i<len; i++){
-                    var turma = response[i]['name'];
-                    $("#editAlunoTurma").append("<option value='"+turma+"'>"+turma+"</option>");
-
-                }
-
-
-            }
-
-    });
+   
 
 
 
-    $('#EditarAluno').modal('show');
+    $('#EditarResp').modal('show');
     });
 
 

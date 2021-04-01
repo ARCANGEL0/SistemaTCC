@@ -15,7 +15,7 @@ echo $_GET['salvar'];
 
 if(isset($_POST['salvar'])){
 
-$query= "UPDATE `Escolas` SET `Escola_Nome` = '$nome', `Escola_CEP` = '$cep', `Escola_Munincipio` = '$munincipio', `Escola_Endereco` = '$endereco' WHERE `Escolas`.`Escola_Codigo` = $id;";
+$query= "UPDATE `escolas` SET `Escola_Nome` = '$nome', `Escola_CEP` = '$cep', `Escola_Munincipio` = '$munincipio', `Escola_Endereco` = '$endereco' WHERE `Escolas`.`Escola_Codigo` = $id;";
 $query .="UPDATE `Turmas` SET `Escola` = '$nome' WHERE ID_Escola=$id;";
 $query .="UPDATE `Alunos` SET `Aluno_Escola` = '$nome' WHERE ID_Escola=$id;";
 

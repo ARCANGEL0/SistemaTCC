@@ -20,7 +20,7 @@ echo $_GET['salvarEdicao'];
 
 if(isset($_POST['salvarEdicao'])){
 
-$query= "UPDATE Alunos SET Aluno_Escola = '$escola', Aluno_Ano = '$turma', Aluno_Nome = '$nome', Aluno_RG = '$RG', Aluno_Email = '$email', Aluno_DataDeNascimento = $dn, Aluno_Telefone = '$telefone', Aluno_CEP = '$cep', Aluno_Cidade = '$municipio', Aluno_Endereço = '$endereco', Aluno_Bairro = '$bairro', ID_Escola = '$codescola', ID_Turma = '$codturma' WHERE RM_Aluno = $rm";
+$query= "UPDATE alunos SET Aluno_Escola = '$escola', Aluno_Ano = '$turma', Aluno_Nome = '$nome', Aluno_RG = '$RG', Aluno_Email = '$email', Aluno_DataDeNascimento = $dn, Aluno_Telefone = '$telefone', Aluno_CEP = '$cep', Aluno_Cidade = '$municipio', Aluno_Endereço = '$endereco', Aluno_Bairro = '$bairro', ID_Escola = '$codescola', ID_Turma = '$codturma' WHERE RM_Aluno = $rm";
 
 	if(mysqli_query($conn,$query)){
     $_SESSION['Aluno_atualizado'] = true;
@@ -29,37 +29,10 @@ $query= "UPDATE Alunos SET Aluno_Escola = '$escola', Aluno_Ano = '$turma', Aluno
 	}
 	else {
 
-	echo $rm ;
-	echo "<br>";
-echo $nome  ;
-	echo "<br>";
-echo $escola ;
-	echo "<br>";
-echo $turma  ;
-	echo "<br>";
-echo $dn ;
-	echo "<br>";
-echo $email; 
-	echo "<br>";
-echo $RG ;
-	echo "<br>";
-echo $municipio ;
-	echo "<br>";
-echo $telefone  ;
-	echo "<br>";
-echo $endereco  ;
-	echo "<br>";
-echo $bairro ;
-	echo "<br>";
-echo $cep  ;
-	echo "<br>";
-echo $codescola; 
-	echo "<br>";
-echo $codturma ;
-	echo "<br>";
-	echo "<br>";
-	echo "<br>";
-			echo mysqli_error($conn);
+			$_SESSION['registro_erro'] = true;
+      header("Location: ../../../../Pages/Admin/alunos.php");
+    	exit();
+    	
 	}mysqli_close($conn);
 }	
  ?>

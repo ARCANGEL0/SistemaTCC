@@ -272,7 +272,7 @@ Logado como ADMINISTRADOR             </h3>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="responsaveis.php.php" class="nav-link">
+                <a href="responsaveis.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Responsáveis</p>
                 </a>
@@ -345,7 +345,7 @@ RegistrarEscola
       <option selected hidden disabled value="">Selecione uma escola</option>
 
 <?php
-$queryEscolas =  mysqli_query($conn,"SELECT * FROM Escolas");
+$queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
 while($row = mysqli_fetch_array($queryEscolas))
 {
 echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
@@ -632,7 +632,7 @@ padding-top: 10px;
         </thead>
       <tbody>
 <?php
-$result =  mysqli_query($conn,"SELECT * FROM Professores");
+$result =  mysqli_query($conn,"SELECT * FROM professores");
 
 while($row = mysqli_fetch_array($result))
 {

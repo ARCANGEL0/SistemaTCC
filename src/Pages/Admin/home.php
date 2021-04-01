@@ -366,7 +366,7 @@ Logado como ADMINISTRADOR             </h3>
 <?php
 // Este código executa um select para ver quantos registros tem de uma tabela, e retornar o valor com um echo
 
-$query = mysqli_query($conn, "SELECT * FROM Escolas"); // Query do SQL
+$query = mysqli_query($conn, "SELECT * FROM escolas"); // Query do SQL
 
  $rows = mysqli_num_rows($query); // Variável para o número de registros
 
@@ -390,7 +390,7 @@ echo $rows;
                 <h3>
 
                   <?php
-                  $query = mysqli_query($conn, "SELECT * FROM Alunos"); // Query do SQL
+                  $query = mysqli_query($conn, "SELECT * FROM alunos"); // Query do SQL
 
                    $rows = mysqli_num_rows($query); // Variável para o número de registros
 
@@ -412,7 +412,7 @@ echo $rows;
               <div class="inner text-white">
                 <h3>
                   <?php
-                  $query = mysqli_query($conn, "SELECT * FROM Professores"); // Query do SQL
+                  $query = mysqli_query($conn, "SELECT * FROM professores"); // Query do SQL
 
                    $rows = mysqli_num_rows($query); // Variável para o número de registros
 
@@ -434,7 +434,7 @@ echo $rows;
               <div class="inner">
                 <h3>
                   <?php
-                  $query = mysqli_query($conn, "SELECT * FROM Secretaria"); // Query do SQL
+                  $query = mysqli_query($conn, "SELECT * FROM secretaria"); // Query do SQL
 
                    $rows = mysqli_num_rows($query); // Variável para o número de registros
 

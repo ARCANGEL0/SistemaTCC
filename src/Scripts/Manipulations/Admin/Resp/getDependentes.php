@@ -12,9 +12,9 @@ $array2 = array();
  
 
   $sql = "  
-SELECT al.Aluno_Nome, Aluno_Escola from Alunos al
-inner join Relacao_AlunosResponsaveis RAR on al.RM_Aluno = RAR.RM_Aluno
-inner join Responsáveis R on RAR.Responsavel_Filhos = R.RM_Responsável
+SELECT al.Aluno_Nome, Aluno_Escola from alunos al
+inner join relacao_alunosresponsaveis RAR on al.RM_Aluno = RAR.RM_Aluno
+inner join responsáveis R on RAR.Responsavel_Filhos = R.RM_Responsável
 where R.RM_Responsável=".$rm.";
     ";
 

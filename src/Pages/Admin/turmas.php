@@ -332,7 +332,7 @@ Logado como ADMINISTRADOR             </h3>
       <option selected hidden disabled value="">Selecione uma escola</option>
 
 <?php
-$queryEscolas =  mysqli_query($conn,"SELECT * FROM Escolas");
+$queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
 while($row = mysqli_fetch_array($queryEscolas))
 {
 echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
@@ -345,7 +345,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     <select class="form-control" required type="text" id="nomeCoord" name="nomeCoord" >
       <option selected hidden disabled value="">Selecione um professor</option>
 <?php
-$queryCoord =  mysqli_query($conn,"SELECT * FROM Professores ");
+$queryCoord =  mysqli_query($conn,"SELECT * FROM professores ");
 while($row = mysqli_fetch_array($queryCoord))
 {
 echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
@@ -395,7 +395,7 @@ echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
       <option selected hidden disabled value="">Selecione uma escola</option>
 
 <?php
-$queryEscolas =  mysqli_query($conn,"SELECT * FROM Escolas");
+$queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
 while($row = mysqli_fetch_array($queryEscolas))
 {
 echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
@@ -408,7 +408,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     <select class="form-control" required type="text" id="editCoord" name="editCoord" >
       <option selected hidden disabled value="">Selecione um professor</option>
 <?php
-$queryCoord =  mysqli_query($conn,"SELECT * FROM Professores");
+$queryCoord =  mysqli_query($conn,"SELECT * FROM professores");
 while($row = mysqli_fetch_array($queryCoord))
 {
 echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
@@ -455,7 +455,7 @@ echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
 <br><br><br><br>
 
 <?php
-$queryAulas =  mysqli_query($conn,"SELECT Materia_Abrev FROM Disciplinas");
+$queryAulas =  mysqli_query($conn,"SELECT Materia_Abrev FROM disciplinas");
 while($row = mysqli_fetch_array($queryAulas))
 {
   echo '<div class="form-group">';
@@ -510,7 +510,7 @@ echo '</div>';
           <option selected value="">Todas as escolas</option>
 
 <?php
-$queryEscolas =  mysqli_query($conn,"SELECT * FROM Escolas");
+$queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
 while($row = mysqli_fetch_array($queryEscolas))
 {
 echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
@@ -534,7 +534,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
         </thead>
       <tbody>
 <?php
-$result =  mysqli_query($conn,"SELECT * FROM Turmas");
+$result =  mysqli_query($conn,"SELECT * FROM turmas");
 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";

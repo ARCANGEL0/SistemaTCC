@@ -445,7 +445,7 @@ toor
         </thead>
       <tbody>
 <?php
-$result =  mysqli_query($conn,"SELECT * FROM Escolas");
+$result =  mysqli_query($conn,"SELECT * FROM escolas");
 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";

@@ -7,10 +7,14 @@
 -- Versão do servidor: 5.6.34
 -- PHP Version: 7.1.11
 
+
+drop database if exists TCC;
+create database TCC;
+  use TCC;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "-03:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -417,6 +421,8 @@ CREATE TABLE `secretaria` (
   `Sec_Nome` varchar(255) NOT NULL,
   `Sec_DataDeNascimento` date NOT NULL,
   `Sec_Email` varchar(255) NOT NULL,
+  `Sec_Telefone` varchar(255) NOT NULL,
+  `Sec_Celular` varchar(255) NOT NULL,
   `Sec_CPF` varchar(255) NOT NULL,
   `Sec_RG` varchar(255) NOT NULL,
   `Sec_CEP` varchar(255) NOT NULL,
@@ -429,8 +435,8 @@ CREATE TABLE `secretaria` (
 -- Extraindo dados da tabela `secretaria`
 --
 
-INSERT INTO `secretaria` (`RM_Secretaria`, `Sec_Escola`, `Sec_Nome`, `Sec_DataDeNascimento`, `Sec_Email`, `Sec_CPF`, `Sec_RG`, `Sec_CEP`, `Sec_Cidade`, `Sec_Endereço`, `Sec_Bairro`) VALUES
-(112, 1, 'Luiz Almeida', '1982-02-04', 'luizpt@outlook.cm', '229.285.682-36', '52.482.583-3', '28342-274', 'São Vicente', 'Rua Y', 'Vila P');
+INSERT INTO `secretaria` (`RM_Secretaria`, `Sec_Escola`, `Sec_Nome`, `Sec_DataDeNascimento`, `Sec_Email`, `Sec_CPF`, `Sec_RG`, `Sec_CEP`, `Sec_Cidade`, `Sec_Endereço`, `Sec_Bairro`, `Sec_Telefone`,`Sec_Celular`) VALUES
+(112, 1, 'Luiz Almeida', '1982-02-04', 'luizpt@outlook.cm', '229.285.682-36', '52.482.583-3', '28342-274', 'São Vicente', 'Rua Y', 'Vila P', '13 3395-2842', '11 98824-4825');
 
 -- --------------------------------------------------------
 

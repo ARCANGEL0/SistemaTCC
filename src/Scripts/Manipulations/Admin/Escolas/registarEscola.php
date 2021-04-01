@@ -12,7 +12,7 @@ $cep = $_POST['cep'];
 
 if(isset($_POST['registrar'])){
 
-	$query = "INSERT INTO Escolas (Escola_CNPJ,Escola_Nome,Escola_CEP,Escola_Munincipio,Escola_Endereco)
+	$query = "INSERT INTO escolas (Escola_CNPJ,Escola_Nome,Escola_CEP,Escola_Munincipio,Escola_Endereco)
 	VALUES ('$cnpj','$nome','$cep','$munincipio','$endereco')";
 	if(mysqli_query($conn,$query)){
     $_SESSION['escola_registrada'] = true;
