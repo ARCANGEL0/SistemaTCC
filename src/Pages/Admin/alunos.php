@@ -259,7 +259,7 @@ width: 150vw;}
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="funcionarios.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Funcionários</p>
                 </a>
@@ -715,22 +715,6 @@ mysqli_close($conn);
 
                     ?>
 
-                    <?php
-                              if(isset($_SESSION['Aluno_registrado'])):
-                              ?>
-                            <script>
-
-                            $(function () {
-                              $(document).ready(function(){
-                                    toastr.success('Aluno registrado com sucesso!');
-                                  });
-                                });
-                             </script>
-                              <?php
-                              endif;
-                              unset($_SESSION['Aluno_registrado']);
-
-                              ?>
 <!-- Mesma coisa, mas agora para atualização dos Alunos -->
 <!-- Este é para caso de sucesso -->
 

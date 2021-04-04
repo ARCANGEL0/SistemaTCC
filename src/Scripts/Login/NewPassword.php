@@ -54,23 +54,23 @@ $mail->addAddress($_POST['redefinirEmail']);
 
 // Aqui são os queries para selecionar cada tabela
 
- $queryALUNOS = mysqli_query($conn, "SELECT * FROM Login_Aluno WHERE Email='$email'"); // Query do SQL
+ $queryALUNOS = mysqli_query($conn, "SELECT * FROM login_aluno WHERE Email='$email'"); // Query do SQL
 
   $rowsALUNOS = mysqli_num_rows($queryALUNOS); // Variável para o número de registros
 
 
-	$queryFUNC = mysqli_query($conn, "SELECT * FROM Login_Secretaria WHERE Email='$email'"); // Query do SQL
+	$queryFUNC = mysqli_query($conn, "SELECT * FROM login_secretaria WHERE Email='$email'"); // Query do SQL
 
    $rowsFUNC = mysqli_num_rows($queryFUNC); // Variável para o número de registros
 
-	 $queryProf = mysqli_query($conn, "SELECT * FROM Login_Prof WHERE Email='$email' "); // Query do SQL
+	 $queryProf = mysqli_query($conn, "SELECT * FROM login_prof WHERE Email='$email' "); // Query do SQL
 
     $rowsProf = mysqli_num_rows($queryProf); // Variável para o número de registros
 
 
 
 
-	 $queryResp = mysqli_query($conn, "SELECT * FROM Login_Resp WHERE Email='$email'"); // Query do SQL
+	 $queryResp = mysqli_query($conn, "SELECT * FROM login_resp WHERE Email='$email'"); // Query do SQL
 
     $rowsResp = mysqli_num_rows($queryResp); // Variável para o número de registros
 
@@ -94,7 +94,7 @@ if(!$mail->send()){ // Caso o email não seja enviado
 }
 else{ // Caso seja enviado, irá enviar o email com a nova senha e alterá-la automaticamente no sistema
 		
-	$passChange =  mysqli_query($conn, "UPDATE Login_Aluno SET Senha='$novasenha' WHERE Email='$email'");
+	$passChange =  mysqli_query($conn, "UPDATE login_aluno SET Senha='$novasenha' WHERE Email='$email'");
 	$_SESSION['emailEnviado'] = true;
 		 header("Location: ../../redefinir.php");
 
@@ -117,7 +117,7 @@ if(!$mail->send()){ // Caso o email não seja enviado
 }
 else{ // Caso seja enviado, irá enviar o email com a nova senha e alterá-la automaticamente no sistema
 		
-	$passChange =  mysqli_query($conn, "UPDATE Login_Secretaria SET Senha='$novasenha' WHERE Email='$email'");
+	$passChange =  mysqli_query($conn, "UPDATE login_secretaria SET Senha='$novasenha' WHERE Email='$email'");
 	$_SESSION['emailEnviado'] = true;
 		 header("Location: ../../redefinir.php");
 
@@ -139,7 +139,7 @@ if(!$mail->send()){ // Caso o email não seja enviado
 }
 else{ // Caso seja enviado, irá enviar o email com a nova senha e alterá-la automaticamente no sistema
 		
-	$passChange =  mysqli_query($conn, "UPDATE Login_Prof SET Senha='$novasenha' WHERE Email='$email'");
+	$passChange =  mysqli_query($conn, "UPDATE login_prof SET Senha='$novasenha' WHERE Email='$email'");
 	$_SESSION['emailEnviado'] = true;
 		 header("Location: ../../redefinir.php");
 
@@ -159,7 +159,7 @@ if(!$mail->send()){ // Caso o email não seja enviado
 }
 else{ // Caso seja enviado, irá enviar o email com a nova senha e alterá-la automaticamente no sistema
 		
-	$passChange =  mysqli_query($conn, "UPDATE Login_Resp SET Senha='$novasenha' WHERE Email='$email'");
+	$passChange =  mysqli_query($conn, "UPDATE login_resp SET Senha='$novasenha' WHERE Email='$email'");
 	$_SESSION['emailEnviado'] = true;
 		 header("Location: ../../redefinir.php");
 

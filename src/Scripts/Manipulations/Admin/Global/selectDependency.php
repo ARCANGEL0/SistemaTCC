@@ -5,7 +5,6 @@ include('../../../Database/Connection.php');
 if(isset($_POST['escola'])){
    $escola = mysqli_real_escape_string($conn,$_POST['escola']); // department id
 }
-$sql = "SELECT * FROM turmas WHERE Escola='".$escola."'";
 
 $array = array();
 

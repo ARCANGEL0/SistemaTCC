@@ -267,9 +267,9 @@ INSERT INTO `login_secretaria` (`RM_Secretaria`, `Email`, `Usuario`, `Senha`) VA
 
 CREATE TABLE `professores` (
   `RM_Prof` bigint(20) NOT NULL,
-  `Prof_IDEscola` varchar(255) NOT NULL,
   `Prof_Nome` varchar(255) NOT NULL,
   `Prof_DataDeNascimento` date NOT NULL,
+  `Prof_Celular` varchar(255) not null,
   `Prof_Email` varchar(255) NOT NULL,
   `Prof_CPF` varchar(255) NOT NULL,
   `Prof_RG` varchar(255) NOT NULL,
@@ -283,8 +283,8 @@ CREATE TABLE `professores` (
 -- Extraindo dados da tabela `professores`
 --
 
-INSERT INTO `professores` (`RM_Prof`, `Prof_IDEscola`, `Prof_Nome`, `Prof_DataDeNascimento`, `Prof_Email`, `Prof_CPF`, `Prof_RG`, `Prof_CEP`, `Prof_Cidade`, `Prof_Endereco`, `Prof_Bairro`) VALUES
-(1, '0000AA1', 'Pedro Sate', '1998-04-15', 'pedro@gmail.com', '449.228.285-85', '82.582.852-7', '11857-852', 'Santos', 'R. sadfasf ', 'Vila Mathias'),
+INSERT INTO `professores` (`RM_Prof`, `Prof_Nome`, `Prof_DataDeNascimento`, `Prof_Celular`, `Prof_Email`, `Prof_CPF`, `Prof_RG`, `Prof_CEP`, `Prof_Cidade`, `Prof_Endereco`, `Prof_Bairro`) VALUES
+(1, '0000AA1', 'Pedro Sate', '1998-04-15', 'pedro@gmail.com', '13 98840-4024', '449.228.285-85', '82.582.852-7', '11857-852', 'Santos', 'R. sadfasf ', 'Vila Mathias'),
 (92, '', 'jioejo', '2020-11-22', '1921903109@homc.m', '91.239.012-83', '1092380980', '98098-09', '980810293801293809', '8081029380192830', '809128309180'),
 (298, '', 'Kurokuro', '2020-11-11', 'risa@gm.com', '09.812.038-10', '92123098123098', '', '08080', '8098098', '09809-809');
 

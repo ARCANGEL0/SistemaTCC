@@ -19,7 +19,7 @@ $idturma = $_POST['codigoturma'];
 
 if(isset($_POST['registrar'])){
 
-	$query = "INSERT INTO alunos (RM_Aluno,Aluno_Escola,Aluno_Ano,Aluno_Nome,Aluno_RG,Aluno_Email,Aluno_DataDeNascimento,Aluno_Telefone,Aluno_CEP,Aluno_Cidade,Aluno_Endereço,Aluno_Bairro,ID_Escola,ID_Turma)
+	$query = "INSERT INTO alunos (RM_Aluno,Aluno_Escola,Aluno_Ano,Aluno_Nome,Aluno_RG,Aluno_Email,Aluno_DataDeNascimento,Aluno_Telefone,Aluno_CEP,Aluno_Cidade,Aluno_Endereco,Aluno_Bairro,ID_Escola,ID_Turma)
 	                      VALUES (   '$rm','$escola' ,  '$turma',   '$nome',   '$rg',   '$email',                 '$dn',   '$telefone',   '$cep','$municipio',   '$endereco',   '$bairro', '$idescola','$idturma')";
 	if(mysqli_query($conn,$query)){
     $_SESSION['Aluno_registrado'] = true;
@@ -28,11 +28,9 @@ if(isset($_POST['registrar'])){
 	}
 	else {
 
-    $_SESSION['registro_erro'] = true;
-
-    header("Location: ../../../../Pages/Admin/alunos.php");
-      exit();
-	}mysqli_close($conn);
+  $_SESSION['registro_erro'] = true;
+      header("Location: ../../../../Pages/Admin/alunos.php");
+    	exit();	}mysqli_close($conn);
 }
 
 ?>

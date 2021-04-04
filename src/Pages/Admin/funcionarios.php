@@ -1,4 +1,4 @@
-
+ 
 <?php
 // Aqui o PHP inicia uma sessão, e inclui o arquivo verifyLogin.php ao carregar
 session_start();
@@ -254,7 +254,7 @@ Logado como ADMINISTRADOR             </h3>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="funcionarios.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Funcionários</p>
                 </a>
@@ -326,7 +326,7 @@ Logado como ADMINISTRADOR             </h3>
 <!-- MODAL DE REGISTRAR -->
 
 
-<div id="registrarFunc" class="modal fade" role="dialog">
+<div id="RegistrarFunc" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -340,12 +340,12 @@ Logado como ADMINISTRADOR             </h3>
     <label for="nome">Nome</label>
     <input  type="text" id="nome" name="nome">
     <br>
-    <label for="profEscola">Escola</label>
-    <select class="form-control" required type="text" id="profEscola" name="profEscola" >
+    <label for="funcEscola">Escola</label>
+    <select class="form-control" required type="text" id="funcEscola" name="funcEscola" >
       <option selected hidden disabled value="">Selecione uma escola</option>
 
 <?php
-$queryEscolas =  mysqli_query($conn,"SELECT * FROM Escolas");
+$queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
 while($row = mysqli_fetch_array($queryEscolas))
 {
 echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
@@ -357,22 +357,26 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     
 
     <br>
-<label for="profTurma">Turma</label>
-    <select class="form-control" required type="text" onchange="" id="profTurma" name="profTurma" >
-      <option hidden disabled selected value="#"></option>
 
-   
-    </select><br>
         
 
 	<label for="dn">Data Nascimento</label>
 	<input  maxlength="8" OnKeyPress="formatar('##-##-####', this)" type="date"id="dn" name="dn">
+    <br>
+      <label for="tel">Telefone</label>
+  <input  maxlength="12" OnKeyPress="formatar('## ####-####', this)" type="text" id="tel" name="tel">
+    <br>
+      <label for="cel">Celular</label>
+  <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="cel" name="cel">
     <br>
     <label for="email">E-Mail</label>
     <input  type="text" id="email" name="email">
     <br>
     <label for="rg">RG</label>
     <input  type="text" id="rg" name="rg">
+    <br>
+     <label for="cep">CEP</label>
+    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cep" name="cep">
     <br>
     <label for="municipio">Munincípio</label>
     <input  type="text" id="municipio" name="municipio">
@@ -383,11 +387,9 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     <label for="bairro">Bairro</label>
     <input  type="text" id="bairro" name="bairro">
     <br>
-    <label for="cep">CEP</label>
-    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cep" name="cep">
+   
 	<br>
-    <label for="codigoescola">Cód. Escola</label>
-    <input  type="text" id="codigoescolar" name="codigoescola">
+
 
     </div>
           <div class="modal-footer">
@@ -403,28 +405,48 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
 
 
 <!-- MODAL EDITAR -->
-<div id="EditarProfessor" class="modal fade" role="dialog">
+<div id="editarFunc" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Editar professor</h4>          </div>
-          <div class="modal-body registrarProfessor_corpo">
-          <form action="../../Scripts/Manipulations/Admin/Professores/editarProfessor.php" method="POST" id="modalform">
-    <input  type="text" id="edit_rm" name="edit_rm">
+            <h4 class="modal-title">Editar funcionário</h4>          </div>
+          <div class="modal-body ">
+          <form action="../../Scripts/Manipulations/Admin/Func/editarFunc.php" method="POST" id="modalform">
+    <input  type="hidden" id="edit_rm" name="edit_rm">
     <br>
 
     <label for="edit_nome">Nome</label>
     <input  type="text" id="edit_nome" name="edit_nome">
     <br>
+    <label for="edit_escola"> Escola</label>
+    <select class="form-control" required type="text" id="edit_escola" name="edit_escola" >
+      <option selected hidden disabled value="">Selecione uma escola</option>
+
+<?php
+$queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
+while($row = mysqli_fetch_array($queryEscolas))
+{
+echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+};
+
+?>
+                  </select>
+
+    
+
+    <br>
+
 	<label for="edit_dn">Data Nascimento</label>
-	<input   value="2020-06-06" type="date" id="edit_dn" name="edit_dn">
+	<input   value="" type="date" id="edit_dn" name="edit_dn">
     <br>
-  <label for="edit_telefone">Telefone</label>
-    <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)"type="text" id="edit_telefone" name="edit_telefone" >
+  <label for="edit_celular">Celular</label>
+    <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)"type="text" id="edit_celular" name="edit_celular" >
     <br>
- 
+   <label for="edit_telefone">Telefone</label>
+    <input  maxlength="12" OnKeyPress="formatar('## ####-####', this)"type="text" id="edit_telefone" name="edit_telefone" >
+    <br>
         <label for="edit_email">E-Mail</label>
-    <input  type="text" id="edit_email" name="edit_email">
+    <input type="text" id="edit_email" name="edit_email">
     <br>
         <label for="edit_cpf">CPF</label>
     <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_cpf" name="edit_cpf" >
@@ -462,50 +484,6 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
 
 <!-- MODAL Modal escolas -->
 
-
-<div id="profEscolas" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
-
-
-      <div class="modal-content">
-        <div class="modal-header">
-
-          <h4 class="modal-title">Escolas registradas</h4>
-        </div>
-        <div class="modal-body">
-
-
-       <input type="hidden" value="" id="rm_esc" name="rm_esc">
-  <style type="text/css">
-    .collap:hover, .activeTurmas {
-  background-color: #56D7CC11;
-  border: 1px solid #56D7CC;
-
-}
-    .turmas {
-padding-top: 10px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-
-
-}
-  </style>
-
-<div class="form-group" id="listagemEscolas" "> 
- 
-
-</div>
-        </div>
-        <div class="modal-footer">
-        <button type="submit" class="btn btn-danger apagar">Editar</button>
-
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
 <!-- FIM Modal escolas -->
 
 
@@ -561,7 +539,7 @@ padding-top: 10px;
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Professores</h1>
+            <h1 class="m-0 text-dark">Funcionários</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -610,7 +588,7 @@ padding-top: 10px;
       <div class="container-fluid">
 
 
-        <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarProfessor"><i class="fa fa-plus"></i> &nbsp;  Cadastrar um novo professor</button>
+        <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarFunc"><i class="fa fa-plus"></i> &nbsp;  Cadastrar um novo funcionário</button>
 
         <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
           <form action="" id="myform">
@@ -636,21 +614,31 @@ padding-top: 10px;
 <?php
 $result =  mysqli_query($conn,"SELECT * FROM secretaria");
 
+
 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";
 echo "<td>" . $row['RM_Secretaria'] . "</td>";
 echo "<td>" . $row['Sec_Nome'] . "</td>";
-echo "<td>" . date("d/m/Y", strtotime($row['Prof_DataDeNascimento'])) . "</td>";
-echo "<td>" . $row['Prof_Telefone'] . "</td>";
-echo "<td>" . $row['Prof_Email'] . "</td>";
 
-echo "<td>" . $row['Prof_CPF'] . "</td>";
-echo "<td>" . $row['Prof_RG'] . "</td>";
-echo "<td>" . $row['Prof_CEP'] . "</td>";
-echo "<td>" . $row['Prof_Cidade'] . "</td>";
-echo "<td>" . $row['Prof_Endereço'] . "</td>";
-echo "<td>" . $row['Prof_Bairro'] . "</td>";
+ echo "<td>" . $row['Sec_Escola'] . "</td>";
+
+
+
+
+echo "<td>" . $row['Sec_Email'] . "</td>";
+
+echo "<td>" . date("d/m/Y", strtotime($row['Sec_DataDeNascimento'])) . "</td>";
+echo "<td>" . $row['Sec_Telefone'] . "</td>";
+
+echo "<td>" . $row['Sec_Celular'] . "</td>";
+
+echo "<td>" . $row['Sec_CPF'] . "</td>";
+echo "<td>" . $row['Sec_RG'] . "</td>";
+echo "<td>" . $row['Sec_CEP'] . "</td>";
+echo "<td>" . $row['Sec_Cidade'] . "</td>";
+echo "<td>" . $row['Sec_Endereço'] . "</td>";
+echo "<td>" . $row['Sec_Bairro'] . "</td>";
 echo '<td><a class="btn-sm  btn-secondary text-white btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
 &nbsp;
   <a class="btn-sm btn-danger btnProfessores" name="professores" href="#"><i class="fa fa-graduation-cap"></i></a>
@@ -736,19 +724,19 @@ echo "</tr>";
 <!-- AQUI SÃO OS EVENTOS DE SESSÃO PARA REGISTRO DE PROFS -->
 <!-- Se o prof for registrado, o php irá redirecionar para esta página com a sessão de registro, exibindo um alerta de succeso -->
 <?php
-          if(isset($_SESSION['prof_registrado'])):
+          if(isset($_SESSION['func_registrado'])):
           ?>
         <script>
 
         $(function () {
           $(document).ready(function(){
-                toastr.success('Professor registrado com sucesso!');
+                toastr.success('Funcionário registrado com sucesso!');
               });
             });
          </script>
           <?php
           endif;
-          unset($_SESSION['prof_registrado']);
+          unset($_SESSION['func_registrado']);
 
           ?>
 
@@ -760,7 +748,7 @@ echo "</tr>";
 
                   $(function () {
                     $(document).ready(function(){
-                          toastr.error('Erro ao registrar o professor!');
+                          toastr.error('Erro ao registrar o funcionário!');
                         });
                       });
                    </script>
@@ -770,56 +758,41 @@ echo "</tr>";
 
                     ?>
 
-                    <?php
-                              if(isset($_SESSION['prof_registrado'])):
-                              ?>
-                            <script>
-
-                            $(function () {
-                              $(document).ready(function(){
-                                    toastr.success('Professor registrado com sucesso!');
-                                  });
-                                });
-                             </script>
-                              <?php
-                              endif;
-                              unset($_SESSION['prof_registrado']);
-
-                              ?>
+                  F
 <!-- Mesma coisa, mas agora para atualização dos prof -->
 <!-- Este é para caso de sucesso -->
 
                   <?php
-                        if(isset($_SESSION['prof_atualizado'])):
+                        if(isset($_SESSION['func_registrado'])):
                       ?>
                           <script>
 
                     $(function () {
                         $(document).ready(function(){
-                           toastr.success('Professor atualizado com sucesso!');
+                           toastr.success('Funcionário atualizado com sucesso!');
                              });
                                           });
                           </script>
           <?php
                       endif;
-                      unset($_SESSION['prof_atualizado']);
+                      unset($_SESSION['func_registrado']);
 
            ?>
 <!-- E este, para caso de erro -->
            <?php
-                     if(isset($_SESSION['erro_edit_prof'])):
+                     if(isset($_SESSION['erro_edit_func'])):
                      ?>
                    <script>
 
                    $(function () {
                      $(document).ready(function(){
-                           toastr.error('Erro ao atualizar o professor!');
+                           toastr.error('Erro ao atualizar o funcionário!');
                          });
                        });
                     </script>
                      <?php
                      endif;
-                     unset($_SESSION['erro_edit_prof']);
+                     unset($_SESSION['erro_edit_func']);
 
                      ?>
 
@@ -929,7 +902,6 @@ echo "</tr>";
          } 
   });
 
-$("#profEscolas").modal('show');
 });
 
      table.on('click','.btnEditar',function(){
@@ -952,45 +924,23 @@ $("#profEscolas").modal('show');
       console.log(data[3]);
       $('#edit_rm').val(data[0])
       $('#edit_nome').val(data[1]);
-      $('#edit_dn').val(FormataStringData(data[2]));
-      $('#edit_email').val(data[4]);
-      $('#edit_cpf').val(data[5]);
-      $('#edit_telefone').val(data[3]);
+      $('#edit_escola').val([data[2]]);
+      $('#edit_dn').val(FormataStringData(data[4]));
+      $('#edit_telefone').val(data[16]);
+      $('#edit_celular').val(data[5]);
+      $('#edit_cpf').val(data[7]);
 
-      $('#edit_rg').val(data[6]);
-      $('#edit_muninc').val(data[8]);
-      $('#edit_endereco').val(data[9]);
-      $('#edit_bairro').val(data[10]);
-      $('#edit_cep').val(data[7]);
+      $('#edit_rg').val(data[12]);
+      $('#edit_cep').val(data[8]);
+      $('#edit_cidade').val(data[9]);
+      $('#edit_endereco').val(data[10]);
+      $('#edit_bairro').val(data[11]);
 
-    $('#EditarProfessor').modal('show');
+    $('#editarFunc').modal('show');
     });
 
 
-$("#profEscola").change(function(){
-        var escolanome = $(this).val();
-        $.ajax({
-            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
-            type: 'post',
-            data: {escola:escolanome},
-            dataType: 'json',
-            success:function(response){
 
-                var len = response.length;
-
-                $("#profTurma").empty();
-
-                $("#profTurma").append("<option disabled hidden selected value='none'>Selecione uma turma</option>");
-
-                for( var i = 0; i<len; i++){
-                    var turma = response[i]['name'];
-
-                    $("#profTurma").append("<option value='"+turma+"'>"+turma+"</option>");
-
-                }
-            }
-        });
-    });
 
   }); // fim document.ready
 </script>

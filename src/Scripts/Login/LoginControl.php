@@ -19,27 +19,27 @@ if(empty($_POST['loginSenha'])) { // Verifica se o campo da senha está vazio
 $usuario = $_POST['loginUsuario'];
 $senha = $_POST['loginSenha'];
 
-$queryADMIN = mysqli_query($conn, "SELECT * FROM Login_ADMIN WHERE Usuario='$usuario' AND Senha='$senha'"); // Query do SQL
+$queryADMIN = mysqli_query($conn, "SELECT * FROM login_admin WHERE Usuario='$usuario' AND Senha='$senha'"); // Query do SQL
 
  $rowsADMIN = mysqli_num_rows($queryADMIN); // Variável para o número de registros
 
- $queryALUNOS = mysqli_query($conn, "SELECT * FROM Login_Aluno WHERE Usuario='$usuario' AND Senha='$senha'"); // Query do SQL
+ $queryALUNOS = mysqli_query($conn, "SELECT * FROM login_aluno WHERE Usuario='$usuario' AND Senha='$senha'"); // Query do SQL
 
   $rowsALUNOS = mysqli_num_rows($queryALUNOS); // Variável para o número de registros
 
 
-	$queryFUNC = mysqli_query($conn, "SELECT * FROM Login_Secretaria WHERE Usuario='$usuario' AND Senha='$senha'"); // Query do SQL
+	$queryFUNC = mysqli_query($conn, "SELECT * FROM login_secretaria WHERE Usuario='$usuario' AND Senha='$senha'"); // Query do SQL
 
    $rowsFUNC = mysqli_num_rows($queryFUNC); // Variável para o número de registros
 
-	 $queryProf = mysqli_query($conn, "SELECT * FROM Login_Prof WHERE Usuario='$usuario' AND Senha='$senha'"); // Query do SQL
+	 $queryProf = mysqli_query($conn, "SELECT * FROM login_prof WHERE Usuario='$usuario' AND Senha='$senha'"); // Query do SQL
 
     $rowsProf = mysqli_num_rows($queryProf); // Variável para o número de registros
 
 
 
 
-	 $queryResp = mysqli_query($conn, "SELECT * FROM Login_Resp WHERE Usuario='$usuario' AND Senha='$senha'"); // Query do SQL
+	 $queryResp = mysqli_query($conn, "SELECT * FROM login_resp WHERE Usuario='$usuario' AND Senha='$senha'"); // Query do SQL
 
     $rowsResp = mysqli_num_rows($queryResp); // Variável para o número de registros
 

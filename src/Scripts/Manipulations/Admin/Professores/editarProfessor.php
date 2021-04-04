@@ -19,7 +19,7 @@ echo $_GET['salvar'];
 
 if(isset($_POST['salvar'])){
 
-$query= "UPDATE professores SET Prof_CPF = '$cpf', Prof_Nome = '$nome', Prof_DataDeNascimento = '$dn', Prof_Email = '$email', Prof_Telefone = '$telefone', Prof_RG = '$rg',Prof_Cidade = '$municipio',Prof_Endereço = '$endereco',Prof_Bairro = '$bairro',Prof_CEP = '$cep' WHERE RM_Prof = $rm";
+$query= "UPDATE professores SET Prof_CPF = '$cpf', Prof_Nome = '$nome', Prof_DataDeNascimento = '$dn', Prof_Email = '$email', Prof_Celular = '$telefone', Prof_RG = '$rg',Prof_Cidade = '$municipio',Prof_Endereco = '$endereco',Prof_Bairro = '$bairro',Prof_CEP = '$cep' WHERE RM_Prof = $rm";
 
 	if(mysqli_query($conn,$query)){
     $_SESSION['prof_atualizado'] = true;
@@ -28,8 +28,7 @@ $query= "UPDATE professores SET Prof_CPF = '$cpf', Prof_Nome = '$nome', Prof_Dat
 	}
 	else {
 
-
-$_SESSION['erro_edit_prof'] = true;
+    $_SESSION['erro_edit_prof'] = true;
       header("Location: ../../../../Pages/Admin/professores.php");
     	exit();
 	}mysqli_close($conn);

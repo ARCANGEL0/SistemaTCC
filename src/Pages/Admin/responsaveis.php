@@ -270,7 +270,7 @@ width: 150vw;}
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="funcionarios.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Funcionários</p>
                 </a>

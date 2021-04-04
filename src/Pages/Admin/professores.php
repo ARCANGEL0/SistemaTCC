@@ -254,7 +254,7 @@ Logado como ADMINISTRADOR             </h3>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="funcionarios.php" class="nav-link">
                   <i class="fa fa-caret-right nav-icon"></i>
                   <p>Funcionários</p>
                 </a>
@@ -319,7 +319,6 @@ Logado como ADMINISTRADOR             </h3>
       if (texto.substring(0,1) != saida){
                 documento.value += texto.substring(0,1);
       }
-RegistrarEscola
     }
     </script>
 
@@ -367,6 +366,9 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
 
 	<label for="dn">Data Nascimento</label>
 	<input  maxlength="8" OnKeyPress="formatar('##-##-####', this)" type="date"id="dn" name="dn">
+    <br>
+    <label for="celular">Celular</label>
+  <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="celular" name="celular">
     <br>
     <label for="email">E-Mail</label>
     <input  type="text" id="email" name="email">
@@ -640,7 +642,7 @@ echo "<tr>";
 echo "<td>" . $row['RM_Prof'] . "</td>";
 echo "<td>" . $row['Prof_Nome'] . "</td>";
 echo "<td>" . date("d/m/Y", strtotime($row['Prof_DataDeNascimento'])) . "</td>";
-echo "<td>" . $row['Prof_Telefone'] . "</td>";
+echo "<td>" . $row['Prof_Celular'] . "</td>";
 echo "<td>" . $row['Prof_Email'] . "</td>";
 
 echo "<td>" . $row['Prof_CPF'] . "</td>";
