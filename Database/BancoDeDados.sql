@@ -65,7 +65,6 @@ INSERT INTO `alunos` (`RM_Aluno`, `Aluno_Ano`, `Aluno_Nome`, `Aluno_RG`, `Aluno_
 
 CREATE TABLE `alunos_faltas` (
   `ID` bigint(20) NOT NULL,
-  `Codigo_Falta` varchar(255) NOT NULL,
   `Data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -73,11 +72,11 @@ CREATE TABLE `alunos_faltas` (
 -- Extraindo dados da tabela `alunos_faltas`
 --
 
-INSERT INTO `alunos_faltas` (`ID`, `Codigo_Falta`, `Data`) VALUES
-(1, 'ACEBIO1', '2020-11-04 22:45:54'),
-(2, 'ACE2ESP', '2020-11-04 22:55:30'),
-(3, 'ACE2ESP', '2020-11-04 22:55:34'),
-(4, 'ACE2ESP', '2020-11-04 22:55:43');
+INSERT INTO `alunos_faltas` (`ID`, `Data`) VALUES
+(2, '2020-11-04 22:45:54'),
+(1, '2020-11-04 22:55:30'),
+(1, '2020-11-04 22:55:34'),
+(1,'2020-11-04 22:55:43');
 
 -- --------------------------------------------------------
 
@@ -529,7 +528,7 @@ ALTER TABLE `alunos`
 --
 ALTER TABLE `alunos_faltas`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_AlunoFaltas` (`Codigo_Falta`(191));
+
 
 --
 -- Indexes for table `alunos_notas`

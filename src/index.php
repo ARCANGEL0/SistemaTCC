@@ -71,6 +71,7 @@ session_start();
                       ERRO: Digite o nome de usuário!
                     </div>
                     <?php
+
                     endif;
                     unset($_SESSION['semUsuario']);
 
