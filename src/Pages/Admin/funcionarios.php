@@ -1,4 +1,4 @@
- 
+
 <?php
 // Aqui o PHP inicia uma sessão, e inclui o arquivo verifyLogin.php ao carregar
 session_start();
@@ -343,7 +343,7 @@ Logado como ADMINISTRADOR             </h3>
     <label for="rm">RM</label>
     <input required  type="large_number" id="rm" name="rm">
     <br>
-   
+
     <label for="nome">Nome</label>
     <input required  type="text" id="nome" name="nome">
     <br>
@@ -361,11 +361,11 @@ echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>
 ?>
                   </select>
 
-    
+
 
     <br>
 
-        
+
 
 	<label for="dn">Data Nascimento</label>
 	<input  required maxlength="8" OnKeyPress="formatar('##-##-####', this)" type="date"id="dn" name="dn">
@@ -397,7 +397,7 @@ echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>
     <label for="bairro">Bairro</label>
     <input required  type="text" id="bairro" name="bairro">
     <br>
-   
+
 	<br>
 
 
@@ -442,7 +442,7 @@ echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>
 ?>
                   </select>
 
-    
+
 
     <br>
 
@@ -476,7 +476,7 @@ echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>
     <label for="edit_bairro">Bairro</label>
     <input required  type="text" id="edit_bairro" name="edit_bairro">
     <br>
- 
+
 
     </div>
           <div class="modal-footer">
@@ -658,7 +658,7 @@ echo "</tr>";
   <!-- /.content-wrapper -->
   <footer class="main-footer">
 
-   
+
   </footer>
 
   <!-- Control Sidebar -->
@@ -749,7 +749,7 @@ echo "</tr>";
 
                     ?>
 
-                  
+
 <!-- Mesma coisa, mas agora para atualização dos prof -->
 <!-- Este é para caso de sucesso -->
 
@@ -839,7 +839,7 @@ echo "</tr>";
       "responsive": true,
     });
 
- 
+
 
 
 
@@ -867,14 +867,14 @@ echo "</tr>";
       }
 
 
-      alert(data);
-    
+      
+
       $('#edit_rm').val(data[0]);
       $('#edit_nome').val(data[1]);
       $('#edit_escola').val([data[2]]);
       $('#edit_dn').val(FormataStringData(data[5]));
       $('#edit_telefone').val(data[6]);
-      $('#edit_celular').val(data[7]);  
+      $('#edit_celular').val(data[7]);
       $('#edit_cpf').val(data[8]);
       $('#edit_email').val(data[4]);
 
@@ -886,7 +886,7 @@ echo "</tr>";
 
     $('#editarFunc').modal('show');
     });
-     
+
 
 
 

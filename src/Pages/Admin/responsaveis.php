@@ -44,7 +44,7 @@ include('../../Scripts/Database/Connection.php');
 </head>
 <!-- Aqui vai alguns css para corrigir bugs da tabela -->
 <style>
-.escolas{ 
+.escolas{
 
 padding-top: 10px;
   max-height: 0;
@@ -65,6 +65,19 @@ width: 150vw;}
   margin-left: -892px;}
 #tabelaResp_paginate{
   margin-left: 810px;
+}
+.fa-pen{
+  margin-right: -3px;
+}
+.form-divide{
+border-width: 1.5px;
+border-color: black;
+}
+
+#addFilho {
+
+  float: right;
+
 }
 
 }
@@ -167,7 +180,7 @@ width: 150vw;}
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-user"></i>&nbsp;
-          ADMIN        
+          ADMIN
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="#" class="dropdown-item">
@@ -175,7 +188,7 @@ width: 150vw;}
             <div class="media">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-                  Logado como ADMINISTRADOR             
+                  Logado como ADMINISTRADOR
                 </h3>
                 <div class="dropdown-divider"></div>
               </div>
@@ -353,7 +366,7 @@ RegistrarEscola
     <input  type="large_number" id="rm" name="rm">
     <br>
     <label for="cpf">Escola</label>
-    <select class="form-control" name="createAlunoEscola" id="createAlunoEscola">
+    <select class="form-control" name="editEscola" id="editEscola">
       <option hidden disabled selected value="">Selecione uma escola</option>
 
     <?php
@@ -427,14 +440,14 @@ RegistrarEscola
             <h4 class="modal-title">Editar Responsável</h4>          </div>
           <div class="modal-body">
           <form action="../../Scripts/Manipulations/Admin/Resp/editarResp.php" method="POST" id="modalform">
-    <input class="form-control" type="text" id="edit_rm" name="edit_rm">
+    <input class="form-control" type="hidden" id="edit_rm" name="edit_rm">
 
 
     <label for="edit_nome">Nome</label>
     <input  class="form-control" type="text" id="edit_nome" name="edit_nome">
     <br>
-   
-  
+
+
 <label for="edit_dn">Data Nascimento</label>
   <input class="form-control"   type="date" id="edit_dn" name="edit_dn">
     <br>
@@ -462,9 +475,48 @@ RegistrarEscola
     <br>
     <label for="edit_endereco">Endereço</label>
     <input class="form-control"  type="text" id="edit_endereco" name="edit_endereco">
-    <br>
- 
- 
+    <br><br>
+
+    <h3>Dependentes</h3>
+<hr class="form-divide">
+<br>
+<fieldset class="fieldFilhos">
+<label for="editarAlunoEscola">Escola</label>
+<select class="form-control" name="editarAlunoEscola" id="editarAlunoEscola">
+  <option hidden disabled selected value="">Selecione uma escola</option>
+  <?php
+  $queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
+  while($row = mysqli_fetch_array($queryEscolas))
+  {
+  echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+  };
+
+  ?>
+</select>
+
+<br>
+
+<label for="editarAlunoTurma">Turma</label>
+<select class="form-control" name="editarAlunoTurma" id="editarAlunoTurma">
+
+
+</select>
+<br>
+
+
+
+<label for="editarAluno">Aluno</label>
+<select class="form-control" name="editarAluno" id="editarAluno">
+  <option hidden disabled selected value="">Selecione um aluno</option>
+
+</select>
+<br>
+<br>
+</fieldset>
+<div class="addField">
+  <button class="btn btn-outline-info" type="button" id="addFilho" name="addFilho"><i class="fa fa-plus"></i></button>
+
+</div>
 
     </div>
           <div class="modal-footer">
@@ -498,7 +550,7 @@ RegistrarEscola
 
 
         <h1 class="filhos"></h1>
-  
+
 
         </div>
         <div class="modal-footer">
@@ -597,7 +649,7 @@ mysqli_close($conn);
   <!-- /.content-wrapper -->
   <footer class="main-footer">
 
-   
+
   </footer>
 
   <!-- Control Sidebar -->
@@ -687,7 +739,7 @@ mysqli_close($conn);
 
                     ?>
 
-                  
+
 <!-- Mesma coisa, mas agora para atualização dos Alunos -->
 <!-- Este é para caso de sucesso -->
 
@@ -786,7 +838,7 @@ mysqli_close($conn);
                 var len = response.length;
 
 
-  
+
                $(".filhos").empty();
 
 
@@ -796,10 +848,10 @@ mysqli_close($conn);
 
 
                     $(".filhos").append("<button class='form-control collap' id='escola"+i+"'>"+nome+"</button>");
-                    
+
                     $("#escola"+i).after("<div class='escolas'><p class='escolaBG'><a> "+escola+" </a>        </p>                                                                                                 </div>");
 
-                 
+
 
                 }
 
@@ -830,11 +882,34 @@ mysqli_close($conn);
       content.style.margin = "-2px 0 10px 0";
       content.style.fontSize = "24px";
 
-         } 
+         }
   });
 
    // fim animação
 
+// get Turmas
+$("#editarAlunoEscola").change(function(){
+
+  var escolanome = $('#editarAlunoEscola').val();
+
+
+  });
+
+// get Turmas
+
+
+//add Filhos
+
+
+$("#addFilho").on('click',function(){
+
+  var fieldset_parent = $(".fieldFilhos:eq(0)").clone();
+
+  $(".fieldFilhos:last").after($(fieldset_parent).clone());
+
+})
+
+//
    // modal Editar
 
 
@@ -865,7 +940,7 @@ mysqli_close($conn);
       $('#edit_muninc').val(data[9]);
       $('#edit_endereco').val(data[10]);
 
-   
+
 
 
 
@@ -876,108 +951,11 @@ mysqli_close($conn);
 
   });
 //essa função pega o ID da turma apos selecionar ela
-  $("#createAlunoTurma").change(function(){
-    var turmanome =$("#createAlunoTurma").val();
-
-    $.ajax({
-        url: '../../Scripts/Manipulations/Admin/Global/turmaIDDependency.php',
-        type: 'post',
-        data: {turmaID:turmanome},
-        dataType: 'json',
-        success:function(response){
-        var turma = response[0]['turma'];
-      $("#codigoturma").val(turma);
-        }
-
-});
-  });
-
-  //essa função pega o ID da escola dps de selecionar
-  $("#createAlunoEscola").change(function(){
-      var escolanome = $(this).val();
-
-        var escolanome = $(this).val();
-        $.ajax({
-            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
-            type: 'post',
-            data: {escola:escolanome},
-            dataType: 'json',
-            success:function(response){
-              var escola = response[0]['escola'];
-              var turma = response[0]['turma'];
-
-                var len = response.length;
-
-                $("#createAlunoTurma").empty();
-
-                $("#createAlunoTurma").append("<option disabled hidden selected value='none'>Selecione uma turma</option>");
-
-                for( var i = 0; i<len; i++){
-                    var turma = response[i]['name'];
-                    $("#createAlunoTurma").append("<option value='"+turma+"'>"+turma+"</option>");
-
-                }
-                $("#codigoescola").val(escola);
 
 
-            }
-
-    });
-
-  });
-
-  //estas para o editar
 
 
-  $("#editAlunoTurma").change(function(){
-    var turmanome =$("#editAlunoTurma").val();
 
-    $.ajax({
-        url: '../../Scripts/Manipulations/Admin/Global/turmaIDDependency.php',
-        type: 'post',
-        data: {turmaID:turmanome},
-        dataType: 'json',
-        success:function(response){
-        var turma = response[0]['turma'];
-      $("#edit_codTurma").val(turma);
-        }
-
-});
-  });
-
-  //essa função pega o ID da escola dps de selecionar
-  $("#editAlunoEscola").change(function(){
-      var escolanome = $(this).val();
-
-        var escolanome = $(this).val();
-        $.ajax({
-            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
-            type: 'post',
-            data: {escola:escolanome},
-            dataType: 'json',
-            success:function(response){
-              var escola = response[0]['escola'];
-              var turma = response[0]['turma'];
-
-                var len = response.length;
-
-                $("#editAlunoTurma").empty();
-
-                $("#editAlunoTurma").append("<option disabled hidden selected value='none'>Selecione uma turma</option>");
-
-                for( var i = 0; i<len; i++){
-                    var turma = response[i]['name'];
-                    $("#editAlunoTurma").append("<option value='"+turma+"'>"+turma+"</option>");
-
-                }
-                $("#edit_codEscolar").val(escola);
-
-
-            }
-
-    });
-
-  });
 
 </script>
 
