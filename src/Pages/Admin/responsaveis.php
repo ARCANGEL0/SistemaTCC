@@ -498,6 +498,7 @@ RegistrarEscola
 
 <label for="editarAlunoTurma">Turma</label>
 <select class="form-control" name="editarAlunoTurma" id="editarAlunoTurma">
+  <option hidden disabled selected value="">Selecione uma turma</option>
 
 
 </select>
@@ -887,13 +888,78 @@ mysqli_close($conn);
 
    // fim animação
 
+
+
+
+
+
 // get Turmas
 $("#editarAlunoEscola").change(function(){
 
   var escolanome = $('#editarAlunoEscola').val();
 
 
+   $.ajax({
+           
+ url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
+              var turma = response[0]['turma'];
+
+                var len = response.length;
+
+            $('#editarAlunoTurma').empty();
+            $("#editarAlunoTurma").append("<option hidden selected> Selecione uma turma</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+                    $("#editarAlunoTurma").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
   });
+
+// get alunos from turmas
+
+$("#editarAlunoTurma").change(function(){
+
+  var turma = $('#editarAlunoTurma').val();
+
+
+   $.ajax({
+           
+ url: '../../Scripts/Manipulations/Admin/Global/getAlunosfromTurmas.php',
+            type: 'post',
+            data: {aluno:turma},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+            $('#editarAluno').empty();
+            $("#editarAluno").append("<option hidden selected> Selecione um aluno</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var aluno = response[i]['name'];
+                    $("#editarAluno").append("<option value='"+aluno+"'>"+aluno+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+  });
+
+
 
 // get Turmas
 
@@ -910,6 +976,10 @@ $("#addFilho").on('click',function(){
 })
 
 //
+
+
+
+
    // modal Editar
 
 

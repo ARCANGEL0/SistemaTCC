@@ -14,13 +14,12 @@ $telefone = $_POST['edit_telefone'];
 $endereco = $_POST['edit_endereco'];
 $bairro = $_POST['edit_bairro'];
 $cep = $_POST['edit_cep'];
-$codescola = $_POST['edit_codEscola'];
-$codturma = $_POST['edit_codTurma'];
+
 echo $_GET['salvarEdicao'];
 
 if(isset($_POST['salvarEdicao'])){
 
-$query= "UPDATE alunos SET Aluno_Escola = '$escola', Aluno_Ano = '$turma', Aluno_Nome = '$nome', Aluno_RG = '$RG', Aluno_Email = '$email', Aluno_DataDeNascimento = $dn, Aluno_Telefone = '$telefone', Aluno_CEP = '$cep', Aluno_Cidade = '$municipio', Aluno_Endereco = '$endereco', Aluno_Bairro = '$bairro', ID_Escola = '$codescola', ID_Turma = '$codturma' WHERE RM_Aluno = $rm";
+$query= "UPDATE alunos SET Aluno_Escola = '$escola', Aluno_Ano = '$turma', Aluno_Nome = '$nome', Aluno_RG = '$RG', Aluno_Email = '$email', Aluno_DataDeNascimento = $dn, Aluno_Telefone = '$telefone', Aluno_CEP = '$cep', Aluno_Cidade = '$municipio', Aluno_Endereco = '$endereco', Aluno_Bairro = '$bairro'WHERE RM_Aluno = $rm";
 
 	if(mysqli_query($conn,$query)){
     $_SESSION['Aluno_atualizado'] = true;
@@ -28,10 +27,11 @@ $query= "UPDATE alunos SET Aluno_Escola = '$escola', Aluno_Ano = '$turma', Aluno
     	exit();
 	}
 	else {
-
-	 $_SESSION['erro_edit_Aluno'] = true;
-      header("Location: ../../../../Pages/Admin/alunos.php");
-    	exit();
+echo $escola + "<br>";
+echo mysqli_error($conn);
+	 // $_SESSION['erro_edit_Aluno'] = true;
+  //     header("Location: ../../../../Pages/Admin/alunos.php");
+  //   	exit();
 	}mysqli_close($conn);
 }	
  ?>

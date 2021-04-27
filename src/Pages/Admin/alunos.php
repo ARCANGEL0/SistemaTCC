@@ -807,7 +807,6 @@ mysqli_close($conn);
 
      table.on('click','.btnEditar',function(){
 
-
       $tr=$(this).closest('tr');
 
       var data = table.row($tr).data();
@@ -820,6 +819,9 @@ mysqli_close($conn);
         // Utilizo o .slice(-2) para garantir o formato com 2 digitos.
       }
 
+      alert(data[2]);
+
+
       $('#edit_rm').val(data[0])
       $('#edit_nome').val(data[1]);
       $('#editAlunoEscola').val(data[2]);
@@ -831,8 +833,7 @@ mysqli_close($conn);
       $('#edit_muninc').val(data[9]);
       $('#edit_endereco').val(data[10]);
       $('#edit_bairro').val(data[11]);
-      $('#edit_codEscolar').val(data[12]);
-     $('#edit_codTurma').val(data[13]);
+
 
      $("#editAlunoTurma").append("<option disabled hidden selected value='"+data[3]+"'>"+data[3]+"</option>");
 

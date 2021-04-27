@@ -13,23 +13,31 @@ $telefone = $_POST['edit_telefone'];
 $celular = $_POST['edit_cel'];
 $endereco = $_POST['edit_endereco'];
 $cep = $_POST['edit_cep'];
-echo $_GET['salvarEdicao'];
+
+
+
+$aluno = $_POST['editarAluno'];
 
 if(isset($_POST['salvarEdicao'])){
 
-$query= "UPDATE responsáveis SET Resp_Nome = '$nome', Resp_Email = '$email', Resp_DataDeNascimento = '$dn', Resp_RG = '$RG', Resp_CPF = '$cpf', Resp_Telefone = '$telefone', Resp_Celular = '$celular',  Resp_CEP = '$cep', Resp_Cidade = '$municipio', Resp_Endereco ='$endereco' WHERE RM_Responsável = $rm";
 
-	if(mysqli_query($conn,$query)){
-    $_SESSION['resp_atualizado'] = true;
-      header("Location: ../../../../Pages/Admin/responsaveis.php");
-    	exit();
-	}
-	else {
+echo $aluno;
 
-    $_SESSION['resp_erro_atualizacao'] = true;
-      header("Location: ../../../../Pages/Admin/responsaveis.php");
-    	exit();
+
+
+// $query= "UPDATE responsáveis SET Resp_Nome = '$nome', Resp_Email = '$email', Resp_DataDeNascimento = '$dn', Resp_RG = '$RG', Resp_CPF = '$cpf', Resp_Telefone = '$telefone', Resp_Celular = '$celular',  Resp_CEP = '$cep', Resp_Cidade = '$municipio', Resp_Endereco ='$endereco' WHERE RM_Responsável = $rm";
+
+// 	if(mysqli_query($conn,$query)){
+//     $_SESSION['resp_atualizado'] = true;
+//       header("Location: ../../../../Pages/Admin/responsaveis.php");
+//     	exit();
+// 	}
+// 	else {
+
+//     $_SESSION['resp_erro_atualizacao'] = true;
+//       header("Location: ../../../../Pages/Admin/responsaveis.php");
+//     	exit();
 	
-	}mysqli_close($conn);
+// 	}mysqli_close($conn);
 }	
  ?>
