@@ -10,7 +10,7 @@ $array = array();
 
 
 
-    $sql = "SELECT al.Aluno_Nome FROM alunos al 
+    $sql = "SELECT al.Aluno_Nome, al.RM_Aluno FROM alunos al 
     inner join turmas t on al.ID_Turma = t.ID_Ano
     where t.Turma='".$turma."'";
 
@@ -18,8 +18,9 @@ $array = array();
 
     while( $row = mysqli_fetch_array($result) ){
         $name = $row['Aluno_Nome'];
+        $rm = $row['RM_Aluno'];
  
-        $array[] = array("name" => $name);
+        $array[] = array("name" => $name, "rm" => $rm);
     }
 
 

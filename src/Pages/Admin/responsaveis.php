@@ -354,74 +354,227 @@ RegistrarEscola
 
 <!-- MODAL DE REGISTRAR -->
 
-
-<div id="registrarAluno" class="modal fade" role="dialog">
+<div id="registrarResp" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Registrar um novo Aluno</h4>          </div>
-          <div class="modal-body registrarAluno_corpo">
-          <form action="../../Scripts/Manipulations/Admin/Alunos/registrarAluno.php" method="POST" id="modalform">
-    <label for="rm">RM</label>
-    <input  type="large_number" id="rm" name="rm">
-    <br>
-    <label for="cpf">Escola</label>
-    <select class="form-control" name="editEscola" id="editEscola">
-      <option hidden disabled selected value="">Selecione uma escola</option>
-
-    <?php
-    $queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
-    while($row = mysqli_fetch_array($queryEscolas))
-    {
-    echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
-    };
-
-    ?>
-
-    </select>    <br>
-    <label >Turma</label>
-        <select class="form-control" required type="text" onchange="" id="createAlunoTurma" name="createAlunoTurma" >
-          <option hidden disabled selected value="#">Escolha uma escola primeiro</option>
+            <h4 class="modal-title">Registrar Responsável</h4>          </div>
+          <div class="modal-body">
+          <form action="../../Scripts/Manipulations/Admin/Resp/registrarResp.php" method="POST" id="modalform">
 
 
-        </select><br>
-        <label for="nome">Nome</label>
-        <input  type="text" id="nome" name="nome">
-        <br>
-    <label for="rg">RG</label>
-    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="rg" name="rg" >
+            <label for="rm">RM </label>
+    <input required class="form-control" type="text" id="rm" name="rm">
+
+<br>
+
+    <label for="nome">Nome</label>
+    <input required  class="form-control" type="text" id="nome" name="nome">
     <br>
 
-	<label for="dn">Data Nascimento</label>
-	<input  maxlength="8" OnKeyPress="formatar('##-##-####', this)" type="date" id="dn" name="dn">
+
+<label for="dn">Data Nascimento</label>
+  <input required class="form-control"   type="date" id="dn" name="dn">
     <br>
     <label for="email">E-Mail</label>
-    <input  type="text" id="email" name="email">
+    <input required class="form-control"  type="text" id="email" name="email">
     <br>
-      <label for="telefone">Telefone</label>
-    <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="telefone" name="telefone">
+     <label for="telefone">Telefone</label>
+    <input required class="form-control"  maxlength="12" OnKeyPress="formatar('## ####-####', this)" type="text" id="telefone" name="telefone">
+    <br>
+     <label for="cel">Celular</label >
+    <input required class="form-control"  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="cel" name="cel">
   <br>
-    <label for="cep">CEP</label>
-    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cep" name="cep">
-	<br>
-    <label for="municipio">Munincípio</label>
-    <input  type="text" id="municipio" name="municipio">
+    <label for="rg">RG</label>
+    <input required class="form-control"  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="rg" name="rg" >
     <br>
-    <label for="endereco">Endereço</label>
-    <input  type="text" id="endereco" name="endereco">
-    <br>
-    <label for="bairro">Bairro</label>
-    <input  type="text" id="bairro" name="bairro">
+   <label for="cpf">CPF</label>
+    <input required class="form-control" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"type="text" id="cpf" name="cpf" >
     <br>
 
-    <input    id="codigoescola" name="codigoescola">
-  </input>
-    <input  id="codigoturma"  name="codigoturma">
-</input>
+      <label for="cep">CEP</label>
+    <input required class="form-control"  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cep" name="cep">
+  <br>
+    <label for="muninc">Munincípio</label>
+    <input required class="form-control"  type="text" id="muninc" name="muninc">
+    <br>
+    <label for="endereco">Endereço</label>
+    <input required class="form-control"  type="text" id="endereco" name="endereco">
+    <br><br>
+
+    <h3>Dependentes</h3>
+<hr class="form-divide">
+<input type="hidden" value=1 id="numFilhoReg" name="numFilhoReg">
+<br>
+<fieldset id="RegFirstField">
+<fieldset class="RegFieldFilhos">
+
+
+
+<label for="registrarAlunoEscola0">Escola</label>
+<select required class="form-control" name="registrarAlunoEscola0" id="registrarAlunoEscola0">
+  <option hidden disabled selected value="">Selecione uma escola</option>
+  <?php
+  $queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
+  while($row = mysqli_fetch_array($queryEscolas))
+  {
+  echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+  };
+
+  ?>
+</select>
+
+<br>
+
+<label for="registrarAlunoTurma0">Turma</label>
+<select required class="form-control" name="registrarAlunoTurma0" id="registrarAlunoTurma0">
+  <option hidden disabled selected value="">Selecione uma turma</option>
+
+
+</select>
+<br>
+
+
+
+<label for="registrarAluno0">Aluno</label>
+<select required class="form-control" name="registrarAluno0" id="registrarAluno0">
+  <option hidden disabled selected value="">Selecione um aluno</option>
+
+</select>
+<br>
+
+<hr style="border-width: 1.2px; border-color: #cecece">
+
+<script>
+
+  var add_len = 1;
+  var add_filhos = 1;
+  function addFilhos(){
+
+    $(".RegFieldFilhos select").last().val()
+  $('#RegFirstField .RegFieldFilhos')
+  .clone()
+  .appendTo('.RegNewFields')
+  .attr("id","novoField"+ add_len)
+  .each(function(){
+var RegIDEscola = "registrarAlunoEscola"+ add_len;
+var RegIDTurma = "registrarAlunoTurma"+ add_len;
+var RegIDAluno ="registrarAluno"+ add_len;
+
+    $('.RegNewFields #registrarAlunoEscola0')
+    .attr("id",RegIDEscola)
+    .attr("name",RegIDEscola)
+
+    $('.RegNewFields #registrarAlunoTurma0')
+    .attr("id",RegIDTurma)
+    .empty()
+    .attr("name",RegIDTurma)
+    
+    $('.RegNewFields #registrarAluno0')
+    .attr("id",RegIDAluno)
+    .empty()
+    .attr("name",RegIDAluno)
+
+    add_filhos++;
+  add_len++;
+
+$("#numFilhoReg").val(add_filhos);
+
+
+$("#"+RegIDEscola).change(function(){
+
+  var reg_school = $("#"+RegIDEscola).val();
+
+
+   $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:reg_school},
+            dataType: 'json',
+            success:function(response){
+              var turma = response[0]['turma'];
+
+                var len = response.length;
+
+            $("#"+RegIDTurma).empty();
+            $("#"+RegIDTurma).append("<option hidden selected> Selecione uma turma</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+                    $("#"+RegIDTurma).append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+  });
+
+// get alunos from turmas
+
+$("#"+RegIDTurma).change(function(){
+
+  var reg_turmas = $("#"+RegIDTurma).val();
+
+
+   $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/getAlunosfromTurmas.php',
+            type: 'post',
+            data: {aluno:reg_turmas},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+            $("#"+RegIDAluno).empty();
+            $("#"+RegIDAluno).append("<option hidden selected> Selecione um aluno</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var aluno = response[i]['name'];
+                    var alunorm = response[i]['rm'];
+
+                    $("#"+RegIDAluno).append("<option value='"+alunorm+"'>"+aluno+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+  });
+
+
+
+
+
+  });
+
+
+}
+
+</script>
+
+
+</fieldset>
+</fieldset>
+
+<fieldset class="RegNewFields">
+
+</fieldset>
+<div class="addField">
+
+  <button class="btn btn-outline-info" type="button" onclick="addFilhos();" id="addFilho"  name="addFilho"><i class="fa fa-plus"></i></button>
+
+</div>
 
     </div>
           <div class="modal-footer">
-          <button type="submit" name="registrar" id="registrar" class="btn btn-success">Registrar</button>
+          <button type="submit" name="registrar" id="registrar" class="btn btn-success">Salvar</button>
             <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
             </form>
           </div>
@@ -429,6 +582,8 @@ RegistrarEscola
 
       </div>
     </div>
+
+
 <!-- FIM MODAL REGISTRAR -->
 
 
@@ -439,7 +594,7 @@ RegistrarEscola
           <div class="modal-header">
             <h4 class="modal-title">Editar Responsável</h4>          </div>
           <div class="modal-body">
-          <form action="../../Scripts/Manipulations/Admin/Resp/editarResp.php" method="POST" id="modalform">
+          <form action="../../Scripts/Manipulations/Admin/Resp/registrarResp.php" method="POST" id="modalform">
     <input class="form-control" type="hidden" id="edit_rm" name="edit_rm">
 
 
@@ -479,8 +634,13 @@ RegistrarEscola
 
     <h3>Dependentes</h3>
 <hr class="form-divide">
+<input type="hidden" value=1 id="numFilho" name="numFilho">
 <br>
+<fieldset id="firstFieldFilhos">
 <fieldset class="fieldFilhos">
+
+
+
 <label for="editarAlunoEscola">Escola</label>
 <select class="form-control" name="editarAlunoEscola" id="editarAlunoEscola">
   <option hidden disabled selected value="">Selecione uma escola</option>
@@ -512,10 +672,130 @@ RegistrarEscola
 
 </select>
 <br>
-<br>
+
+<hr style="border-width: 1.2px; border-color: #cecece">
+
+<script>
+
+  var len = 0;
+  var filhos = 1;
+  function editFilhos(){
+  $('#firstFieldFilhos .fieldFilhos')
+  .clone()
+  .appendTo('.newFields')
+  .attr("id","newField"+ len)
+  .each(function(){
+var idEscola = "editarAlunoEscola"+ len;
+var idTurma = "editarAlunoTurma"+ len
+var idAluno ="editarAluno"+ len
+
+
+    $('.newFields #editarAlunoEscola')
+    .attr("id",idEscola)
+    .attr("name",idEscola)
+
+    $('.newFields #editarAlunoTurma')
+    .attr("id",idTurma)
+    .empty()
+    .attr("name",idTurma)
+    
+    $('.newFields #editarAluno')
+    .attr("id",idAluno)
+    .empty()
+    .attr("name",idAluno)
+
+    filhos++;
+  len++;
+
+$("#numFilho").val(filhos);
+
+
+$("#"+idEscola).change(function(){
+
+  var school = $("#"+idEscola).val();
+
+
+   $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:school},
+            dataType: 'json',
+            success:function(response){
+              var turma = response[0]['turma'];
+
+                var len = response.length;
+
+            $("#"+idTurma).empty();
+            $("#"+idTurma).append("<option hidden selected> Selecione uma turma</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+                    $("#"+idTurma).append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+  });
+
+// get alunos from turmas
+
+$("#"+idTurma).change(function(){
+
+  var turmass = $("#"+idTurma).val();
+
+
+   $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/getAlunosfromTurmas.php',
+            type: 'post',
+            data: {aluno:turmass},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+            $("#"+idAluno).empty();
+            $("#"+idAluno).append("<option hidden selected> Selecione um aluno</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var aluno = response[i]['name'];
+                    $("#"+idAluno).append("<option value='"+aluno+"'>"+aluno+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+  });
+
+
+
+
+
+  });
+
+
+}
+
+</script>
+
+
+</fieldset>
+</fieldset>
+
+<fieldset class="newFields">
+
 </fieldset>
 <div class="addField">
-  <button class="btn btn-outline-info" type="button" id="addFilho" name="addFilho"><i class="fa fa-plus"></i></button>
+
+  <button class="btn btn-outline-info" type="button" onclick="editFilhos();" id="editFilho"  name="addFilho"><i class="fa fa-plus"></i></button>
 
 </div>
 
@@ -587,7 +867,7 @@ RegistrarEscola
       <div class="container-fluid">
 
 
-        <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#registrarAluno"><i class="fa fa-plus"></i> &nbsp;  Cadastrar um novo Responsável</button>
+        <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#registrarResp"><i class="fa fa-plus"></i> &nbsp;  Cadastrar um novo Responsável</button>
 
         <table class="table table-bordered display" id="tabelaResp" width="100%" cellspacing="0">
           <form action="" id="myform">
@@ -628,7 +908,7 @@ echo "<td>" . $row['Resp_Endereco'] . "</td>";
 
 echo '<td><a class="btn-sm  btn-secondary text-white btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
 &nbsp;
-  <a class="btn-sm btn-info btnFilhos" name="filhos" href="#"><i class="fa fa-child"></i></a>
+  <a class="btn-sm btn-info btnFilhos" name="filhos" href="#" ><i class="fa fa-child"></i></a>
 
 </td>';
 echo "</tr>";
@@ -742,6 +1022,93 @@ mysqli_close($conn);
 
 
 <!-- Mesma coisa, mas agora para atualização dos Alunos -->
+
+<!-- Verificação de registros já existentes -->
+  <?php
+                    if(isset($_SESSION['registro_erro_rm'])):
+                    ?>
+                  <script>
+
+                  $(function () {
+                    $(document).ready(function(){
+                          toastr.error('Erro ao registrar o Responsável!\n\n\n RM já cadastrado!');
+                        });
+                      });
+                   </script>
+                    <?php
+                    endif;
+                    unset($_SESSION['registro_erro_rm']);
+
+                    ?>
+
+
+<?php
+                    if(isset($_SESSION['registro_erro_cpf'])):
+                    ?>
+                  <script>
+
+                  $(function () {
+                    $(document).ready(function(){
+                          toastr.error('Erro ao registrar o Responsável!\n\n\n CPF já cadastrado!');
+                        });
+                      });
+                   </script>
+                    <?php
+                    endif;
+                    unset($_SESSION['registro_erro_cpf']);
+
+                    ?>
+
+                    <?php
+                    if(isset($_SESSION['registro_erro_rg'])):
+                    ?>
+                  <script>
+
+                  $(function () {
+                    $(document).ready(function(){
+                          toastr.error('Erro ao registrar o Responsável!\n\n\n RG já cadastrado!');
+                        });
+                      });
+                   </script>
+                    <?php
+                    endif;
+                    unset($_SESSION['registro_erro_rg']);
+
+                    ?>
+
+                    <?php
+                    if(isset($_SESSION['registro_erro_email'])):
+                    ?>
+                  <script>
+
+                  $(function () {
+                    $(document).ready(function(){
+                          toastr.error('Erro ao registrar o Responsável!\n\n\n Email já cadastrado!');
+                        });
+                      });
+                   </script>
+                    <?php
+                    endif;
+                    unset($_SESSION['registro_erro_email']);
+
+                    ?>
+
+  <?php
+                    if(isset($_SESSION['registro_erro_filhos'])):
+                    ?>
+                  <script>
+
+                  $(function () {
+                    $(document).ready(function(){
+                          toastr.error('Erro ao registrar os dependentes do Responsável!');
+                        });
+                      });
+                   </script>
+                    <?php
+                    endif;
+                    unset($_SESSION['registro_erro_filhos']);
+
+                    ?>
 <!-- Este é para caso de sucesso -->
 
                   <?php
@@ -848,7 +1215,7 @@ mysqli_close($conn);
                     var nome = response[i]['nome'];
 
 
-                    $(".filhos").append("<button class='form-control collap' id='escola"+i+"'>"+nome+"</button>");
+                    $(".filhos").append("<button type='button' class='form-control collap' id='escola"+i+"'>"+nome+"</button>");
 
                     $("#escola"+i).after("<div class='escolas'><p class='escolaBG'><a> "+escola+" </a>        </p>                                                                                                 </div>");
 
@@ -900,7 +1267,7 @@ $("#editarAlunoEscola").change(function(){
 
 
    $.ajax({
-           
+
  url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
             type: 'post',
             data: {escola:escolanome},
@@ -934,7 +1301,7 @@ $("#editarAlunoTurma").change(function(){
 
 
    $.ajax({
-           
+
  url: '../../Scripts/Manipulations/Admin/Global/getAlunosfromTurmas.php',
             type: 'post',
             data: {aluno:turma},
@@ -964,27 +1331,83 @@ $("#editarAlunoTurma").change(function(){
 // get Turmas
 
 
-//add Filhos
+
+// get Turmas
+$("#registrarAlunoEscola0").change(function(){
+
+  var escolanome = $('#registrarAlunoEscola0').val();
 
 
-$("#addFilho").on('click',function(){
+   $.ajax({
 
-  var fieldset_parent = $(".fieldFilhos:eq(0)").clone();
+ url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
+              var turma = response[0]['turma'];
 
-  $(".fieldFilhos:last").after($(fieldset_parent).clone());
+                var len = response.length;
 
-})
-
-//
-
+            $('#registrarAlunoTurma0').empty();
+            $("#registrarAlunoTurma0").append("<option hidden selected> Selecione uma turma</option>");
 
 
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+                    $("#registrarAlunoTurma0").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+  });
+
+// get alunos from turmas
+
+$("#registrarAlunoTurma0").change(function(){
+
+  var turma = $('#registrarAlunoTurma0').val();
+
+
+   $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/getAlunosfromTurmas.php',
+            type: 'post',
+            data: {aluno:turma},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+            $('#registrarAluno0').empty();
+            $("#registrarAluno0").append("<option hidden selected> Selecione um aluno</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var aluno = response[i]['name'];
+                    var alunorm = response[i]['rm'];
+
+                    $("#registrarAluno0").append("<option value='"+alunorm+"'>"+aluno+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+  });
+
+
+
+// get Turmas
 
    // modal Editar
 
 
      table.on('click','.btnEditar',function(){
-
 
       $tr=$(this).closest('tr');
 
@@ -1015,6 +1438,7 @@ $("#addFilho").on('click',function(){
 
 
     $('#EditarResp').modal('show');
+
     });
 
 

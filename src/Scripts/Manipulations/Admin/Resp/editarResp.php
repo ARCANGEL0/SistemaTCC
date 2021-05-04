@@ -13,15 +13,37 @@ $telefone = $_POST['edit_telefone'];
 $celular = $_POST['edit_cel'];
 $endereco = $_POST['edit_endereco'];
 $cep = $_POST['edit_cep'];
+$numFilhos = $_POST['numFilho'];
 
 
 
-$aluno = $_POST['editarAluno'];
 
 if(isset($_POST['salvarEdicao'])){
 
+echo 'test<br><br>';
 
-echo $aluno;
+echo $rm . "<br><br>";
+echo $nome. "<br><br>";
+echo $dn. "<br><br>";
+echo $email. "<br><br>";
+echo $rg. "<br><br>";
+echo  "<br><br>";
+
+echo "Número de filhos:  ". $numFilhos . "<br><br>";
+echo $_POST['editarAlunoEscola']. "<br><br>";
+echo $_POST['editarAlunoTurma']. "<br><br>";
+echo $_POST['editarAluno']. "<br><br>";
+
+for($x=0;$x<$numFilhos;$x++){
+  echo $_POST['editarAlunoEscola'.$x]. "<br><br>";
+echo $_POST['editarAlunoTurma'.$x]. "<br><br>";
+echo $_POST['editarAluno'.$x]. "<br><br>";
+
+
+}
+
+
+
 
 
 

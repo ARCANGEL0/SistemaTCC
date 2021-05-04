@@ -12,7 +12,7 @@ $array2 = array();
  
 
   $sql = "  
-SELECT al.Aluno_Nome, Aluno_Escola from alunos al
+SELECT al.Aluno_Nome, al.Aluno_Escola, al.RM_Aluno from alunos al
 inner join relacao_alunosresponsaveis RAR on al.RM_Aluno = RAR.RM_Aluno
 inner join responsáveis R on RAR.Responsavel_Filhos = R.RM_Responsável
 where R.RM_Responsável=".$rm.";
@@ -24,7 +24,8 @@ where R.RM_Responsável=".$rm.";
     while( $row = mysqli_fetch_array($result) ){
      	$alunoNome = $row['Aluno_Nome'];
      	$alunoEscola = $row['Aluno_Escola'];
-        $array2[] = array("escola" => $alunoEscola, "nome" => $alunoNome);
+     	$alunoRM = $row['Aluno_RM'];
+        $array2[] = array("escola" => $alunoEscola, "nome" => $alunoNome, "rm" => $alunoRM);
 
     
     }
