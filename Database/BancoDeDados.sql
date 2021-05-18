@@ -14,19 +14,7 @@ create database TCC;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "-03:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `tcc`
---
-
--- --------------------------------------------------------
+SET time_zone = "-03:00";------------------------------------------------
 
 --
 -- Estrutura da tabela `alunos`
@@ -54,8 +42,9 @@ CREATE TABLE `alunos` (
 --
 
 INSERT INTO `alunos` (`RM_Aluno`, `Aluno_Ano`, `Aluno_Nome`, `Aluno_RG`, `Aluno_Email`, `Aluno_DataDeNascimento`, `Aluno_Telefone`, `Aluno_CEP`, `Aluno_Cidade`, `Aluno_Endereco`, `Aluno_Bairro`, `Aluno_Escola`, `ID_Escola`, `ID_Turma`) VALUES
-(1000, '1B', 'Guilherme Fonseca', '55.285.582-52', 'guiimar@gmail.com', '2004-12-05', '(11) 9947227523', '11526-582', 'Guarujá ', 'Rua ABC', 'Vila Zilda', 'EB.I Pedro Almeida', 1, 13),
-(1001, '1NB', 'André Fonseca', '82.572.572-52', 'andrewsfor@outlook.com', '2004-09-02', '(11) 988427492', '11526-582', 'Guarujá', 'R. M', 'Vila Zilda', 'EB.I Pedro Almeida', 1, 13);
+(1000, '1N3', 'Guilherme Fonseca', '55.285.582-52', 'guiimar@gmail.com', '2004-12-05', '(11) 9947227523', '11526-582', 'Guarujá', 'Rua ABC', 'Vila Zilda', 'Escola Pedro Al', 1, 13),
+(1001, '1N3', 'André Fonseca', '82.572.572-52', 'andrewsfor@outlook.com', '2004-09-02', '(11) 988427492', '11526-582', 'Guarujá', 'R. M', 'Vila Zilda', 'Escola Pedro Al', 1, 13),
+(9400, '1B', 'Andre', '19.203.213-09', 'rias@gmail.com', '2001-01-01', 'ijojo12', '09128-310', '9809', '809', '80', 'Escola ID n 4', 4, 23);
 
 -- --------------------------------------------------------
 
@@ -65,7 +54,7 @@ INSERT INTO `alunos` (`RM_Aluno`, `Aluno_Ano`, `Aluno_Nome`, `Aluno_RG`, `Aluno_
 
 CREATE TABLE `alunos_faltas` (
   `ID` bigint(20) NOT NULL,
-  `Data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `Data` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -73,10 +62,10 @@ CREATE TABLE `alunos_faltas` (
 --
 
 INSERT INTO `alunos_faltas` (`ID`, `Data`) VALUES
-(2, '2020-11-04 22:45:54'),
-(1, '2020-11-04 22:55:30'),
-(1, '2020-11-04 22:55:34'),
-(1,'2020-11-04 22:55:43');
+(2, '2020-11-05 01:45:54'),
+(1, '2020-11-05 01:55:30'),
+(1, '2020-11-05 01:55:34'),
+(1, '2020-11-05 01:55:43');
 
 -- --------------------------------------------------------
 
@@ -155,8 +144,10 @@ CREATE TABLE `escolas` (
 --
 
 INSERT INTO `escolas` (`Escola_Codigo`, `Escola_CNPJ`, `Escola_Nome`, `Escola_CEP`, `Escola_Munincipio`, `Escola_Endereco`) VALUES
-(1, '21.312.90/8401-928', 'EB.I Pedro Almeida', '12292-948', 'Guarujá', 'Av. XXSS'),
-(2, '44.4242.4232/42324-23', 'Dirce Valério Gracia', '22452-582', 'Guarujá', 'Av. Dom Pedro I');
+(1, '21.312.90/8401-928', 'Escola Pedro Al', '12292-948', 'Guarujá', 'Av. XXSS'),
+(2, '44.4242.4232/42324-23', 'Dirce', '22452-582', 'Guarujá', 'Av. Dom Pedro I'),
+(3, '12.931.20/8301-283', 'Escola X', '12312-031', 'fodasei', 'joi'),
+(4, '29.393.93/9393-939', 'Escola ID n 4', '12319-203', 'asdsad', 'asdpod');
 
 -- --------------------------------------------------------
 
@@ -268,7 +259,7 @@ CREATE TABLE `professores` (
   `RM_Prof` bigint(20) NOT NULL,
   `Prof_Nome` varchar(255) NOT NULL,
   `Prof_DataDeNascimento` date NOT NULL,
-  `Prof_Celular` varchar(255) not null,
+  `Prof_Celular` varchar(255) NOT NULL,
   `Prof_Email` varchar(255) NOT NULL,
   `Prof_CPF` varchar(255) NOT NULL,
   `Prof_RG` varchar(255) NOT NULL,
@@ -283,9 +274,9 @@ CREATE TABLE `professores` (
 --
 
 INSERT INTO `professores` (`RM_Prof`, `Prof_Nome`, `Prof_DataDeNascimento`, `Prof_Celular`, `Prof_Email`, `Prof_CPF`, `Prof_RG`, `Prof_CEP`, `Prof_Cidade`, `Prof_Endereco`, `Prof_Bairro`) VALUES
-(1, '0000AA1', 'Pedro Sate', '1998-04-15', 'pedro@gmail.com', '13 98840-4024', '449.228.285-85', '82.582.852-7', '11857-852', 'Santos', 'R. sadfasf ', 'Vila Mathias'),
-(92, '', 'jioejo', '2020-11-22', '1921903109@homc.m', '91.239.012-83', '1092380980', '98098-09', '980810293801293809', '8081029380192830', '809128309180'),
-(298, '', 'Kurokuro', '2020-11-11', 'risa@gm.com', '09.812.038-10', '92123098123098', '', '08080', '8098098', '09809-809');
+(1, 'Pedro Sate', '1998-04-15', '13 98840-4024', 'pedro@gmail.com', '449.228.285-85', '82.582.852-7', '11857-852', 'Santos', 'Rua X', 'Vila Mathias'),
+(92, 'jioejo', '2020-11-22', '13 99482-4992', '1921903109@homc.m', '91.239.012-83', '1092380980', '98098-09', '980810293801293809', '8081029380192830', '809128309180'),
+(298, 'Kurokuro', '2020-11-11', '11 99482-4924', 'risa@gm.com', '09.812.038-10', '92123098123098', '', '08080', '8098098', '09809-809');
 
 -- --------------------------------------------------------
 
@@ -327,7 +318,30 @@ CREATE TABLE `relacao_alunosresponsaveis` (
 
 INSERT INTO `relacao_alunosresponsaveis` (`RM_Aluno`, `Responsavel_Filhos`) VALUES
 (1000, 1000),
-(1001, 1000);
+(1001, 1000),
+(1000, 15420),
+(1001, 9000),
+(1000, 24020),
+(1001, 24020),
+(1001, 24020),
+(1000, 6000),
+(1001, 6000),
+(1000, 6000),
+(1000, 15000),
+(1000, 15000),
+(1001, 15000),
+(1000, 9990),
+(1000, 9990),
+(1000, 1000),
+(1000, 23040),
+(1000, 40992),
+(1000, 123129830),
+(1000, 15000),
+(1001, 9999),
+(1000, 21938012938),
+(1000, 1000),
+(1000, 9400),
+(1000, 9400);
 
 -- --------------------------------------------------------
 
@@ -398,15 +412,16 @@ CREATE TABLE `responsáveis` (
   `Resp_CEP` varchar(255) NOT NULL,
   `Resp_Cidade` varchar(255) NOT NULL,
   `Resp_Endereco` varchar(255) NOT NULL
-  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `responsáveis`
 --
 
-INSERT INTO `responsáveis` (`RM_Responsável`, `Resp_Nome`, `Resp_Email`, `Resp_DataDeNascimento`, `Resp_RG`, `Resp_CPF`, `Resp_Telefone`, `Resp_Celular`, `Resp_CEP`,`Resp_Cidade`,`Resp_Endereco`) VALUES
-(1000, 'Claudio Nunes', 'claudnun@gmail.com', '1980-12-11', '55.284.552-52', '495.284.285-39', '(13) 3385-2298', '(13) 9985-28492','11492-492','Arujá','Mariano Peixoto, 294');
+INSERT INTO `responsáveis` (`RM_Responsável`, `Resp_Nome`, `Resp_Email`, `Resp_DataDeNascimento`, `Resp_RG`, `Resp_CPF`, `Resp_Telefone`, `Resp_Celular`, `Resp_CEP`, `Resp_Cidade`, `Resp_Endereco`) VALUES
+(1000, 'Claudio Nunes', 'claudnun@gmail.com', '1980-12-11', '55.284.552-52', '495.284.285-39', '(13) 3385-2298', '(13) 9985-28492', '11492-492', 'Arujá', 'Mariano Peixoto, 294'),
+(15420, 'Luis', 'rick_arcangelo@Hotmail.com', '2021-12-30', '09.801.928-30', '980.912.830-91', '12 3912-8903', '09 81209-3812', '09128-301', '', '091283019283091283'),
+(9400, 'luis', 'fod@gmail.com', '2000-11-11', '09.810.298-30', '019.283.019-83', '12 9380-9128', '01 92830-9128', '80', '', '098098');
 
 -- --------------------------------------------------------
 
@@ -434,8 +449,10 @@ CREATE TABLE `secretaria` (
 -- Extraindo dados da tabela `secretaria`
 --
 
-INSERT INTO `secretaria` (`RM_Secretaria`, `Sec_Escola`, `Sec_Nome`, `Sec_DataDeNascimento`, `Sec_Email`, `Sec_CPF`, `Sec_RG`, `Sec_CEP`, `Sec_Cidade`, `Sec_Endereço`, `Sec_Bairro`, `Sec_Telefone`,`Sec_Celular`) VALUES
-(112, 1, 'Luiz Almeida', '1982-02-04', 'luizpt@outlook.cm', '229.285.682-36', '52.482.583-3', '28342-274', 'São Vicente', 'Rua Y', 'Vila P', '13 3395-2842', '11 98824-4825');
+INSERT INTO `secretaria` (`RM_Secretaria`, `Sec_Escola`, `Sec_Nome`, `Sec_DataDeNascimento`, `Sec_Email`, `Sec_Telefone`, `Sec_Celular`, `Sec_CPF`, `Sec_RG`, `Sec_CEP`, `Sec_Cidade`, `Sec_Endereço`, `Sec_Bairro`) VALUES
+(112, 2, 'Luiz Almeida', '2000-02-13', 'luizpt@outlook.cm', '13 3395-2842', '11 98824-4825', '229.285.682-36', '52.482.583-3', '28342-274', 'São Vicente', 'Rua Y', 'Bairro'),
+(1002, 2, 'Fernando', '2000-02-11', 'saidgmai@c.om', '01 9230-1283', '09 80912-8308', '091.283.019-28', '01.928.301-28', '09019-238', '', 'b', 'C'),
+(12300, 2, 'opipaoi', '2021-12-31', '098@gm.com', '01 2093-10', '09 80391-2830', '09i09', '1092380980', '11.432-39', 'Cidade', 'ojojoj', 'VILA SANTO ANTÔNIO');
 
 -- --------------------------------------------------------
 
@@ -447,18 +464,19 @@ CREATE TABLE `turmas` (
   `Escola` varchar(255) NOT NULL,
   `Prof_Coordenador` varchar(255) NOT NULL,
   `ID_Ano` bigint(20) NOT NULL,
-  `Turma` varchar(255) NOT NULL
+  `Turma` varchar(255) NOT NULL,
+  `ID_Escola` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `turmas`
 --
 
-INSERT INTO `turmas` (`Escola`, `Prof_Coordenador`, `ID_Ano`, `Turma`) VALUES
-('EB.I Pedro Almeida', 'Pedro Sate', 13, '1N3'),
-('EB.I Pedro Almeida', 'Pedro Sate', 14, '1R1'),
-('Dirce Valério Gracia', 'Pedro Sate', 15, '1R4'),
-('EB.I Pedro Almeida', 'Pedro Sate', 16, '9RR9');
+INSERT INTO `turmas` (`Escola`, `Prof_Coordenador`, `ID_Ano`, `Turma`, `ID_Escola`) VALUES
+('Escola Pedro Al', 'Pedro Sate', 13, '1N3', 1),
+('Escola Pedro Al', 'Pedro Sate', 14, '1R5', 1),
+('Dirce', 'Pedro Sate', 15, '1RB', 2),
+('Escola ID n 4', 'Pedro Sate', 23, '1B', 4);
 
 -- --------------------------------------------------------
 
@@ -467,7 +485,7 @@ INSERT INTO `turmas` (`Escola`, `Prof_Coordenador`, `ID_Ano`, `Turma`) VALUES
 --
 
 CREATE TABLE `turma_horario` (
-  `ID` bigint(20) NOT NULL,
+  `Turma_Escola` varchar(255) NOT NULL,
   `Turma_Ano` varchar(255) NOT NULL,
   `Turma_Horario` varchar(255) NOT NULL,
   `Horario_Segunda` varchar(255) DEFAULT NULL,
@@ -481,41 +499,32 @@ CREATE TABLE `turma_horario` (
 -- Extraindo dados da tabela `turma_horario`
 --
 
-INSERT INTO `turma_horario` (`ID`, `Turma_Ano`, `Turma_Horario`, `Horario_Segunda`, `Horario_Terça`, `Horario_Quarta`, `Horario_Quinta`, `Horario_Sexta`) VALUES
-(33, '1R4', '8 às 9', 'MAT', 'PORT', NULL, 'HIS', NULL),
-(34, '1R4', '9 às 10', 'MAT', 'PORT', 'HIS', NULL, NULL),
-(35, '1R4', '10 às 11', 'GEO\r\n', 'ING', 'ING', 'MAT', 'QUI\r\n'),
-(36, '1R4', '11 às 12', 'BIO', 'QUI\r\n', 'ING', 'MAT', 'FIS'),
-(37, '1R4', '13 às 14', 'BIO', 'QUI\r\n', 'FIS', 'ESP', 'HIS'),
-(38, '1R4', '15 às 16', 'HIS', 'GEO\r\n', 'FIS', 'ESP', 'HIS'),
-(39, '1R4', '16 às 17', '', '', '', '', ''),
-(40, '1R4', '17 às 18', '', '', '', '', ''),
-(41, '1R1', '8 às 9', '', '', '', '', ''),
-(42, '1R1', '9 às 10', '', '', 'ART', '', ''),
-(43, '1R1', '10 às 11', '', '', '', '', ''),
-(44, '1R1', '11 às 12', '', '', '', '', 'ART'),
-(45, '1R1', '13 às 14', '', '', '', '', ''),
-(46, '1R1', '14 às 15', '', '', '', '', ''),
-(47, '1R1', '15 às 16', '', '', '', '', ''),
-(48, '1R1', '16 às 17', '', '', '', '', ''),
-(49, '1R1', '17 às 18', '', '', '', '', ''),
-(50, '1R4', '14 às 15', 'BIO', 'Ed. FIS', NULL, 'QUI\r\n', 'QUI\r\n'),
-(101, '9RR9', '8 às 9', 'Ed. FIS', '', '', '', ''),
-(102, '9RR9', '9 às 10', '', '', '', '', ''),
-(103, '9RR9', '10 às 11', 'ART', '', '', '', ''),
-(104, '9RR9', '11 às 12', '', '', '', '', ''),
-(105, '9RR9', '13 às 14', '', '', '', '', ''),
-(106, '9RR9', '14 às 15', '', '', '', '', ''),
-(107, '9RR9', '15 às 16', '', 'ART', '', '', ''),
-(108, '9RR9', '16 às 17', '', '', '', '', ''),
-(109, '9RR9', '17 às 18', '', '', '', '', '');
+INSERT INTO `turma_horario` (`Turma_Escola`, `Turma_Ano`, `Turma_Horario`, `Horario_Segunda`, `Horario_Terça`, `Horario_Quarta`, `Horario_Quinta`, `Horario_Sexta`) VALUES
+('Escola Pedro Al', '1R1', '8 às 9', '', 'ART', '', '', ''),
+('Escola Pedro Al', '1R1', '9 às 10', '', '', 'ART', '', ''),
+('Escola Pedro Al', '1R1', '10 às 11', '', '', '', '', ''),
+('Escola Pedro Al', '1R1', '11 às 12', '', '', '', '', 'ART'),
+('Escola Pedro Al', '1R1', '13 às 14', '', '', '', '', ''),
+('Escola Pedro Al', '1R1', '14 às 15', '', '', '', '', ''),
+('Escola Pedro Al', '1R1', '15 às 16', '', '', '', '', ''),
+('Escola Pedro Al', '1R1', '16 às 17', 'QUI\r\n', 'MAT', 'PORT', 'PORT', 'PORT'),
+('Escola Pedro Al', '1R1', '17 às 18', 'QUI\r\n', 'MAT', 'MAT', 'ING', 'MAT'),
+('Escola Pedro Al', '1R5', '8 às 9', 'ART', '', '', '', ''),
+('Escola Pedro Al', '1R5', '9 às 10', '', '', '', '', ''),
+('Escola Pedro Al', '1R5', '10 às 11', '', '', '', '', ''),
+('Escola Pedro Al', '1R5', '11 às 12', '', '', '', '', ''),
+('Escola Pedro Al', '1R5', '13 às 14', '', '', '', '', ''),
+('Escola Pedro Al', '1R5', '14 às 15', '', '', '', '', ''),
+('Escola Pedro Al', '1R5', '15 às 16', '', '', '', '', ''),
+('Escola Pedro Al', '1R5', '16 às 17', '', '', '', '', ''),
+('Escola Pedro Al', '1R5', '17 às 18', 'ART', '', '', '', '');
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `alunos`
+-- Índices para tabela `alunos`
 --
 ALTER TABLE `alunos`
   ADD PRIMARY KEY (`RM_Aluno`),
@@ -524,51 +533,42 @@ ALTER TABLE `alunos`
   ADD KEY `ID_Turma` (`ID_Turma`);
 
 --
--- Indexes for table `alunos_faltas`
---
-ALTER TABLE `alunos_faltas`
-  ADD PRIMARY KEY (`ID`),
-
-
---
--- Indexes for table `alunos_notas`
+-- Índices para tabela `alunos_notas`
 --
 ALTER TABLE `alunos_notas`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `RM_Aluno` (`RM_Aluno`,`FK_AlunoFaltas`(191)),
-  ADD KEY `FK_AlunoFaltas` (`FK_AlunoFaltas`(191)),
   ADD KEY `Aluno_Disciplina` (`Aluno_Disciplina`(191));
 
 --
--- Indexes for table `escolas`
+-- Índices para tabela `escolas`
 --
 ALTER TABLE `escolas`
   ADD PRIMARY KEY (`Escola_Codigo`);
 
 --
--- Indexes for table `turmas`
+-- Índices para tabela `turmas`
 --
 ALTER TABLE `turmas`
   ADD PRIMARY KEY (`ID_Ano`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `escolas`
+-- AUTO_INCREMENT de tabela `escolas`
 --
 ALTER TABLE `escolas`
-  MODIFY `Escola_Codigo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Escola_Codigo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `turmas`
+-- AUTO_INCREMENT de tabela `turmas`
 --
 ALTER TABLE `turmas`
-  MODIFY `ID_Ano` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID_Ano` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- Constraints for dumped tables
+-- Restrições para despejos de tabelas
 --
 
 --
