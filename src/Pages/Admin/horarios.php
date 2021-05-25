@@ -519,6 +519,8 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
       <option hidden  disabled selected value="">Selecione uma turma</option>';
 
     </select>
+
+
     <br><br>
     <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
       <form action="" id="myform">
@@ -529,15 +531,11 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
       <script>
       $(document).ready(function(){
 // script quqe usa ajax para detectar escola selecionada, rodar um sql para selecionar turmas e colocar no segundo select
-    function getEscola() {
-
-      
-    }
-
+ 
     $("#escolaEdit").change(function(){
         var escolanome2= $(this).val();
         $.ajax({
-            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            url: '../../Scripts/Manipulations/Admin/Horarios/getEditTurma.php',
             type: 'post',
             data: {escola:escolanome2},
             dataType: 'json',
@@ -549,11 +547,25 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
                 $("#turmaEdit").append("<option disabled hidden selected value='none'>Selecione uma turma</option>");
 
                 for( var i = 0; i<len; i++){
-                    var turma = response[i]['name'];
+                    var turma = response[i]['turma'];
 
                     $("#turmaEdit").append("<option value='"+turma+"'>"+turma+"</option>");
 
+
+
+
                 }
+
+
+                // Esse script serve para evitar que apareçam turmas duplicadas no select
+                 var opt = {};
+    $("#turmaEdit > option").each(function () {
+        if(opt[$(this).text()]) {
+            $(this).remove();
+        } else {
+            opt[$(this).text()] = $(this).val();
+        }
+    });
             }
         });
     });
@@ -575,7 +587,6 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
 
                 for( var i = 0; i<len1; i++){
                     var turma = response[i]['name'];
-
                     $("#filtroTurma").append("<option value='"+turma+"'>"+turma+"</option>");
 
                 }
@@ -1158,6 +1169,8 @@ mysqli_close($conn);
 <!-- SCRIPT PARA INICIAR O JS DE DATATABLES, E CRIAR UMA TABELA INTERATIVA -->
 
 <script>
+
+
   $(function () {
 
   var table =  $('#tabelaTurmas').DataTable({
@@ -1201,6 +1214,9 @@ mysqli_close($conn);
       "responsive": true,
     });
 
+            
+
+
 
      table.on('click','.btnEditar',function(){
 
@@ -1219,6 +1235,8 @@ mysqli_close($conn);
 
     $('#EditarTurma').modal('show');
     });
+
+
 // Essa função serve para identificar o URL com um parametro de um script php e identificar o parametro
     var parametroUrl = function parametroUrl(sParam) {
            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -1234,59 +1252,72 @@ mysqli_close($conn);
                }
            }
        };
-       table.search("Sem turma").draw(); // Isto serve para impedir a visualização de conteudo
+
+
+    
+    
+table.search("Sem turma").draw();
+    // Isto serve para impedir a visualização de conteudo
+    
        //ao carregar a página, e forçar o filtro por turma
     var parametroEscola = parametroUrl("escola");
 
     var parametroTurma = parametroUrl("turma");
+
+
     $('#filtroTurma').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
-       table.search(this.value).draw();
-    });
+       table
+       .search($(this).val()).draw();
+      });
 
 
 
 
   $('#filtroEscola').val(parametroEscola);
 
-  function getTurma(){ // Essa função serve para detectar se houve um redirecionamento pelo URL e filtrar automaticamente atraves dos parametros
-    // do url
-   var escolanome = $('#filtroEscola').val();
-        $.ajax({
-            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
-            type: 'post',
-            data: {escola:escolanome},
-            dataType: 'json',
-            success:function(response){
+ //  function getTurma(){ // Essa função serve para detectar se houve um redirecionamento pelo URL e filtrar automaticamente atraves dos parametros
+ //    // do url
+ //   var escolanome = $('#filtroEscola').val();
+ //        $.ajax({
+ //            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+ //            type: 'post',
+ //            data: {escola:escolanome},
+ //            dataType: 'json',
+ //            success:function(response){
 
-                var len1 = response.length;
+ //                var len1 = response.length;
 
-                $("#filtroTurma").empty();
+ //                $("#filtroTurma").empty();
             
-                for( var i = 0; i<len1; i++){
-                    var turma = response[i]['name'];
+ //                for( var i = 0; i<len1; i++){
+ //                    var turma = response[i]['name'];
 
-                    $("#filtroTurma").append("<option value='"+turma+"'>"+turma+"</option>");
+ //                    $("#filtroTurma").append("<option value='"+turma+"'>"+turma+"</option>");
 
-                } // aqui o for pega todas as turmas
+ //                } // aqui o for pega todas as turmas
 
 
-                    $("#filtroTurma").val(parametroTurma).change(); // aqui ele insere automaticamente a turma do parametro
+ //                    $("#filtroTurma").val(parametroTurma).change(); // aqui ele insere automaticamente a turma do parametro
                 
 
- table.search(parametroTurma.value).draw(); // aqui ele seleciona o horário da turma
+ // table.search(parametroTurma.value).draw(); // aqui ele seleciona o horário da turma
 
-            }
-        });
+ //            }
 
-  } 
+ //        });
+
+ //  } 
 
 
-getTurma(); // aqui ele chama a função
+
+// getTurma(); 
+
+ // aqui ele chama a função
   });
 
 
 
-
+  
 </script>
 
 </body>

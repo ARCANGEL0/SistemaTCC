@@ -404,7 +404,7 @@ RegistrarEscola
 
 <!-- FIM MODAL EDITAR -->
 
-toor
+
   <!-- Content Wrapper. Início do conteudo -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -430,6 +430,20 @@ toor
 
         <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarEscola"><i class="fa fa-plus"></i> &nbsp;  Cadastrar uma nova escola</button>
 
+        <br><br>
+  <select class="btn btn-outline-info" name="filtroEscola" id="filtroEscola">
+          <option selected value="">Todas os munincípios</option>
+
+<?php
+$queryEscolas =  mysqli_query($conn,"SELECT DISTINCT Escola_Munincipio FROM escolas");
+while($row = mysqli_fetch_array($queryEscolas))
+{
+echo '<option value="'.$row['Escola_Munincipio'].'">' . $row['Escola_Munincipio'] . '</td>';
+};
+
+?>
+
+</select>
         <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
           <form action="" id="myform">
         <thead>
@@ -677,6 +691,34 @@ mysqli_close($conn);
       "autoWidth": true,
       "responsive": true,
     });
+
+
+
+ var parametroUrl = function parametroUrl(sParam) {
+           var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+               sURLVar = sPageURL.split('&'),
+               sParametNome,
+               i;
+
+           for (i = 0; i < sURLVar.length; i++) {
+               sParametNome = sURLVar[i].split('=');
+
+               if (sParametNome[0] === sParam) {
+                   return sParametNome[1] === undefined ? true : sParametNome[1];
+               }
+           }
+       };
+
+
+ var parametroEscola = parametroUrl("escola");
+
+    var parametroTurma = parametroUrl("turma");
+
+
+    $('#filtroEscola').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
+       table
+       .search($(this).val()).draw();
+      });
 
 
      table.on('click','.btnEditar',function(){

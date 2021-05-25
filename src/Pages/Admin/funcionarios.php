@@ -565,6 +565,26 @@ echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>
 
         <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarFunc"><i class="fa fa-plus"></i> &nbsp;  Cadastrar um novo funcionário</button>
 
+
+
+       <br><br>
+  <select class="btn btn-outline-info" name="filtroEscola" id="filtroEscola">
+          <option selected value="">Todas os munincípios</option>
+
+<?php
+$queryEscolas =  mysqli_query($conn,"select DISTINCT esc.Escola_Nome from escolas esc
+inner join secretaria sec on sec.Sec_Escola = esc.Escola_Codigo");
+while($row = mysqli_fetch_array($queryEscolas))
+{
+echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+};
+
+?>
+
+</select>
+
+
+
         <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
           <form action="" id="myform">
         <thead>
@@ -844,7 +864,32 @@ echo "</tr>";
 
 
 
-// escolas
+ var parametroUrl = function parametroUrl(sParam) {
+           var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+               sURLVar = sPageURL.split('&'),
+               sParametNome,
+               i;
+
+           for (i = 0; i < sURLVar.length; i++) {
+               sParametNome = sURLVar[i].split('=');
+
+               if (sParametNome[0] === sParam) {
+                   return sParametNome[1] === undefined ? true : sParametNome[1];
+               }
+           }
+       };
+
+
+ var parametroEscola = parametroUrl("escola");
+
+    var parametroTurma = parametroUrl("turma");
+
+
+    $('#filtroEscola').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
+       table
+       .search($(this).val()).draw();
+      });
+
 
 
 

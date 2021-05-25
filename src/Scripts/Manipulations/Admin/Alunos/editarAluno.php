@@ -27,11 +27,10 @@ $query= "UPDATE alunos SET Aluno_Escola = '$escola', Aluno_Ano = '$turma', Aluno
     	exit();
 	}
 	else {
-echo $escola + "<br>";
-echo mysqli_error($conn);
-	 // $_SESSION['erro_edit_Aluno'] = true;
-  //     header("Location: ../../../../Pages/Admin/alunos.php");
-  //   	exit();
+
+	  $_SESSION['erro_edit_Aluno'] = true;
+       header("Location: ../../../../Pages/Admin/alunos.php");
+     	exit();
 	}mysqli_close($conn);
 }	
  ?>

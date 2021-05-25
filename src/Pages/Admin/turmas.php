@@ -328,14 +328,14 @@ Logado como ADMINISTRADOR             </h3>
 
 
     <label for="nomeEscola">Escola</label>
-    <select class="form-control" required type="text"onchange="buscaProfessores(this.value)" id="nomeEscola" name="nomeEscola" >
+    <select class="form-control" required type="text" onchange="buscaProfessores(this.value)" id="nomeEscola" name="nomeEscola" >
       <option selected hidden disabled value="">Selecione uma escola</option>
 
 <?php
 $queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
 while($row = mysqli_fetch_array($queryEscolas))
 {
-echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>';
 };
 
 ?>
@@ -669,7 +669,22 @@ mysqli_close($conn);
                     unset($_SESSION['registro_erro']);
 
                     ?>
+ <?php
+                    if(isset($_SESSION['registro_existente'])):
+                    ?>
+                  <script>
 
+                  $(function () {
+                    $(document).ready(function(){
+                          toastr.error('Erro ao registrar a turma! Turma duplicada no banco de dados');
+                        });
+                      });
+                   </script>
+                    <?php
+                    endif;
+                    unset($_SESSION['registro_existente']);
+
+                    ?>
 
 <!-- Mesma coisa, mas agora para atualização das Turmas -->
 <!-- Este é para caso de sucesso -->

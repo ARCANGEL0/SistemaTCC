@@ -390,9 +390,15 @@ RegistrarEscola
     <input  type="text" id="bairro" name="bairro">
     <br>
 
-    <input    id="codigoescola" name="codigoescola">
+
+
+<!-- Precisa-se fazer com que os ID's sejam coletados através dos selects, o que dispensa o input -->
+
+
+
+    <input  type="hidden" placeholder="codigoescola" id="codigoescola" name="codigoescola">
   </input>
-    <input  id="codigoturma"  name="codigoturma">
+    <input  type="hidden" placeholder="codigoturma" id="codigoturma"  name="codigoturma">
 </input>
 
     </div>
@@ -554,6 +560,32 @@ RegistrarEscola
 
 
         <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#registrarAluno"><i class="fa fa-plus"></i> &nbsp;  Cadastrar um novo Aluno</button>
+
+
+
+
+<br><br>
+
+        <select class="btn btn-outline-info" name="filtroEscola" id="filtroEscola">
+          <option  selected value="">Todas as escolas</option>
+
+<?php
+$queryEscolas =  mysqli_query($conn,"SELECT DISTINCT Aluno_Escola FROM alunos");
+while($row = mysqli_fetch_array($queryEscolas))
+{
+echo '<option value="'.$row['Aluno_Escola'].'">' . $row['Aluno_Escola'] . '</td>';
+};
+
+?>
+
+</select>
+
+<select
+class="btn btn-outline-info" name="filtroTurma" id="filtroTurma">
+  <option disabled selected value=""></option>
+
+</select>
+
 
         <table class="table table-bordered display" id="tabelaAlunos" width="100%" cellspacing="0">
           <form action="" id="myform">
@@ -805,6 +837,74 @@ mysqli_close($conn);
     });
 
 
+
+ $("#filtroEscola").change(function(){
+        var escolanome = $(this).val();
+        $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
+
+                var len1 = response.length;
+
+                $("#filtroTurma").empty();
+
+
+                for( var i = 0; i<len1; i++){
+                    var turma = response[i]['name'];
+                    $("#filtroTurma").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+
+            }
+        });
+    });
+
+
+// Essa função serve para identificar o URL com um parametro de um script php e identificar o parametro
+    var parametroUrl = function parametroUrl(sParam) {
+           var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+               sURLVar = sPageURL.split('&'),
+               sParametNome,
+               i;
+
+           for (i = 0; i < sURLVar.length; i++) {
+               sParametNome = sURLVar[i].split('=');
+
+               if (sParametNome[0] === sParam) {
+                   return sParametNome[1] === undefined ? true : sParametNome[1];
+               }
+           }
+       };
+
+
+    
+    
+    // Isto serve para impedir a visualização de conteudo
+    
+       //ao carregar a página, e forçar o filtro por turma
+    var parametroEscola = parametroUrl("escola");
+
+    var parametroTurma = parametroUrl("turma");
+
+
+    $('#filtroEscola').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
+       table
+       .search($(this).val()).draw();
+      });
+    $('#filtroTurma').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
+       table
+       .search($(this).val()).draw();
+      });
+
+
+
+  $('#filtroEscola').val(parametroEscola);
+
+
+
      table.on('click','.btnEditar',function(){
 
       $tr=$(this).closest('tr');
@@ -819,7 +919,6 @@ mysqli_close($conn);
         // Utilizo o .slice(-2) para garantir o formato com 2 digitos.
       }
 
-      alert(data[2]);
 
 
       $('#edit_rm').val(data[0])
@@ -849,6 +948,7 @@ mysqli_close($conn);
                 var len = response.length;
 
             $('#editAlunoTurma').empty();
+                    $("#editAlunoTurma").append("<option hidden selected value=''>Selecione uma opção</option>");
 
 
                 for( var i = 0; i<len; i++){
@@ -973,6 +1073,7 @@ mysqli_close($conn);
     });
 
   });
+
 
 </script>
 

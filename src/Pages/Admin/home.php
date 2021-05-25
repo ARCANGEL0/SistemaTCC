@@ -487,105 +487,47 @@ echo $rows;
 
 
           var todo1 ='<ul class="todo-list" data-widget="todo-list">'+
-                      '<li class="done">'+
+                      '<li class="">'+
                       '<div  class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
                       '</div>'+
-                        '<span class="text">Criar Sistema de Login para o ADMIN</span>'+
+                        '<span class="text">Criar um modal de NOTAS para a tabela de alunos</span>'+
 
-                      '<li class="done">'+
+                      '<li class="">'+
 
                         '<div  class="icheck-primary d-inline ml-2">'+
                           '<i class="fa fa-clipboard"></i>'+
                         '</div>'+
-                        '<span class="text">Criar Interface do Painel & Login</span>'+
+                        '<span class="text">Descobrir uma forma de editar Dependentes na tabela RESPONSÁVEIS</span>'+
 
-                      '<li class="done">'+
+                      '<li class="">'+
 
                         '<div class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
 
                         '</div>'+
-                        '<span class="text">Criar página de Escolas do painel Admin</span>'+
-
-                      '<li class="done">'+
+                        '<span class="text">Fazer links nas tabelas para redirecionar </span>'+
+                        '<span class="text"> a outras páginas com filtro de busca.</span>' +
+                        '<span class="text">Exemplo: Ao clicar no botãozinho da lousa</span>'+
+                        '<span class="text">na tabela Escolas, redirecionar para a página TURMAS filtrando por aquela escola</span>'+
+                      '<li class="">'+
 
                         '<div  class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
 
                         '</div>'+
-                        '<span class="text">Criar datatables para listar dados SQL de Escolas</span>'+
+                        '<span class="text">Descobrir uma forma de relacionar o professor</span>'+
+                        '<span class="text"> com várias escolas no Sistema </span>'+
 
                       '</li>'+
-                      '<li class="done">'+
+                      '<li class="">'+
 
                         '<div  class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
 
                         '</div>'+
-                        '<span class="text">Criar Scripts PHP para manipular dados SQL tais como criar e editar</span>'+
-
-                      '<li class="done">'+
-
-                        '<div  class="icheck-primary d-inline ml-2">'+
-                        '<i class="fa fa-clipboard"></i>'+
-
-                        '</div>'+
-                        '<span class="text">Criar outras páginas do painel Admin</span>'+
-
-                        '<li>'+
-
-                          '<div  class="icheck-primary d-inline ml-2">'+
-                          '<i class="fa fa-clipboard"></i>'+
-
-                          '</div>'+
-                          '<span class="text">Editar modal de registrar turmas para que </span>'+
-                          '<span class="text">ao selecionar uma escola, mostre todos os professores dela </span>'+
-
-                        '</li>'+
-                        '<li>'+
-
-                          '<div  class="icheck-primary d-inline ml-2">'+
-                          '<i class="fa fa-clipboard"></i>'+
-
-                          '</div>'+
-                          '<span class="text">Pensar em como resolver o problema para </span>'+
-                          '<span class="text">professores que trabalham em mais de uma escola </span>'+
-
-                        '</li>'+
-
-                    '</ul>';
-
-          var todo2 ='<ul class="todo-list" data-widget="todo-list">'+
-          '<li class="done">'+
-
-            '<div class="icheck-primary d-inline ml-2">'+
-            '<i class="fa fa-clipboard"></i>'+
-
-            '</div>'+
-            '<span class="text">Fazer tabela funcional de turmas</span>'+
-
-          '</li>'+
-                            '<li class="done">'+
-
-                              '<div class="icheck-primary d-inline ml-2">'+
-                              '<i class="fa fa-clipboard"></i>'+
-
-                              '</div>'+
-                              '<span class="text">Fazer filtros da página de turmas</span>'+
-
-                            '</li>'+
-                            '<li class="done">'+
-
-                              '<div class="icheck-primary d-inline ml-2">'+
-                              '<i class="fa fa-clipboard"></i>'+
-
-                              '</div>'+
-                              '<span class="text">Fazer modals da página de turmas</span>'+
-
-                            '</li>'+
-
-                              '<li>'+
+                        '<span class="text">Pensar numa forma de filtrar os Responsáveis na tabela</span>'+
+     '<li>'+
 
                               '<div class="icheck-primary d-inline ml-2">'+
                               '<i class="fa fa-clipboard"></i>'+
@@ -594,102 +536,15 @@ echo $rows;
                               '<span class="text">Fazer overlay em todas as modals</span>'+
 
                             '</li>'+
-2
-                            '<li>'+
 
-                              '<div class="icheck-primary d-inline ml-2">'+
-                              '<i class="fa fa-clipboard"></i>'+
+                   
+                    '</ul>';
 
-                              '</div>'+
-                              '<span class="text">Fazer com que no modals de registor e edição, o SELECT do </span>'+
-                              '<span class="text">professor coordenador só apareça depois de selecionar o SELECT de escolas. Ou seja, se eu selecionar uma escola X</span>'+
-                              '<span class="text">irei listar todos os professores apenas daquela escola</spam>'+
-                            '</li>'+
-
-                            '<li>'+
-
-                              '<div class="icheck-primary d-inline ml-2">'+
-                              '<i class="fa fa-clipboard"></i>'+
-
-                              '</div>'+
-                              '<span class="text">Criar botão de ação para HORÁRIOS, onde irá abrir uma</span>'+
-'<span class="text"> modal contendo uma tabela do horário da turma</span>'+
-                            '</li>'+
-                            '<li>'+
-
-                              '<div class="icheck-primary d-inline ml-2">'+
-                              '<i class="fa fa-clipboard"></i>'+
-
-                              '</div>'+
-                              '<span class="text">Fazer outros botões de ação</span>'+
-
-                            '</li>'+
-
-                          '</ul>';
-
-
-          var todo3 ='<ul class="todo-list" data-widget="todo-list">'+
-                                          '<li  >'+
-
-                                            '<div class="icheck-primary d-inline ml-2">'+
-                                            '<i class="fa fa-clipboard"></i>'+
-
-                                            '</div>'+
-                                            '<span class="text">Criar Sistema de Login para o ADMIN</span>'+
-
-                                          '</li>'+
-                                          '<li >'+
-
-                                            '<div  class="icheck-primary d-inline ml-2">'+
-                                            '<i class="fa fa-clipboard"></i>'+
-
-                                            '</div>'+
-                                            '<span class="text">Criar Interface do Painel & Login</span>'+
-
-                                          '</li>'+
-                                          '<li >'+
-
-                                            '<div class="icheck-primary d-inline ml-2">'+
-                                            '<i class="fa fa-clipboard"></i>'+
-
-                                            '</div>'+
-                                            '<span class="text">Criar página de Escolas do painel Admin</span>'+
-
-                                          '</li>'+
-                                          '<li>'+
-
-                                            '<div  class="icheck-primary d-inline ml-2">'+
-                                            '<i class="fa fa-clipboard"></i>'+
-
-                                            '</div>'+
-                                            '<span class="text">Criar datatables para listar dados SQL de Escolas</span>'+
-
-                                          '</li>'+
-                                          '<li>'+
-
-                                            '<div  class="icheck-primary d-inline ml-2">'+
-                                            '<i class="fa fa-clipboard"></i>'+
-
-                                            '</div>'+
-                                            '<span class="text">Criar Scripts PHP para manipular dados SQL tais como criar e editar</span>'+
-
-                                          '</li>'+
-                                          '<li>'+
-
-                                            '<div  class="icheck-primary d-inline ml-2">'+
-                                            '<i class="fa fa-clipboard"></i>'+
-
-                                            '</div>'+
-                                            '<span class="text">Criar outras páginas do painel Admin</span>'+
-
-                                          '</li>'+
-                                        '</ul>';
-
-
+      
 
               $('.paginate').bootpag({
 
-           total: 2, // Aqui você define quantas páginas a lista todo pode ter
+           total: 1, // Aqui você define quantas páginas a lista todo pode ter
            page: 1,
            maxVisible: 3
           }).on('page', function(event, num){

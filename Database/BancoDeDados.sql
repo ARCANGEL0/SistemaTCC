@@ -146,7 +146,7 @@ CREATE TABLE `escolas` (
 INSERT INTO `escolas` (`Escola_Codigo`, `Escola_CNPJ`, `Escola_Nome`, `Escola_CEP`, `Escola_Munincipio`, `Escola_Endereco`) VALUES
 (1, '21.312.90/8401-928', 'Escola Pedro Al', '12292-948', 'Guarujá', 'Av. XXSS'),
 (2, '44.4242.4232/42324-23', 'Dirce', '22452-582', 'Guarujá', 'Av. Dom Pedro I'),
-(3, '12.931.20/8301-283', 'Escola X', '12312-031', 'fodasei', 'joi'),
+(3, '12.931.20/8301-283', 'Escola X', '12312-031', 'teste', 'joi'),
 (4, '29.393.93/9393-939', 'Escola ID n 4', '12319-203', 'asdsad', 'asdpod');
 
 -- --------------------------------------------------------
@@ -487,6 +487,8 @@ INSERT INTO `turmas` (`Escola`, `Prof_Coordenador`, `ID_Ano`, `Turma`, `ID_Escol
 CREATE TABLE `turma_horario` (
   `Turma_Escola` varchar(255) NOT NULL,
   `Turma_Ano` varchar(255) NOT NULL,
+  `Escola_ID` varchar(255) NOT NULL,
+  `Turma_ID` varchar(255) NOT NULL,
   `Turma_Horario` varchar(255) NOT NULL,
   `Horario_Segunda` varchar(255) DEFAULT NULL,
   `Horario_Terça` varchar(255) DEFAULT NULL,
@@ -500,15 +502,6 @@ CREATE TABLE `turma_horario` (
 --
 
 INSERT INTO `turma_horario` (`Turma_Escola`, `Turma_Ano`, `Turma_Horario`, `Horario_Segunda`, `Horario_Terça`, `Horario_Quarta`, `Horario_Quinta`, `Horario_Sexta`) VALUES
-('Escola Pedro Al', '1R1', '8 às 9', '', 'ART', '', '', ''),
-('Escola Pedro Al', '1R1', '9 às 10', '', '', 'ART', '', ''),
-('Escola Pedro Al', '1R1', '10 às 11', '', '', '', '', ''),
-('Escola Pedro Al', '1R1', '11 às 12', '', '', '', '', 'ART'),
-('Escola Pedro Al', '1R1', '13 às 14', '', '', '', '', ''),
-('Escola Pedro Al', '1R1', '14 às 15', '', '', '', '', ''),
-('Escola Pedro Al', '1R1', '15 às 16', '', '', '', '', ''),
-('Escola Pedro Al', '1R1', '16 às 17', 'QUI\r\n', 'MAT', 'PORT', 'PORT', 'PORT'),
-('Escola Pedro Al', '1R1', '17 às 18', 'QUI\r\n', 'MAT', 'MAT', 'ING', 'MAT'),
 ('Escola Pedro Al', '1R5', '8 às 9', 'ART', '', '', '', ''),
 ('Escola Pedro Al', '1R5', '9 às 10', '', '', '', '', ''),
 ('Escola Pedro Al', '1R5', '10 às 11', '', '', '', '', ''),

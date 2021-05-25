@@ -377,7 +377,7 @@ RegistrarEscola
   <input required class="form-control"   type="date" id="dn" name="dn">
     <br>
     <label for="email">E-Mail</label>
-    <input required class="form-control"  type="text" id="email" name="email">
+    <input required class="form-control"  type="email" id="email" name="email">
     <br>
      <label for="telefone">Telefone</label>
     <input required class="form-control"  maxlength="12" OnKeyPress="formatar('## ####-####', this)" type="text" id="telefone" name="telefone">
@@ -594,7 +594,7 @@ $("#"+RegIDTurma).change(function(){
           <div class="modal-header">
             <h4 class="modal-title">Editar Responsável</h4>          </div>
           <div class="modal-body">
-          <form action="../../Scripts/Manipulations/Admin/Resp/registrarResp.php" method="POST" id="modalform">
+          <form action="../../Scripts/Manipulations/Admin/Resp/editarResp.php" method="POST" id="modalform">
     <input class="form-control" type="hidden" id="edit_rm" name="edit_rm">
 
 

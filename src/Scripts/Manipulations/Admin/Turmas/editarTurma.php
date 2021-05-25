@@ -10,8 +10,9 @@ echo $_GET['salvar'];
 
 if(isset($_POST['salvar'])){
 
-$query = "UPDATE `Turmas` SET `Escola` = '$escola',`Prof_Coordenador` = '$coordenador', `Turma` = '$turma' WHERE `Turmas`.`ID_Ano` = $id;";
-$query .= "UPDATE `Turma_Horario` SET `Turma_Ano` = '$turma' WHERE `Turma_Horario`.`ID` = $id; ";
+$query = "UPDATE `turmas` SET `Escola` = '$escola',`Prof_Coordenador` = '$coordenador', `Turma` = '$turma' WHERE `turmas`.`ID_Ano` = $id;";
+$query .= "UPDATE `turma_horario` SET `Turma_Ano` = '$turma' WHERE  Turma_ID = $id; ";
+$query .= "UPDATE `alunos` SET `Aluno_Ano` = '$turma' WHERE `alunos`.`ID_Turma` = $id; ";
 
 
 

@@ -15,9 +15,10 @@ echo $_GET['salvar'];
 
 if(isset($_POST['salvar'])){
 
-$query= "UPDATE `escolas` SET `Escola_Nome` = '$nome', `Escola_CEP` = '$cep', `Escola_Munincipio` = '$munincipio', `Escola_Endereco` = '$endereco' WHERE `Escolas`.`Escola_Codigo` = $id;";
-$query .="UPDATE `Turmas` SET `Escola` = '$nome' WHERE ID_Escola=$id;";
-$query .="UPDATE `Alunos` SET `Aluno_Escola` = '$nome' WHERE ID_Escola=$id;";
+$query= "UPDATE `escolas` SET `Escola_Nome` = '$nome', `Escola_CEP` = '$cep', `Escola_Munincipio` = '$munincipio', `Escola_Endereco` = '$endereco' WHERE `escolas`.`Escola_Codigo` = $id;";
+$query .="UPDATE `turmas` SET `Escola` = '$nome' WHERE ID_Escola=$id;";
+$query .="UPDATE `alunos` SET `Aluno_Escola` = '$nome' WHERE ID_Escola=$id;";
+$query .="UPDATE `turma_horario` SET `Turma_Escola` = '$nome' WHERE Escola_ID=$id;";
 
 	if(mysqli_multi_query($conn,$query)){
     $_SESSION['escola_atualizada'] = true;
@@ -28,12 +29,12 @@ $query .="UPDATE `Alunos` SET `Aluno_Escola` = '$nome' WHERE ID_Escola=$id;";
 	}
 	else {
 
-		$_SESSION['escola_atualizacao_erro'] = true;
+		 $_SESSION['escola_atualizacao_erro'] = true;
 
-			header("Location: ../../../../Pages/Admin/escolas.php");
+		 	header("Location: ../../../../Pages/Admin/escolas.php");
 
-			exit();
-
+		 	exit();
+		
 	}mysqli_close($conn);
 }
  ?>
