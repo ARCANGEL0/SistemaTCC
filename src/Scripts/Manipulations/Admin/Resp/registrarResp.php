@@ -21,7 +21,6 @@ $numFilhos = $_POST['numFilhoReg'];
 
 if(isset($_POST['registrar'])){
 
-
 $arrayAlunos = array(); 
 // aqui cria um array para pegar todos os possiveis filhos no registro
 
@@ -43,7 +42,6 @@ $query2= "INSERT INTO relacao_alunosresponsaveis (RM_Aluno,Responsavel_Filhos)
  VALUES ($aluno,$rm);";
 
  if(mysqli_query($conn,$query2)){
-    
  	 }
  	 else {
 

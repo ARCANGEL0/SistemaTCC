@@ -348,7 +348,7 @@ border-color: black;
       if (texto.substring(0,1) != saida){
                 documento.value += texto.substring(0,1);
       }
-RegistrarEscola
+
     }
     </script>
 
@@ -868,7 +868,21 @@ $("#"+idTurma).change(function(){
 
 
         <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#registrarResp"><i class="fa fa-plus"></i> &nbsp;  Cadastrar um novo Responsável</button>
+<br><br>
 
+ <select class="btn btn-outline-info" name="filtroCidade" id="filtroCidade">
+          <option selected value="">Todas os munincípios</option>
+
+<?php
+$queryEscolas =  mysqli_query($conn,"SELECT DISTINCT Resp_Cidade FROM responsáveis");
+while($row = mysqli_fetch_array($queryEscolas))
+{
+echo '<option value="'.$row['Resp_Cidade'].'">' . $row['Resp_Cidade'] . '</td>';
+};
+
+?>
+
+</select>
         <table class="table table-bordered display" id="tabelaResp" width="100%" cellspacing="0">
           <form action="" id="myform">
         <thead>
@@ -1187,7 +1201,10 @@ mysqli_close($conn);
       "responsive": true,
     });
 
-
+  $('#filtroCidade').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
+       table
+       .search($(this).val()).draw();
+      });
 // ajax para pegar os dependentes do responsavel
    table.on('click','.btnFilhos',function(){
 

@@ -569,7 +569,7 @@ echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>
 
        <br><br>
   <select class="btn btn-outline-info" name="filtroEscola" id="filtroEscola">
-          <option selected value="">Todas os munincípios</option>
+          <option selected value="">Todas as escolas</option>
 
 <?php
 $queryEscolas =  mysqli_query($conn,"select DISTINCT esc.Escola_Nome from escolas esc

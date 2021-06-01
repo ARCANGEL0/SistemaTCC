@@ -328,6 +328,114 @@ RegistrarEscola
     }
     </script>
 
+
+<!-- MODAL DE NOTAS -->
+
+
+<div id="notasAluno" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Notas</h4>          </div>
+          <div class="modal-body registrarAluno_corpo">
+          <form action="../../Scripts/Manipulations/Admin/Alunos/registrarAluno.php" method="POST" id="modalform">
+
+ 
+<select class="form-control" name="notasMateria" id="notasMateria">
+      <option hidden disabled selected value="">Selecione uma escola</option>
+
+    <?php
+    $queryEscolas =  mysqli_query($conn,"SELECT * FROM disciplinas");
+    while($row = mysqli_fetch_array($queryEscolas))
+    {
+    echo '<option value="'.$row['Materia_Nome'].'">' . $row['Materia_Nome'] . '</td>';
+    };
+
+    ?>
+
+</select>
+<br>
+<div style="display: flex"> 
+<select style="width: 60%" class="form-control" name="notasANO" id="notasANO">
+      <option hidden disabled selected value="">Ano escolar</option>
+
+ 
+</select>
+
+
+
+
+</div>
+<br><br><br>
+   
+
+    <div style="width: 50%;" class=" d-flex flex-wrap notas">
+
+
+      <div style="height: 53px" class="form-control mb-4 flex-lg-row d-flex ">
+     <h2 class=""> Nota 1: &nbsp;&nbsp;&nbsp;</h2>
+
+
+     <h2 class=" nota1">
+       </h2>   
+
+     </div>
+
+       <div style="height: 53px" class="form-control mb-4 flex-lg-row d-flex  ">
+     <h2 class=""> Nota 2: &nbsp;&nbsp;&nbsp;</h2>
+     <h2 class="nota2">
+
+   
+       </h2>  
+
+     </div>
+
+       <div style="height: 53px" class="form-control mb-4 flex-lg-row d-flex  ">
+     <h2 class=""> Nota 3: &nbsp;&nbsp;&nbsp;</h2>
+  <h2 class="nota3"></h2>
+
+     </div>
+
+       <div style="height: 53px" class="form-control mb-4 flex-lg-row d-flex  ">
+     <h2 class=""> Nota 4: &nbsp;&nbsp;&nbsp;</h2>
+  <h2 class="nota4"></h2>
+
+     </div>
+
+   <div  style="height: 53px; " class="form-control flex-lg-row d-flex ">
+     <h2 class=""> Faltas: &nbsp;&nbsp;&nbsp;  </h2> 
+<h2 class="faltas"></h2>
+
+   </div>
+
+      <div  style="height: 53px; " class="form-control flex-lg-row d-flex ">
+     <h2 class=""> Menção: &nbsp;&nbsp;&nbsp;  </h2> 
+<h2 class="mencao"></h2>
+
+   </div>
+
+   </div>
+
+    </select>  
+
+    <input  type="hidden" placeholder="codigoescola" id="codigoescola" name="codigoescola">
+  </input>
+    <input  type="hidden" placeholder="codigoturma" id="codigoturma"  name="codigoturma">
+</input>
+
+    </div>
+          <div class="modal-footer">
+          <button type="submit" name="registrar" id="registrar" class="btn btn-success">Registrar</button>
+            <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+            </form>
+          </div>
+    </div>
+
+      </div>
+    </div>
+<!-- FIM MODAL NOTAS -->
+
+
 <!-- MODAL DE REGISTRAR -->
 
 
@@ -632,7 +740,7 @@ echo "<td>" . $row['ID_Turma'] . "</td>";
 echo '<td><a class="btn-sm  btn-secondary text-white btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
 &nbsp;
   <a class="btn-sm btn-danger btnProfessores" name="professores" href="#"><i class="fa fa-graduation-cap"></i></a>
-  <a class="btn-sm btn-success btnAlunos" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
+  <a class="btn-sm btn-success btnNotas" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
   <a class="btn-sm btn-info  btnFuncionarios" name="funcionarios" href="#"><i class="fa fa-briefcase"></i></a>
   <a class="btn-sm btn-warning text-white btnTurmas" name="turmas" href="#"><i class="fa fa-chalkboard-teacher"></i></a>
 </td>';
@@ -863,6 +971,10 @@ mysqli_close($conn);
     });
 
 
+
+ 
+
+
 // Essa função serve para identificar o URL com um parametro de um script php e identificar o parametro
     var parametroUrl = function parametroUrl(sParam) {
            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -904,6 +1016,165 @@ mysqli_close($conn);
   $('#filtroEscola').val(parametroEscola);
 
 
+
+
+table.on('click','.btnNotas', function(){
+    $("#notasMateria").append("<option selected value=''>Matéria</option>");
+    $("#notasANO").append("<option selected value=''>Ano escolar</option>");
+         $('.nota1').empty();
+
+            $('.nota2').empty();
+            $('.nota3').empty();
+            $('.nota4').empty();
+
+            $('.faltas').empty();
+            $('.mencao').empty();
+
+ $tr=$(this).closest('tr');
+  var data = table.row($tr).data();
+  var rm = data[0];
+  $.ajax({
+ url: '../../Scripts/Manipulations/Admin/Alunos/getAnoBimestre.php',
+            type: 'post',
+            data: {postRM:rm},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+            $('#notasANO').empty();
+
+    $("#notasANO").append("<option selected value=''>Ano escolar</option>");
+                for( var i = 0; i<len; i++){
+                    var ano = response[i]['ano'];
+                    $("#notasANO").append("<option value='"+ano+"'>"+ano+"</option>");
+
+                }
+
+
+            }
+
+    });
+
+  ///////////////bimestre
+
+
+//getbimestre
+
+  $("#notasANO").change(function(){
+    var ano =$("#notasANO").val();
+    var materia = $('#notasMateria').val();
+
+
+  $.ajax({
+        url: '../../Scripts/Manipulations/Admin/Alunos/getNotas.php',
+        type: 'post',
+        data: {postRM:rm,
+               postMATERIA: materia,
+               postANO: ano
+                },
+        dataType: 'json',
+        success:function(response){
+        
+    var len = response.length;
+
+            $('.nota1').empty();
+            $('.nota2').empty();
+            $('.nota3').empty();
+            $('.nota4').empty();
+
+            $('.faltas').empty();
+            $('.mencao').empty();
+
+
+
+                 for( var i = 0; i<len; i++){
+
+                     var nota1 = response[i]['nota1'];
+                     var nota2 = response[i]['nota2'];
+                     var nota3 = response[i]['nota3'];
+                     var nota4 = response[i]['nota4'];
+                     var faltas = response[i]['faltas'];
+                     var mencao = response[i]['mencao'];
+
+ $(".nota1").append("<h2>"+nota1+"</h2>");
+ $(".nota2").append("<h2>"+nota2+"</h2>");
+ $(".nota3").append("<h2>"+nota3+"</h2>");
+ $(".nota4").append("<h2>"+nota4+"</h2>");
+
+ $(".faltas").append("<h2>"+faltas+"</h2>");
+
+ $(".mencao").append("<h2>"+mencao+"</h2>");
+
+                 }
+
+
+
+        }
+
+});
+  });
+
+
+ $("#notasMateria").change(function(){
+    var ano =$("#notasANO").val();
+    var materia = $('#notasMateria').val();
+
+
+  $.ajax({
+        url: '../../Scripts/Manipulations/Admin/Alunos/getNotas.php',
+        type: 'post',
+        data: {postRM:rm,
+               postMATERIA: materia,
+               postANO: ano
+                },
+        dataType: 'json',
+        success:function(response){
+        
+    var len = response.length;
+
+            $('.nota1').empty();
+            $('.nota2').empty();
+            $('.nota3').empty();
+            $('.nota4').empty();
+
+            $('.faltas').empty();
+            $('.mencao').empty();
+
+
+
+                 for( var i = 0; i<len; i++){
+
+                     var nota1 = response[i]['nota1'];
+                     var nota2 = response[i]['nota2'];
+                     var nota3 = response[i]['nota3'];
+                     var nota4 = response[i]['nota4'];
+                     var faltas = response[i]['faltas'];
+                     var mencao = response[i]['mencao'];
+
+ $(".nota1").append("<h2>"+nota1+"</h2>");
+ $(".nota2").append("<h2>"+nota2+"</h2>");
+ $(".nota3").append("<h2>"+nota3+"</h2>");
+ $(".nota4").append("<h2>"+nota4+"</h2>");
+
+ $(".faltas").append("<h2>"+faltas+"</h2>");
+
+ $(".mencao").append("<h2>"+mencao+"</h2>");
+
+                 }
+
+
+
+        }
+
+});
+  });
+
+
+
+    $('#notasAluno').modal('show');
+
+});
 
      table.on('click','.btnEditar',function(){
 
@@ -986,6 +1257,10 @@ mysqli_close($conn);
 
 });
   });
+
+
+
+
 
   //essa função pega o ID da escola dps de selecionar
   $("#createAlunoEscola").change(function(){
