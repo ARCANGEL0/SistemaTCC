@@ -15,12 +15,10 @@ $array = array();
 
   
 
-$sql = "SELECT COUNT(faltas.ID), ano.Aluno_Nota1, ano.Aluno_Nota2, ano.Aluno_Nota3, ano.Aluno_Nota4, ano.Aluno_MencaoFinal from alunos_notas ano
-inner join alunos_faltas faltas on faltas.ID = ano.ID
-inner join alunos al on al.RM_Aluno = ano.RM_Aluno
-inner join alunos_notas notas on notas.ID = faltas.ID
-inner join disciplinas disc on disc.Materia_Abrev = ano.Aluno_Disciplina
-where al.RM_Aluno=".$rm." && ano.Aluno_Ano=".$ano." && disc.Materia_Nome='".$materia."';";
+$sql = "SELECT ano.Aluno_Nota1, ano.Aluno_Nota2, ano.Aluno_Nota3, ano.Aluno_Nota4, ano.Aluno_MencaoFinal from alunos_notas ano
+where ano.RM_Aluno='$rm' && ano.Aluno_Ano='$ano' && ano.Aluno_Disciplina='$materia';";
+
+
 
     $result = mysqli_query($conn,$sql);
 

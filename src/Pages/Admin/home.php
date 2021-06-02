@@ -468,12 +468,7 @@ echo $rows;
                 </h3>
 
                 <div class="card-tools">
-                  <div class="paginate">
-
-
-                  <ul class="pagination pagination-sm">
-
-                  </ul>        </div>
+               
                 </div>
               </div>
               <script>
@@ -487,11 +482,17 @@ echo $rows;
 
 
           var todo1 ='<ul class="todo-list" data-widget="todo-list">'+
+          '<li class="done">'+
+                      '<div  class="icheck-primary d-inline ml-2">'+
+                        '<i class="fa fa-clipboard"></i>'+
+                      '</div>'+
+                        '<span class="text">Criar modal de NOTAS para mostrar notas e faltas</span>'+
+
                       '<li class="">'+
                       '<div  class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
                       '</div>'+
-                        '<span class="text">Criar um modal de NOTAS para a tabela de alunos</span>'+
+                        '<span class="text">Editar modal de NOTAS para cadastrar notas e faltas</span>'+
 
                       '<li class="">'+
 

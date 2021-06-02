@@ -30,7 +30,7 @@ font-size: 12px;
  font-size: 20px;
  font-weight: 600;
 }
-#modalform input,#editarform input {
+#modalform input, #editarform input {
     border-radius: 0.4rem;
     border: 0.2px solid #cccccc;
     width: 100%;
@@ -129,4 +129,13 @@ display: none;
 }
 #tabelaTurmas_paginate{
   margin-left: 400px;
+}
+
+.notasInput{
+  margin-top:3.5px;
+   background: white;
+   font-size: 1.45rem;
+   margin-left: 20px;
+   padding-left: 20px;
+   width: 20% !important;
 }
