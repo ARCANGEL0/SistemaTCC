@@ -488,12 +488,20 @@ echo $rows;
                       '</div>'+
                         '<span class="text">Criar modal de NOTAS para mostrar notas e faltas</span>'+
 
-                      '<li class="">'+
+                      '<li class="done">'+
                       '<div  class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
                       '</div>'+
                         '<span class="text">Editar modal de NOTAS para cadastrar notas e faltas</span>'+
 
+
+   '<li class="">'+
+                      '<div  class="icheck-primary d-inline ml-2">'+
+                        '<i class="fa fa-clipboard"></i>'+
+                      '</div>'+
+                        '<span class="text">Trocar requisições POST dos modals</span>'+
+
+                        '<span class="text">para uso do ajax, para evitar recarregar a página</span>'+
                       '<li class="">'+
 
                         '<div  class="icheck-primary d-inline ml-2">'+

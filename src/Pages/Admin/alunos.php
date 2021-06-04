@@ -357,7 +357,6 @@ RegistrarEscola
 <br>
 <div style="display: flex"> 
 <select style="width: 60%" class="form-control" name="notasANO" id="notasANO">
-      <option hidden disabled selected value="">Ano escolar</option>
       <option value="1">1º Ano</option> 
       <option value="2">2º Ano</option>
       <option value="3">3º Ano</option>
@@ -376,17 +375,20 @@ RegistrarEscola
 
 
       <div style="height: 53px" class="form-control mb-4 flex-lg-row d-flex ">
-     <h2 class=""> Nota 1: &nbsp;&nbsp;&nbsp;</h2>
+     <h2 class=""> Nota 1: &nbsp;&nbsp;&nbsp;&nbsp;</h2>
 
 
-     <div  class="nota1" >
-       </div>   
+     <div  >
+<input type="number" min="0" step="0.1" max="10"  type="number" min="0" step="0.1" max="10" id="nota1" name='nota1' class='notasInput' value="0"></input>  
+
+     </div>   
 
      </div>
 
        <div style="height: 53px" class="form-control mb-4 flex-lg-row d-flex  ">
      <h2 class=""> Nota 2: &nbsp;&nbsp;&nbsp;</h2>
-     <div class="nota2">
+     <div>
+<input type="number" min="0" step="0.1" max="10"  id='nota2' name='nota2' class='notasInput' value="0"></input>  
 
    
        </div>  
@@ -395,13 +397,21 @@ RegistrarEscola
 
        <div style="height: 53px" class="form-control mb-4 flex-lg-row d-flex  ">
      <h2 class=""> Nota 3: &nbsp;&nbsp;&nbsp;</h2>
-  <div class="nota3"></div>
+  <div>
+    
+    <input type="number" min="0" step="0.1" max="10"  id='nota3' name='nota3' class='notasInput' value="0"></input>  
+
+  </div>
 
      </div>
 
        <div style="height: 53px" class="form-control mb-4 flex-lg-row d-flex  ">
      <h2 class=""> Nota 4: &nbsp;&nbsp;&nbsp;</h2>
-  <div class="nota4"></div>
+  <div>
+    <input type="number" min="0" step="0.1" max="10"  id='nota4' name='nota4' class='notasInput' value="0"></input>  
+
+
+  </div>
 
      </div>
 
@@ -414,7 +424,11 @@ RegistrarEscola
 </div>
       <div  style="height: 53px; " class="form-control flex-lg-row d-flex ">
      <h2 class=""> Menção: &nbsp;&nbsp;&nbsp;  </h2> 
-<div class="mencao"></div>
+<div >
+  <input type="number" min="0" step="0.1" max="10"  id='mencao' name='mencao' class='notasInput' value="0"></input>  
+
+
+</div>
 
    </div>
 
@@ -1060,15 +1074,17 @@ mysqli_close($conn);
 
 
 table.on('click','.btnNotas', function(){
-    $("#notasMateria").append("<option selected value=''>Matéria</option>");
-    
-         $('.nota1').empty();
-            $('.nota2').empty();
-            $('.nota3').empty();
-            $('.nota4').empty();
+    $("#notasMateria").append("<option hidden selected value=''>Matéria</option>");
+        $("#notasANO").append("<option hidden selected value=''>Ano escolar</option>");
 
-            $('.faltas').empty();
-            $('.mencao').empty();
+
+        
+$('#nota1').val(0);
+$('#nota2').val(0);
+$('#nota3').val(0);
+$('#nota4').val(0);
+$('#mencao').val(0);
+
 
  $tr=$(this).closest('tr');
   var data = table.row($tr).data();
@@ -1078,13 +1094,18 @@ table.on('click','.btnNotas', function(){
  
 
 
-
 //getbimestre
 
   $("#notasANO").change(function(){
     var ano =$("#notasANO").val();
     var materia = $('#notasMateria').val();
 
+
+$('#nota1').val(0);
+$('#nota2').val(0);
+$('#nota3').val(0);
+$('#nota4').val(0);
+$('#mencao').val(0);
 
   $.ajax({
         url: '../../Scripts/Manipulations/Admin/Alunos/getNotas.php',
@@ -1098,13 +1119,7 @@ table.on('click','.btnNotas', function(){
         
     var len = response.length;
 
-            $('.nota1').empty();
-            $('.nota2').empty();
-            $('.nota3').empty();
-            $('.nota4').empty();
-            $('.faltas').empty();
-            $('.mencao').empty();
-
+        
 
 
                  for( var i = 0; i<len; i++){
@@ -1113,38 +1128,51 @@ table.on('click','.btnNotas', function(){
                      var nota2 = response[i]['nota2'];
                      var nota3 = response[i]['nota3'];
                      var nota4 = response[i]['nota4'];
-                     var faltas = response[i]['faltas'];
                      var mencao = response[i]['mencao'];
 
- $(".nota1").append("<input name='nota1' class='notasInput' value="+nota1+"></input>");
- $(".nota2").append("<input name='nota2' class='notasInput' value="+nota2+"></input>");
- $(".nota3").append("<input name='nota3' class='notasInput' value="+nota3+"></input>");
- $(".nota4").append("<input name='nota4' class='notasInput' value="+nota4+"></input>");
-
- $(".faltas").append("<h2 name='faltas' class='notasInput'>"+faltas+"</h2>");
- $(".mencao").append("<input name='mencao' class='notasInput' value="+mencao+"></input>");
 
 
+$('#nota1').val(nota1);
+$('#nota2').val(nota2);
+$('#nota3').val(nota3);
+$('#nota4').val(nota4);
+$('#mencao').val(mencao);
 
-$('input[name=nota1]').val(function(index, value) {
-   return value.replace(null, '0');
+
+                 }
+
+
+
+        }
+
+
+
 });
 
-$('input[name=nota2]').val(function(index, value) {
-   return value.replace(null, '0');
-});
+  $.ajax({
+        url: '../../Scripts/Manipulations/Admin/Alunos/getFaltas.php',
+        type: 'post',
+        data: {postRM:rm,
+               postMATERIA: materia,
+               postANO: ano
+                },
+        dataType: 'json',
+        success:function(response){
+        
+    var len = response.length;
 
-$('input[name=nota3]').val(function(index, value) {
-   return value.replace(null, '0');
-});
+          
+            $('.faltas').empty();
 
-$('input[name=nota4]').val(function(index, value) {
-   return value.replace(null, '0');
-});
 
-$('input[name=mencao]').val(function(index, value) {
-   return value.replace(null, '0');
-});
+
+                 for( var i = 0; i<len; i++){
+
+                 
+                     var faltas = response[i]['faltas'];
+
+
+ $(".faltas").append("<h2 id='faltas' class='notasInput'>"+faltas+"</h2>");
 
 
 
@@ -1164,6 +1192,14 @@ $('input[name=mencao]').val(function(index, value) {
     var materia = $('#notasMateria').val();
 
 
+$('#nota1').val(0);
+$('#nota2').val(0);
+$('#nota3').val(0);
+$('#nota4').val(0);
+$('#mencao').val(0);
+
+
+// ajax pra notas
   $.ajax({
         url: '../../Scripts/Manipulations/Admin/Alunos/getNotas.php',
         type: 'post',
@@ -1176,13 +1212,7 @@ $('input[name=mencao]').val(function(index, value) {
         
     var len = response.length;
 
-            $('.nota1').empty();
-            $('.nota2').empty();
-            $('.nota3').empty();
-            $('.nota4').empty();
-            $('.faltas').empty();
-            $('.mencao').empty();
-
+      
 
 
                  for( var i = 0; i<len; i++){
@@ -1191,38 +1221,14 @@ $('input[name=mencao]').val(function(index, value) {
                      var nota2 = response[i]['nota2'];
                      var nota3 = response[i]['nota3'];
                      var nota4 = response[i]['nota4'];
-                     var faltas = response[i]['faltas'];
                      var mencao = response[i]['mencao'];
 
- $(".nota1").append("<input name='nota1' class='notasInput' value="+nota1+"></input>");
- $(".nota2").append("<input name='nota2' class='notasInput' value="+nota2+"></input>");
- $(".nota3").append("<input name='nota3' class='notasInput' value="+nota3+"></input>");
- $(".nota4").append("<input name='nota4' class='notasInput' value="+nota4+"></input>");
 
- $(".faltas").append("<h2 name='faltas' class='notasInput'>"+faltas+"</h2>");
- $(".mencao").append("<input name='mencao' class='notasInput' value="+mencao+"></input>");
-
-
-
-$('input[name=nota1]').val(function(index, value) {
-   return value.replace(null, '0');
-});
-
-$('input[name=nota2]').val(function(index, value) {
-   return value.replace(null, '0');
-});
-
-$('input[name=nota3]').val(function(index, value) {
-   return value.replace(null, '0');
-});
-
-$('input[name=nota4]').val(function(index, value) {
-   return value.replace(null, '0');
-});
-
-$('input[name=mencao]').val(function(index, value) {
-   return value.replace(null, '0');
-});
+$('#nota1').val(nota1);
+$('#nota2').val(nota2);
+$('#nota3').val(nota3);
+$('#nota4').val(nota4);
+$('#mencao').val(mencao);
 
 
                  }
@@ -1232,12 +1238,85 @@ $('input[name=mencao]').val(function(index, value) {
         }
 
 });
+
+
+  $.ajax({
+        url: '../../Scripts/Manipulations/Admin/Alunos/getFaltas.php',
+        type: 'post',
+        data: {postRM:rm,
+               postMATERIA: materia,
+               postANO: ano
+                },
+        dataType: 'json',
+        success:function(response){
+        
+    var len = response.length;
+
+          
+            $('.faltas').empty();
+
+
+
+                 for( var i = 0; i<len; i++){
+
+                 
+                     var faltas = response[i]['faltas'];
+
+
+ $(".faltas").append("<h2 id='faltas' class='notasInput'>"+faltas+"</h2>");
+
+
+
+
+                 }
+
+
+
+        }
+
+});
+
   });
 
 
-
-
     $('#notasAluno').modal('show');
+
+});
+
+
+//add Falta
+
+$("#criarFalta").on('click',function(){
+   var rm = $("#Notasrm").val();
+  var ano =$("#notasANO").val();
+    var materia = $('#notasMateria').val();
+
+ $.ajax({
+        url: '../../Scripts/Manipulations/Admin/Alunos/criarFalta.php',
+        type: 'post',
+        data: {postRM:rm,
+               postMATERIA: materia,
+               postANO: ano
+                },
+        dataType: 'text',
+        success:function(response){
+          $('#notasAluno').modal('hide');
+
+  toastr.success('Falta registrada!');
+
+                 },
+
+                 error:function(response){
+
+  toastr.error('Erro ao aplicar falta!');
+                 }
+     
+
+
+
+
+        });
+
 
 });
 

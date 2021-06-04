@@ -14,8 +14,8 @@ $array = array();
 
 
   
-
-$sql = "SELECT ano.Aluno_Nota1, ano.Aluno_Nota2, ano.Aluno_Nota3, ano.Aluno_Nota4, ano.Aluno_MencaoFinal from alunos_notas ano
+$sql = "SELECT COUNT(*) from alunos_faltas faltas
+inner join alunos_notas ano on ano.ID = faltas.ID
 where ano.RM_Aluno='$rm' && ano.Aluno_Ano='$ano' && ano.Aluno_Disciplina='$materia';";
 
 
@@ -23,12 +23,9 @@ where ano.RM_Aluno='$rm' && ano.Aluno_Ano='$ano' && ano.Aluno_Disciplina='$mater
     $result = mysqli_query($conn,$sql);
 
     while( $row = mysqli_fetch_array($result) ){
-        $nota1 = $row['Aluno_Nota1'];
-        $nota2 = $row['Aluno_Nota2'];
-        $nota3 = $row['Aluno_Nota3'];
-        $nota4 = $row['Aluno_Nota4'];
-       $mencao = $row['Aluno_MencaoFinal'];
-        $array[] = array("nota1" => $nota1,"nota2" => $nota2,"nota3" => $nota3,"nota4" => $nota4,"mencao" => $mencao);
+        $faltas = $row['COUNT(*)'];
+      
+        $array[] = array("faltas" => $faltas);
     }
 
 
