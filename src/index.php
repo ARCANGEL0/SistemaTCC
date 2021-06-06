@@ -64,7 +64,7 @@ session_start();
                     <?php
                     endif;
                     unset($_SESSION['nao_autenticado']);
-
+?><?php
                     if(isset($_SESSION['semUsuario'])):
                     ?>
                     <div class="alert alert-danger">

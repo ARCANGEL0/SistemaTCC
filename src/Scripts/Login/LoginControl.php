@@ -1,6 +1,7 @@
 <?php
+include('../Database/Connection.php');
 session_start();
-include('../Database/Connection.php'); // Inclusão do arquivo para conectar ao Banco de Dados
+ // Inclusão do arquivo para conectar ao Banco de Dados
 
 
 if(empty($_POST['loginUsuario'])) { // Verifica se o campo de usuário está vazio

@@ -32,5 +32,6 @@ where ano.RM_Aluno='$rm' && ano.Aluno_Ano='$ano' && ano.Aluno_Disciplina='$mater
     }
 
 
+
 // encoding array to json format
 echo json_encode($array);

@@ -338,9 +338,9 @@ RegistrarEscola
           <div class="modal-header">
             <h4 class="modal-title">Notas</h4>          </div>
           <div class="modal-body registrarAluno_corpo">
-          <form action="../../Scripts/Manipulations/Admin/Alunos/controleNotas.php" method="POST" id="modalform">
+          <form action="#" method="POST" id="modalform">
 
-  <input  type="hidden" id="Notasrm" name="Notasrm">
+  <input  type="text" id="Notasrm" name="Notasrm">
 <select class="form-control" name="notasMateria" id="notasMateria">
       <option hidden disabled selected value="">Selecione uma escola</option>
 
@@ -436,15 +436,13 @@ RegistrarEscola
 
     </select>  
 
-    <input  type="hidden" placeholder="codigoescola" id="codigoescola" name="codigoescola">
-  </input>
-    <input  type="hidden" placeholder="codigoturma" id="codigoturma"  name="codigoturma">
+   
 </input>
 
     </div>
           <div class="modal-footer">
             <button type='button' id='criarFalta' style='margin-top: 4px; margin-left: 40px;' class='btn-sm btn-danger'><i class='fa fa-plus'></i>&nbsp;&nbsp;Registrar ausência</button>
-          <button type="submit" name="salvarNotas" id="salvarNotas" class="btn btn-success">Salvar</button>
+          <button type="button" name="salvarNotas" id="salvarNotas" class="btn btn-success">Salvar</button>
             <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
 
             </form>
@@ -1078,12 +1076,11 @@ table.on('click','.btnNotas', function(){
         $("#notasANO").append("<option hidden selected value=''>Ano escolar</option>");
 
 
-        
-$('#nota1').val(0);
-$('#nota2').val(0);
-$('#nota3').val(0);
-$('#nota4').val(0);
-$('#mencao').val(0);
+$('#nota1').val('');
+$('#nota2').val('');
+$('#nota3').val('');
+$('#nota4').val('');
+$('#mencao').val('');
 
 
  $tr=$(this).closest('tr');
@@ -1093,7 +1090,6 @@ $('#mencao').val(0);
   $("#Notasrm").val(rm);
  
 
-
 //getbimestre
 
   $("#notasANO").change(function(){
@@ -1101,11 +1097,11 @@ $('#mencao').val(0);
     var materia = $('#notasMateria').val();
 
 
-$('#nota1').val(0);
-$('#nota2').val(0);
-$('#nota3').val(0);
-$('#nota4').val(0);
-$('#mencao').val(0);
+$('#nota1').val('');
+$('#nota2').val('');
+$('#nota3').val('');
+$('#nota4').val('');
+$('#mencao').val('');
 
   $.ajax({
         url: '../../Scripts/Manipulations/Admin/Alunos/getNotas.php',
@@ -1124,11 +1120,11 @@ $('#mencao').val(0);
 
                  for( var i = 0; i<len; i++){
 
-                     var nota1 = response[i]['nota1'];
-                     var nota2 = response[i]['nota2'];
-                     var nota3 = response[i]['nota3'];
-                     var nota4 = response[i]['nota4'];
-                     var mencao = response[i]['mencao'];
+                     var nota1 = response[0]['nota1'];
+                     var nota2 = response[0]['nota2'];
+                     var nota3 = response[0]['nota3'];
+                     var nota4 = response[0]['nota4'];
+                     var mencao = response[0]['mencao'];
 
 
 
@@ -1192,11 +1188,11 @@ $('#mencao').val(mencao);
     var materia = $('#notasMateria').val();
 
 
-$('#nota1').val(0);
-$('#nota2').val(0);
-$('#nota3').val(0);
-$('#nota4').val(0);
-$('#mencao').val(0);
+$('#nota1').val('');
+$('#nota2').val('');
+$('#nota3').val('');
+$('#nota4').val('');
+$('#mencao').val('');
 
 
 // ajax pra notas
@@ -1217,11 +1213,11 @@ $('#mencao').val(0);
 
                  for( var i = 0; i<len; i++){
 
-                     var nota1 = response[i]['nota1'];
-                     var nota2 = response[i]['nota2'];
-                     var nota3 = response[i]['nota3'];
-                     var nota4 = response[i]['nota4'];
-                     var mencao = response[i]['mencao'];
+                     var nota1 = response[0]['nota1'];
+                     var nota2 = response[0]['nota2'];
+                     var nota3 = response[0]['nota3'];
+                     var nota4 = response[0]['nota4'];
+                     var mencao = response[0]['mencao'];
 
 
 $('#nota1').val(nota1);
@@ -1236,6 +1232,7 @@ $('#mencao').val(mencao);
 
 
         }
+
 
 });
 
@@ -1285,6 +1282,53 @@ $('#mencao').val(mencao);
 
 
 //add Falta
+
+$("#salvarNotas").on('click',function(){
+
+   var rm = $("#Notasrm").val();
+  var ano =$("#notasANO").val();
+    var materia = $('#notasMateria').val();
+    var getnota1 = $('#nota1').val();
+
+    var getnota2 = $('#nota2').val();
+
+    var getnota3 = $('#nota3').val();
+
+    var getnota4 = $('#nota4').val();
+    var getmencao = $('#mencao').val();
+
+
+ $.ajax({
+        url: '../../Scripts/Manipulations/Admin/Alunos/controleNotas.php',
+        type: 'post',
+        data: {Notasrm:rm,
+               notasMateria: materia,
+               notasANO: ano,
+               nota1: getnota1,
+               nota2: getnota2,
+               nota3: getnota3,
+               nota4: getnota4,
+               mencao: getmencao,
+                },
+        dataType: 'text',
+        success:function(response){
+
+  toastr.success('Notas alteradas!');
+
+                 },
+
+                 error:function(response){
+
+  toastr.error('Erro ao gerenciar notas!');
+                 }
+     
+
+
+
+
+        });
+
+});
 
 $("#criarFalta").on('click',function(){
    var rm = $("#Notasrm").val();
