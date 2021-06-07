@@ -340,7 +340,7 @@ RegistrarEscola
           <div class="modal-body registrarAluno_corpo">
           <form action="#" method="POST" id="modalform">
 
-  <input  type="text" id="Notasrm" name="Notasrm">
+  <input  type="hidden" id="Notasrm" name="Notasrm">
 <select class="form-control" name="notasMateria" id="notasMateria">
       <option hidden disabled selected value="">Selecione uma escola</option>
 
@@ -758,9 +758,8 @@ echo "<td>" . $row['ID_Turma'] . "</td>";
 
 echo '<td><a class="btn-sm  btn-secondary text-white btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
 &nbsp;
-  <a class="btn-sm btn-danger btnProfessores" name="professores" href="#"><i class="fa fa-graduation-cap"></i></a>
-  <a class="btn-sm btn-success btnNotas" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
-  <a class="btn-sm btn-info  btnFuncionarios" name="funcionarios" href="#"><i class="fa fa-briefcase"></i></a>
+
+  <a class="btn-sm btn-success btnNotas" name="alunos" href="#"><i class="fa fa-tasks"></i></a>
   <a class="btn-sm btn-warning text-white btnTurmas" name="turmas" href="#"><i class="fa fa-chalkboard-teacher"></i></a>
 </td>';
 echo "</tr>";
@@ -1050,7 +1049,7 @@ mysqli_close($conn);
     // Isto serve para impedir a visualização de conteudo
     
        //ao carregar a página, e forçar o filtro por turma
-    var parametroEscola = parametroUrl("escola");
+    var parametroAluno = parametroUrl("aluno");
 
     var parametroTurma = parametroUrl("turma");
 
@@ -1066,7 +1065,27 @@ mysqli_close($conn);
 
 
 
-  $('#filtroEscola').val(parametroEscola);
+
+
+
+
+// função para procurar turma do aluno
+
+table.on('click', '.btnTurmas', function(){
+
+
+   $tr=$(this).closest('tr');
+
+      var data = table.row($tr).data();
+
+      var turma = data[3];
+
+      location.href = 'turmas.php?turma='+turma;
+});
+
+
+
+// função para procurar turma do aluno FIM
 
 
 
@@ -1081,6 +1100,7 @@ $('#nota2').val('');
 $('#nota3').val('');
 $('#nota4').val('');
 $('#mencao').val('');
+$('.faltas').empty();
 
 
  $tr=$(this).closest('tr');
@@ -1100,6 +1120,7 @@ $('#mencao').val('');
 $('#nota1').val('');
 $('#nota2').val('');
 $('#nota3').val('');
+
 $('#nota4').val('');
 $('#mencao').val('');
 
@@ -1426,6 +1447,7 @@ $("#criarFalta").on('click',function(){
 
     $('#EditarAluno').modal('show');
     });
+  table.search(parametroTurma || parametroAluno).draw();
 
 
 
@@ -1534,8 +1556,8 @@ $("#criarFalta").on('click',function(){
 
             }
 
+    
     });
-
 
 
 

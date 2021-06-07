@@ -830,7 +830,20 @@ $("#"+idTurma).change(function(){
         <form class="formFilhos"  id="formFilhos" >
 
 
-        <h1 class="filhos"></h1>
+        <table class="tabelaFilhos table table-bordered display">
+          <thead>
+            <tr>
+              <th>RM</th>
+          <th>Nome</th>
+          <th>Escola</th>
+          <th>Apagar</th>
+        </tr>
+          </thead>
+          <tbody class="filhos">
+
+          </tbody>
+
+        </table>
 
 
         </div>
@@ -1163,6 +1176,27 @@ mysqli_close($conn);
 <!-- SCRIPT PARA INICIAR O JS DE DATATABLES, E CRIAR UMA TABELA INTERATIVA -->
 
 <script>
+
+  function apagarFilho(RMresp){
+
+
+var rowId = event.target.parentNode.parentNode.id;
+              //this gives id of tr whose button was clicked
+                var dataT = 
+ document.getElementById(rowId).querySelectorAll(".row-data"); 
+              /*returns array of all elements with 
+              "row-data" class within the row with given id*/
+  
+                var rm = dataT[0].innerHTML;
+                var nome = dataT[1].innerHTML;
+                var escola = dataT[2].innerHTML;
+  
+                alert("RM: " + rm + "\nNome: " + nome + "\nEscola: " + escola);
+            alert(RMresp);
+
+};
+
+
   $(function () {
 
   var table =  $('#tabelaResp').DataTable({
@@ -1201,6 +1235,9 @@ mysqli_close($conn);
       "responsive": true,
     });
 
+
+
+
   $('#filtroCidade').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
        table
        .search($(this).val()).draw();
@@ -1224,17 +1261,17 @@ mysqli_close($conn);
 
 
 
-               $(".filhos").empty();
+            $(".filhos").empty();
 
 
                  for( var i = 0; i<len; i++){
                     var escola = response[i]['escola'];
                     var nome = response[i]['nome'];
+                    var rm = response[i]['rm'];
 
 
-                    $(".filhos").append("<button type='button' class='form-control collap' id='escola"+i+"'>"+nome+"</button>");
 
-                    $("#escola"+i).after("<div class='escolas'><p class='escolaBG'><a> "+escola+" </a>        </p>                                                                                                 </div>");
+  $(".filhos").append("<tr id="+i+"><th scope='row' class='row-data'>"+rm+"</td><td class='row-data'>"+nome+"</td><td class='row-data'>"+escola+"</td><td><button type='button' class='btn btn-danger' onclick='apagarFilho("+RM+")'><i class='fa fa-trash'></i></button></td></tr>");
 
 
 
@@ -1246,6 +1283,9 @@ mysqli_close($conn);
       $('#modalFilhos').modal('show');
 
 });
+
+
+ 
 
    // script para fazer a animação no modal de Dependentes
 

@@ -482,6 +482,22 @@ echo $rows;
 
 
           var todo1 ='<ul class="todo-list" data-widget="todo-list">'+
+           '<li class="">'+
+
+                        '<div  class="icheck-primary d-inline ml-2">'+
+                          '<i class="fa fa-clipboard"></i>'+
+                        '</div>'+
+                        '<span class="text">Descobrir uma forma de editar Dependentes na tabela RESPONSÁVEIS</span>'+
+
+                           '<li class="">'+
+
+                        '<div  class="icheck-primary d-inline ml-2">'+
+                        '<i class="fa fa-clipboard"></i>'+
+
+                        '</div>'+
+                        '<span class="text">Descobrir uma forma de relacionar o professor</span>'+
+                        '<span class="text"> com várias escolas no Sistema </span>'+
+
           '<li class="done">'+
                       '<div  class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
@@ -495,21 +511,16 @@ echo $rows;
                         '<span class="text">Editar modal de NOTAS para cadastrar notas e faltas</span>'+
 
 
-   '<li class="">'+
+   '<li class="done">'+
                       '<div  class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
                       '</div>'+
                         '<span class="text">Trocar requisições POST dos modals</span>'+
 
                         '<span class="text">para uso do ajax, para evitar recarregar a página</span>'+
-                      '<li class="">'+
+                     
 
-                        '<div  class="icheck-primary d-inline ml-2">'+
-                          '<i class="fa fa-clipboard"></i>'+
-                        '</div>'+
-                        '<span class="text">Descobrir uma forma de editar Dependentes na tabela RESPONSÁVEIS</span>'+
-
-                      '<li class="">'+
+                      '<li class="done">'+
 
                         '<div class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
@@ -519,33 +530,16 @@ echo $rows;
                         '<span class="text"> a outras páginas com filtro de busca.</span>' +
                         '<span class="text">Exemplo: Ao clicar no botãozinho da lousa</span>'+
                         '<span class="text">na tabela Escolas, redirecionar para a página TURMAS filtrando por aquela escola</span>'+
-                      '<li class="">'+
-
-                        '<div  class="icheck-primary d-inline ml-2">'+
-                        '<i class="fa fa-clipboard"></i>'+
-
-                        '</div>'+
-                        '<span class="text">Descobrir uma forma de relacionar o professor</span>'+
-                        '<span class="text"> com várias escolas no Sistema </span>'+
-
+                   
                       '</li>'+
-                      '<li class="">'+
+                      '<li class="done">'+
 
                         '<div  class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
 
                         '</div>'+
                         '<span class="text">Pensar numa forma de filtrar os Responsáveis na tabela</span>'+
-     '<li>'+
-
-                              '<div class="icheck-primary d-inline ml-2">'+
-                              '<i class="fa fa-clipboard"></i>'+
-
-                              '</div>'+
-                              '<span class="text">Fazer overlay em todas as modals</span>'+
-
-                            '</li>'+
-
+    
                    
                     '</ul>';
 
@@ -555,37 +549,8 @@ echo $rows;
 
            total: 1, // Aqui você define quantas páginas a lista todo pode ter
            page: 1,
-           maxVisible: 3
-          }).on('page', function(event, num){
-
-$page = num;
-switch ($page) { // aqui é um switch-case definindo uma variável com bloco HTML para cada página selecionada.
-  // Se eu selecionar a página 1, irá fazer um script com a função .html(), exibindo a variável todo1 e etc...
-
-
-
-  // PAGINA 1
-  case 1:
-  $("#content").html(todo1);
-  break;
-
-  // PAGINA 2
-  case 2:
-  $("#content").html(todo2);
-  break;
-
-
-  // PAGINA 3
-  case 3:
-  $("#content").html(todo3);
-  break;
-  default:
-  $("#content").html(todo1);
-  break;
-}
-
-
-          });
+           maxVisible: 1
+          })
               </script>
 
 

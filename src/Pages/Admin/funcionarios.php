@@ -880,9 +880,8 @@ echo "</tr>";
        };
 
 
- var parametroEscola = parametroUrl("escola");
+ var parametro = parametroUrl("escola");
 
-    var parametroTurma = parametroUrl("turma");
 
 
     $('#filtroEscola').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
@@ -891,7 +890,7 @@ echo "</tr>";
       });
 
 
-
+table.search(parametro).draw();
 
 
 // escolas

@@ -1260,7 +1260,6 @@ table.search("Sem turma").draw();
     // Isto serve para impedir a visualização de conteudo
     
        //ao carregar a página, e forçar o filtro por turma
-    var parametroEscola = parametroUrl("escola");
 
     var parametroTurma = parametroUrl("turma");
 
@@ -1273,8 +1272,7 @@ table.search("Sem turma").draw();
 
 
 
-  $('#filtroEscola').val(parametroEscola);
-
+table.search(parametroTurma).draw();
  //  function getTurma(){ // Essa função serve para detectar se houve um redirecionamento pelo URL e filtrar automaticamente atraves dos parametros
  //    // do url
  //   var escolanome = $('#filtroEscola').val();

@@ -475,7 +475,6 @@ echo '<td><a class="btn-sm  btn-secondary btnEditar" id="editar" href="#"> <i cl
   <a class="btn-sm btn-danger btnProfessores" name="professores" href="#"><i class="fa fa-graduation-cap"></i></a>
 
 
-  <a class="btn-sm btn-success btnAlunos" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
 
 
   <a class="btn-sm btn-info  btnFuncionarios" name="funcionarios" href="#"><i class="fa fa-briefcase"></i></a>
@@ -741,6 +740,25 @@ mysqli_close($conn);
     $('#EditarEscola').modal('show');
     });
 
+table.on('click','.btnFuncionarios',function(){
+
+      $tr=$(this).closest('tr');
+
+      var data = table.row($tr).data();
+      var escola = data[2];
+      location.href = "funcionarios.php?escola="+escola;
+
+});
+
+table.on('click','.btnTurmas',function(){
+
+      $tr=$(this).closest('tr');
+
+      var data = table.row($tr).data();
+      var escola = data[2];
+      location.href = "turmas.php?escola="+escola;
+
+});
 
 
   });

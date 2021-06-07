@@ -24,7 +24,7 @@ where R.RM_Responsável=".$rm.";
     while( $row = mysqli_fetch_array($result) ){
      	$alunoNome = $row['Aluno_Nome'];
      	$alunoEscola = $row['Aluno_Escola'];
-     	$alunoRM = $row['Aluno_RM'];
+     	$alunoRM = $row['RM_Aluno'];
         $array2[] = array("escola" => $alunoEscola, "nome" => $alunoNome, "rm" => $alunoRM);
 
     

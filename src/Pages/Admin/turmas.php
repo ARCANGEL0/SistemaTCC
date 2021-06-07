@@ -451,7 +451,7 @@ echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
           <div class="modal-body">
           <form action="../../Scripts/Manipulations/Admin/Turmas/editarTurma.php" method="POST" name="aulasform" id="aulasform">
 
-<input type="text" id="aulaidEdit" name="aulaidEdit">
+<input type="hidden" id="aulaidEdit" name="aulaidEdit">
 <br><br><br><br>
 
 <?php
@@ -766,33 +766,7 @@ mysqli_close($conn);
     });
 
 
-     table.on('click','.btnHorários',function(){
-      $tr=$(this).closest('tr');
 
-      var data = table.row($tr).data();
-  data.splice(4,1);
-var turma = data[3];
-var escola = data[1];
-      
-       $.ajax({
-            url: '../../Scripts/Manipulations/Admin/Turmas/getDataTurma.php',
-            type: 'post',
-            async: false,
-            data: {idturma:turma,
-                    idescola: escola},
-            dataType: 'json',
-            success:function(response){
-
-             var turma = response['SelectTurma']
-             var escola = response['SelectEscola']
-               window.location.href="horarios.php?escola="+escola+"&turma="+turma;
-
-
-            },
-          
-        });
-
-    });
 
 
      table.on('click','.btnEditar',function(){
@@ -812,8 +786,19 @@ var escola = data[1];
 
     $('#EditarTurma').modal('show');
     });
+     
+
+
+
+     // horarios
+
+ 
 
      // btnAulas
+
+
+
+
 
      table.on('click','.btnAulas',function(){
    $tr=$(this).closest('tr');
@@ -830,6 +815,27 @@ var escola = data[1];
 
 
 
+     table.on('click','.btnHorários',function(){
+   $tr=$(this).closest('tr');
+
+      var data = table.row($tr).data();
+
+    var turma = data[3];
+location.href="horarios.php?turma="+turma;
+     });
+
+
+
+
+
+     table.on('click','.btnAlunos',function(){
+   $tr=$(this).closest('tr');
+
+      var data = table.row($tr).data();
+
+    var turma = data[3];
+location.href="alunos.php?turma="+turma;
+     });
 
 
 
@@ -855,14 +861,15 @@ var escola = data[1];
        // Isto serve para impedir a visualização de conteudo
        //ao carregar a página, e forçar o filtro por turma
 
-    var parametro = parametroUrl("escola");
+    var parametro = parametroUrl("turma");
+    var escola = parametroUrl("escola");
+        table.search(parametro || escola).draw();
+
     $('#filtroEscola').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
        table.search(this.value).draw();
     });
 
-pu
 
-    $('#filtroEscola').val(parametro);
 
 
 
