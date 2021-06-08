@@ -1181,18 +1181,33 @@ mysqli_close($conn);
 
 
 var rowId = event.target.parentNode.parentNode.id;
-              //this gives id of tr whose button was clicked
                 var dataT = 
  document.getElementById(rowId).querySelectorAll(".row-data"); 
-              /*returns array of all elements with 
-              "row-data" class within the row with given id*/
   
                 var rm = dataT[0].innerHTML;
                 var nome = dataT[1].innerHTML;
                 var escola = dataT[2].innerHTML;
   
-                alert("RM: " + rm + "\nNome: " + nome + "\nEscola: " + escola);
-            alert(RMresp);
+              
+
+  $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Resp/apagarDependentes.php',
+            type: 'POST',
+            data: {rmresp:RMresp,
+				   rmaluno: rm},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+
+
+}
+
+});
+
+
+
 
 };
 
