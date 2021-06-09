@@ -633,6 +633,55 @@ $("#"+RegIDTurma).change(function(){
     <br><br>
 
     <h3>Dependentes</h3>
+
+
+    </div>
+          <div class="modal-footer">
+          <button type="submit" name="salvarEdicao" id="salvarEdicao" class="btn btn-success">Salvar</button>
+            <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+            </form>
+          </div>
+    </div>
+
+      </div>
+    </div>
+
+<!-- FIM MODAL EDITAR -->
+
+
+<!-- MODAL FILHOS -->
+
+
+<div id="modalFilhos" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <h4 class="modal-title">Dependentes</h4>
+        </div>
+        <div class="modal-body">
+
+        <form class="formFilhos"  id="formFilhos" >
+
+
+        <table class="tabelaFilhos table table-bordered display">
+          <thead>
+            <tr>
+              <th>RM</th>
+          <th>Nome</th>
+          <th>Escola</th>
+          <th>Apagar</th>
+        </tr>
+          </thead>
+          <tbody class="filhos">
+
+          </tbody>
+
+        </table>
+
+<br>
 <hr class="form-divide">
 <input type="hidden" value=1 id="numFilho" name="numFilho">
 <br>
@@ -641,8 +690,8 @@ $("#"+RegIDTurma).change(function(){
 
 
 
-<label for="editarAlunoEscola">Escola</label>
-<select class="form-control" name="editarAlunoEscola" id="editarAlunoEscola">
+<label for="editarAlunoEscola0">Escola</label>
+<select class="form-control editescola" name="editarAlunoEscola0" id="editarAlunoEscola0">
   <option hidden disabled selected value="">Selecione uma escola</option>
   <?php
   $queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
@@ -656,8 +705,8 @@ $("#"+RegIDTurma).change(function(){
 
 <br>
 
-<label for="editarAlunoTurma">Turma</label>
-<select class="form-control" name="editarAlunoTurma" id="editarAlunoTurma">
+<label for="editarAlunoTurma0">Turma</label>
+<select class="form-control editturma" name="editarAlunoTurma0" id="editarAlunoTurma0">
   <option hidden disabled selected value="">Selecione uma turma</option>
 
 
@@ -666,8 +715,8 @@ $("#"+RegIDTurma).change(function(){
 
 
 
-<label for="editarAluno">Aluno</label>
-<select class="form-control" name="editarAluno" id="editarAluno">
+<label for="editarAluno0">Aluno</label>
+<select class="form-control editaluno" name="editarAluno0" id="editarAluno0">
   <option hidden disabled selected value="">Selecione um aluno</option>
 
 </select>
@@ -677,29 +726,33 @@ $("#"+RegIDTurma).change(function(){
 
 <script>
 
-  var len = 0;
+
+
+  var len = 1;
   var filhos = 1;
   function editFilhos(){
+
+
+ $(".fieldFilhos select").last().val()
   $('#firstFieldFilhos .fieldFilhos')
   .clone()
   .appendTo('.newFields')
-  .attr("id","newField"+ len)
+  .attr("id","novoField"+ len)
   .each(function(){
 var idEscola = "editarAlunoEscola"+ len;
-var idTurma = "editarAlunoTurma"+ len
-var idAluno ="editarAluno"+ len
+var idTurma = "editarAlunoTurma"+ len;
+var idAluno ="editarAluno"+ len;
 
-
-    $('.newFields #editarAlunoEscola')
+    $('.newFields #editarAlunoEscola0')
     .attr("id",idEscola)
     .attr("name",idEscola)
 
-    $('.newFields #editarAlunoTurma')
+    $('.newFields #editarAlunoTurma0')
     .attr("id",idTurma)
     .empty()
     .attr("name",idTurma)
     
-    $('.newFields #editarAluno')
+    $('.newFields #editarAluno0')
     .attr("id",idAluno)
     .empty()
     .attr("name",idAluno)
@@ -708,7 +761,6 @@ var idAluno ="editarAluno"+ len
   len++;
 
 $("#numFilho").val(filhos);
-
 
 $("#"+idEscola).change(function(){
 
@@ -765,7 +817,9 @@ $("#"+idTurma).change(function(){
 
                 for( var i = 0; i<len; i++){
                     var aluno = response[i]['name'];
-                    $("#"+idAluno).append("<option value='"+aluno+"'>"+aluno+"</option>");
+                                        var alunorm = response[i]['rm'];
+
+                    $("#"+idAluno).append("<option value='"+alunorm+"'>"+aluno+"</option>");
 
                 }
 
@@ -795,60 +849,12 @@ $("#"+idTurma).change(function(){
 </fieldset>
 <div class="addField">
 
-  <button class="btn btn-outline-info" type="button" onclick="editFilhos();" id="editFilho"  name="addFilho"><i class="fa fa-plus"></i></button>
+  <button class="btn btn-outline-info" type="button" onclick="editFilhos();" id="editFilho"  name="editFilho"><i class="fa fa-plus"></i></button>
 
 </div>
-
-    </div>
-          <div class="modal-footer">
-          <button type="submit" name="salvarEdicao" id="salvarEdicao" class="btn btn-success">Salvar</button>
-            <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
-            </form>
-          </div>
-    </div>
-
-      </div>
-    </div>
-
-<!-- FIM MODAL EDITAR -->
-
-
-<!-- MODAL FILHOS -->
-
-
-<div id="modalFilhos" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
-
-
-      <div class="modal-content">
-        <div class="modal-header">
-
-          <h4 class="modal-title">Dependentes</h4>
-        </div>
-        <div class="modal-body">
-
-        <form class="formFilhos"  id="formFilhos" >
-
-
-        <table class="tabelaFilhos table table-bordered display">
-          <thead>
-            <tr>
-              <th>RM</th>
-          <th>Nome</th>
-          <th>Escola</th>
-          <th>Apagar</th>
-        </tr>
-          </thead>
-          <tbody class="filhos">
-
-          </tbody>
-
-        </table>
-
-
         </div>
         <div class="modal-footer">
-        <button type="submit" class="btn btn-success">Ok</button>
+        <button type="button" name="registrarFilhos" id="registrarFilhos" class="btn btn-success">Ok</button>
 
           <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
           </form>
@@ -1177,6 +1183,26 @@ mysqli_close($conn);
 
 <script>
 
+function criarFilho(RMresp) {
+
+  alert(RMresp);
+  alert(filhos);
+var alunos = []; 
+
+        $(".editaluno").each(function() {
+
+ alunos.push(this.value); // nessa função, se adiciona os rms de cada input numa array
+
+});
+
+
+
+alert(alunos); // log de teste
+
+
+
+
+}
   function apagarFilho(RMresp){
 
 
@@ -1188,22 +1214,24 @@ var rowId = event.target.parentNode.parentNode.id;
                 var nome = dataT[1].innerHTML;
                 var escola = dataT[2].innerHTML;
   
-              
+
 
   $.ajax({
             url: '../../Scripts/Manipulations/Admin/Resp/apagarDependentes.php',
             type: 'POST',
             data: {rmresp:RMresp,
 				   rmaluno: rm},
-            dataType: 'json',
+            dataType: 'text',
             success:function(response){
 
-                var len = response.length;
+                 toastr.success('Dependente excluido!');
+               $("#modalFilhos").modal('hide');
 
+},
+            error: function(response) {
+              toastr.error('Erro ao deletar!');
 
-
-}
-
+            }
 });
 
 
@@ -1265,6 +1293,8 @@ var rowId = event.target.parentNode.parentNode.id;
   var data = table.row($tr).data();
   var RM = data[0];
 
+
+$("#registrarFilhos").attr('onclick','criarFilho('+RM+')');
   $.ajax({
             url: '../../Scripts/Manipulations/Admin/Resp/getDependentes.php',
             type: 'POST',
@@ -1471,7 +1501,80 @@ $("#registrarAlunoTurma0").change(function(){
             });   // aqui vai ajax
 
   });
+/////
 
+
+
+
+
+
+// get Turmas
+$("#editarAlunoEscola0").change(function(){
+
+  var escolanome = $('#editarAlunoEscola0').val();
+
+
+   $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
+              var turma = response[0]['turma'];
+
+                var len = response.length;
+
+            $('#editarAlunoTurma0').empty();
+            $("#editarAlunoTurma0").append("<option hidden selected> Selecione uma turma</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+                    $("#editarAlunoTurma0").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+  });
+
+// get alunos from turmas
+
+$("#editarAlunoTurma0").change(function(){
+
+  var turma = $('#editarAlunoTurma0').val();
+
+
+   $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/getAlunosfromTurmas.php',
+            type: 'post',
+            data: {aluno:turma},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+            $('#editarAluno0').empty();
+            $("#editarAluno0").append("<option hidden selected> Selecione um aluno</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var aluno = response[i]['name'];
+                    var alunorm = response[i]['rm'];
+
+                    $("#editarAluno0").append("<option value='"+alunorm+"'>"+aluno+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+  });
 
 
 // get Turmas

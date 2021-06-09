@@ -482,13 +482,7 @@ echo $rows;
 
 
           var todo1 ='<ul class="todo-list" data-widget="todo-list">'+
-           '<li class="">'+
-
-                        '<div  class="icheck-primary d-inline ml-2">'+
-                          '<i class="fa fa-clipboard"></i>'+
-                        '</div>'+
-                        '<span class="text">Descobrir uma forma de editar Dependentes na tabela RESPONSÁVEIS</span>'+
-
+       
                            '<li class="">'+
 
                         '<div  class="icheck-primary d-inline ml-2">'+
@@ -497,6 +491,29 @@ echo $rows;
                         '</div>'+
                         '<span class="text">Descobrir uma forma de relacionar o professor</span>'+
                         '<span class="text"> com várias escolas no Sistema </span>'+
+                            '<li class="">'+
+
+                        '<div  class="icheck-primary d-inline ml-2">'+
+                          '<i class="fa fa-clipboard"></i>'+
+                        '</div>'+
+                        '<span class="text">Achar uma forma de passar a Array JS para o PHP, para enviar</span>'+
+                '<span class="text">o RM dos alunos para o arquivo PHP e cadastrar dependentes novos</span>'+
+
+
+  '<li class="done">'+
+
+                        '<div  class="icheck-primary d-inline ml-2">'+
+                          '<i class="fa fa-clipboard"></i>'+
+                        '</div>'+
+                        '<span class="text">Criar uma tabela listando os filhos e botões para poder excluir os mesmos</span>'+
+
+
+    '<li class="done">'+
+
+                        '<div  class="icheck-primary d-inline ml-2">'+
+                          '<i class="fa fa-clipboard"></i>'+
+                        '</div>'+
+                        '<span class="text">Descobrir uma forma de editar Dependentes na tabela RESPONSÁVEIS</span>'+
 
           '<li class="done">'+
                       '<div  class="icheck-primary d-inline ml-2">'+

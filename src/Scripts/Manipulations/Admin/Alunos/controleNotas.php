@@ -32,9 +32,7 @@ $mencao<=10 && $mencao>= 0) {
 
 
     if(mysqli_query($conn,$queryAlterar)){
-      $_SESSION['notas_sucesso'] = true;
-        header("Location: ../../../../Pages/Admin/alunos.php");
-        exit();
+      return true;
     }
     else {
         throw new Exception();
