@@ -1187,7 +1187,7 @@ function criarFilho(RMresp) {
 
   alert(RMresp);
   alert(filhos);
-var alunos = []; 
+var alunos = new Array(); 
 
         $(".editaluno").each(function() {
 
@@ -1198,6 +1198,26 @@ var alunos = [];
 
 
 alert(alunos); // log de teste
+
+  $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Resp/registrarDependentes.php',
+            type: 'POST',
+            data: {arrayAlunos:alunos,
+              filhos: filhos,
+              rmresp: RMresp},
+            success:function(data){
+              toastr.success('Dependente cadastrado!');
+                $("#modalFilhos").modal("hide");
+
+},
+            error: function(response) {
+              toastr.error('Erro ao registrar!');
+
+            }
+});
+
+
+
 
 
 
