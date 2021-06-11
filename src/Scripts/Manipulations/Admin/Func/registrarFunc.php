@@ -27,8 +27,9 @@ if(isset($_POST['registrar'])){
 	}
 	else {
 
- echo mysqli_error($conn);
-
+    $_SESSION['registro_erro'] = true;
+      header("Location: ../../../../Pages/Admin/funcionarios.php");
+      exit();
 //    	echo mysqli_error($conn);
     		}mysqli_close($conn);
 }

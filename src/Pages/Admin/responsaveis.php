@@ -402,7 +402,9 @@ border-color: black;
     <input required class="form-control"  type="text" id="endereco" name="endereco">
     <br><br>
 
-    <h3>Dependentes</h3>
+
+
+
 <hr class="form-divide">
 <input type="hidden" value=1 id="numFilhoReg" name="numFilhoReg">
 <br>
@@ -599,40 +601,39 @@ $("#"+RegIDTurma).change(function(){
 
 
     <label for="edit_nome">Nome</label>
-    <input  class="form-control" type="text" id="edit_nome" name="edit_nome">
+    <input required  class="form-control" type="text" id="edit_nome" name="edit_nome">
     <br>
 
 
 <label for="edit_dn">Data Nascimento</label>
-  <input class="form-control"   type="date" id="edit_dn" name="edit_dn">
+  <input required class="form-control"   type="date" id="edit_dn" name="edit_dn">
     <br>
     <label for="edit_email">E-Mail</label>
-    <input class="form-control"  type="text" id="edit_email" name="edit_email">
+    <input required class="form-control"  type="text" id="edit_email" name="edit_email">
     <br>
      <label for="edit_telefone">Telefone</label>
-    <input class="form-control"  maxlength="12" OnKeyPress="formatar('## ####-####', this)" type="text" id="edit_telefone" name="edit_telefone">
+    <input required class="form-control"  maxlength="12" OnKeyPress="formatar('## ####-####', this)" type="text" id="edit_telefone" name="edit_telefone">
     <br>
      <label for="edit_cel">Celular</label >
-    <input class="form-control"  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="edit_cel" name="edit_cel">
+    <input required class="form-control"  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="edit_cel" name="edit_cel">
   <br>
     <label for="edit_rg">RG</label>
-    <input class="form-control"  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_rg" name="edit_rg" >
+    <input required class="form-control"  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_rg" name="edit_rg" >
     <br>
    <label for="edit_cpf">CPF</label>
-    <input class="form-control" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"type="text" id="edit_cpf" name="edit_cpf" >
+    <input required class="form-control" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"type="text" id="edit_cpf" name="edit_cpf" >
     <br>
 
       <label for="edit_cep">CEP</label>
-    <input class="form-control"  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
+    <input required class="form-control"  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
   <br>
     <label for="edit_muninc">Munincípio</label>
-    <input class="form-control"  type="text" id="edit_muninc" name="edit_muninc">
+    <input required class="form-control"  type="text" id="edit_muninc" name="edit_muninc">
     <br>
     <label for="edit_endereco">Endereço</label>
-    <input class="form-control"  type="text" id="edit_endereco" name="edit_endereco">
+    <input required class="form-control"  type="text" id="edit_endereco" name="edit_endereco">
     <br><br>
 
-    <h3>Dependentes</h3>
 
 
     </div>
@@ -1179,14 +1180,29 @@ mysqli_close($conn);
                      ?>
 
 
+    <?php
+                        if(isset($_SESSION['registro_aluno_duplicado'])):
+                      ?>
+                          <script>
+
+                    $(function () {
+                        $(document).ready(function(){
+                           toastr.error('Erro! Não é possivel cadastrar o mesmo aluno duas vezes');
+                             });
+                                          });
+                          </script>
+          <?php
+                      endif;
+                      unset($_SESSION['registro_aluno_duplicado']);
+
+           ?>
+
 <!-- SCRIPT PARA INICIAR O JS DE DATATABLES, E CRIAR UMA TABELA INTERATIVA -->
 
 <script>
 
 function criarFilho(RMresp) {
 
-  alert(RMresp);
-  alert(filhos);
 var alunos = new Array(); 
 
         $(".editaluno").each(function() {
@@ -1197,7 +1213,6 @@ var alunos = new Array();
 
 
 
-alert(alunos); // log de teste
 
   $.ajax({
             url: '../../Scripts/Manipulations/Admin/Resp/registrarDependentes.php',
@@ -1206,12 +1221,12 @@ alert(alunos); // log de teste
               filhos: filhos,
               rmresp: RMresp},
             success:function(data){
-              toastr.success('Dependente cadastrado!');
+              toastr.success('Dependente(s) cadastrado!');
                 $("#modalFilhos").modal("hide");
 
 },
             error: function(response) {
-              toastr.error('Erro ao registrar!');
+              toastr.error('Erro ao registrar! ');
 
             }
 });
@@ -1312,6 +1327,10 @@ var rowId = event.target.parentNode.parentNode.id;
 
   var data = table.row($tr).data();
   var RM = data[0];
+  $("#editarAlunoEscola0").append("<option hidden disabled selected> Selecione uma escola</option>");
+  $("#editarAlunoTurma0").empty();
+  $("#editarAluno0").empty();
+    $(".newFields").empty();
 
 
 $("#registrarFilhos").attr('onclick','criarFilho('+RM+')');

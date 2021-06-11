@@ -36,7 +36,18 @@ foreach($arrayAlunos as $aluno)
 
 {
 
+$check = "SELECT * from relacao_alunosresponsaveis WHERE RM_Aluno = '$aluno' AND Responsavel_Filhos='$rm';";
+$checkQuery = mysqli_query($conn, $check);
+$checkRow = mysqli_fetch_row($checkQuery);
 
+if(!($checkRow==0))
+{
+      $_SESSION['registro_aluno_duplicado'] = true;
+
+          header("Location: ../../../../Pages/Admin/responsaveis.php");
+          exit();
+
+  }
 
 $query2= "INSERT INTO relacao_alunosresponsaveis (RM_Aluno,Responsavel_Filhos)
  VALUES ($aluno,$rm);";

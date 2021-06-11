@@ -55,17 +55,16 @@ echo mysqli_error($conn);
 
 
  	 if(mysqli_query($conn,$query)){
-      $_SESSION['resp_registrado'] = true;
+      $_SESSION['resp_atualizado'] = true;
     header("Location: ../../../../Pages/Admin/responsaveis.php");
       	exit();
  	 }
  	 else {
 
-      // $_SESSION['registro_erro'] = true;
+       $_SESSION['registro_erro'] = true;
 
-      //     header("Location: ../../../../Pages/Admin/responsaveis.php");
-      //     exit();
-echo mysqli_error($conn);
+           header("Location: ../../../../Pages/Admin/responsaveis.php");
+           exit();
  	 }mysqli_close($conn);
 
 

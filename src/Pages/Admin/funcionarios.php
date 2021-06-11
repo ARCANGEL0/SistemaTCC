@@ -890,7 +890,6 @@ echo "</tr>";
       });
 
 
-table.search(parametro).draw();
 
 
 // escolas
@@ -933,6 +932,7 @@ table.search(parametro).draw();
 
 
 
+table.search(parametro).draw();
 
   }); // fim document.ready
 </script>

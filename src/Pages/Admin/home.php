@@ -491,7 +491,21 @@ echo $rows;
                         '</div>'+
                         '<span class="text">Descobrir uma forma de relacionar o professor</span>'+
                         '<span class="text"> com várias escolas no Sistema </span>'+
-                            '<li class="">'+
+
+
+
+                         '<li class="">'+
+
+                        '<div  class="icheck-primary d-inline ml-2">'+
+                        '<i class="fa fa-clipboard"></i>'+
+
+                        '</div>'+
+                        '<span class="text">Dar um jeito para a busca no horário por TURMA</span>'+
+                        '<span class="text">procurar pela string específica e evitar procurar </span>'+
+                        '<span class="text">semelhantes. Exemplo:   Turma 1R5 e turma 1R </span>'+
+
+
+                            '<li class="done">'+
 
                         '<div  class="icheck-primary d-inline ml-2">'+
                           '<i class="fa fa-clipboard"></i>'+

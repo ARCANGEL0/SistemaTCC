@@ -415,7 +415,7 @@ for ($x = 0; $x <= 8; $x++) {
   echo '<td>'.$horarios[$x].'</td>'; // aqui ele cria o proximo horario para o novo registro
   // aqui começam os selects
 
-  echo '<td><select required name="segunda'.$x.'" id="segunda'.$x.'">
+  echo '<td><select class="btn btn-outline-info" required name="segunda'.$x.'" id="segunda'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">   </option>';
 
@@ -428,7 +428,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 
 
 
-  echo '<td><select required id="terca'.$x.'" name="terca'.$x.'">
+  echo '<td><select class="btn btn-outline-info" required id="terca'.$x.'" name="terca'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">   </option>';
   for($i = 0; $i <= 10; $i++){
@@ -439,7 +439,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 
 
 
-  echo '<td><select required id="quarta'.$x.'" name="quarta'.$x.'">
+  echo '<td><select class="btn btn-outline-info" required id="quarta'.$x.'" name="quarta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">   </option>';
 
@@ -447,7 +447,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 }
   echo '</select></td>';
-  echo '<td><select required name="quinta'.$x.'" id="quinta'.$x.'">
+  echo '<td><select class="btn btn-outline-info" required name="quinta'.$x.'" id="quinta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">   </option>';
 
@@ -455,7 +455,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 }
   ECHO '</select></td>';
-  echo '<td><select required name="sexta'.$x.'"id="sexta'.$x.'">
+  echo '<td><select class="btn btn-outline-info" required name="sexta'.$x.'"id="sexta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">   </option>';
 
@@ -774,7 +774,7 @@ for ($x = 0; $x <= 8; $x++) {
   echo '<td>'.$horarios[$x].'</td>'; // aqui ele cria o proximo horario para o novo registro
   // aqui começam os selects
 
-  echo '<td><select required name="Editsegunda'.$x.'" id="Editsegunda'.$x.'">
+  echo '<td><select class="btn btn-outline-info" required name="Editsegunda'.$x.'" id="Editsegunda'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">   </option>';
 
@@ -787,7 +787,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 
 
 
-  echo '<td><select required id="Editterca'.$x.'" name="Editterca'.$x.'">
+  echo '<td><select class="btn btn-outline-info" required id="Editterca'.$x.'" name="Editterca'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">   </option>';
   for($i = 0; $i <= 10; $i++){
@@ -798,7 +798,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 
 
 
-  echo '<td><select required id="Editquarta'.$x.'" name="Editquarta'.$x.'">
+  echo '<td><select class="btn btn-outline-info" required id="Editquarta'.$x.'" name="Editquarta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">   </option>';
 
@@ -806,7 +806,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 }
   echo '</select></td>';
-  echo '<td><select required name="Editquinta'.$x.'" id="Editquinta'.$x.'">
+  echo '<td><select class="btn btn-outline-info" required name="Editquinta'.$x.'" id="Editquinta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">   </option>';
 
@@ -814,7 +814,7 @@ echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 echo '<option value="'.$aulas[$i].'">'.$aulas[$i].'</option>';
 }
   ECHO '</select></td>';
-  echo '<td><select required name="Editsexta'.$x.'"id="Editsexta'.$x.'">
+  echo '<td><select class="btn btn-outline-info" required name="Editsexta'.$x.'"id="Editsexta'.$x.'">
   <option selected disabled hidden value="">MATÉRIA</option>';
   echo '<option value="">   </option>';
 

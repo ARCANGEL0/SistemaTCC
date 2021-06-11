@@ -553,7 +553,7 @@ RegistrarEscola
 
 
     <label for="edit_nome">Nome</label>
-    <input  type="text" id="edit_nome" name="edit_nome">
+    <input required type="text" id="edit_nome" name="edit_nome">
     <br>
     <label for="cpf">Escola</label>
     <select class="form-control" name="editAlunoEscola" id="editAlunoEscola">
@@ -577,29 +577,29 @@ RegistrarEscola
         </select><br>
 
 <label for="edit_dn">Data Nascimento</label>
-  <input   type="date" id="edit_dn" name="edit_dn">
+  <input required   type="date" id="edit_dn" name="edit_dn">
     <br>
     <label for="edit_email">E-Mail</label>
-    <input  type="text" id="edit_email" name="edit_email">
+    <input required  type="text" id="edit_email" name="edit_email">
     <br>
      <label for="edit_telefone">Telefone</label>
-    <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="edit_telefone" name="edit_telefone">
+    <input required  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="edit_telefone" name="edit_telefone">
   <br>
     <label for="edit_rg">RG</label>
-    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_rg" name="edit_rg" >
+    <input required  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_rg" name="edit_rg" >
     <br>
 
       <label for="edit_cep">CEP</label>
-    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
+    <input required  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
   <br>
     <label for="edit_muninc">Munincípio</label>
-    <input  type="text" id="edit_muninc" name="edit_muninc">
+    <input required  type="text" id="edit_muninc" name="edit_muninc">
     <br>
     <label for="edit_endereco">Endereço</label>
-    <input  type="text" id="edit_endereco" name="edit_endereco">
+    <input required  type="text" id="edit_endereco" name="edit_endereco">
     <br>
     <label for="edit_bairro">Bairro</label>
-    <input  type="text" id="edit_bairro" name="edit_bairro">
+    <input required  type="text" id="edit_bairro" name="edit_bairro">
     <br>
   
     <input  type="hidden" id="edit_codEscolar" name="edit_codEscola">
