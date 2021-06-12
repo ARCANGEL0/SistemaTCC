@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 08-Jun-2021 às 19:06
+-- Tempo de geração: 11-Jun-2021 às 21:29
 -- Versão do servidor: 10.3.24-MariaDB-2
 -- versão do PHP: 7.4.15
 
@@ -49,8 +49,8 @@ CREATE TABLE `alunos` (
 --
 
 INSERT INTO `alunos` (`RM_Aluno`, `Aluno_Ano`, `Aluno_Nome`, `Aluno_RG`, `Aluno_Email`, `Aluno_DataDeNascimento`, `Aluno_Telefone`, `Aluno_CEP`, `Aluno_Cidade`, `Aluno_Endereco`, `Aluno_Bairro`, `Aluno_Escola`, `ID_Escola`, `ID_Turma`) VALUES
-(25, '1RT', 'Lucas', '1092380980', '098@gm.com', '2021-12-11', '909', '11.432-39', 'Cidade X', 'ojojoj', 'VILA SANTO ANTÔNIO', 'Dirce', 2, 15),
-(50, '1N3', 'Andre', '09.128.301-28', 'andre@gmail.coom', '2004-02-01', '19 20831-0928', '09812-039', 'X', 'X', 'X', 'Escola Pedro Junior', 1, 13);
+(25, '1R', 'Lucas', '80.921.830-19', 'sadjo@gmail.com', '2021-12-11', '29 10283-0192', '09809-808', 'AA', 'AA', 'aa', 'Dirce', 2, 15),
+(50, '1N3', 'Andre', '09.128.301-28', 'andre@gmail.coom', '2004-02-01', '19 20831-0928', '09812-039', 'X', 'X', 'X', 'Escola Dom Pedro I', 1, 13);
 
 -- --------------------------------------------------------
 
@@ -110,7 +110,12 @@ INSERT INTO `alunos_faltas` (`ID`, `Data`) VALUES
 (15, '2021-06-06 22:42:19'),
 (124, '2021-06-06 23:51:13'),
 (124, '2021-06-06 23:51:47'),
-(118, '2021-06-07 19:53:45');
+(118, '2021-06-07 19:53:45'),
+(51, '2021-06-09 00:28:42'),
+(118, '2021-06-09 00:29:00'),
+(118, '2021-06-11 00:12:33'),
+(51, '2021-06-11 00:13:00'),
+(118, '2021-06-11 00:54:51');
 
 -- --------------------------------------------------------
 
@@ -169,7 +174,7 @@ INSERT INTO `alunos_notas` (`ID`, `RM_Aluno`, `Aluno_Ano`, `Aluno_Disciplina`, `
 (48, 1001, 2, 'Química', '0', '0', '0', '0', 0),
 (49, 1001, 3, 'Química', '0', '0', '0', '0', 0),
 (50, 1000, 1, 'Artes', '5', '0', '0', '0', 0),
-(51, 50, 1, 'Artes', '2', '0', '0', '0', 0),
+(51, 50, 1, 'Artes', '5', '9', '5', '4', 7),
 (52, 50, 2, 'Artes', '0', '0', '0', '0', 0),
 (53, 50, 3, 'Artes', '0', '0', '0', '0', 0),
 (54, 50, 1, 'Biologia', '10', '0', '0', '0', 0),
@@ -203,7 +208,7 @@ INSERT INTO `alunos_notas` (`ID`, `RM_Aluno`, `Aluno_Ano`, `Aluno_Disciplina`, `
 (82, 50, 2, 'Química', '0', '0', '0', '0', 0),
 (83, 50, 3, 'Química', '0', '0', '0', '0', 0),
 (84, 1000, 1, 'Biologia', '0', '0', '0', '0', 0),
-(85, 50, 1, 'Artes', '2', '0', '0', '0', 0),
+(85, 50, 1, 'Artes', '5', '9', '5', '4', 7),
 (86, 50, 2, 'Artes', '0', '0', '0', '0', 0),
 (87, 50, 3, 'Artes', '0', '0', '0', '0', 0),
 (88, 50, 1, 'Biologia', '0', '0', '0', '0', 0),
@@ -236,7 +241,7 @@ INSERT INTO `alunos_notas` (`ID`, `RM_Aluno`, `Aluno_Ano`, `Aluno_Disciplina`, `
 (115, 50, 1, 'Química', '0', '0', '0', '0', 0),
 (116, 50, 2, 'Química', '0', '0', '0', '0', 0),
 (117, 50, 3, 'Química', '0', '0', '0', '0', 0),
-(118, 25, 1, 'Artes', '6', '0', '0', '0', 0),
+(118, 25, 1, 'Artes', '0', '0', '3', '0', 0),
 (119, 25, 2, 'Artes', '0', '0', '0', '0', 0),
 (120, 25, 3, 'Artes', '0', '0', '0', '0', 0),
 (121, 25, 1, 'Biologia', '0', '0', '0', '0', 0),
@@ -319,7 +324,7 @@ CREATE TABLE `escolas` (
 --
 
 INSERT INTO `escolas` (`Escola_Codigo`, `Escola_CNPJ`, `Escola_Nome`, `Escola_CEP`, `Escola_Munincipio`, `Escola_Endereco`) VALUES
-(1, '21.312.90/8401-928', 'Escola Pedro Junior', '12292-948', 'Guarujá', 'Av. XXSS'),
+(1, '21.312.90/8401-928', 'Escola Dom Pedro I', '12292-948', 'Guarujá', 'Av. XXSS'),
 (2, '44.4242.4232/42324-23', 'Dirce', '22452-582', 'Guarujá', 'Av. Dom Pedro I'),
 (3, '12.931.20/8301-283', 'Escola X', '12312-031', 'fodasei', 'joi'),
 (4, '29.393.93/9393-939', 'Escola ID n 4', '12319-203', 'asdsad', 'asdpod');
@@ -434,6 +439,7 @@ CREATE TABLE `professores` (
   `RM_Prof` bigint(20) NOT NULL,
   `Prof_Nome` varchar(255) NOT NULL,
   `Prof_DataDeNascimento` date NOT NULL,
+  `Prof_Telefone` varchar(255) NOT NULL,
   `Prof_Celular` varchar(255) NOT NULL,
   `Prof_Email` varchar(255) NOT NULL,
   `Prof_CPF` varchar(255) NOT NULL,
@@ -448,10 +454,10 @@ CREATE TABLE `professores` (
 -- Extraindo dados da tabela `professores`
 --
 
-INSERT INTO `professores` (`RM_Prof`, `Prof_Nome`, `Prof_DataDeNascimento`, `Prof_Celular`, `Prof_Email`, `Prof_CPF`, `Prof_RG`, `Prof_CEP`, `Prof_Cidade`, `Prof_Endereco`, `Prof_Bairro`) VALUES
-(1, 'Pedro Sate', '1998-04-15', '13 98840-4024', 'pedro@gmail.com', '449.228.285-85', '82.582.852-7', '11857-852', 'Santos', 'Rua X', 'Vila Mathias'),
-(92, 'jioejo', '2020-11-22', '13 99482-4992', '1921903109@homc.m', '91.239.012-83', '1092380980', '98098-09', '980810293801293809', '8081029380192830', '809128309180'),
-(298, 'Kurokuro', '2020-11-11', '11 99482-4924', 'risa@gm.com', '09.812.038-10', '92123098123098', '', '08080', '8098098', '09809-809');
+INSERT INTO `professores` (`RM_Prof`, `Prof_Nome`, `Prof_DataDeNascimento`, `Prof_Telefone`, `Prof_Celular`, `Prof_Email`, `Prof_CPF`, `Prof_RG`, `Prof_CEP`, `Prof_Cidade`, `Prof_Endereco`, `Prof_Bairro`) VALUES
+(1, 'Pedro ', '1998-04-15', '11 3304-4923', '13 98840-4024', 'pedro@gmail.com', '449.228.285-85', '82.582.852-7', '11857-852', 'Santos', 'Rua X', 'Vila Mathias'),
+(92, 'Luis', '2020-11-22', '13 3304-4036', '13 98850-4778', '1921903109@homc.m', '444.444.444-44', '11.111.111-11', '11111-111', 'a', 'a', 'a'),
+(298, 'Kurokuro', '2020-11-11', '13 3358-1248', '11 99482-4924', 'risa@gm.com', '09.812.038-10', '92123098123098', '', '08080', '8098098', '09809-809');
 
 -- --------------------------------------------------------
 
@@ -495,61 +501,32 @@ INSERT INTO `relacao_alunosresponsaveis` (`RM_Aluno`, `Responsavel_Filhos`) VALU
 (1001, 1400),
 (1001, 9500),
 (1000, 9500),
-(50, 10400),
-(50, 99999),
-(25, 99999),
-(50, 99999);
+(50, 20),
+(25, 20),
+(50, 51);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `relacao_professorescola`
+-- Estrutura da tabela `relacao_profescolas`
 --
 
-CREATE TABLE `relacao_professorescola` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE `relacao_profescolas` (
+  `RM_Prof` bigint(20) NOT NULL,
   `Escola_Cod` bigint(20) NOT NULL,
-  `Prof_Escola` varchar(255) NOT NULL,
+  `Matéria` varchar(255) NOT NULL,
   `Prof_Turmas` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `relacao_professorescola`
+-- Extraindo dados da tabela `relacao_profescolas`
 --
 
-INSERT INTO `relacao_professorescola` (`ID`, `Escola_Cod`, `Prof_Escola`, `Prof_Turmas`) VALUES
-(1, 1, '0000AA1', 11);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `relacao_professorturma`
---
-
-CREATE TABLE `relacao_professorturma` (
-  `Prof_Turma` bigint(20) NOT NULL,
-  `Cod_DisTurma` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `relacao_professorturma`
---
-
-INSERT INTO `relacao_professorturma` (`Prof_Turma`, `Cod_DisTurma`) VALUES
-(11, 'Prof1Cod'),
-(11, 'Prof1Codigo2');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `relacao_turmadisciplina`
---
-
-CREATE TABLE `relacao_turmadisciplina` (
-  `Cod_DisciplinaTurma` varchar(255) NOT NULL,
-  `Turma` varchar(255) NOT NULL,
-  `Matéria` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `relacao_profescolas` (`RM_Prof`, `Escola_Cod`, `Matéria`, `Prof_Turmas`) VALUES
+(20, 1, 'HIS', 13),
+(20, 2, 'MAT', 15),
+(20, 1, 'ING', 13),
+(20, 1, 'QUI\r\n', 13);
 
 -- --------------------------------------------------------
 
@@ -576,13 +553,14 @@ CREATE TABLE `responsáveis` (
 --
 
 INSERT INTO `responsáveis` (`RM_Responsável`, `Resp_Nome`, `Resp_Email`, `Resp_DataDeNascimento`, `Resp_RG`, `Resp_CPF`, `Resp_Telefone`, `Resp_Celular`, `Resp_CEP`, `Resp_Cidade`, `Resp_Endereco`) VALUES
-(1000, 'asdRogerio', 'claudnun@gmail.com', '1980-12-11', '11.111.111-11', '111.111.111-11', '(13) 3385-2298', '(13) 9985-28492', '11492-492', 'Araquara', 'Mariano Peixoto, 294'),
+(1000, 'Antonio', 'luis@g,.com', '2000-02-22', '99.999.999-99', '999.999.999-99', '11 9321-9312', '09 99999-9999', '99999-999', 'x', 'x'),
 (15420, 'Claudio ', 'claudnun@gmail.com', '1980-12-11', '', '495.284.285-39', '(13) 3385-2298', '(13) 9985-28492', '11492-492', 'Arujá', 'Mariano Peixoto, 294'),
 (9400, 'Claudio ', 'claudnun@gmail.com', '1980-12-11', '', '495.284.285-39', '(13) 3385-2298', '(13) 9985-28492', '11492-492', 'Arujá', 'Mariano Peixoto, 294'),
 (1400, 'Ricardo', 'claudnun@gmail.com', '1980-12-11', '', '495.284.285-39', '(13) 3385-2298', '(13) 9985-28492', '11492-492', 'Arujá', 'Mariano Peixoto, 294'),
 (9500, 'Claudio ', 'claudnun@gmail.com', '1980-12-11', '', '495.284.285-39', '(13) 3385-2298', '(13) 9985-28492', '11492-492', 'Arujá', 'Mariano Peixoto, 294'),
 (10400, 'teste', 'ra@gmail.com', '2021-02-11', '01.029.380-12', '080.123.801-29', '09 1283-098', '08 09283-0918', '80129-830', '', '12312321'),
-(99999, 'fodase', '213092@gmci', '2000-02-11', '80.9', '809.80', '93 0918', '09 80912-3809', '80980-80', '', '8009809809');
+(99999, 'fodase', '213092@gmci', '2000-02-11', '80.9', '809.80', '93 0918', '09 80912-3809', '80980-80', '', '8009809809'),
+(50, 'Luis', 'empresa@outlook.com', '2000-02-01', '10.238.012-93', '080.912.830-12', '12 9301-2983', '09 18230-9128', '09801-928', 'll', 'aaa');
 
 -- --------------------------------------------------------
 
@@ -614,7 +592,8 @@ INSERT INTO `secretaria` (`RM_Secretaria`, `Sec_Escola`, `Sec_Nome`, `Sec_DataDe
 (112, 2, 'Luiz Almeida A', '2000-02-13', 'lui@gmail', '13 3395-2842', '11 98824-4825', '229.285.682-36', '52.482.583-3', '28342-274', 'São Vicente', 'Rua Y', 'Bairro'),
 (1002, 3, 'Fernando', '2000-02-11', 'saidgmai@c.om', '01 9230-1283', '09 80912-8308', '091.283.019-28', '01.928.301-28', '09019-238', 'Rua X', 'b', 'C'),
 (12300, 2, 'opipaoi', '2021-12-31', '098@gm.com', '01 2093-10', '09 80391-2830', '09i09', '1092380980', '11.432-39', 'Cidade', 'ojojoj', 'VILA SANTO ANTÔNIO'),
-(9999, 4, '21093', '2000-01-11', 'saida@gmail.com', '12 0391-230', '11 11111-1111', '809.801.928-30', '98.091.283-09', '80983-120', '80192830192830', '980312830180', '9809898');
+(9999, 4, '21093', '2000-01-11', 'saida@gmail.com', '12 0391-230', '11 11111-1111', '809.801.928-30', '98.091.283-09', '80983-120', '80192830192830', '980312830180', '9809898'),
+(9, 1, 'Andree', '1998-11-11', 'jsoidajs@gmail.com', '12 3091-2830', '09 80912-8308', '999.999.999-99', '99.999.999-99', '92309-128', 'A', 'A', 'A');
 
 -- --------------------------------------------------------
 
@@ -635,9 +614,9 @@ CREATE TABLE `turmas` (
 --
 
 INSERT INTO `turmas` (`Escola`, `Prof_Coordenador`, `ID_Ano`, `Turma`, `ID_Escola`) VALUES
-('Escola Pedro Junior', 'Pedro Sate', 13, '1N3', 1),
-('Escola Pedro Junior', 'Pedro Sate', 14, '1R5', 1),
-('Dirce', 'Pedro Sate', 15, '1RT', 2),
+('Escola Dom Pedro I', 'Pedro Sate', 13, '1N3', 1),
+('Escola Dom Pedro I', 'Pedro Sate', 14, '1R5', 1),
+('Dirce', 'Pedro Sate', 15, '1R', 2),
 ('Escola ID n 4', 'Pedro Sate', 23, '1B5', 4);
 
 -- --------------------------------------------------------
@@ -664,24 +643,24 @@ CREATE TABLE `turma_horario` (
 --
 
 INSERT INTO `turma_horario` (`Turma_Escola`, `Turma_Ano`, `Escola_ID`, `Turma_ID`, `Turma_Horario`, `Horario_Segunda`, `Horario_Terça`, `Horario_Quarta`, `Horario_Quinta`, `Horario_Sexta`) VALUES
-('Escola Pedro Junior', '1R5', '1', '14', '8 às 9', 'ART', '', '', '', ''),
-('Escola Pedro Junior', '1R5', '1', '14', '9 às 10', '', '', '', '', ''),
-('Escola Pedro Junior', '1R5', '1', '14', '10 às 11', '', '', '', '', ''),
-('Escola Pedro Junior', '1R5', '1', '14', '11 às 12', '', '', '', '', ''),
-('Escola Pedro Junior', '1R5', '1', '14', '13 às 14', '', '', '', '', ''),
-('Escola Pedro Junior', '1R5', '1', '14', '14 às 15', '', '', '', '', ''),
-('Escola Pedro Junior', '1R5', '1', '14', '15 às 16', '', '', '', '', ''),
-('Escola Pedro Junior', '1R5', '1', '14', '16 às 17', '', '', '', '', ''),
-('Escola Pedro Junior', '1R5', '1', '14', '17 às 18', '', '', '', '', ''),
-('Dirce', '1RT', '2', '15', '8 às 9', 'Ed. FIS', '', 'ART', '', ''),
-('Dirce', '1RT', '2', '15', '9 às 10', '', '', '', '', ''),
-('Dirce', '1RT', '2', '15', '10 às 11', '', '', 'ART', '', ''),
-('Dirce', '1RT', '2', '15', '11 às 12', '', '', '', '', ''),
-('Dirce', '1RT', '2', '15', '13 às 14', '', '', '', '', ''),
-('Dirce', '1RT', '2', '15', '14 às 15', '', '', '', '', 'ART'),
-('Dirce', '1RT', '2', '15', '15 às 16', '', '', '', '', ''),
-('Dirce', '1RT', '2', '15', '16 às 17', '', '', '', '', ''),
-('Dirce', '1RT', '2', '15', '17 às 18', '', '', '', '', '');
+('Escola Dom Pedro I', '1R5', '1', '14', '8 às 9', 'ART', 'Ed. FIS', 'Ed. FIS', 'PORT', 'PORT'),
+('Escola Dom Pedro I', '1R5', '1', '14', '9 às 10', 'MAT', 'ING', 'MAT', 'FIS', 'ING'),
+('Escola Dom Pedro I', '1R5', '1', '14', '10 às 11', 'HIS', 'GEO\r\n', 'HIS', 'ING', 'ING'),
+('Escola Dom Pedro I', '1R5', '1', '14', '11 às 12', 'ING', 'ING', 'HIS', 'ING', 'MAT'),
+('Escola Dom Pedro I', '1R5', '1', '14', '13 às 14', 'ING', 'ING', 'ING', 'ING', 'MAT'),
+('Escola Dom Pedro I', '1R5', '1', '14', '14 às 15', 'MAT', 'MAT', 'MAT', 'MAT', 'MAT'),
+('Escola Dom Pedro I', '1R5', '1', '14', '15 às 16', 'MAT', 'PORT', 'PORT', 'QUI\r\n', 'QUI\r\n'),
+('Escola Dom Pedro I', '1R5', '1', '14', '16 às 17', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n', 'ING', 'PORT'),
+('Escola Dom Pedro I', '1R5', '1', '14', '17 às 18', 'ART', '', '', '', 'QUI\r\n'),
+('Dirce', '1R', '2', '15', '8 às 9', 'Ed. FIS', '', 'ART', '', ''),
+('Dirce', '1R', '2', '15', '9 às 10', '', '', '', '', ''),
+('Dirce', '1R', '2', '15', '10 às 11', '', '', 'ART', '', ''),
+('Dirce', '1R', '2', '15', '11 às 12', '', '', '', '', ''),
+('Dirce', '1R', '2', '15', '13 às 14', '', '', '', '', ''),
+('Dirce', '1R', '2', '15', '14 às 15', '', '', '', '', 'ART'),
+('Dirce', '1R', '2', '15', '15 às 16', '', '', '', '', ''),
+('Dirce', '1R', '2', '15', '16 às 17', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n', 'ING', 'PORT'),
+('Dirce', '1R', '2', '15', '17 às 18', 'ART', '', '', '', 'QUI\r\n');
 
 --
 -- Índices para tabelas despejadas

@@ -333,63 +333,287 @@ Logado como ADMINISTRADOR             </h3>
           <div class="modal-body registrarProfessor_corpo">
           <form action="../../Scripts/Manipulations/Admin/Professores/registarProfessor.php" method="POST" id="modalform">
     <label for="rm">RM</label>
-    <input  type="large_number" id="rm" name="rm">
+    <input required  type="large_number" id="rm" name="rm">
     <br>
    
     <label for="nome">Nome</label>
-    <input  type="text" id="nome" name="nome">
+    <input required  type="text" id="nome" name="nome">
     <br>
-    <label for="profEscola">Escola</label>
-    <select class="form-control" required type="text" id="profEscola" name="profEscola" >
-      <option selected hidden disabled value="">Selecione uma escola</option>
-
-<?php
-$queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
-while($row = mysqli_fetch_array($queryEscolas))
-{
-echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
-};
-
-?>
-                  </select>
-
-    
-
-    <br>
-<label for="profTurma">Turma</label>
-    <select class="form-control" required type="text" onchange="" id="profTurma" name="profTurma" >
-      <option hidden disabled selected value="#"></option>
-
    
-    </select><br>
         
 
 	<label for="dn">Data Nascimento</label>
-	<input  maxlength="8" OnKeyPress="formatar('##-##-####', this)" type="date"id="dn" name="dn">
+	<input required  maxlength="8" OnKeyPress="formatar('##-##-####', this)" type="date"id="dn" name="dn">
     <br>
     <label for="celular">Celular</label>
-  <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="celular" name="celular">
+  <input required  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="celular" name="celular">
+    <br>
+    <label for="telefone">Telefone</label>
+  <input required  maxlength="12" OnKeyPress="formatar('## ####-####', this)" type="text" id="telefone" name="telefone">
     <br>
     <label for="email">E-Mail</label>
-    <input  type="text" id="email" name="email">
+    <input required  type="text" id="email" name="email">
     <br>
-    <label for="rg">RG</label>
-    <input  type="text" id="rg" name="rg">
+    <label for="cpf">CPF</label>
+  <input required  maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" type="text" id="cpf" name="cpf">
+    <br>
+ <label for="rg">RG</label>
+  <input required  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)" type="text" id="rg" name="rg">
+  
     <br>
     <label for="municipio">Munincípio</label>
-    <input  type="text" id="municipio" name="municipio">
+    <input required  type="text" id="municipio" name="municipio">
     <br>
     <label for="endereco">Endereço</label>
-    <input  type="text" id="endereco" name="endereco">
+    <input required  type="text" id="endereco" name="endereco">
     <br>
     <label for="bairro">Bairro</label>
-    <input  type="text" id="bairro" name="bairro">
+    <input required  type="text" id="bairro" name="bairro">
     <br>
     <label for="cep">CEP</label>
-    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cep" name="cep">
+    <input required  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cep" name="cep">
 	<br>
-    <label for="codigoescola">Cód. Escola</label>
-    <input  type="text" id="codigoescolar" name="codigoescola">
+
+   
+<hr class="form-divide">
+<input type="hidden" value=1 id="numEscolas" name="numEscolas">
+<br>
+<fieldset id="RegFirstField">
+<fieldset class="fieldEscolas">
+
+
+
+<label for="registrarProfEscola0">Escola</label>
+<select required class="form-control" name="registrarProfEscola0" id="registrarProfEscola0">
+  <option hidden disabled selected value="">Selecione uma escola</option>
+  <?php
+  $queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
+  while($row = mysqli_fetch_array($queryEscolas))
+  {
+  echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+  };
+
+  ?>
+</select>
+
+<br>
+
+<label for="registrarProfTurma0">Turma</label>
+<select required class="form-control" name="registrarProfTurma0" id="registrarProfTurma0">
+  <option hidden disabled selected value="">Selecione uma turma</option>
+
+
+</select>
+<br>
+
+
+
+<label for="registrarProfMateria0">Matéria</label>
+<select required class="form-control" name="registrarProfMateria0" id="registrarProfMateria0">
+  <option hidden disabled selected value="">Selecione uma matéria</option>
+
+</select>
+<br>
+    <input  type="hidden" id="codigoescola0" name="codigoescola0">
+
+    <input  type="hidden" id="codigoturma0" name="codigoturma0">
+
+
+
+<hr style="border-width: 1.2px; border-color: #cecece">
+
+<script>
+
+  var add_len = 1;
+  var add = 1;
+  function addFilhos(){
+
+    $(".fieldEscolas select").last().val()
+  $('#RegFirstField .fieldEscolas')
+  .clone()
+  .appendTo('.RegNewFields')
+  .attr("id","novoField"+ add_len)
+  .each(function(){
+var RegIDEscola = "registrarProfEscola"+ add_len;
+var RegIDTurma = "registrarProfTurma"+ add_len;
+var RegIDMateria ="registrarProfMateria"+ add_len;
+var RegCodigoEscola = "codigoescola"+ add_len;
+var RegCodigoTurma = "codigoturma"+ add_len;
+
+
+    $('.RegNewFields #registrarProfEscola0')
+    .attr("id",RegIDEscola)
+    .attr("name",RegIDEscola)
+
+    $('.RegNewFields #registrarProfTurma0')
+    .attr("id",RegIDTurma)
+    .empty()
+    .attr("name",RegIDTurma)
+    
+    $('.RegNewFields #registrarProfMateria0')
+    .attr("id",RegIDMateria)
+    .empty()
+    .attr("name",RegIDMateria)
+
+     $('.RegNewFields #codigoescola0')
+    .attr("id",RegCodigoEscola)
+    .empty()
+    .attr("name",RegCodigoEscola)
+       $('.RegNewFields #codigoturma0')
+    .attr("id",RegCodigoTurma)
+    .empty()
+    .attr("name",RegCodigoTurma)
+
+            
+
+    add++;
+  add_len++;
+
+$("#numEscolas").val(add);
+
+
+$("#"+RegIDEscola).change(function(){
+
+  var reg_school = $("#"+RegIDEscola).val();
+
+
+   $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:reg_school},
+            dataType: 'json',
+            success:function(response){
+              var turma = response[0]['turma'];
+
+                var len = response.length;
+
+            $("#"+RegIDTurma).empty();
+            $("#"+RegIDTurma).append("<option hidden selected> Selecione uma turma</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+                    $("#"+RegIDTurma).append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+
+      $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/getEscolaID.php',
+            type: 'post',
+            data: {escola:reg_school},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+            $("#"+RegCodigoEscola).empty();
+
+
+                for( var i = 0; i<len; i++){
+                    var id = response[i][ 'escolaid'];
+            $("#"+RegCodigoEscola).val(id);
+
+                }
+
+
+            }
+            });   // aqui vai ajax para pegar codigo da escola
+
+  });
+
+// get alunos from turmas
+
+$("#"+RegIDTurma).change(function(){
+
+
+  var reg_turma = $("#"+RegIDTurma).val();
+
+
+
+  
+   $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/getMateria.php',
+            type: 'post',
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+            $('#'+RegIDMateria).empty();
+            $("#"+RegIDMateria).append("<option hidden selected> Selecione uma materia</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var nome = response[i]['nome'];
+                    var abreviacao = response[i]['abreviacao'];
+
+                    $("#"+RegIDMateria).append("<option value='"+abreviacao+"'>"+nome+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+
+        $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/getTurmaID.php',
+            type: 'post',
+            data: {turma:reg_turma},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+            $("#"+RegCodigoTurma).empty();
+
+
+                for( var i = 0; i<len; i++){
+                    var id = response[i]['turmaid'];
+            $("#"+RegCodigoTurma).val(id);
+
+                }
+
+
+            }
+            });   // aqui vai ajax para pegar codigo da escola
+
+
+
+  });
+
+
+
+
+
+  });
+
+
+}
+
+</script>
+
+
+</fieldset>
+</fieldset>
+
+<fieldset class="RegNewFields">
+
+</fieldset>
+<div class="addField">
+
+  <button class="btn btn-outline-info" type="button" onclick="addFilhos();" id="addFilho"  name="addFilho"><i class="fa fa-plus"></i></button>
+
+</div>
 
     </div>
           <div class="modal-footer">
@@ -412,39 +636,40 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
             <h4 class="modal-title">Editar professor</h4>          </div>
           <div class="modal-body registrarProfessor_corpo">
           <form action="../../Scripts/Manipulations/Admin/Professores/editarProfessor.php" method="POST" id="modalform">
-    <input  type="text" id="edit_rm" name="edit_rm">
-    <br>
+    <input  type="hidden" id="edit_rm" name="edit_rm">
 
     <label for="edit_nome">Nome</label>
-    <input  type="text" id="edit_nome" name="edit_nome">
+    <input required  type="text" id="edit_nome" name="edit_nome">
     <br>
 	<label for="edit_dn">Data Nascimento</label>
-	<input   value="2020-06-06" type="date" id="edit_dn" name="edit_dn">
+	<input required   value="2020-06-06" type="date" id="edit_dn" name="edit_dn">
+    <br>
+  <label for="edit_celular">Celular</label>
+    <input required  maxlength="13" OnKeyPress="formatar('## #####-####', this)"type="text" id="edit_celular" name="edit_celular" >
     <br>
   <label for="edit_telefone">Telefone</label>
-    <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)"type="text" id="edit_telefone" name="edit_telefone" >
+    <input required  maxlength="12" OnKeyPress="formatar('## ####-####', this)" type="text" id="edit_telefone" name="edit_telefone" >
     <br>
- 
         <label for="edit_email">E-Mail</label>
-    <input  type="text" id="edit_email" name="edit_email">
+    <input required  type="email" id="edit_email" name="edit_email">
     <br>
         <label for="edit_cpf">CPF</label>
-    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_cpf" name="edit_cpf" >
+    <input required  maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"type="text" id="edit_cpf" name="edit_cpf" >
     <br>
     <label for="edit_rg">RG</label>
-    <input  type="text" id="edit_rg" name="edit_rg">
+    <input required  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="edit_rg" name="edit_rg" >
     <br>
        <label for="edit_cep">CEP</label>
-    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
+    <input required  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="edit_cep" name="edit_cep">
   <br>
     <label for="edit_muninc">Munincípio</label>
-    <input  type="text" id="edit_muninc" name="edit_muninc">
+    <input required  type="text" id="edit_muninc" name="edit_muninc">
     <br>
     <label for="edit_endereco">Endereço</label>
-    <input  type="text" id="edit_endereco" name="edit_endereco">
+    <input required  type="text" id="edit_endereco" name="edit_endereco">
     <br>
     <label for="edit_bairro">Bairro</label>
-    <input  type="text" id="edit_bairro" name="edit_bairro">
+    <input required  type="text" id="edit_bairro" name="edit_bairro">
     <br>
  
 
@@ -622,6 +847,7 @@ padding-top: 10px;
 		<th>Nome</th>
         <th>Data Nascimento</th>
 		<th>Telefone</th>
+    <th>Celular</th>
 		<th>Email</th>
 		<th>CPF</th>
 		<th>RG</th>
@@ -642,6 +868,8 @@ echo "<tr>";
 echo "<td>" . $row['RM_Prof'] . "</td>";
 echo "<td>" . $row['Prof_Nome'] . "</td>";
 echo "<td>" . date("d/m/Y", strtotime($row['Prof_DataDeNascimento'])) . "</td>";
+echo "<td>" . $row['Prof_Telefone'] . "</td>";
+
 echo "<td>" . $row['Prof_Celular'] . "</td>";
 echo "<td>" . $row['Prof_Email'] . "</td>";
 
@@ -649,7 +877,7 @@ echo "<td>" . $row['Prof_CPF'] . "</td>";
 echo "<td>" . $row['Prof_RG'] . "</td>";
 echo "<td>" . $row['Prof_CEP'] . "</td>";
 echo "<td>" . $row['Prof_Cidade'] . "</td>";
-echo "<td>" . $row['Prof_Endereço'] . "</td>";
+echo "<td>" . $row['Prof_Endereco'] . "</td>";
 echo "<td>" . $row['Prof_Bairro'] . "</td>";
 echo '<td><a class="btn-sm  btn-secondary text-white btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
 &nbsp;
@@ -863,6 +1091,123 @@ echo "</tr>";
       "responsive": true,
     });
 
+
+
+// get Turmas
+$("#registrarProfEscola0").change(function(){
+
+  var escolanome = $('#registrarProfEscola0').val();
+
+
+   $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
+              var turma = response[0]['turma'];
+
+                var len = response.length;
+
+            $('#registrarProfTurma0').empty();
+            $("#registrarProfTurma0").append("<option hidden selected> Selecione uma turma</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var turma = response[i]['name'];
+                    $("#registrarProfTurma0").append("<option value='"+turma+"'>"+turma+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+     $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/getEscolaID.php',
+            type: 'post',
+            data: {escola:escolanome},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+            $("#codigoescola0").empty();
+
+
+                for( var i = 0; i<len; i++){
+                    var id = response[i]['escolaid'];
+            $("#codigoescola0").val(id);
+
+                }
+
+
+            }
+            });   // aqui vai ajax para pegar codigo da escola
+
+  });
+
+// get alunos from turmas
+
+$("#registrarProfTurma0").change(function(){
+  var valorturma = $(this).val();
+
+
+
+   $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/getMateria.php',
+            type: 'post',
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+            $('#registrarProfMateria0').empty();
+            $("#registrarProfMateria0").append("<option hidden selected> Selecione uma materia</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var nome = response[i]['nome'];
+                    var abreviacao = response[i]['abreviacao'];
+
+                    $("#registrarProfMateria0").append("<option value='"+abreviacao+"'>"+nome+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+
+
+  $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/getTurmaID.php',
+            type: 'post',
+            data: {turma:valorturma},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+            $("#codigoturma0").empty();
+
+
+                for( var i = 0; i<len; i++){
+                    var id = response[i]['turmaid'];
+            $("#codigoturma0").val(id);
+
+                }
+
+
+            }
+            });   // aqui vai ajax para pegar codigo da escola
+
+  });
+
+
  table.on('click','.btnEscolas',function(){
 
  $tr=$(this).closest('tr');
@@ -936,7 +1281,7 @@ $("#profEscolas").modal('show');
       $tr=$(this).closest('tr');
 
       var data = table.row($tr).data();
-      data.splice(11,1);
+      data.splice(12,1);
       function FormataStringData(data) {
         var dia  = data.split("/")[0];
         var mes  = data.split("/")[1];
@@ -951,15 +1296,15 @@ $("#profEscolas").modal('show');
       $('#edit_rm').val(data[0])
       $('#edit_nome').val(data[1]);
       $('#edit_dn').val(FormataStringData(data[2]));
-      $('#edit_email').val(data[4]);
-      $('#edit_cpf').val(data[5]);
+      $('#edit_celular').val(data[4]);
+      $('#edit_email').val(data[5]);
       $('#edit_telefone').val(data[3]);
-
-      $('#edit_rg').val(data[6]);
-      $('#edit_muninc').val(data[8]);
-      $('#edit_endereco').val(data[9]);
-      $('#edit_bairro').val(data[10]);
-      $('#edit_cep').val(data[7]);
+      $('#edit_cpf').val(data[6]);
+      $('#edit_cep').val(data[8]);
+      $('#edit_muninc').val(data[9]);
+      $('#edit_endereco').val(data[10]);
+      $('#edit_rg').val(data[7]);
+      $('#edit_bairro').val(data[11]);
 
     $('#EditarProfessor').modal('show');
     });

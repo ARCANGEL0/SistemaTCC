@@ -8,17 +8,58 @@ $nome = $_POST['nome'];
 $dn = date("Y/m/d", strtotime($_POST['dn']));
 $email = $_POST['email'];
 $cel = $_POST['celular'];
+$tel = $_POST['telefone'];
+
 $rg = $_POST['rg'];
 $municipio = $_POST['municipio'];
 $endereco = $_POST['endereco'];
 $bairro = $_POST['bairro'];
 $cep = $_POST['cep'];
-$codigo_escola = $_POST['codigo_escola'];
+$numEscolas = $_POST['numEscolas'];
+
 
 if(isset($_POST['registrar'])){
 
-	$query = "INSERT INTO professores (RM_Prof,Prof_Nome,Prof_Celular,Prof_DataDeNascimento,Prof_Email,Prof_CPF,Prof_RG,Prof_CEP, Prof_Cidade,Prof_Endereco,Prof_Bairro)
-	                           VALUES (  '$rm',  '$nome','$celular','$dn',  '$email',  '$cpf',  '$rg',  '$cep','$municipio',  '$endereco',  '$bairro')";
+
+$arrayEscolas = array(); 
+$arrayTurmas = array();
+$arrayMateria = array();
+
+
+ for($x=0;$x<$numEscolas;$x++){
+
+ $arrayEscolas[] = $_POST['codigoescola'.$x];
+ $arrayTurmas[] = $_POST['codigoturma'.$x];
+ $arrayMateria[] = $_POST['registrarProfMateria'.$x];
+
+$queryTurma = "INSERT into relacao_profescolas (RM_Prof, Escola_Cod, Matéria, Prof_Turmas)
+VALUES ('$rm','$arrayEscolas[$x]','$arrayMateria[$x]','$arrayTurmas[$x]');";
+
+if(!mysqli_query($conn,$queryTurma)){
+
+    $_SESSION['registro_erro'] = true;
+
+      header("Location: ../../../../Pages/Admin/professores.php");
+      exit();
+	
+
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+	$query = "INSERT INTO professores (RM_Prof,Prof_Nome,Prof_Telefone,Prof_Celular,Prof_DataDeNascimento,Prof_Email,Prof_CPF,Prof_RG,Prof_CEP, Prof_Cidade,Prof_Endereco,Prof_Bairro)
+	 VALUES (  '$rm',  '$nome','$tel','$cel','$dn',  '$email',  '$cpf',  '$rg',  '$cep','$municipio',  '$endereco',  '$bairro')";
 	if(mysqli_query($conn,$query)){
     $_SESSION['prof_registrado'] = true;
       header("Location: ../../../../Pages/Admin/professores.php");
@@ -26,15 +67,17 @@ if(isset($_POST['registrar'])){
 	}
 	else {
 
-		echo mysqli_error($conn);
+		// echo mysqli_error($conn);
 
-  /*  $_SESSION['registro_erro'] = true;
+    $_SESSION['registro_erro'] = true;
 
       header("Location: ../../../../Pages/Admin/professores.php");
       exit();
 	
-*/
-	}mysqli_close($conn);
+
+	}
+
+	mysqli_close($conn);
 }
 
 ?>

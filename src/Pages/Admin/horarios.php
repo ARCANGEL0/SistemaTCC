@@ -1261,18 +1261,30 @@ table.search("Sem turma").draw();
     
        //ao carregar a página, e forçar o filtro por turma
 
-    var parametroTurma = parametroUrl("turma");
+
+
+       // estas variaveis abaixo servem para realizar busca exata para turma e evita buscar
+       // por semelhanças e causar multiplos dados
+  
+  var parametroTurma = parametroUrl("turma");
+turmaRegex = '\\b' + parametroTurma + '\\b';
+
+   table.rows().search(turmaRegex, true, true).draw();
+
 
 
     $('#filtroTurma').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
-       table
-       .search($(this).val()).draw();
+
+         var turma = $(this).val().toLowerCase(),
+       regex = '\\b' + turma + '\\b';
+   table.rows().search(regex, true, false).draw();
+
+
       });
 
 
 
 
-table.search(parametroTurma).draw();
  //  function getTurma(){ // Essa função serve para detectar se houve um redirecionamento pelo URL e filtrar automaticamente atraves dos parametros
  //    // do url
  //   var escolanome = $('#filtroEscola').val();

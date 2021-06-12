@@ -483,7 +483,29 @@ echo $rows;
 
           var todo1 ='<ul class="todo-list" data-widget="todo-list">'+
        
-                           '<li class="">'+
+            '<li class="">'+
+
+                        '<div  class="icheck-primary d-inline ml-2">'+
+                        '<i class="fa fa-clipboard"></i>'+
+
+                        '</div>'+
+                        '<span class="text">Criar um modal para exibir</span>'+
+                        '<span class="text">as matérias um professor leciona e</span>'+
+                        '<span class="text">quais escolas ele frequenta</span>'+
+
+                        '<span class="text">Criar botões de redirecionamento para cada escola</span>'+
+
+            '<li class="">'+
+
+                        '<div  class="icheck-primary d-inline ml-2">'+
+                        '<i class="fa fa-clipboard"></i>'+
+
+                        '</div>'+
+                        '<span class="text">Criar um modal para EDITAR ESCOLAS,TURMAS E MATERIAS</span>'+
+                        '<span class="text">vinculadas à um professor</span>'+
+
+
+                           '<li class="done">'+
 
                         '<div  class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
@@ -494,7 +516,7 @@ echo $rows;
 
 
 
-                         '<li class="">'+
+                         '<li class="done">'+
 
                         '<div  class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
