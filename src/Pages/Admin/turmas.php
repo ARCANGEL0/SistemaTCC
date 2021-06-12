@@ -397,7 +397,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
 ?>
                   </select>
     <br>
-    <label for="nomeCoord">Coordenador</label>
+    <label for="editCoord">Coordenador</label>
     <select class="form-control" required type="text" id="editCoord" name="editCoord" >
       <option selected hidden disabled value="">Selecione um professor</option>
 <?php
@@ -764,11 +764,9 @@ mysqli_close($conn);
 $("#nomeEscola").change(function(){
   var escola = $(this).val();
 
-
-
    $.ajax({
 
- url: '../../Scripts/Manipulations/Admin/Global/getCoordenador.php',
+ url: '../../Scripts/Manipulations/Admin/Turmas/getCoordenador.php',
             type: 'post',
             dataType: 'json',
             data: { escola: escola},
@@ -777,7 +775,7 @@ $("#nomeEscola").change(function(){
                 var len = response.length;
 
 		$('#nomeCoord').empty();
-            $("#nomeCoord").append("<option hidden selected> Selecione um coordenador</option>");
+            $("#nomeCoord").append("<option disabled hidden selected> Selecione um professor</option>");
 
 
                 for( var i = 0; i<len; i++){

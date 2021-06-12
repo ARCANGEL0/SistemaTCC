@@ -331,7 +331,7 @@ Logado como ADMINISTRADOR             </h3>
           <div class="modal-header">
             <h4 class="modal-title">Registrar um novo professor</h4>          </div>
           <div class="modal-body registrarProfessor_corpo">
-          <form action="../../Scripts/Manipulations/Admin/Professores/registarProfessor.php" method="POST" id="modalform">
+          <form action="../../Scripts/Manipulations/Admin/Professores/registrarProfessor.php" method="POST" id="modalform">
     <label for="rm">RM</label>
     <input required  type="large_number" id="rm" name="rm">
     <br>
@@ -352,7 +352,7 @@ Logado como ADMINISTRADOR             </h3>
   <input required  maxlength="12" OnKeyPress="formatar('## ####-####', this)" type="text" id="telefone" name="telefone">
     <br>
     <label for="email">E-Mail</label>
-    <input required  type="text" id="email" name="email">
+    <input required  type="email" id="email" name="email">
     <br>
     <label for="cpf">CPF</label>
   <input required  maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" type="text" id="cpf" name="cpf">
@@ -687,6 +687,151 @@ $("#"+RegIDTurma).change(function(){
 <!-- FIM MODAL EDITAR -->
 
 
+<!-- MODAL Modal materias -->
+
+
+<div id="profMaterias" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <h4 class="modal-title">Materias lecionadas</h4>
+        </div>
+        <div class="modal-body">
+
+
+ <form class="formMaterias"  id="formMaterias" >
+<label for="materiaESCOLA"> Escola</label>
+<select required class="form-control" name="materiaESCOLA" id="materiaESCOLA">
+  <option hidden disabled selected value="">Selecione uma escola</option>
+  <?php
+  $queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
+  while($row = mysqli_fetch_array($queryEscolas))
+  {
+  echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+  };
+
+  ?>
+</select>
+
+<br>
+
+<label for="materiaTURMA">Turma</label>
+<select required class="form-control" name="materiaTURMA" id="materiaTURMA">
+  <option hidden disabled selected value="">Selecione uma turma</option>
+
+
+</select>
+<br><br>
+
+        <table class="tabelaMaterias table table-bordered display">
+          <thead>
+            <tr>
+         
+          <th>Matéria</th>
+          <th>Apagar</th>
+        </tr>
+          </thead>
+          <tbody class="materias">
+
+          </tbody>
+
+        </table>
+
+      </form>
+ 
+
+
+        </div>
+        <div class="modal-footer">
+        <button type="submit" class="btn btn-danger apagar">Editar</button>
+
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- FIM Modal materias -->
+
+
+
+
+
+
+
+
+<!-- MODAL Modal turmas -->
+
+
+<div id="profTurmas" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <h4 class="modal-title">Turmas vinculadas</h4>
+        </div>
+        <div class="modal-body">
+
+
+ <form class="formTurmas"  id="formTurmas" >
+<label for="turmaESCOLA"> Escola</label>
+<select required class="form-control" name="turmaESCOLA" id="turmaESCOLA">
+  <option hidden disabled selected value="">Selecione uma escola</option>
+  <?php
+  $queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
+  while($row = mysqli_fetch_array($queryEscolas))
+  {
+  echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+  };
+
+  ?>
+</select>
+
+<br><br>
+
+        <table class="tabelaTurmas table table-bordered display">
+          <thead>
+            <tr>
+         
+          <th>Turma</th>
+          <th>Apagar</th>
+        </tr>
+          </thead>
+          <tbody class="turmas">
+
+          </tbody>
+
+        </table>
+
+      </form>
+ 
+
+
+        </div>
+        <div class="modal-footer">
+        <button type="submit" class="btn btn-danger apagar">Editar</button>
+
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- FIM Modal turmas -->
+
+
+
+
+
+
+
+
+
 <!-- MODAL Modal escolas -->
 
 
@@ -697,32 +842,32 @@ $("#"+RegIDTurma).change(function(){
       <div class="modal-content">
         <div class="modal-header">
 
-          <h4 class="modal-title">Escolas registradas</h4>
+          <h4 class="modal-title">Turmas vinculadas</h4>
         </div>
         <div class="modal-body">
 
 
-       <input type="hidden" value="" id="rm_esc" name="rm_esc">
-  <style type="text/css">
-    .collap:hover, .activeTurmas {
-  background-color: #56D7CC11;
-  border: 1px solid #56D7CC;
-
-}
-    .turmas {
-padding-top: 10px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
+ <form class="formEscolas"  id="formEscolas" >
 
 
-}
-  </style>
+        <table class="tabelaEscolas table table-bordered display">
+          <thead>
+            <tr>
+         <th style="width:11% !important">Código</th>
+          <th>Escola</th>
+          <th>Apagar</th>
+        </tr>
+          </thead>
+          <tbody class="escolas">
 
-<div class="form-group" id="listagemEscolas" "> 
+          </tbody>
+
+        </table>
+
+      </form>
  
 
-</div>
+
         </div>
         <div class="modal-footer">
         <button type="submit" class="btn btn-danger apagar">Editar</button>
@@ -734,8 +879,6 @@ padding-top: 10px;
     </div>
   </div>
 <!-- FIM Modal escolas -->
-
-
 
 <div id="escolaDeletar" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
@@ -882,8 +1025,8 @@ echo "<td>" . $row['Prof_Bairro'] . "</td>";
 echo '<td><a class="btn-sm  btn-secondary text-white btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
 &nbsp;
   <a class="btn-sm btn-danger btnProfessores" name="professores" href="#"><i class="fa fa-graduation-cap"></i></a>
-  <a class="btn-sm btn-success btnAlunos" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
-  <a class="btn-sm btn-info btnEscolas" name="escolas" href="#"><i class="fa fa-school"></i></a>
+  <a class="btn-sm btn-success btnEscolas" name="escolas" href="#"><i class="fa fa-school"></i></a>
+  <a class="btn-sm btn-info btnMaterias" name="materias" href="#"><i class="fa fa-book"></i></a>
   <a class="btn-sm btn-warning text-white btnTurmas" name="turmas" href="#"><i class="fa fa-chalkboard-teacher"></i></a>
 </td>';
 echo "</tr>";
@@ -995,6 +1138,24 @@ echo "</tr>";
                     unset($_SESSION['registro_erro']);
 
                     ?>
+
+                      <?php
+                    if(isset($_SESSION['registro_duplicado'])):
+                    ?>
+                  <script>
+
+                  $(function () {
+                    $(document).ready(function(){
+                          toastr.error('Erro! Dados duplicados em Escolas!');
+                        });
+                      });
+                   </script>
+                    <?php
+                    endif;
+                    unset($_SESSION['registro_duplicado']);
+
+                    ?>
+
 
                     <?php
                               if(isset($_SESSION['prof_registrado'])):
@@ -1208,6 +1369,59 @@ $("#registrarProfTurma0").change(function(){
   });
 
 
+
+
+
+
+
+ table.on('click','.btnTurmas',function(){
+
+ $tr=$(this).closest('tr');
+
+  var data = table.row($tr).data();
+  var RM = data[0];
+
+ $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Resp/listagemEscolas.php',
+            type: 'POST',
+            data: {rmresp:RM},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+
+
+            $(".filhos").empty();
+
+
+                 for( var i = 0; i<len; i++){
+                    var escola = response[i]['escola'];
+                    var turma = response[i]['turma'];
+                    var materia = response[i]['materia'];
+
+
+
+  $(".filhos").append("<tr id="+i+"><th scope='row' class='row-data'>"+escola+"</td><td class='row-data'>"+turma+"</td><td class='row-data'>"+materia+"</td><td><button type='button' class='btn btn-danger' onclick='apagarTurma("+RM+")'><i class='fa fa-trash'></i></button></td></tr>");
+
+
+
+                }
+
+            }
+
+        });
+
+
+$("#profTurmas").modal('show');
+});
+
+
+
+
+
+
+
  table.on('click','.btnEscolas',function(){
 
  $tr=$(this).closest('tr');
@@ -1215,64 +1429,85 @@ $("#registrarProfTurma0").change(function(){
   var data = table.row($tr).data();
   var RM = data[0];
 
-  $.ajax({
-            url: '../../Scripts/Manipulations/Admin/Professores/listagemEscolas.php',
+ $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Resp/listagemEscolas.php',
             type: 'POST',
-            data: {RMPost:RM},
+            data: {rmresp:RM},
             dataType: 'json',
             success:function(response){
 
                 var len = response.length;
 
 
-  
-               $("#listagemEscolas").empty();
 
-                console.log(response[0]['turmas']);
-                console.log(response[0]['materias']);
+            $(".filhos").empty();
+
 
                  for( var i = 0; i<len; i++){
-                    var escolanomes = response[i]['escola'];
-                    var turma = response[i]['turmas'];
-                    var materia = response[i]['materias'];
+                    var escola = response[i]['escola'];
+                    var turma = response[i]['turma'];
+                    var materia = response[i]['materia'];
 
 
-             
+
+  $(".filhos").append("<tr id="+i+"><th scope='row' class='row-data'>"+escola+"</td><td class='row-data'>"+turma+"</td><td class='row-data'>"+materia+"</td><td><button type='button' class='btn btn-danger' onclick='apagarTurma("+RM+")'><i class='fa fa-trash'></i></button></td></tr>");
 
 
-                    $("#listagemEscolas").append("<button class='form-control collap' id='escola"+i+"'>"+escolanomes+"</button>");
-                    
-                    $("#escola"+i).after("<div class='turmas'><p class='bg-turma'><a class='bg-nomeTurma'>1N4</a>                                            <a class='bg-identifier'> - </a>                                        <a class='bg-nomeMateria'> Materia </a>        </p>                                                                                                 </div>");
-
-                 
 
                 }
 
             }
 
         });
-                
-  $("#listagemEscolas").on('click','.collap',function() {
-  this.classList.toggle("active");
 
-
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-      content.style.border = null;
-      content.style.background = null;
-      content.style.margin = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-
-      content.style.border = "1px solid #56D7CC";
-      content.style.background = "#56D7CC22";
-      content.style.margin = "10px 0 10px 0";
-
-         } 
-  });
 
 $("#profEscolas").modal('show');
+});
+
+
+
+
+
+ table.on('click','.btnMaterias',function(){
+
+ $tr=$(this).closest('tr');
+
+  var data = table.row($tr).data();
+  var RM = data[0];
+
+ $.ajax({
+            url: '../../Scripts/Manipulations/Admin/Resp/listagemEscolas.php',
+            type: 'POST',
+            data: {rmresp:RM},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+
+
+            $(".filhos").empty();
+
+
+                 for( var i = 0; i<len; i++){
+                    var escola = response[i]['escola'];
+                    var turma = response[i]['turma'];
+                    var materia = response[i]['materia'];
+
+
+
+  $(".filhos").append("<tr id="+i+"><th scope='row' class='row-data'>"+escola+"</td><td class='row-data'>"+turma+"</td><td class='row-data'>"+materia+"</td><td><button type='button' class='btn btn-danger' onclick='apagarTurma("+RM+")'><i class='fa fa-trash'></i></button></td></tr>");
+
+
+
+                }
+
+            }
+
+        });
+
+
+$("#profMaterias").modal('show');
 });
 
      table.on('click','.btnEditar',function(){

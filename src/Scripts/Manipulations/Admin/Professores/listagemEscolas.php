@@ -12,18 +12,15 @@ $array2 = array();
  
 
   $sql = "  
- SELECT esc.Escola_Nome from escolas esc
-inner join relacao_professorescola RPE ON esc.Escola_Codigo = RPE.Escola_Cod
-inner join professores P on RPE.Prof_Escola = P.RM_Prof
-where P.RM_Prof=".$rm.";
-    ";
+";
 
     $result = mysqli_query($conn,$sql);
   
  
     while( $row = mysqli_fetch_array($result) ){
      	$escola = $row['Escola_Nome'];
-        $array2[] = array("escola" => $escola);
+
+        $array2[] = array("escola" => $escola, "turma" => $turma, "materia" => $materia);
 
     
     }

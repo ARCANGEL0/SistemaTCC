@@ -28,9 +28,28 @@ $arrayMateria = array();
 
  for($x=0;$x<$numEscolas;$x++){
 
+
  $arrayEscolas[] = $_POST['codigoescola'.$x];
  $arrayTurmas[] = $_POST['codigoturma'.$x];
  $arrayMateria[] = $_POST['registrarProfMateria'.$x];
+
+
+ $check = "SELECT * from relacao_profescolas WHERE RM_Prof = '$rm' AND Escola_Cod='$arrayEscolas[$x]' AND Matéria = '$arrayMateria[$x]' AND Prof_Turmas='$arrayTurmas[$x]';";
+$checkQuery = mysqli_query($conn, $check);
+$checkRow = mysqli_fetch_row($checkQuery);
+
+if(!($checkRow==0))
+{
+      $_SESSION['registro_duplicado'] = true;
+
+          header("Location: ../../../../Pages/Admin/professores.php");
+          exit();
+
+  }
+
+
+
+
 
 $queryTurma = "INSERT into relacao_profescolas (RM_Prof, Escola_Cod, Matéria, Prof_Turmas)
 VALUES ('$rm','$arrayEscolas[$x]','$arrayMateria[$x]','$arrayTurmas[$x]');";
@@ -53,8 +72,18 @@ if(!mysqli_query($conn,$queryTurma)){
 
 
 
+ $checkRM = "SELECT * from professores WHERE RM_Prof = '$rm';";
+$queryRM = mysqli_query($conn, $checkRM);
+$rowRM = mysqli_fetch_row($queryRM);
 
+if(!($rowRM==0))
+{
+      $_SESSION['registro_erro'] = true;
 
+          header("Location: ../../../../Pages/Admin/professores.php");
+          exit();
+
+  }
 
 
 
