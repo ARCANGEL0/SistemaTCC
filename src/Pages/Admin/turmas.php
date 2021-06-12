@@ -328,7 +328,7 @@ Logado como ADMINISTRADOR             </h3>
 
 
     <label for="nomeEscola">Escola</label>
-    <select class="form-control" required type="text" onchange="buscaProfessores(this.value)" id="nomeEscola" name="nomeEscola" >
+    <select class="form-control" required type="text"  id="nomeEscola" name="nomeEscola" >
       <option selected hidden disabled value="">Selecione uma escola</option>
 
 <?php
@@ -344,14 +344,7 @@ echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>
     <label for="nomeCoord">Coordenador</label>
     <select class="form-control" required type="text" id="nomeCoord" name="nomeCoord" >
       <option selected hidden disabled value="">Selecione um professor</option>
-<?php
-$queryCoord =  mysqli_query($conn,"SELECT * FROM professores ");
-while($row = mysqli_fetch_array($queryCoord))
-{
-echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
-};
 
-?>
                   </select>
     <br>
     <label for="nomeTurma">Turma</label>
@@ -766,8 +759,39 @@ mysqli_close($conn);
     });
 
 
+	
+
+$("#nomeEscola").change(function(){
+  var escola = $(this).val();
 
 
+
+   $.ajax({
+
+ url: '../../Scripts/Manipulations/Admin/Global/getCoordenador.php',
+            type: 'post',
+            dataType: 'json',
+            data: { escola: escola},
+            success:function(response){
+
+                var len = response.length;
+
+		$('#nomeCoord').empty();
+            $("#nomeCoord").append("<option hidden selected> Selecione um coordenador</option>");
+
+
+                for( var i = 0; i<len; i++){
+                    var nome = response[i]['nome'];
+
+                    $("#nomeCoord").append("<option value='"+nome+"'>"+nome+"</option>");
+
+                }
+
+
+            }
+            });   // aqui vai ajax
+            
+		});
 
      table.on('click','.btnEditar',function(){
 
