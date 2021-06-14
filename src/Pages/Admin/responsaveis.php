@@ -471,7 +471,7 @@ var RegIDAluno ="registrarAluno"+ add_len;
     .attr("id",RegIDTurma)
     .empty()
     .attr("name",RegIDTurma)
-    
+
     $('.RegNewFields #registrarAluno0')
     .attr("id",RegIDAluno)
     .empty()
@@ -752,7 +752,7 @@ var idAluno ="editarAluno"+ len;
     .attr("id",idTurma)
     .empty()
     .attr("name",idTurma)
-    
+
     $('.newFields #editarAluno0')
     .attr("id",idAluno)
     .empty()
@@ -855,7 +855,7 @@ $("#"+idTurma).change(function(){
 </div>
         </div>
         <div class="modal-footer">
-        <button type="button" name="registrarFilhos" id="registrarFilhos" class="btn btn-success">Ok</button>
+        <button type="button" name="registrarFilhos" id="registrarFilhos" class="btn btn-success">Registrar</button>
 
           <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
           </form>
@@ -1203,7 +1203,7 @@ mysqli_close($conn);
 
 function criarFilho(RMresp) {
 
-var alunos = new Array(); 
+var alunos = new Array();
 
         $(".editaluno").each(function() {
 
@@ -1242,13 +1242,13 @@ var alunos = new Array();
 
 
 var rowId = event.target.parentNode.parentNode.id;
-                var dataT = 
- document.getElementById(rowId).querySelectorAll(".row-data"); 
-  
+                var dataT =
+ document.getElementById(rowId).querySelectorAll(".row-data");
+
                 var rm = dataT[0].innerHTML;
                 var nome = dataT[1].innerHTML;
                 var escola = dataT[2].innerHTML;
-  
+
 
 
   $.ajax({
@@ -1369,7 +1369,7 @@ $("#registrarFilhos").attr('onclick','criarFilho('+RM+')');
 });
 
 
- 
+
 
    // script para fazer a animação no modal de Dependentes
 

@@ -43,7 +43,6 @@ include('../../Scripts/Database/Connection.php');
   <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="../../assets/Admin/js/paginate.js" charset="utf-8"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="../../assets/Admin/js/paginate.js" charset="utf-8"></script>
 
 
 
