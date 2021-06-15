@@ -9,7 +9,7 @@ if(isset($_POST['escola'])){
 $array = array();
 
 
-    $sql = "SELECT * FROM turmas WHERE Escola='".escola."'";
+    $sql = "SELECT * FROM turmas WHERE ID_Escola='$escola';";
 
     $result = mysqli_query($conn,$sql);
 

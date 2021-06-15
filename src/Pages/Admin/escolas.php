@@ -505,7 +505,7 @@ mysqli_close($conn);
   <!-- /.content-wrapper -->
   <footer class="main-footer">
 
-   
+
   </footer>
 
   <!-- Control Sidebar -->
@@ -709,9 +709,11 @@ mysqli_close($conn);
        };
 
 
- var parametroEscola = parametroUrl("escola");
+       var parametroEscola = parametroUrl("escola");
+       turmaRegex = '\\b' + parametroEscola + '\\b';
 
-    var parametroTurma = parametroUrl("turma");
+        table.rows().search(turmaRegex, true, true).draw();
+
 
 
     $('#filtroEscola').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
