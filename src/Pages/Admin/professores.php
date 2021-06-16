@@ -390,7 +390,7 @@ Logado como ADMINISTRADOR             </h3>
   $queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
   while($row = mysqli_fetch_array($queryEscolas))
   {
-  echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+  echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>';
   };
 
   ?>
@@ -414,9 +414,6 @@ Logado como ADMINISTRADOR             </h3>
 
 </select>
 <br>
-    <input  type="hidden" id="codigoescola0" name="codigoescola0">
-
-    <input  type="hidden" id="codigoturma0" name="codigoturma0">
 
 
 
@@ -426,7 +423,7 @@ Logado como ADMINISTRADOR             </h3>
 
   var add_len = 1;
   var add = 1;
-  function addFilhos(){
+  function addNewDados(){
 
     $(".fieldEscolas select").last().val()
   $('#RegFirstField .fieldEscolas')
@@ -437,9 +434,6 @@ Logado como ADMINISTRADOR             </h3>
 var RegIDEscola = "registrarProfEscola"+ add_len;
 var RegIDTurma = "registrarProfTurma"+ add_len;
 var RegIDMateria ="registrarProfMateria"+ add_len;
-var RegCodigoEscola = "codigoescola"+ add_len;
-var RegCodigoTurma = "codigoturma"+ add_len;
-
 
     $('.RegNewFields #registrarProfEscola0')
     .attr("id",RegIDEscola)
@@ -455,14 +449,6 @@ var RegCodigoTurma = "codigoturma"+ add_len;
     .empty()
     .attr("name",RegIDMateria)
 
-     $('.RegNewFields #codigoescola0')
-    .attr("id",RegCodigoEscola)
-    .empty()
-    .attr("name",RegCodigoEscola)
-       $('.RegNewFields #codigoturma0')
-    .attr("id",RegCodigoTurma)
-    .empty()
-    .attr("name",RegCodigoTurma)
 
 
 
@@ -478,8 +464,7 @@ $("#"+RegIDEscola).change(function(){
 
 
    $.ajax({
-
- url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+     url: '../../Scripts/Manipulations/Admin/Global/getEscolaByTurmaID.php',
             type: 'post',
             data: {escola:reg_school},
             dataType: 'json',
@@ -489,12 +474,14 @@ $("#"+RegIDEscola).change(function(){
                 var len = response.length;
 
             $("#"+RegIDTurma).empty();
+            $("#"+RegIDMateria).empty();
             $("#"+RegIDTurma).append("<option hidden selected> Selecione uma turma</option>");
 
 
                 for( var i = 0; i<len; i++){
                     var turma = response[i]['name'];
-                    $("#"+RegIDTurma).append("<option value='"+turma+"'>"+turma+"</option>");
+                    var id = response[i]['turma'];
+                    $("#"+RegIDTurma).append("<option value='"+id+"'>"+turma+"</option>");
 
                 }
 
@@ -503,28 +490,7 @@ $("#"+RegIDEscola).change(function(){
             });   // aqui vai ajax
 
 
-      $.ajax({
 
- url: '../../Scripts/Manipulations/Admin/Global/getEscolaID.php',
-            type: 'post',
-            data: {escola:reg_school},
-            dataType: 'json',
-            success:function(response){
-
-                var len = response.length;
-
-            $("#"+RegCodigoEscola).empty();
-
-
-                for( var i = 0; i<len; i++){
-                    var id = response[i][ 'escolaid'];
-            $("#"+RegCodigoEscola).val(id);
-
-                }
-
-
-            }
-            });   // aqui vai ajax para pegar codigo da escola
 
   });
 
@@ -564,28 +530,6 @@ $("#"+RegIDTurma).change(function(){
             });   // aqui vai ajax
 
 
-        $.ajax({
-
- url: '../../Scripts/Manipulations/Admin/Global/getTurmaID.php',
-            type: 'post',
-            data: {turma:reg_turma},
-            dataType: 'json',
-            success:function(response){
-
-                var len = response.length;
-
-            $("#"+RegCodigoTurma).empty();
-
-
-                for( var i = 0; i<len; i++){
-                    var id = response[i]['turmaid'];
-            $("#"+RegCodigoTurma).val(id);
-
-                }
-
-
-            }
-            });   // aqui vai ajax para pegar codigo da escola
 
 
 
@@ -611,7 +555,7 @@ $("#"+RegIDTurma).change(function(){
 </fieldset>
 <div class="addField">
 
-  <button class="btn btn-outline-info" type="button" onclick="addFilhos();" id="addFilho"  name="addFilho"><i class="fa fa-plus"></i></button>
+  <button class="btn btn-outline-info" type="button" onclick="addNewDados();" id="addFilho"  name="addFilho"><i class="fa fa-plus"></i></button>
 
 </div>
 
@@ -899,16 +843,24 @@ $("#"+RegIDTurma).change(function(){
 
  <form class="formEdit"  id="formEdit" >
 
-   <input type="hidden" name="" id="editRM" value="">
+   <input type="hidden" name="" id="registroRM" value="">
 
-   <label for="editESCOLA0"> Escola</label>
-   <select required class="form-control" name="editESCOLA0" id="editESCOLA0">
+
+   <input type="hidden" value=1 id="numDados" name="numDados">
+
+   <fieldset id="firstFieldRegistro">
+   <fieldset class="fieldDados">
+
+
+
+   <label for="registroEscola0">Escola</label>
+   <select class="form-control editescola" name="registroEscola0" id="registroEscola0">
      <option hidden disabled selected value="">Selecione uma escola</option>
      <?php
      $queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
      while($row = mysqli_fetch_array($queryEscolas))
      {
-     echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>';
+     echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
      };
 
      ?>
@@ -916,28 +868,160 @@ $("#"+RegIDTurma).change(function(){
 
    <br>
 
-   <label for="editTURMA0">Turma</label>
-   <select required class="form-control" name="editTURMA0" id="editTURMA0">
+   <label for="registroTurma0">Turma</label>
+   <select class="form-control editturma" name="registroTurma0" id="registroTurma0">
+     <option hidden disabled selected value="">Selecione uma turma</option>
 
 
    </select>
-   <br><br>
-   <label for="editMATERIA0">Disciplina</label>
-   <select required class="form-control" name="editMATERIA0" id="editMATERIA0">
+   <br>
 
+
+
+   <label for="registroMateria0">Matéria</label>
+   <select class="form-control editdisciplina" name="registroMateria0" id="registroMateria0">
+     <option hidden disabled selected value="">Selecione uma matéria</option>
 
    </select>
-   <br><br>
+   <br>
 
-         </form>
+   <hr style="border-width: 1.2px; border-color: #cecece">
+
+   <script>
+
+
+
+     var len = 1;
+     var dados = 1;
+     function addDados(){
+
+
+    $(".fieldDados select").last().val()
+     $('#firstFieldRegistro .fieldDados')
+     .clone()
+     .appendTo('.newFields')
+     .attr("id","novoField"+ len)
+     .each(function(){
+   var idEscola = "registroEscola"+ len;
+   var idTurma = "registroTurma"+ len;
+   var idMateria ="registroMateria"+ len;
+
+       $('.newFields #registroEscola0')
+       .attr("id",idEscola)
+       .attr("name",idEscola)
+
+       $('.newFields #registroTurma0')
+       .attr("id",idTurma)
+       .empty()
+       .attr("name",idTurma)
+
+       $('.newFields #registroMateria0')
+       .attr("id",idMateria)
+       .empty()
+       .attr("name",idMateria)
+
+       dados++;
+     len++;
+
+   $("#numDados").val(dados);
+
+   $("#"+idEscola).change(function(){
+
+     var school = $("#"+idEscola).val();
+
+      $.ajax({
+
+        url: '../../Scripts/Manipulations/Admin/Global/getEscolaByTurmaID.php',
+               type: 'post',
+               data: {escola:school},
+               dataType: 'json',
+               success:function(response){
+
+                   var len = response.length;
+
+               $("#"+idTurma).empty();
+               $("#"+idTurma).append("<option hidden selected> Selecione uma turma</option>");
+
+
+                   for( var i = 0; i<len; i++){
+                       var turma = response[i]['name'];
+                       var idturma = response[i]['turma'];
+                       $("#"+idTurma).append("<option value='"+idturma+"'>"+turma+"</option>");
+
+                   }
+
+
+               }
+               });   // aqui vai ajax
+
+     });
+
+   // get alunos from turmas
+
+   $("#"+idTurma).change(function(){
+
+
+
+      $.ajax({
+
+    url: '../../Scripts/Manipulations/Admin/Global/getMateria.php',
+               type: 'post',
+               dataType: 'json',
+               success:function(response){
+
+                   var len = response.length;
+
+               $("#"+idMateria).empty();
+               $("#"+idMateria).append("<option hidden selected> Selecione uma matéria</option>");
+
+
+                   for( var i = 0; i<len; i++){
+                       var materia = response[i]['nome'];
+                         var abrev = response[i]['abreviacao'];
+
+                       $("#"+idMateria).append("<option value='"+abrev+"'>"+materia+"</option>");
+
+                   }
+
+
+               }
+               });   // aqui vai ajax
+
+     });
+
+
+
+
+
+     });
+
+
+   }
+
+   </script>
+
+
+   </fieldset>
+   </fieldset>
+
+   <fieldset class="newFields">
+
+   </fieldset>
+   <div class="addField">
+
+     <button class="btn btn-outline-info" type="button" onclick="addDados();" id="addRegistro"  name="addRegistro"><i class="fa fa-plus"></i></button>
+
+   </div>
 
 
 
            </div>
            <div class="modal-footer">
-           <button type="submit" class="btn btn-success" id="registrarMateria" name="registrarMateria" >Registrar</button>
+           <button type="button" class="btn btn-success" id="registrarDados" name="registrarDados" >Registrar</button>
 
              <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+           </form>
+
            </div>
          </div>
 
@@ -1163,6 +1247,23 @@ echo "</tr>";
 
                     ?>
 
+                    <?php
+                              if(isset($_SESSION['registro_erro_escolas'])):
+                              ?>
+                            <script>
+
+                            $(function () {
+                              $(document).ready(function(){
+                                    toastr.error('Erro ao registrar os dados escolares!');
+                                  });
+                                });
+                             </script>
+                              <?php
+                              endif;
+                              unset($_SESSION['registro_erro_escolas']);
+
+                              ?>
+
                       <?php
                     if(isset($_SESSION['registro_duplicado'])):
                     ?>
@@ -1241,29 +1342,53 @@ echo "</tr>";
 
 
 
-function criarMateria(rm) {
+function criarRegistro(rm) {
 
-var escola=  $("#materiaESCOLA").val();
-var turma = $("#materiaTURMA").val();
-var materia = $("#materiaDISCIPLINA").val();
+  var escolas = new Array();
+  var turmas = new Array();
+  var materias = new Array();
+var numDados = $("#numDados").val();
 
-  $.ajax({
-             url: '../../Scripts/Manipulations/Admin/Professores/registrarMateria.php',
-             type: 'POST',
-             data: {rmprof:rm,
-               escolaprof: escola,
-               turmaprof: turma,
-               materiaprof: materia},
-             success:function(response){
-               toastr.success('Disciplina registrada!');
-                 $("#profMaterias").modal("hide");
+          $(".editescola").each(function() {
 
- },
-             error: function(response) {
-               toastr.error('Erro ao registrar! ');
+   escolas.push(this.value); // nessa função, se adiciona o valor de cada input na array
 
-             }
- });
+  });
+
+  $(".editturma").each(function() {
+
+turmas.push(this.value); // nessa função, se adiciona os rms de cada input numa array
+
+});
+$(".editdisciplina").each(function() {
+
+materias.push(this.value); // nessa função, se adiciona os rms de cada input numa array
+
+});
+
+
+
+    $.ajax({
+              url: '../../Scripts/Manipulations/Admin/Professores/registrarDadosEscolares.php',
+              type: 'POST',
+              data: {arrayEscolas:escolas,
+                arrayTurmas: turmas,
+                arrayMaterias: materias,
+                profrm: rm,
+                index: numDados},
+              success:function(response){
+                toastr.success('Dados registrados!');
+                  $("#profNovosDados").modal("hide");
+
+  },
+              error: function(response) {
+                toastr.error('Erro ao registrar!');
+
+              }
+  });
+
+
+
 
 
 
@@ -1283,7 +1408,7 @@ document.getElementById(rowId).querySelectorAll(".row-data");
 
               var turma = dataT[0].innerHTML;
               var escola = $("#turmaESCOLA").val();
-              
+
  $.ajax({
            url: '../../Scripts/Manipulations/Admin/Professores/excluirTurma.php',
            type: 'POST',
@@ -1458,27 +1583,27 @@ document.getElementById(rowID).querySelectorAll(".row-data");
 
 $("#registrarProfEscola0").change(function(){
 
-  var escolanome = $('#registrarProfEscola0').val();
+  var escolanome = $(this).val();
 
 
    $.ajax({
 
- url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
+     url: '../../Scripts/Manipulations/Admin/Global/getEscolaByTurmaID.php',
             type: 'post',
             data: {escola:escolanome},
             dataType: 'json',
             success:function(response){
-              var turma = response[0]['turma'];
-
                 var len = response.length;
 
             $('#registrarProfTurma0').empty();
+            $('#registrarProfMateria0').empty();
             $("#registrarProfTurma0").append("<option hidden selected> Selecione uma turma</option>");
 
 
                 for( var i = 0; i<len; i++){
                     var turma = response[i]['name'];
-                    $("#registrarProfTurma0").append("<option value='"+turma+"'>"+turma+"</option>");
+                    var id = response[i]['turma'];
+                    $("#registrarProfTurma0").append("<option value='"+id+"'>"+turma+"</option>");
 
                 }
 
@@ -1486,28 +1611,7 @@ $("#registrarProfEscola0").change(function(){
             }
             });   // aqui vai ajax
 
-     $.ajax({
 
- url: '../../Scripts/Manipulations/Admin/Global/getEscolaID.php',
-            type: 'post',
-            data: {escola:escolanome},
-            dataType: 'json',
-            success:function(response){
-
-                var len = response.length;
-
-            $("#codigoescola0").empty();
-
-
-                for( var i = 0; i<len; i++){
-                    var id = response[i]['escolaid'];
-            $("#codigoescola0").val(id);
-
-                }
-
-
-            }
-            });   // aqui vai ajax para pegar codigo da escola
 
   });
 
@@ -1515,10 +1619,10 @@ $("#registrarProfEscola0").change(function(){
 
 
 
-    $("#editTURMA0").change(function(){
+    $("#registroTurma0").change(function(){
 
       var turmaid = $(this).val();
-      var rm = $("#editRM").val();
+      var rm = $("#registroRM").val();
 
 
                 $.ajax({
@@ -1531,13 +1635,13 @@ $("#registrarProfEscola0").change(function(){
                          success:function(response){
                              var len = response.length;
 
-           $("#editMATERIA0").empty();
-           $("#editMATERIA0").append("<option hidden disabled selected> Selecione uma disciplina</option>");
+           $("#registroMateria0").empty();
+           $("#registroMateria0").append("<option hidden disabled selected> Selecione uma disciplina</option>");
 
                              for( var i = 0; i<len; i++){
                                  var nome = response[i]['nome'];
                                  var abreviacao = response[i]['abreviacao'];
-                $("#editMATERIA0").append("<option value='"+abreviacao+"'>"+nome+"</option>");
+                $("#registroMateria0").append("<option value='"+abreviacao+"'>"+nome+"</option>");
 
 
                          }
@@ -1757,13 +1861,17 @@ $("#profMaterias").modal('show');
 
   var data = table.row($tr).data();
   var RM = data[0];
-$("#editRM").val(RM);
+$("#registroRM").val(RM);
 
 
 
+$("#registroEscola0").append("<option hidden disabled selected> Selecione uma escola</option>");
+$("#registroTurma0").empty();
+$("#registroMateria0").empty();
+  $(".newFields").empty();
 
-$("#registrarMateria").attr('onclick','criarMateria('+RM+')');
 
+$("#registrarDados").attr('onclick','criarRegistro('+RM+')');
 
 
  $.ajax({
@@ -1777,11 +1885,11 @@ $("#registrarMateria").attr('onclick','criarMateria('+RM+')');
 
 
 
-            $("#editESCOLA0").empty();
-            $("#editTURMA0").empty();
-            $("#editMATERIA0").empty();
+            $("#registroEscola0").empty();
+            $("#registrarTurma0").empty();
+            $("#registrarMateria0").empty();
 
-            $("#editESCOLA0").append("<option hidden selected> Selecione uma escola</option>");
+            $("#registroEscola0").append("<option hidden selected> Selecione uma escola</option>");
 
 
                  for( var i = 0; i<len; i++){
@@ -1791,7 +1899,7 @@ $("#registrarMateria").attr('onclick','criarMateria('+RM+')');
 
 
 
-                            $("#editESCOLA0").append("<option value='"+id+"'>"+escola+"</option>");
+                            $("#registroEscola0").append("<option value='"+id+"'>"+escola+"</option>");
 
                 }
 
@@ -1847,7 +1955,7 @@ $("#profNovosDados").modal('show');
 
 
 //
-$("#editESCOLA0").change(function(){
+$("#registroEscola0").change(function(){
 
   var escolanome = $(this).val();
 var profrm = $("#editRM").val();
@@ -1861,16 +1969,16 @@ var profrm = $("#editRM").val();
 
                 var len = response.length;
 
-            $('#editTURMA0').empty();
-            $("#editMATERIA0").empty();
+            $('#registroTurma0').empty();
+            $("#registroMateria0").empty();
 
-            $("#editTURMA0").append("<option hidden selected> Selecione uma turma</option>");
+            $("#registroTurma0").append("<option hidden selected> Selecione uma turma</option>");
 
 
                 for( var i = 0; i<len; i++){
                     var turma = response[i]['name'];
                     var id = response[i]['turma'];
-                    $("#editTURMA0").append("<option value='"+id+"'>"+turma+"</option>");
+                    $("#registroTurma0").append("<option value='"+id+"'>"+turma+"</option>");
                 }
 
 

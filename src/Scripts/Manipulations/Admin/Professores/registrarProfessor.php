@@ -21,7 +21,7 @@ $numEscolas = $_POST['numEscolas'];
 if(isset($_POST['registrar'])){
 
 
-$arrayEscolas = array(); 
+$arrayEscolas = array();
 $arrayTurmas = array();
 $arrayMateria = array();
 
@@ -29,12 +29,12 @@ $arrayMateria = array();
  for($x=0;$x<$numEscolas;$x++){
 
 
- $arrayEscolas[] = $_POST['codigoescola'.$x];
- $arrayTurmas[] = $_POST['codigoturma'.$x];
+ $arrayEscolas[] = $_POST['registrarProfEscola'.$x];
+ $arrayTurmas[] = $_POST['registrarProfTurma'.$x];
  $arrayMateria[] = $_POST['registrarProfMateria'.$x];
 
 
- $check = "SELECT * from relacao_profescolas WHERE RM_Prof = '$rm' AND Escola_Cod='$arrayEscolas[$x]' AND Matéria = '$arrayMateria[$x]' AND Prof_Turmas='$arrayTurmas[$x]';";
+ $check = "SELECT * from relacao_profescolas WHERE RM_Prof = '$rm' AND Escola_Cod='$arrayEscolas[$x]' AND Matéria = '". $arrayMateria[$x]. "' AND Prof_Turmas='$arrayTurmas[$x]';";
 $checkQuery = mysqli_query($conn, $check);
 $checkRow = mysqli_fetch_row($checkQuery);
 
@@ -56,11 +56,11 @@ VALUES ('$rm','$arrayEscolas[$x]','$arrayMateria[$x]','$arrayTurmas[$x]');";
 
 if(!mysqli_query($conn,$queryTurma)){
 
-    $_SESSION['registro_erro'] = true;
+    $_SESSION['registro_erro_escolas'] = true;
 
       header("Location: ../../../../Pages/Admin/professores.php");
       exit();
-	
+
 
 	}
 
@@ -102,7 +102,7 @@ if(!($rowRM==0))
 
       header("Location: ../../../../Pages/Admin/professores.php");
       exit();
-	
+
 
 	}
 

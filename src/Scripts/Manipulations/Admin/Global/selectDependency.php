@@ -2,14 +2,14 @@
 include('../../../Database/Connection.php');
 
 
-if(isset($_POST['escola'])){
-   $escola = mysqli_real_escape_string($conn,$_POST['escola']); // department id
+if(isset($_POST['escolanome'])){
+   $escola = mysqli_real_escape_string($conn,$_POST['escolanome']); // department id
 }
 
 $array = array();
 
 
-    $sql = "SELECT * FROM turmas WHERE Escola='".escola."'";
+    $sql = "SELECT * FROM turmas WHERE Escola='".escola."';";
 
     $result = mysqli_query($conn,$sql);
 
