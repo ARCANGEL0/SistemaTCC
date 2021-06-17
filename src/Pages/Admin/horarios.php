@@ -325,14 +325,14 @@ Logado como ADMINISTRADOR             </h3>
         <div class="modal-content">
           <div class="modal-header">
 
-            <h4 class="modal-title">Registrar uma nova turma</h4>
+            <h4 class="modal-title">Registrar uma novo horário</h4>
           </div>
           <div class="modal-body RegistrarHorario_corpo">
           <form action="../../Scripts/Manipulations/Admin/Horarios/registrarHorario.php" method="POST" id="modalform">
 
 
     <label for="nomeEscola">Escola</label>
-    <select class="form-control" required type="text"onchange="teste(this.value)" id="nomeEscola" name="nomeEscola" >
+    <select class="form-control" required type="text" id="nomeEscola" name="nomeEscola" >
       <option selected hidden disabled value="">Selecione uma escola</option>
 
 <?php
@@ -349,7 +349,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     <select class="form-control" required type="text" onchange="" id="nomeTurmas" name="nomeTurmas" >
       <option hidden disabled selected value="#"></option>
 
-   
+
     </select>
      <script>
       $(document).ready(function(){
@@ -379,7 +379,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
         });
     });
 
-   
+
 });
   </script>
     <br><br>
@@ -531,7 +531,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
       <script>
       $(document).ready(function(){
 // script quqe usa ajax para detectar escola selecionada, rodar um sql para selecionar turmas e colocar no segundo select
- 
+
     $("#escolaEdit").change(function(){
         var escolanome2= $(this).val();
         $.ajax({
@@ -582,12 +582,12 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
                 var len1 = response.length;
 
                 $("#filtroTurma").empty();
-                $("#filtroTurma").append("<option disabled hidden selected value='none'>Selecione uma turma</option>");
+                $("#filtroTurma").append("<option disabled hidden selected>Selecione uma turma</option>");
 
 
                 for( var i = 0; i<len1; i++){
                     var turma = response[i]['name'];
-                    $("#filtroTurma").append("<option value='"+turma+"'>"+turma+"</option>");
+                    $("#filtroTurma").append("<option value="+turma+">"+turma+"</option>");
 
                 }
 
@@ -622,7 +622,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
                  var aulaTer6 = data.terca6;
                  var aulaTer7 = data.terca7;
                  var aulaTer8 = data.terca8;
-            
+
 
                  var aulaQua0 = data.quarta0;
                  var aulaQua1 = data.quarta1;
@@ -633,7 +633,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
                  var aulaQua6 = data.quarta6;
                  var aulaQua7 = data.quarta7;
                  var aulaQua8 = data.quarta8;
-            
+
 
                  var aulaQui0 = data.quinta0;
                  var aulaQui1 = data.quinta1;
@@ -644,7 +644,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
                  var aulaQui6 = data.quinta6;
                  var aulaQui7 = data.quinta7;
                  var aulaQui8 = data.quinta8;
-            
+
 
                  var aulaSex0 = data.sexta0;
                  var aulaSex1 = data.sexta1;
@@ -655,8 +655,8 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
                  var aulaSex6 = data.sexta6;
                  var aulaSex7 = data.sexta7;
                  var aulaSex8 = data.sexta8;
-            
-            
+
+
                 var len = data.length;
 
                 $("#Editsegunda0").append("<option  hidden selected value='"+aulaS0+"'>"+aulaS0+" </option>");
@@ -708,7 +708,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
                 $("#Editsexta6").append("<option  hidden selected value='"+aulaSex6+"'>"+aulaSex6+" </option>");
                 $("#Editsexta7").append("<option  hidden selected value='"+aulaSex7+"'>"+aulaSex7+" </option>");
                 $("#Editsexta8").append("<option  hidden selected value='"+aulaSex8+"'>"+aulaSex8+" </option>");
-             
+
             }
         });
     });
@@ -1024,7 +1024,7 @@ mysqli_close($conn);
   <!-- /.content-wrapper -->
   <footer class="main-footer">
 
-   
+
   </footer>
 
   <!-- Control Sidebar -->
@@ -1214,7 +1214,7 @@ mysqli_close($conn);
       "responsive": true,
     });
 
-            
+
 
 
 
@@ -1254,18 +1254,18 @@ mysqli_close($conn);
        };
 
 
-    
-    
+
+
 table.search("Sem turma").draw();
     // Isto serve para impedir a visualização de conteudo
-    
+
        //ao carregar a página, e forçar o filtro por turma
 
 
 
        // estas variaveis abaixo servem para realizar busca exata para turma e evita buscar
        // por semelhanças e causar multiplos dados
-  
+
   var parametroTurma = parametroUrl("turma");
 turmaRegex = '\\b' + parametroTurma + '\\b';
 
@@ -1298,7 +1298,7 @@ turmaRegex = '\\b' + parametroTurma + '\\b';
  //                var len1 = response.length;
 
  //                $("#filtroTurma").empty();
-            
+
  //                for( var i = 0; i<len1; i++){
  //                    var turma = response[i]['name'];
 
@@ -1308,7 +1308,7 @@ turmaRegex = '\\b' + parametroTurma + '\\b';
 
 
  //                    $("#filtroTurma").val(parametroTurma).change(); // aqui ele insere automaticamente a turma do parametro
-                
+
 
  // table.search(parametroTurma.value).draw(); // aqui ele seleciona o horário da turma
 
@@ -1316,18 +1316,18 @@ turmaRegex = '\\b' + parametroTurma + '\\b';
 
  //        });
 
- //  } 
+ //  }
 
 
 
-// getTurma(); 
+// getTurma();
 
  // aqui ele chama a função
   });
 
 
 
-  
+
 </script>
 
 </body>

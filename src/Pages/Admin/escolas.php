@@ -472,9 +472,9 @@ echo "<td>" . $row['Escola_CEP'] . "</td>";
 echo '<td><a class="btn-sm  btn-secondary btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
 &nbsp;
 
-  <a class="btn-sm btn-danger btnProfessores" name="professores" href="#"><i class="fa fa-graduation-cap"></i></a>
 
 
+<a class="btn-sm btn-success  btnAlunos" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
 
 
   <a class="btn-sm btn-info  btnFuncionarios" name="funcionarios" href="#"><i class="fa fa-briefcase"></i></a>
@@ -710,10 +710,13 @@ mysqli_close($conn);
 
 
        var parametroEscola = parametroUrl("escola");
+
        turmaRegex = '\\b' + parametroEscola + '\\b';
 
         table.rows().search(turmaRegex, true, true).draw();
-
+if (parametroEscola == null) {
+  table.rows().search('').draw();
+}
 
 
     $('#filtroEscola').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
@@ -752,6 +755,17 @@ table.on('click','.btnFuncionarios',function(){
 
 });
 
+
+
+table.on('click','.btnAlunos',function(){
+
+      $tr=$(this).closest('tr');
+
+      var data = table.row($tr).data();
+      var escola = data[2];
+      location.href = "alunos.php?escola="+escola;
+
+});
 table.on('click','.btnTurmas',function(){
 
       $tr=$(this).closest('tr');

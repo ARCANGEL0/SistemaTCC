@@ -391,7 +391,7 @@ echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>
 $queryEscolas =  mysqli_query($conn,"SELECT * FROM escolas");
 while($row = mysqli_fetch_array($queryEscolas))
 {
-echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
+echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>';
 };
 
 ?>
@@ -400,14 +400,7 @@ echo '<option value="'.$row['Escola_Nome'].'">' . $row['Escola_Nome'] . '</td>';
     <label for="editCoord">Coordenador</label>
     <select class="form-control" required type="text" id="editCoord" name="editCoord" >
       <option selected hidden disabled value="">Selecione um professor</option>
-<?php
-$queryCoord =  mysqli_query($conn,"SELECT * FROM professores");
-while($row = mysqli_fetch_array($queryCoord))
-{
-echo '<option value="'.$row['Prof_Nome'].'">' . $row['Prof_Nome'] . '</td>';
-};
 
-?>
                   </select>
                   <br>
     <label for="editTurma">Turma</label>
@@ -539,7 +532,6 @@ echo "<td>" . $row['Turma'] . "</td>";
 echo '<td><a class="btn-sm  btn-secondary btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
 &nbsp;
 
-  <a class="btn-sm btn-danger btnProfessores" name="professores" href="#"><i class="fa fa-graduation-cap"></i></a>
 
 
   <a class="btn-sm btn-success btnAlunos" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
@@ -572,7 +564,7 @@ mysqli_close($conn);
   <!-- /.content-wrapper -->
   <footer class="main-footer">
 
-   
+
   </footer>
 
   <!-- Control Sidebar -->
@@ -759,7 +751,35 @@ mysqli_close($conn);
     });
 
 
-	
+    $("#editEscola").change(function(){
+      var escola = $(this).val();
+
+       $.ajax({
+
+     url: '../../Scripts/Manipulations/Admin/Turmas/getCoordenador.php',
+                type: 'post',
+                dataType: 'json',
+                data: { escola: escola},
+                success:function(response){
+
+                    var len = response.length;
+
+    		$('#editCoord').empty();
+                $("#editCoord").append("<option disabled hidden selected> Selecione um professor</option>");
+
+
+                    for( var i = 0; i<len; i++){
+                        var nome = response[i]['nome'];
+
+                        $("#editCoord").append("<option value='"+nome+"'>"+nome+"</option>");
+
+                    }
+
+
+                }
+                });   // aqui vai ajax
+
+    		});
 
 $("#nomeEscola").change(function(){
   var escola = $(this).val();
@@ -788,7 +808,7 @@ $("#nomeEscola").change(function(){
 
             }
             });   // aqui vai ajax
-            
+
 		});
 
      table.on('click','.btnEditar',function(){
@@ -801,20 +821,19 @@ $("#nomeEscola").change(function(){
 
       console.log(data);
       $('#idEdit').val(data[0])
-      $('#editEscola').val(data[1]);
-      $('#editCoord').val(data[2]);
+      $("#editEscola").append("<option hidden disabled selected> Selecione uma escola</option>");
       $('#editTurma').val(data[3]);
 
 
     $('#EditarTurma').modal('show');
     });
-     
+
 
 
 
      // horarios
 
- 
+
 
      // btnAulas
 
@@ -883,9 +902,33 @@ location.href="alunos.php?turma="+turma;
        // Isto serve para impedir a visualização de conteudo
        //ao carregar a página, e forçar o filtro por turma
 
-    var parametro = parametroUrl("turma");
-    var escola = parametroUrl("escola");
-        table.search(parametro || escola).draw();
+    var parametroturma = parametroUrl("turma");
+    var parametroescola = parametroUrl("escola");
+
+
+
+
+               escola = '\\b' + parametroescola  + '\\b';
+               turma = '\\b' + parametroturma  + '\\b';
+
+
+// se parameroturma estiver vazio e o escola nao, busca por escola
+                if (parametroturma == null && parametroescola != null) {
+                    table.rows().search(escola, true, true).draw();
+                }
+
+                // se parametro turma estiver com algo, e o escola vazio, pesquisa por turma
+
+              else  if (parametroturma != null && parametroescola == null) {
+                  table.rows().search(turma, true, true).draw();
+                }
+// caso os 2 estejam vazios, não busca nada
+else  {
+          table.rows().search('').draw();
+        }
+
+
+
 
     $('#filtroEscola').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
        table.search(this.value).draw();

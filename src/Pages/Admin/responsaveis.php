@@ -57,8 +57,12 @@ padding-top: 10px;
 
 
 .wrapper{
-width: 150vw;}
+width: 150vw;
+}
+.wrapper, html, body {
+  margin-top: -8px;
 
+}
 
 #tabelaResp_filter {
   margin-top: 20px;
@@ -673,7 +677,7 @@ $("#"+RegIDTurma).change(function(){
               <th>RM</th>
           <th>Nome</th>
           <th>Escola</th>
-          <th>Apagar</th>
+          <th>Ações</th>
         </tr>
           </thead>
           <tbody class="filhos">
@@ -1238,6 +1242,18 @@ var alunos = new Array();
 
 
 }
+
+function procurarFilho() {
+
+  var rowId = event.target.parentNode.parentNode.id;
+                  var dataT =
+   document.getElementById(rowId).querySelectorAll(".row-data");
+
+                  var rm = dataT[0].innerHTML;
+
+                  location.href = " alunos.php?aluno="+rm;
+                }
+
   function apagarFilho(RMresp){
 
 
@@ -1355,7 +1371,7 @@ $("#registrarFilhos").attr('onclick','criarFilho('+RM+')');
 
 
 
-  $(".filhos").append("<tr id="+i+"><th scope='row' class='row-data'>"+rm+"</td><td class='row-data'>"+nome+"</td><td class='row-data'>"+escola+"</td><td><button type='button' class='btn btn-danger' onclick='apagarFilho("+RM+")'><i class='fa fa-trash'></i></button></td></tr>");
+  $(".filhos").append("<tr id="+i+"><th scope='row' class='row-data'>"+rm+"</td><td class='row-data'>"+nome+"</td><td class='row-data'>"+escola+"</td><td><button type='button' class='btn btn-info' onclick='procurarFilho()'><i class='fa fa-search'></i></button>&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-danger' onclick='apagarFilho("+RM+")'><i class='fa fa-trash'></i></button></td></tr>");
 
 
 

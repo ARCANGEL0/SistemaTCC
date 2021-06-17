@@ -156,7 +156,7 @@ width: 150vw;}
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-user"></i>&nbsp;
-          ADMIN        
+          ADMIN
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="#" class="dropdown-item">
@@ -164,7 +164,7 @@ width: 150vw;}
             <div class="media">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-                  Logado como ADMINISTRADOR             
+                  Logado como ADMINISTRADOR
                 </h3>
                 <div class="dropdown-divider"></div>
               </div>
@@ -355,13 +355,13 @@ RegistrarEscola
 
 </select>
 <br>
-<div style="display: flex"> 
+<div style="display: flex">
 <select style="width: 60%" class="form-control" name="notasANO" id="notasANO">
-      <option value="1">1º Ano</option> 
+      <option value="1">1º Ano</option>
       <option value="2">2º Ano</option>
       <option value="3">3º Ano</option>
 
- 
+
 </select>
 
 
@@ -369,7 +369,7 @@ RegistrarEscola
 
 </div>
 <br><br><br>
-   
+
 
     <div style="width: 50%;" class=" d-flex flex-wrap notas">
 
@@ -379,27 +379,27 @@ RegistrarEscola
 
 
      <div  >
-<input type="number" min="0" step="0.1" max="10"  type="number" min="0" step="0.1" max="10" id="nota1" name='nota1' class='notasInput' value="0"></input>  
+<input type="number" min="0" step="0.1" max="10"  type="number" min="0" step="0.1" max="10" id="nota1" name='nota1' class='notasInput' value="0"></input>
 
-     </div>   
+     </div>
 
      </div>
 
        <div style="height: 53px" class="form-control mb-4 flex-lg-row d-flex  ">
      <h2 class=""> Nota 2: &nbsp;&nbsp;&nbsp;</h2>
      <div>
-<input type="number" min="0" step="0.1" max="10"  id='nota2' name='nota2' class='notasInput' value="0"></input>  
+<input type="number" min="0" step="0.1" max="10"  id='nota2' name='nota2' class='notasInput' value="0"></input>
 
-   
-       </div>  
+
+       </div>
 
      </div>
 
        <div style="height: 53px" class="form-control mb-4 flex-lg-row d-flex  ">
      <h2 class=""> Nota 3: &nbsp;&nbsp;&nbsp;</h2>
   <div>
-    
-    <input type="number" min="0" step="0.1" max="10"  id='nota3' name='nota3' class='notasInput' value="0"></input>  
+
+    <input type="number" min="0" step="0.1" max="10"  id='nota3' name='nota3' class='notasInput' value="0"></input>
 
   </div>
 
@@ -408,7 +408,7 @@ RegistrarEscola
        <div style="height: 53px" class="form-control mb-4 flex-lg-row d-flex  ">
      <h2 class=""> Nota 4: &nbsp;&nbsp;&nbsp;</h2>
   <div>
-    <input type="number" min="0" step="0.1" max="10"  id='nota4' name='nota4' class='notasInput' value="0"></input>  
+    <input type="number" min="0" step="0.1" max="10"  id='nota4' name='nota4' class='notasInput' value="0"></input>
 
 
   </div>
@@ -416,16 +416,16 @@ RegistrarEscola
      </div>
 
    <div  style="height: 53px; " class="form-control flex-lg-row d-flex ">
-     <h2 class=""> Faltas: &nbsp;&nbsp;&nbsp;  </h2> 
+     <h2 class=""> Faltas: &nbsp;&nbsp;&nbsp;  </h2>
 <div class="faltas"></div>
 
-   
-   
+
+
 </div>
       <div  style="height: 53px; " class="form-control flex-lg-row d-flex ">
-     <h2 class=""> Menção: &nbsp;&nbsp;&nbsp;  </h2> 
+     <h2 class=""> Menção: &nbsp;&nbsp;&nbsp;  </h2>
 <div >
-  <input type="number" min="0" step="0.1" max="10"  id='mencao' name='mencao' class='notasInput' value="0"></input>  
+  <input type="number" min="0" step="0.1" max="10"  id='mencao' name='mencao' class='notasInput' value="0"></input>
 
 
 </div>
@@ -434,9 +434,9 @@ RegistrarEscola
 
    </div>
 
-    </select>  
+    </select>
 
-   
+
 </input>
 
     </div>
@@ -446,7 +446,7 @@ RegistrarEscola
             <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
 
             </form>
-           
+
           </div>
     </div>
 
@@ -601,7 +601,7 @@ RegistrarEscola
     <label for="edit_bairro">Bairro</label>
     <input required  type="text" id="edit_bairro" name="edit_bairro">
     <br>
-  
+
     <input  type="hidden" id="edit_codEscolar" name="edit_codEscola">
     <input  type="hidden" id="edit_codTurma" name="edit_codTurma">
 
@@ -781,7 +781,7 @@ mysqli_close($conn);
   <!-- /.content-wrapper -->
   <footer class="main-footer">
 
-   
+
   </footer>
 
   <!-- Control Sidebar -->
@@ -1024,7 +1024,7 @@ mysqli_close($conn);
 
 
 
- 
+
 
 
 // Essa função serve para identificar o URL com um parametro de um script php e identificar o parametro
@@ -1044,14 +1044,55 @@ mysqli_close($conn);
        };
 
 
-    
-    
-    // Isto serve para impedir a visualização de conteudo
-    
-       //ao carregar a página, e forçar o filtro por turma
-    var parametroAluno = parametroUrl("aluno");
 
-    var parametroTurma = parametroUrl("turma");
+
+    // Isto serve para impedir a visualização de conteudo
+
+       //ao carregar a página, e forçar o filtro por turma
+    var parametroaluno = parametroUrl("aluno");
+
+    var parametroturma = parametroUrl("turma");
+
+var parametroescola = parametroUrl("escola");
+
+    escola = '\\b' + parametroescola  + '\\b';
+    turma = '\\b' + parametroturma  + '\\b';
+    aluno = '\\b' + parametroaluno  + '\\b';
+
+
+// se parametro turma tiver algo e os demais vazios, busca por turma
+     if (parametroturma != null && parametroescola == null && parametroaluno == null) {
+         table.rows().search(turma, true, true).draw();
+     }
+
+
+
+
+
+
+     // se parametro escola tiver algo e os demais vazios, busca por escola
+
+   else  if (parametroturma == null && parametroescola != null && parametroaluno == null) {
+       table.rows().search(escola, true, true).draw();
+     }
+
+     // se parametro aluno tiver algo e os demais vazios, busca pelo nome do aluno
+
+
+   else if (parametroturma == null && parametroescola == null && parametroaluno != null)
+     {
+       table.rows().search(aluno, true, true).draw();
+
+      }
+
+
+// caso os 2 estejam vazios, não busca nada
+else  {
+table.rows().search('').draw();
+}
+
+
+
 
 
     $('#filtroEscola').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
@@ -1108,7 +1149,7 @@ $('.faltas').empty();
   var rm = data[0];
 
   $("#Notasrm").val(rm);
- 
+
 
 //getbimestre
 
@@ -1133,10 +1174,10 @@ $('#mencao').val('');
                 },
         dataType: 'json',
         success:function(response){
-        
+
     var len = response.length;
 
-        
+
 
 
                  for( var i = 0; i<len; i++){
@@ -1175,17 +1216,17 @@ $('#mencao').val(mencao);
                 },
         dataType: 'json',
         success:function(response){
-        
+
     var len = response.length;
 
-          
+
             $('.faltas').empty();
 
 
 
                  for( var i = 0; i<len; i++){
 
-                 
+
                      var faltas = response[i]['faltas'];
 
 
@@ -1226,10 +1267,10 @@ $('#mencao').val('');
                 },
         dataType: 'json',
         success:function(response){
-        
+
     var len = response.length;
 
-      
+
 
 
                  for( var i = 0; i<len; i++){
@@ -1267,17 +1308,17 @@ $('#mencao').val(mencao);
                 },
         dataType: 'json',
         success:function(response){
-        
+
     var len = response.length;
 
-          
+
             $('.faltas').empty();
 
 
 
                  for( var i = 0; i<len; i++){
 
-                 
+
                      var faltas = response[i]['faltas'];
 
 
@@ -1342,7 +1383,7 @@ $("#salvarNotas").on('click',function(){
 
   toastr.error('Erro ao gerenciar notas!');
                  }
-     
+
 
 
 
@@ -1375,7 +1416,7 @@ $("#criarFalta").on('click',function(){
 
   toastr.error('Erro ao aplicar falta!');
                  }
-     
+
 
 
 
@@ -1385,7 +1426,7 @@ $("#criarFalta").on('click',function(){
 
 });
 
-   
+
      table.on('click','.btnEditar',function(){
 
       $tr=$(this).closest('tr');
@@ -1477,15 +1518,12 @@ $("#criarFalta").on('click',function(){
   $("#createAlunoEscola").change(function(){
       var escolanome = $(this).val();
 
-        var escolanome = $(this).val();
         $.ajax({
             url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
             type: 'post',
             data: {escola:escolanome},
             dataType: 'json',
             success:function(response){
-              var escola = response[0]['escola'];
-              var turma = response[0]['turma'];
 
                 var len = response.length;
 
@@ -1556,7 +1594,7 @@ $("#criarFalta").on('click',function(){
 
             }
 
-    
+
     });
 
 

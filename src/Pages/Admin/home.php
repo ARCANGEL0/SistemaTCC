@@ -467,7 +467,7 @@ echo $rows;
                 </h3>
 
                 <div class="card-tools">
-               
+
                 </div>
               </div>
               <script>
@@ -481,8 +481,30 @@ echo $rows;
 
 
           var todo1 ='<ul class="todo-list" data-widget="todo-list">'+
-       
-            '<li class="">'+
+
+          '<li class="">'+
+
+                      '<div  class="icheck-primary d-inline ml-2">'+
+                      '<i class="fa fa-clipboard"></i>'+
+
+                      '</div>'+
+                      '<span class="text">Criar verificações</span>'+
+                      '<span class="text">para duplicidade de RM, email</span>'+
+                      '<span class="text">CPF ou RG para cada entidade</span>'+
+
+          '<li class="">'+
+
+                      '<div  class="icheck-primary d-inline ml-2">'+
+                      '<i class="fa fa-clipboard"></i>'+
+
+                      '</div>'+
+                      '<span class="text">Criar um modal para exibir</span>'+
+                      '<span class="text">os professores de cada materia</span>'+
+                      '<span class="text">de uma turma</span>'+
+
+
+
+            '<li class="done">'+
 
                         '<div  class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
@@ -494,7 +516,7 @@ echo $rows;
 
                         '<span class="text">Criar botões de redirecionamento para cada escola</span>'+
 
-            '<li class="">'+
+            '<li class="done">'+
 
                         '<div  class="icheck-primary d-inline ml-2">'+
                         '<i class="fa fa-clipboard"></i>'+
@@ -570,7 +592,7 @@ echo $rows;
                         '<span class="text">Trocar requisições POST dos modals</span>'+
 
                         '<span class="text">para uso do ajax, para evitar recarregar a página</span>'+
-                     
+
 
                       '<li class="done">'+
 
@@ -582,7 +604,7 @@ echo $rows;
                         '<span class="text"> a outras páginas com filtro de busca.</span>' +
                         '<span class="text">Exemplo: Ao clicar no botãozinho da lousa</span>'+
                         '<span class="text">na tabela Escolas, redirecionar para a página TURMAS filtrando por aquela escola</span>'+
-                   
+
                       '</li>'+
                       '<li class="done">'+
 
@@ -591,11 +613,11 @@ echo $rows;
 
                         '</div>'+
                         '<span class="text">Pensar numa forma de filtrar os Responsáveis na tabela</span>'+
-    
-                   
+
+
                     '</ul>';
 
-      
+
 
               $('.paginate').bootpag({
 
@@ -716,7 +738,7 @@ echo $rows;
   <!-- /.content-wrapper -->
   <footer class="main-footer">
 
-   
+
   </footer>
 
   <!-- Control Sidebar -->
