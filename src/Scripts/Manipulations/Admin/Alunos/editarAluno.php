@@ -14,12 +14,14 @@ $telefone = $_POST['edit_telefone'];
 $endereco = $_POST['edit_endereco'];
 $bairro = $_POST['edit_bairro'];
 $cep = $_POST['edit_cep'];
+$idescola = $_POST['edit_codEscola'];
+$idturma = $_POST['edit_codTurma'];
 
 echo $_GET['salvarEdicao'];
 
 if(isset($_POST['salvarEdicao'])){
 
-$query= "UPDATE alunos SET Aluno_Escola = '$escola', Aluno_Ano = '$turma', Aluno_Nome = '$nome', Aluno_RG = '$RG', Aluno_Email = '$email', Aluno_DataDeNascimento = $dn, Aluno_Telefone = '$telefone', Aluno_CEP = '$cep', Aluno_Cidade = '$municipio', Aluno_Endereco = '$endereco', Aluno_Bairro = '$bairro'WHERE RM_Aluno = $rm";
+$query= "UPDATE alunos SET Aluno_Escola = '$escola', Aluno_Ano = '$turma', Aluno_Nome = '$nome', Aluno_RG = '$RG', Aluno_Email = '$email', Aluno_DataDeNascimento = $dn, Aluno_Telefone = '$telefone', Aluno_CEP = '$cep', Aluno_Cidade = '$municipio', Aluno_Endereco = '$endereco', Aluno_Bairro = '$bairro', ID_Escola ='$idescola' ,ID_Turma ='$idturma' WHERE RM_Aluno = $rm";
 
 	if(mysqli_query($conn,$query)){
     $_SESSION['Aluno_atualizado'] = true;

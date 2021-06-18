@@ -466,7 +466,7 @@ RegistrarEscola
           <div class="modal-body registrarAluno_corpo">
           <form action="../../Scripts/Manipulations/Admin/Alunos/registrarAluno.php" method="POST" id="modalform">
     <label for="rm">RM</label>
-    <input  type="large_number" id="rm" name="rm">
+    <input required  type="large_number" id="rm" name="rm">
     <br>
     <label for="cpf">Escola</label>
     <select class="form-control" name="createAlunoEscola" id="createAlunoEscola">
@@ -489,44 +489,40 @@ RegistrarEscola
 
         </select><br>
         <label for="nome">Nome</label>
-        <input  type="text" id="nome" name="nome">
+        <input required  type="text" id="nome" name="nome">
         <br>
     <label for="rg">RG</label>
-    <input  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="rg" name="rg" >
+    <input required  maxlength="13" OnKeyPress="formatar('##.###.###-##', this)"type="text" id="rg" name="rg" >
     <br>
 
 	<label for="dn">Data Nascimento</label>
 	<input  maxlength="8" OnKeyPress="formatar('##-##-####', this)" type="date" id="dn" name="dn">
     <br>
     <label for="email">E-Mail</label>
-    <input  type="text" id="email" name="email">
+    <input required  type="text" id="email" name="email">
     <br>
       <label for="telefone">Telefone</label>
-    <input  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="telefone" name="telefone">
+    <input required  maxlength="13" OnKeyPress="formatar('## #####-####', this)" type="text" id="telefone" name="telefone">
   <br>
     <label for="cep">CEP</label>
-    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cep" name="cep">
+    <input required  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cep" name="cep">
 	<br>
     <label for="municipio">Munincípio</label>
-    <input  type="text" id="municipio" name="municipio">
+    <input required  type="text" id="municipio" name="municipio">
     <br>
     <label for="endereco">Endereço</label>
-    <input  type="text" id="endereco" name="endereco">
+    <input required  type="text" id="endereco" name="endereco">
     <br>
     <label for="bairro">Bairro</label>
-    <input  type="text" id="bairro" name="bairro">
+    <input required  type="text" id="bairro" name="bairro">
     <br>
 
+    <input placeholder="Escola ID" type="hidden" name="codigoescola" id="codigoescola">
+    <input placeholder="Turma ID" type="hidden" name="codigoturma" id="codigoturma">
 
 
 <!-- Precisa-se fazer com que os ID's sejam coletados através dos selects, o que dispensa o input -->
 
-
-
-    <input  type="hidden" placeholder="codigoescola" id="codigoescola" name="codigoescola">
-  </input>
-    <input  type="hidden" placeholder="codigoturma" id="codigoturma"  name="codigoturma">
-</input>
 
     </div>
           <div class="modal-footer">
@@ -602,8 +598,8 @@ RegistrarEscola
     <input required  type="text" id="edit_bairro" name="edit_bairro">
     <br>
 
-    <input  type="hidden" id="edit_codEscolar" name="edit_codEscola">
-    <input  type="hidden" id="edit_codTurma" name="edit_codTurma">
+    <input  type="text" id="edit_codEscola" name="edit_codEscola">
+    <input  type="text" id="edit_codTurma" name="edit_codTurma">
 
     </div>
           <div class="modal-footer">
@@ -1446,6 +1442,7 @@ $("#criarFalta").on('click',function(){
       $('#edit_rm').val(data[0])
       $('#edit_nome').val(data[1]);
       $('#editAlunoEscola').val(data[2]);
+      $('#editAlunoTurma').val(data[3]);
       $('#edit_dn').val(FormataStringData(data[4]));
       $('#edit_email').val(data[5]);
       $('#edit_telefone').val(data[6]);
@@ -1455,10 +1452,13 @@ $("#criarFalta").on('click',function(){
       $('#edit_endereco').val(data[10]);
       $('#edit_bairro').val(data[11]);
 
+console.log(data);
 
-     $("#editAlunoTurma").append("<option disabled hidden selected value='"+data[3]+"'>"+data[3]+"</option>");
+
+    
 
      var nomeEscola = data[2];
+     var nomeTurma = data[3];
        $.ajax({
             url: '../../Scripts/Manipulations/Admin/Global/selectDependency.php',
             type: 'post',
@@ -1470,19 +1470,24 @@ $("#criarFalta").on('click',function(){
                 var len = response.length;
 
             $('#editAlunoTurma').empty();
-                    $("#editAlunoTurma").append("<option hidden selected value=''>Selecione uma opção</option>");
+                     $("#editAlunoTurma").append("<option disabled hidden selected value='"+data[3]+"'>"+data[3]+"</option>");
 
 
                 for( var i = 0; i<len; i++){
                     var turma = response[i]['name'];
+                    var idescola = response[i]['idescola'];
+                    var idturma = response[i]['idturma'];
                     $("#editAlunoTurma").append("<option value='"+turma+"'>"+turma+"</option>");
-
+                    $("#edit_codEscola").val(idescola);
+                    $("#edit_codTurma").val(idturma);
                 }
 
 
             }
 
     });
+
+
 
 
 
@@ -1533,10 +1538,12 @@ $("#criarFalta").on('click',function(){
 
                 for( var i = 0; i<len; i++){
                     var turma = response[i]['name'];
+                    var idescola = response[i]['idescola'];
                     $("#createAlunoTurma").append("<option value='"+turma+"'>"+turma+"</option>");
 
                 }
-                $("#codigoescola").val(escola);
+                $("#codigoescola").val(idescola);
+
 
 
             }
@@ -1586,10 +1593,11 @@ $("#criarFalta").on('click',function(){
 
                 for( var i = 0; i<len; i++){
                     var turma = response[i]['name'];
+                    var idescola = response[i]['idescola'];
                     $("#editAlunoTurma").append("<option value='"+turma+"'>"+turma+"</option>");
 
                 }
-                $("#edit_codEscolar").val(escola);
+                $("#edit_codEscola").val(idescola);
 
 
             }
