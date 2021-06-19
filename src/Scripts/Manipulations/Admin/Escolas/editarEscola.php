@@ -15,7 +15,7 @@ echo $_GET['salvar'];
 
 if(isset($_POST['salvar'])){
 
-$query= "UPDATE `escolas` SET `Escola_Nome` = '$nome', `Escola_CEP` = '$cep', `Escola_Munincipio` = '$munincipio', `Escola_Endereco` = '$endereco' WHERE `escolas`.`Escola_Codigo` = $id;";
+$query= "UPDATE `escolas` SET `Escola_Nome` = '$nome',`Escola_CNPJ` = '$cnpj', `Escola_CEP` = '$cep', `Escola_Munincipio` = '$munincipio', `Escola_Endereco` = '$endereco' WHERE `escolas`.`Escola_Codigo` = $id;";
 $query .="UPDATE `turmas` SET `Escola` = '$nome' WHERE ID_Escola=$id;";
 $query .="UPDATE `alunos` SET `Aluno_Escola` = '$nome' WHERE ID_Escola=$id;";
 $query .="UPDATE `turma_horario` SET `Turma_Escola` = '$nome' WHERE Escola_ID=$id;";
@@ -34,7 +34,7 @@ $query .="UPDATE `turma_horario` SET `Turma_Escola` = '$nome' WHERE Escola_ID=$i
 		 	header("Location: ../../../../Pages/Admin/escolas.php");
 
 		 	exit();
-		
+
 	}mysqli_close($conn);
 }
  ?>

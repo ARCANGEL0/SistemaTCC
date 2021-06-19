@@ -482,6 +482,17 @@ echo $rows;
 
           var todo1 ='<ul class="todo-list" data-widget="todo-list">'+
 
+
+          '<li class="">'+
+
+                      '<div  class="icheck-primary d-inline ml-2">'+
+                      '<i class="fa fa-clipboard"></i>'+
+
+                      '</div>'+
+                      '<span class="text">Criar layout</span>'+
+                      '<span class="text">mobile responsivo para </span>'+
+                      '<span class="text">o sistema</span>'+
+
           '<li class="">'+
 
                       '<div  class="icheck-primary d-inline ml-2">'+

@@ -784,6 +784,7 @@ $("#"+idEscola).change(function(){
                 var len = response.length;
 
             $("#"+idTurma).empty();
+            $("#"+idAluno).empty();
             $("#"+idTurma).append("<option hidden selected> Selecione uma turma</option>");
 
 
@@ -1230,7 +1231,7 @@ var alunos = new Array();
 
 },
             error: function(response) {
-              toastr.error('Erro ao registrar! ');
+              toastr.error('Um dos alunos já está vinculado! ');
 
             }
 });
@@ -1581,6 +1582,7 @@ $("#editarAlunoEscola0").change(function(){
                 var len = response.length;
 
             $('#editarAlunoTurma0').empty();
+            $('#editarAluno0').empty();
             $("#editarAlunoTurma0").append("<option hidden selected> Selecione uma turma</option>");
 
 

@@ -6,9 +6,12 @@
 include('../../../Database/Connection.php');
 session_start();
 
-$alunos = $_POST['arrayAlunos'];
+$alunosArray = $_POST['arrayAlunos'];
 $numFilhos = $_POST['filhos'];
 $rm = $_POST['rmresp'];
+
+$alunos = array_unique($alunosArray);
+
 
 
 foreach($alunos as $aluno)
@@ -25,7 +28,7 @@ if(!($checkRow==0))
 	throw new Exception();
 	}
 $query .= "INSERT into relacao_alunosresponsaveis (RM_Aluno, Responsavel_Filhos) VALUES ( '$aluno', '$rm');";
- 
+
 
 
 }
@@ -38,10 +41,10 @@ $query .= "INSERT into relacao_alunosresponsaveis (RM_Aluno, Responsavel_Filhos)
 
  if(mysqli_multi_query($conn,$query)){
   return true;
-   } 
+   }
 
    else
-           {    
+           {
  throw new Exception();
    }
 
@@ -49,4 +52,3 @@ $query .= "INSERT into relacao_alunosresponsaveis (RM_Aluno, Responsavel_Filhos)
   mysqli_close($conn);
 
 ?>
-
