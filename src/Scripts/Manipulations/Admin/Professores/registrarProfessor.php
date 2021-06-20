@@ -34,7 +34,7 @@ $arrayMateria = array();
  $arrayMateria[] = $_POST['registrarProfMateria'.$x];
 
 
- $check = "SELECT * from relacao_profescolas WHERE RM_Prof = '$rm' AND Escola_Cod='$arrayEscolas[$x]' AND Matéria = '". $arrayMateria[$x]. "' AND Prof_Turmas='$arrayTurmas[$x]';";
+ $check = "SELECT * from relacao_profescolas WHERE Escola_Cod='$arrayEscolas[$x]' AND Matéria = '". $arrayMateria[$x]. "' AND Prof_Turmas='$arrayTurmas[$x]';";
 $checkQuery = mysqli_query($conn, $check);
 $checkRow = mysqli_fetch_row($checkQuery);
 

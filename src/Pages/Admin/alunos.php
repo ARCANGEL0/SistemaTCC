@@ -598,8 +598,8 @@ RegistrarEscola
     <input required  type="text" id="edit_bairro" name="edit_bairro">
     <br>
 
-    <input  type="text" id="edit_codEscola" name="edit_codEscola">
-    <input  type="text" id="edit_codTurma" name="edit_codTurma">
+    <input  type="hidden" id="edit_codEscola" name="edit_codEscola">
+    <input  type="hidden" id="edit_codTurma" name="edit_codTurma">
 
     </div>
           <div class="modal-footer">
@@ -1455,7 +1455,7 @@ $("#criarFalta").on('click',function(){
 console.log(data);
 
 
-    
+
 
      var nomeEscola = data[2];
      var nomeTurma = data[3];

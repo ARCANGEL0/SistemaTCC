@@ -56,7 +56,39 @@ include('../../Scripts/Database/Connection.php');
 
     </ul>
 
+<style >
 
+
+.profsDivisor {
+  margin: 1.5em auto;
+  position: relative;
+  height: 9px;
+  width: 9px;
+  border: transparent;
+  overflow: visible;
+  background-image: url('data:image/svg+xml;utf8,<svg width="9" height="9" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><rect x="0.75" y="0.5" width="8" height="8" rx="4" fill="%231CB0A8" /></svg>');
+
+  &:before {
+    position: absolute;
+    height: 9px;
+    width: 10px;
+    content: '';
+    background-image: url('data:image/svg+xml;utf8,<svg width="10" height="9" viewBox="0 0 10 9" xmlns="http://www.w3.org/2000/svg"><path d="M3.91043 1.29752C4.30449 0.688518 5.19551 0.688519 5.58957 1.29752L9.25143 6.95675C9.68196 7.62211 9.20436 8.5 8.41186 8.5H1.08814C0.29564 8.5 -0.181954 7.62211 0.248574 6.95675L3.91043 1.29752Z" fill="%23FCB643" /></svg>');
+    left: -18px;
+  }
+
+  &:after {
+    position: absolute;
+    height: 9px;
+    width: 39px;
+    content: '';
+    background-image: url('data:image/svg+xml;utf8,<svg width="9" height="9" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><rect x="0.75" y="0.5" width="8" height="8" rx="1" fill="%23EF4056" /></svg>');
+    right: -18px;
+  }
+}
+
+
+</style>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -437,19 +469,10 @@ echo '<option value="'.$row['Escola_Codigo'].'">' . $row['Escola_Nome'] . '</td>
           <div class="modal-body">
           <form action="../../Scripts/Manipulations/Admin/Turmas/editarTurma.php" method="POST" name="aulasform" id="aulasform">
 
-<input type="hidden" id="aulaidEdit" name="aulaidEdit">
-<br><br><br><br>
+<br>
+  <div class="d-flex flex-column"  id="turmaMaterias">
 
-<?php
-$queryAulas =  mysqli_query($conn,"SELECT Materia_Abrev FROM disciplinas");
-while($row = mysqli_fetch_array($queryAulas))
-{
-  echo '<div class="form-group">';
-echo '<label class="materia">' . $row['Materia_Abrev'] . '</label> <label class="professor form-control" style="width:40%"> PROFESSOR </label> <br>';
-echo '</div>';
-};
-
-?>
+</div>
 
           </div>
           <div class="modal-footer">
@@ -846,9 +869,37 @@ $("#nomeEscola").change(function(){
 
       var data = table.row($tr).data();
       data.splice(4,1);
+var turma = data[0];
 
       console.log(data);
-      $('#aulaidEdit').val(data[0]);
+
+      $.ajax({
+
+    url: '../../Scripts/Manipulations/Admin/Turmas/getMatériasData.php',
+               type: 'post',
+               dataType: 'json',
+               data: { idturma: turma},
+               success:function(response){
+
+                   var len = response.length;
+
+   		$('#turmaMaterias').empty();
+
+
+                   for( var i = 0; i<len; i++){
+                       var materia = response[i]['materia'];
+                       var prof = response[i]['prof'];
+
+$('#turmaMaterias').append('<div class="input-group mb-2 mr-sm-2" style="width:75%;margin-left: 60px;" ><div class="input-group-prepend"><label id="materia" class="input-group-text">'+materia+'</label></div><label class="form-control" id="prof">'+prof+'</label></div></div><hr class="profsDivisor">')                   }
+
+$("#turmaMaterias").children().last().remove();
+               }
+               });   // aqui vai ajax
+
+
+
+
+
 
       $('#turmaAulas').modal('show');
      });

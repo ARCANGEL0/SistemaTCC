@@ -18,6 +18,23 @@ $celular = $_POST['cel'];
 
 if(isset($_POST['registrar'])){
 
+
+
+  $checkRM = "SELECT * from secretaria WHERE RM_Secretaria = '$rm';";
+ $queryRM = mysqli_query($conn, $checkRM);
+ $rowRM = mysqli_fetch_row($queryRM);
+
+ if(!($rowRM==0))
+ {
+       $_SESSION['registro_erro'] = true;
+
+           header("Location: ../../../../Pages/Admin/funcionarios.php");
+           exit();
+
+   }
+
+
+
 	$query = "INSERT INTO secretaria (RM_Secretaria,Sec_Escola,Sec_Nome,Sec_DataDeNascimento,Sec_Email,Sec_Telefone,Sec_Celular,Sec_CPF,Sec_RG,Sec_CEP,Sec_Cidade,Sec_Endereço,Sec_Bairro)
 	                      VALUES (   '$rm','$escola' ,  '$nome',   '$dn',   '$email',   '$telefone',                 '$celular',   '$cpf',   '$rg','$cep',   '$municipio',   '$endereco', '$bairro')";
 	if(mysqli_query($conn,$query)){

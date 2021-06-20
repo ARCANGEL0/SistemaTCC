@@ -8,7 +8,7 @@ $nome = $_POST['nome'];
 $dn = date("Y/m/d", strtotime($_POST['dn']));
 $email = $_POST['email'];
 $rg = $_POST['rg'];
-$municipio = $_POST['municipio'];
+$municipio = $_POST['muninc'];
 $endereco = $_POST['endereco'];
 $bairro = $_POST['bairro'];
 $cep = $_POST['cep'];
@@ -21,7 +21,7 @@ $numFilhos = $_POST['numFilhoReg'];
 
 if(isset($_POST['registrar'])){
 
-$arrayAlunos = array(); 
+$arrayAlunos = array();
 // aqui cria um array para pegar todos os possiveis filhos no registro
 
 
@@ -62,7 +62,7 @@ $query2= "INSERT INTO relacao_alunosresponsaveis (RM_Aluno,Responsavel_Filhos)
 
           header("Location: ../../../../Pages/Admin/responsaveis.php");
           exit();
-} 
+}
  	}
 
 
