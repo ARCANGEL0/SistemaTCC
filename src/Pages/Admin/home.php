@@ -493,7 +493,7 @@ echo $rows;
                       '<span class="text">mobile responsivo para </span>'+
                       '<span class="text">o sistema</span>'+
 
-          '<li class="">'+
+          '<li class="done">'+
 
                       '<div  class="icheck-primary d-inline ml-2">'+
                       '<i class="fa fa-clipboard"></i>'+
@@ -503,7 +503,7 @@ echo $rows;
                       '<span class="text">para duplicidade de RM, email</span>'+
                       '<span class="text">CPF ou RG para cada entidade</span>'+
 
-          '<li class="">'+
+          '<li class="done">'+
 
                       '<div  class="icheck-primary d-inline ml-2">'+
                       '<i class="fa fa-clipboard"></i>'+
