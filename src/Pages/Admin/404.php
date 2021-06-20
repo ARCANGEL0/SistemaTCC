@@ -33,6 +33,7 @@ include('../../Scripts/Database/Connection.php');
   <link rel="stylesheet" href="../../assets/Global/css/style.css">
 
 
+
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
@@ -42,6 +43,8 @@ include('../../Scripts/Database/Connection.php');
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<!-- Aqui vai alguns css para corrigir bugs da tabela -->
+
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -154,7 +157,7 @@ Logado como ADMINISTRADOR             </h3>
             <!-- Message End -->
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#editar" class="dropdown-item dropdown-footer bg-green">Editar</a>
+          <a href="404.php" class="dropdown-item dropdown-footer bg-green">Editar</a>
 
 
           <div class="dropdown-divider"></div>
@@ -198,7 +201,7 @@ Logado como ADMINISTRADOR             </h3>
           </li>
         <br>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-building"></i>
               <p>
                 Escolas
@@ -232,7 +235,7 @@ Logado como ADMINISTRADOR             </h3>
 <br>
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Usuários
@@ -279,7 +282,7 @@ Logado como ADMINISTRADOR             </h3>
           </li>
          <br>
           <li class="nav-item">
-            <a href="404.php" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
                 Email
@@ -296,212 +299,53 @@ Logado como ADMINISTRADOR             </h3>
     <!-- /.sidebar -->
   </aside>
 
-<!-- ALGORITMO PARA FORMATAR INPUTS COM MASCARA DE ENTRADA -->
-  <script>
-    function formatar(mascara, documento){
-      var i = documento.value.length;
-      var saida = mascara.substring(0,1);
-      var texto = mascara.substring(i)
-
-      if (texto.substring(0,1) != saida){
-                documento.value += texto.substring(0,1);
-      }
-RegistrarEscola
-    }
-    </script>
-
-<!-- MODAL DE REGISTRAR -->
-
-<div id="RegistrarEscola" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-
-        <div class="modal-content">
-          <div class="modal-header">
-
-            <h4 class="modal-title">Registrar uma nova escola</h4>
-          </div>
-          <div class="modal-body registrarEscola_corpo">
-          <form action="../../Scripts/Manipulations/Admin/Escolas/registarEscola.php" method="POST" id="modalform">
-
-
-    <label for="cnpj">CNPJ</label>
-    <input required  maxlength="18" OnKeyPress="formatar('##.###.##/####-##', this)"type="text" id="cnpj" name="cnpj" >
-    <br>
-    <label for="nome">Nome da Escola</label>
-    <input required  type="text" id="nome" name="nome">
-    <br>
-    <label for="munincipio">Munincípio</label>
-    <input required  type="text" id="munincipio" name="munincipio">
-    <br>
-    <label for="endereco">Endereço</label>
-    <input required  type="text" id="endereco" name="endereco">
-    <br>
-    <label for="cep">CEP</label>
-    <input required  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text"id="cep" name="cep">
-
-
-
-
-          </div>
-          <div class="modal-footer">
-          <button type="submit" name="registrar" id="registrar" class="btn btn-success">Registrar</button>
-
-            <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
-<!-- FIM MODAL REGISTRAR -->
-
-
-<!-- MODAL EDITAR -->
-
-<div id="EditarEscola" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-
-        <div class="modal-content">
-          <div class="modal-header">
-
-            <h4 class="modal-title">Editar escola</h4>
-          </div>
-          <div class="modal-body">
-          <form action="../../Scripts/Manipulations/Admin/Escolas/editarEscola.php" method="POST" name="editarform" id="editarform">
-
-<input type="hidden" id="idEdit" name="idEdit">
-    <label for="cnpjEdit">CNPJ</label>
-    <input  maxlength="18" OnKeyPress="formatar('##.###.##/####-##', this)"type="text" id="cnpjEdit" name="cnpjEdit" >
-    <br>
-    <label for="nomeEdit">Nome da Escola</label>
-    <input  type="text" id="nomeEdit" name="nomeEdit">
-    <br>
-    <label for="munincipioEdit">Munincípio</label>
-    <input  type="text" id="munincipioEdit" name="munincipioEdit">
-    <br>
-    <label for="enderecoEdit">Endereço</label>
-    <input  type="text" id="enderecoEdit" name="enderecoEdit">
-    <br>
-    <label for="cepEdit">CEP</label>
-    <input  maxlength="9" OnKeyPress="formatar('#####-###', this)" type="text" id="cepEdit" name="cepEdit">
-
-
-
-
-          </div>
-          <div class="modal-footer">
-          <button type="submit" name="salvar" id="salvar" class="btn btn-success">Salvar</button>
-
-            <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-<!-- FIM MODAL EDITAR -->
-
 
   <!-- Content Wrapper. Início do conteudo -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Escolas</h1>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+
     </div>
     <!-- /.content-header -->
 
 
 
-
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
 
+      <style media="screen">
 
+  #main{
+      display: table;
+      width: 100%;
+      height: 50vh;
+      text-align: center;
+  }
 
-        <button class="btn btn-success" type="button" name="button" data-toggle="modal" data-target="#RegistrarEscola"><i class="fa fa-plus"></i> &nbsp;  Cadastrar uma nova escola</button>
+  .fof{
+  	  display: table-cell;
+  	  vertical-align: middle;
+  }
 
-        <br><br>
-  <select class="btn btn-outline-info" name="filtroEscola" id="filtroEscola">
-          <option selected value="">Todas os munincípios</option>
+  .fof h1{
+  	  font-size: 50px;
+  	  display: inline-block;
+  	  padding-right: -2px;
+  	  animation: type .5s alternate infinite;
+  }
 
-<?php
-$queryEscolas =  mysqli_query($conn,"SELECT DISTINCT Escola_Munincipio FROM escolas");
-while($row = mysqli_fetch_array($queryEscolas))
-{
-echo '<option value="'.$row['Escola_Munincipio'].'">' . $row['Escola_Munincipio'] . '</td>';
-};
+  @keyframes type{
+  	  from{box-shadow: inset -3px 0px 0px #888;}
+  	  to{box-shadow: inset -3px 0px 0px transparent;}
+  }
+      </style>
 
-?>
+      <div id="main">
 
-</select>
-        <table class="table table-bordered display" id="tabela" width="100%" cellspacing="0">
-          <form action="" id="myform">
-        <thead>
-         <tr>
-           <th>ID</th>
-      <th>CNPJ</th>
-        <th>Nome</th>
-        <th>Munincípio</th>
-        <th>Endereço</th>
-<th>CEP </th>
-               <th>Ações</th>
-      </tr>
-        </thead>
-      <tbody>
-<?php
-$result =  mysqli_query($conn,"SELECT * FROM escolas");
-while($row = mysqli_fetch_array($result))
-{
-echo "<tr>";
-echo "<td>" . $row['Escola_Codigo'] . "</td>";
-echo "<td>" . $row['Escola_CNPJ'] . "</td>";
-echo "<td>" . $row['Escola_Nome'] . "</td>";
-echo "<td>" . $row['Escola_Munincipio'] . "</td>";
-echo "<td>" . $row['Escola_Endereco'] . "</td>";
-echo "<td>" . $row['Escola_CEP'] . "</td>";
-echo '<td><a class="btn-sm  btn-secondary btnEditar" id="editar" href="#"> <i class="fa fa-pen"></i>   </a>
-&nbsp;
-
-
-
-<a class="btn-sm btn-success  btnAlunos" name="alunos" href="#"><i class="fa fa-book-reader"></i></a>
-
-
-  <a class="btn-sm btn-info  btnFuncionarios" name="funcionarios" href="#"><i class="fa fa-briefcase"></i></a>
-
-  <a class="btn-sm btn-warning text-white btnTurmas" name="turmas" href="#"><i class="fa fa-chalkboard-teacher"></i></a>
-
-
-</td>';
-echo "</tr>";
-}
-
-mysqli_close($conn);
-?>
-
-
-
-      </tbody>
-      </table>
-      </form>
-
-
-
-
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
+          	<div class="fof">
+              		<h1>Página em construção...</h1>
+          	</div>
+      </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
 
@@ -559,229 +403,8 @@ mysqli_close($conn);
 <script src="../../plugins/toastr/toastr.min.js"></script>
 
 
-<!-- AQUI SÃO OS EVENTOS DE SESSÃO PARA REGISTRO DE ESCOLAS -->
-<!-- Se a escola for registrada, o php irá redirecionar para esta página com a sessão de registro, exibindo um alerta de succeso -->
-<?php
-          if(isset($_SESSION['escola_registrada'])):
-          ?>
-        <script>
-
-        $(function () {
-          $(document).ready(function(){
-                toastr.success('Escola registrada com sucesso!');
-              });
-            });
-         </script>
-          <?php
-          endif;
-          unset($_SESSION['escola_registrada']);
-
-          ?>
-
-<!-- Caso ocorra um erro, irá voltar com a sessão erro, e exibir o alerta de erro -->
-          <?php
-                    if(isset($_SESSION['registro_erro'])):
-                    ?>
-                  <script>
-
-                  $(function () {
-                    $(document).ready(function(){
-                          toastr.error('Erro ao registrar a escola!');
-                        });
-                      });
-                   </script>
-                    <?php
-                    endif;
-                    unset($_SESSION['registro_erro']);
-
-                    ?>
-
-                    <?php
-                              if(isset($_SESSION['escola_registrada'])):
-                              ?>
-                            <script>
-
-                            $(function () {
-                              $(document).ready(function(){
-                                    toastr.success('Escola registrada com sucesso!');
-                                  });
-                                });
-                             </script>
-                              <?php
-                              endif;
-                              unset($_SESSION['escola_registrada']);
-
-                              ?>
-<!-- Mesma coisa, mas agora para atualização das escolas -->
-<!-- Este é para caso de sucesso -->
-
-                  <?php
-                        if(isset($_SESSION['escola_atualizada'])):
-                      ?>
-                          <script>
-
-                    $(function () {
-                        $(document).ready(function(){
-                           toastr.success('Escola atualizada com sucesso!');
-                             });
-                                          });
-                          </script>
-          <?php
-                      endif;
-                      unset($_SESSION['escola_atualizada']);
-
-           ?>
-<!-- E este, para caso de erro -->
-           <?php
-                     if(isset($_SESSION['escola_atualizacao_erro'])):
-                     ?>
-                   <script>
-
-                   $(function () {
-                     $(document).ready(function(){
-                           toastr.error('Erro ao atualizar a escola!');
-                         });
-                       });
-                    </script>
-                     <?php
-                     endif;
-                     unset($_SESSION['escola_atualizacao_erro']);
-
-                     ?>
 
 
-<!-- SCRIPT PARA INICIAR O JS DE DATATABLES, E CRIAR UMA TABELA INTERATIVA -->
-
-<script>
-  $(function () {
-
-  var table =  $('#tabela').DataTable({
-
-          "language": {
-          "sEmptyTable": "Nenhum registro encontrado",
-          "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-          "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-          "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-          "sInfoPostFix": "",
-          "sInfoThousands": ".",
-          "sLengthMenu": "_MENU_ resultados por página",
-          "sLoadingRecords": "Carregando...",
-          "sProcessing": "Processando...",
-          "sZeroRecords": "Nenhum registro encontrado",
-          "sSearch": "Pesquisar",
-          "oPaginate": {
-              "sNext": "Próximo",
-              "sPrevious": "Anterior",
-              "sFirst": "Primeiro",
-              "sLast": "Último"
-          },
-          "oAria": {
-
-
-
-              "sSortAscending": ": Ordenar colunas de forma ascendente",
-              "sSortDescending": ": Ordenar colunas de forma descendente"
-          }},
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true,
-      "responsive": true,
-    });
-
-
-
- var parametroUrl = function parametroUrl(sParam) {
-           var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-               sURLVar = sPageURL.split('&'),
-               sParametNome,
-               i;
-
-           for (i = 0; i < sURLVar.length; i++) {
-               sParametNome = sURLVar[i].split('=');
-
-               if (sParametNome[0] === sParam) {
-                   return sParametNome[1] === undefined ? true : sParametNome[1];
-               }
-           }
-       };
-
-
-       var parametroEscola = parametroUrl("escola");
-
-       turmaRegex = '\\b' + parametroEscola + '\\b';
-
-        table.rows().search(turmaRegex, true, true).draw();
-if (parametroEscola == null) {
-  table.rows().search('').draw();
-}
-
-
-    $('#filtroEscola').on('change', function(){ // Este aqui muda o conteúdo com base na mudança do select
-       table
-       .search($(this).val()).draw();
-      });
-
-
-     table.on('click','.btnEditar',function(){
-
-
-      $tr=$(this).closest('tr');
-
-      var data = table.row($tr).data();
-      data.splice(6,1);
-
-      console.log(data);
-      $('#idEdit').val(data[0])
-      $('#cnpjEdit').val(data[1]);
-      $('#nomeEdit').val(data[2]);
-      $('#munincipioEdit').val(data[3]);
-      $('#enderecoEdit').val(data[4]);
-      $('#cepEdit').val(data[5]);
-
-
-    $('#EditarEscola').modal('show');
-    });
-
-table.on('click','.btnFuncionarios',function(){
-
-      $tr=$(this).closest('tr');
-
-      var data = table.row($tr).data();
-      var escola = data[2];
-      location.href = "funcionarios.php?escola="+escola;
-
-});
-
-
-
-table.on('click','.btnAlunos',function(){
-
-      $tr=$(this).closest('tr');
-
-      var data = table.row($tr).data();
-      var escola = data[2];
-      location.href = "alunos.php?escola="+escola;
-
-});
-table.on('click','.btnTurmas',function(){
-
-      $tr=$(this).closest('tr');
-
-      var data = table.row($tr).data();
-      var escola = data[2];
-      location.href = "turmas.php?escola="+escola;
-
-});
-
-
-  });
-
-
-
-</script>
 
 </body>
 </html>

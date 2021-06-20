@@ -287,7 +287,7 @@ width: 150vw;}
 
 
           <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
+            <a href="404.php" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Calendário
@@ -297,7 +297,7 @@ width: 150vw;}
           </li>
          <br>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="404.php" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
                 Email
