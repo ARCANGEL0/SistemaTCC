@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 11-Jun-2021 às 21:29
+-- Tempo de geração: 22-Jun-2021 às 19:17
 -- Versão do servidor: 10.3.24-MariaDB-2
 -- versão do PHP: 7.4.15
 
@@ -49,8 +49,8 @@ CREATE TABLE `alunos` (
 --
 
 INSERT INTO `alunos` (`RM_Aluno`, `Aluno_Ano`, `Aluno_Nome`, `Aluno_RG`, `Aluno_Email`, `Aluno_DataDeNascimento`, `Aluno_Telefone`, `Aluno_CEP`, `Aluno_Cidade`, `Aluno_Endereco`, `Aluno_Bairro`, `Aluno_Escola`, `ID_Escola`, `ID_Turma`) VALUES
-(25, '1R', 'Lucas', '80.921.830-19', 'sadjo@gmail.com', '2021-12-11', '29 10283-0192', '09809-808', 'AA', 'AA', 'aa', 'Dirce', 2, 15),
-(50, '1N3', 'Andre', '09.128.301-28', 'andre@gmail.coom', '2004-02-01', '19 20831-0928', '09812-039', 'X', 'X', 'X', 'Escola Dom Pedro I', 1, 13);
+(25, '1N3', 'Aluno 1', '11.111.111-11', 'teste@teste.com', '2001-01-01', '11 11111-1111', '11111-111', '1', '1', '1', 'Escola Dom Pedro I', 1, 13),
+(50, '1R', 'Aluno H', '22.222.222-22', 'teste@teste.com', '2002-02-02', '22 22222-2222', '22222-222', '2', '2', '2', 'Dirce', 2, 15);
 
 -- --------------------------------------------------------
 
@@ -68,54 +68,57 @@ CREATE TABLE `alunos_faltas` (
 --
 
 INSERT INTO `alunos_faltas` (`ID`, `Data`) VALUES
-(4, '2021-06-03 23:29:17'),
-(1, '2021-06-03 23:32:48'),
-(1, '2021-06-03 23:34:08'),
-(1, '2021-06-03 23:35:01'),
-(1, '2021-06-03 23:35:23'),
-(1, '2021-06-03 23:36:26'),
-(5, '2021-06-03 23:36:47'),
-(1, '2021-06-03 23:37:41'),
-(5, '2021-06-03 23:38:00'),
-(5, '2021-06-03 23:38:02'),
-(1, '2021-06-03 23:38:44'),
-(1, '2021-06-03 23:39:15'),
-(1, '2021-06-03 23:39:15'),
-(1, '2021-06-03 23:39:41'),
-(1, '2021-06-03 23:39:42'),
-(1, '2021-06-03 23:39:43'),
-(1, '2021-06-03 23:39:58'),
-(1, '2021-06-03 23:40:08'),
-(1, '2021-06-03 23:40:09'),
-(1, '2021-06-03 23:40:22'),
-(1, '2021-06-04 21:34:29'),
-(1, '2021-06-04 21:47:22'),
-(1, '2021-06-04 21:48:23'),
-(1, '2021-06-04 21:55:34'),
-(1, '2021-06-04 21:55:49'),
-(1, '2021-06-04 21:56:25'),
-(9, '2021-06-04 23:23:02'),
-(9, '2021-06-04 23:23:54'),
-(9, '2021-06-04 23:23:57'),
-(9, '2021-06-04 23:24:19'),
-(9, '2021-06-04 23:24:37'),
-(1, '2021-06-04 23:26:56'),
-(8, '2021-06-04 23:27:32'),
-(8, '2021-06-06 22:10:41'),
-(8, '2021-06-06 22:37:35'),
-(8, '2021-06-06 22:38:05'),
-(13, '2021-06-06 22:38:41'),
-(13, '2021-06-06 22:38:49'),
-(13, '2021-06-06 22:39:10'),
-(15, '2021-06-06 22:42:19'),
-(124, '2021-06-06 23:51:13'),
-(124, '2021-06-06 23:51:47'),
-(118, '2021-06-07 19:53:45'),
-(51, '2021-06-09 00:28:42'),
-(118, '2021-06-09 00:29:00'),
-(118, '2021-06-11 00:12:33'),
-(51, '2021-06-11 00:13:00'),
-(118, '2021-06-11 00:54:51');
+(4, '2021-06-04 02:29:17'),
+(1, '2021-06-04 02:32:48'),
+(1, '2021-06-04 02:34:08'),
+(1, '2021-06-04 02:35:01'),
+(1, '2021-06-04 02:35:23'),
+(1, '2021-06-04 02:36:26'),
+(5, '2021-06-04 02:36:47'),
+(1, '2021-06-04 02:37:41'),
+(5, '2021-06-04 02:38:00'),
+(5, '2021-06-04 02:38:02'),
+(1, '2021-06-04 02:38:44'),
+(1, '2021-06-04 02:39:15'),
+(1, '2021-06-04 02:39:15'),
+(1, '2021-06-04 02:39:41'),
+(1, '2021-06-04 02:39:42'),
+(1, '2021-06-04 02:39:43'),
+(1, '2021-06-04 02:39:58'),
+(1, '2021-06-04 02:40:08'),
+(1, '2021-06-04 02:40:09'),
+(1, '2021-06-04 02:40:22'),
+(1, '2021-06-05 00:34:29'),
+(1, '2021-06-05 00:47:22'),
+(1, '2021-06-05 00:48:23'),
+(1, '2021-06-05 00:55:34'),
+(1, '2021-06-05 00:55:49'),
+(1, '2021-06-05 00:56:25'),
+(9, '2021-06-05 02:23:02'),
+(9, '2021-06-05 02:23:54'),
+(9, '2021-06-05 02:23:57'),
+(9, '2021-06-05 02:24:19'),
+(9, '2021-06-05 02:24:37'),
+(1, '2021-06-05 02:26:56'),
+(8, '2021-06-05 02:27:32'),
+(8, '2021-06-07 01:10:41'),
+(8, '2021-06-07 01:37:35'),
+(8, '2021-06-07 01:38:05'),
+(13, '2021-06-07 01:38:41'),
+(13, '2021-06-07 01:38:49'),
+(13, '2021-06-07 01:39:10'),
+(15, '2021-06-07 01:42:19'),
+(124, '2021-06-07 02:51:13'),
+(124, '2021-06-07 02:51:47'),
+(118, '2021-06-07 22:53:45'),
+(51, '2021-06-09 03:28:42'),
+(118, '2021-06-09 03:29:00'),
+(118, '2021-06-11 03:12:33'),
+(51, '2021-06-11 03:13:00'),
+(118, '2021-06-11 03:54:51'),
+(119, '2021-06-17 23:31:00'),
+(119, '2021-06-17 23:31:38'),
+(118, '2021-06-20 22:47:48');
 
 -- --------------------------------------------------------
 
@@ -241,8 +244,8 @@ INSERT INTO `alunos_notas` (`ID`, `RM_Aluno`, `Aluno_Ano`, `Aluno_Disciplina`, `
 (115, 50, 1, 'Química', '0', '0', '0', '0', 0),
 (116, 50, 2, 'Química', '0', '0', '0', '0', 0),
 (117, 50, 3, 'Química', '0', '0', '0', '0', 0),
-(118, 25, 1, 'Artes', '0', '0', '3', '0', 0),
-(119, 25, 2, 'Artes', '0', '0', '0', '0', 0),
+(118, 25, 1, 'Artes', '8', '1', '3', '1', 1),
+(119, 25, 2, 'Artes', '1', '1', '1', '1', 6),
 (120, 25, 3, 'Artes', '0', '0', '0', '0', 0),
 (121, 25, 1, 'Biologia', '0', '0', '0', '0', 0),
 (122, 25, 2, 'Biologia', '0', '0', '0', '0', 0),
@@ -326,8 +329,19 @@ CREATE TABLE `escolas` (
 INSERT INTO `escolas` (`Escola_Codigo`, `Escola_CNPJ`, `Escola_Nome`, `Escola_CEP`, `Escola_Munincipio`, `Escola_Endereco`) VALUES
 (1, '21.312.90/8401-928', 'Escola Dom Pedro I', '12292-948', 'Guarujá', 'Av. XXSS'),
 (2, '44.4242.4232/42324-23', 'Dirce', '22452-582', 'Guarujá', 'Av. Dom Pedro I'),
-(3, '12.931.20/8301-283', 'Escola X', '12312-031', 'fodasei', 'joi'),
-(4, '29.393.93/9393-939', 'Escola ID n 4', '12319-203', 'asdsad', 'asdpod');
+(4, '00.000.00/0000-000', 'Escola de teste 0', '00000-000', 'teste 0', 'teste 0'),
+(5, '00.000.00/0000-001', 'Escola de teste 1', '00000-001', 'teste 1', 'teste 1'),
+(6, '00.000.00/0000-002', 'Escola de teste 2', '00000-002', 'teste 2', 'teste 2'),
+(7, '00.000.00/0000-003', 'Escola de teste 3', '00000-003', 'teste 3', 'teste 3'),
+(8, '00.000.00/0000-004', 'Escola de teste 4', '00000-004', 'teste 4', 'teste 4'),
+(9, '00.000.00/0000-005', 'Escola de teste 5', '00000-005', 'teste 5', 'teste 5'),
+(10, '00.000.00/0000-006', 'Escola de teste 6', '00000-006', 'são andre', 'teste 6'),
+(11, '00.000.00/0000-007', 'Escola de teste 7', '00000-007', 'teste 7', 'teste 7'),
+(12, '00.000.00/0000-008', 'Escola de teste 8', '00000-008', 'teste 8', 'teste 8'),
+(13, '00.000.00/0000-009', 'Escola de teste 9', '00000-009', 'teste 9', 'teste 9'),
+(14, '00.000.00/0000-010', 'Escola de teste 10', '00000-010', 'teste 10', 'teste 10'),
+(15, '99.999.99/9999-999', 'ESCOLA ABC', '09120-391', 'São Paulo', 'abc'),
+(16, '33.333.33/3333-333', '333', '33', '33', '33');
 
 -- --------------------------------------------------------
 
@@ -455,7 +469,12 @@ CREATE TABLE `professores` (
 --
 
 INSERT INTO `professores` (`RM_Prof`, `Prof_Nome`, `Prof_DataDeNascimento`, `Prof_Telefone`, `Prof_Celular`, `Prof_Email`, `Prof_CPF`, `Prof_RG`, `Prof_CEP`, `Prof_Cidade`, `Prof_Endereco`, `Prof_Bairro`) VALUES
-(1, 'Pedro ', '1998-04-15', '11 3304-4923', '13 98840-4024', 'pedro@gmail.com', '449.228.285-85', '82.582.852-7', '11857-852', 'Santos', 'Rua X', 'Vila Mathias'),
+(0, 'Professor 00', '0001-01-01', '00 0000-0000', '00 00000-0000', 'teste@teste.com', '000.000.000-00', '00.000.000-00', '00000-000', '0', '0', '0'),
+(1, 'Professor 01', '0001-01-01', '11 1111-1111', '11 11111-1111', 'teste@teste.com', '111.111.111-11', '11.111.111-11', '11111-111', '1', '1', '1'),
+(2, 'Professor 02', '0002-02-02', '22 2222-2222', '22 22222-2222', 'teste@teste.com', '222.222.222-22', '22.222.222-22', '22222-222', '2', '2', '2'),
+(3, 'Professor 03', '0003-03-03', '33 3333-3333', '33 33333-3333', 'teste@teste.com', '333.333.333-33', '33.333.333-33', '33333-333', '3', '3', '3'),
+(4, 'Professor 04', '0004-04-04', '44 4444-4444', '44 44444-4444', 'teste@teste.com', '444.444.444-44', '44.444.444-44', '44444-444', '4', '4', '4'),
+(5, '2º Professor da E00', '0001-01-01', '00 0000-0000', '00 00000-0000', 'teste@teste.com', '000.000.000-00', '00.000.000-00', '00000-000', '0', '0', '0'),
 (92, 'Luis', '2020-11-22', '13 3304-4036', '13 98850-4778', '1921903109@homc.m', '444.444.444-44', '11.111.111-11', '11111-111', 'a', 'a', 'a'),
 (298, 'Kurokuro', '2020-11-11', '13 3358-1248', '11 99482-4924', 'risa@gm.com', '09.812.038-10', '92123098123098', '', '08080', '8098098', '09809-809');
 
@@ -503,7 +522,10 @@ INSERT INTO `relacao_alunosresponsaveis` (`RM_Aluno`, `Responsavel_Filhos`) VALU
 (1000, 9500),
 (50, 20),
 (25, 20),
-(50, 51);
+(50, 51),
+(0, 99999),
+(25, 4000),
+(50, 4000);
 
 -- --------------------------------------------------------
 
@@ -523,10 +545,18 @@ CREATE TABLE `relacao_profescolas` (
 --
 
 INSERT INTO `relacao_profescolas` (`RM_Prof`, `Escola_Cod`, `Matéria`, `Prof_Turmas`) VALUES
-(20, 1, 'HIS', 13),
-(20, 2, 'MAT', 15),
-(20, 1, 'ING', 13),
-(20, 1, 'QUI\r\n', 13);
+(1, 5, 'BIO', 29),
+(2, 6, 'Ed. FIS', 35),
+(3, 7, 'ESP', 36),
+(4, 8, 'FIS', 38),
+(5, 4, 'PORT', 20),
+(0, 6, 'Ed. FIS', 25),
+(0, 2, 'MAT', 15),
+(1, 1, 'ART', 13),
+(298, 1, 'BIO', 13),
+(298, 1, 'PORT', 13),
+(298, 1, 'HIS', 13),
+(298, 1, 'FIS', 13);
 
 -- --------------------------------------------------------
 
@@ -553,14 +583,7 @@ CREATE TABLE `responsáveis` (
 --
 
 INSERT INTO `responsáveis` (`RM_Responsável`, `Resp_Nome`, `Resp_Email`, `Resp_DataDeNascimento`, `Resp_RG`, `Resp_CPF`, `Resp_Telefone`, `Resp_Celular`, `Resp_CEP`, `Resp_Cidade`, `Resp_Endereco`) VALUES
-(1000, 'Antonio', 'luis@g,.com', '2000-02-22', '99.999.999-99', '999.999.999-99', '11 9321-9312', '09 99999-9999', '99999-999', 'x', 'x'),
-(15420, 'Claudio ', 'claudnun@gmail.com', '1980-12-11', '', '495.284.285-39', '(13) 3385-2298', '(13) 9985-28492', '11492-492', 'Arujá', 'Mariano Peixoto, 294'),
-(9400, 'Claudio ', 'claudnun@gmail.com', '1980-12-11', '', '495.284.285-39', '(13) 3385-2298', '(13) 9985-28492', '11492-492', 'Arujá', 'Mariano Peixoto, 294'),
-(1400, 'Ricardo', 'claudnun@gmail.com', '1980-12-11', '', '495.284.285-39', '(13) 3385-2298', '(13) 9985-28492', '11492-492', 'Arujá', 'Mariano Peixoto, 294'),
-(9500, 'Claudio ', 'claudnun@gmail.com', '1980-12-11', '', '495.284.285-39', '(13) 3385-2298', '(13) 9985-28492', '11492-492', 'Arujá', 'Mariano Peixoto, 294'),
-(10400, 'teste', 'ra@gmail.com', '2021-02-11', '01.029.380-12', '080.123.801-29', '09 1283-098', '08 09283-0918', '80129-830', '', '12312321'),
-(99999, 'fodase', '213092@gmci', '2000-02-11', '80.9', '809.80', '93 0918', '09 80912-3809', '80980-80', '', '8009809809'),
-(50, 'Luis', 'empresa@outlook.com', '2000-02-01', '10.238.012-93', '080.912.830-12', '12 9301-2983', '09 18230-9128', '09801-928', 'll', 'aaa');
+(4000, 'André', 'andr@gmail.com', '2000-02-01', '99.999.999-99', '999.999.999-99', '99 9999-9999', '99 99999-9999', '19923-912', '', 'A');
 
 -- --------------------------------------------------------
 
@@ -589,11 +612,10 @@ CREATE TABLE `secretaria` (
 --
 
 INSERT INTO `secretaria` (`RM_Secretaria`, `Sec_Escola`, `Sec_Nome`, `Sec_DataDeNascimento`, `Sec_Email`, `Sec_Telefone`, `Sec_Celular`, `Sec_CPF`, `Sec_RG`, `Sec_CEP`, `Sec_Cidade`, `Sec_Endereço`, `Sec_Bairro`) VALUES
-(112, 2, 'Luiz Almeida A', '2000-02-13', 'lui@gmail', '13 3395-2842', '11 98824-4825', '229.285.682-36', '52.482.583-3', '28342-274', 'São Vicente', 'Rua Y', 'Bairro'),
-(1002, 3, 'Fernando', '2000-02-11', 'saidgmai@c.om', '01 9230-1283', '09 80912-8308', '091.283.019-28', '01.928.301-28', '09019-238', 'Rua X', 'b', 'C'),
-(12300, 2, 'opipaoi', '2021-12-31', '098@gm.com', '01 2093-10', '09 80391-2830', '09i09', '1092380980', '11.432-39', 'Cidade', 'ojojoj', 'VILA SANTO ANTÔNIO'),
+(9, 1, 'Andree', '1998-11-11', 'jsoidajs@gmail.com', '12 3091-2830', '09 80912-8308', '999.999.999-99', '99.999.999-99', '92309-128', 'A', 'A', 'A'),
+(999, 15, 'Funcionario', '1994-02-10', 'rnn@gmai.com', '91 9301-2390', '80 92183-0918', '912.830.182-30', '80.908.123-12', '08012-830', 'AA', 'AA', 'AA'),
 (9999, 4, '21093', '2000-01-11', 'saida@gmail.com', '12 0391-230', '11 11111-1111', '809.801.928-30', '98.091.283-09', '80983-120', '80192830192830', '980312830180', '9809898'),
-(9, 1, 'Andree', '1998-11-11', 'jsoidajs@gmail.com', '12 3091-2830', '09 80912-8308', '999.999.999-99', '99.999.999-99', '92309-128', 'A', 'A', 'A');
+(12300, 2, 'opipaoi', '2021-12-31', '098@gm.com', '01 2093-10', '09 80391-2830', '09i09', '1092380980', '11.432-39', 'Cidade', 'ojojoj', 'VILA SANTO ANTÔNIO');
 
 -- --------------------------------------------------------
 
@@ -615,9 +637,17 @@ CREATE TABLE `turmas` (
 
 INSERT INTO `turmas` (`Escola`, `Prof_Coordenador`, `ID_Ano`, `Turma`, `ID_Escola`) VALUES
 ('Escola Dom Pedro I', 'Pedro Sate', 13, '1N3', 1),
-('Escola Dom Pedro I', 'Pedro Sate', 14, '1R5', 1),
 ('Dirce', 'Pedro Sate', 15, '1R', 2),
-('Escola ID n 4', 'Pedro Sate', 23, '1B5', 4);
+('Escola de teste 0', 'Professor 00', 20, 'E00T01', 4),
+('Escola de teste 0', 'Professor 00', 21, 'E00T02', 4),
+('Escola de teste 1', 'Professor 01', 22, 'E01T01', 5),
+('Escola de teste 1', 'Professor 01', 23, 'E01T02', 5),
+('Escola de teste 2', 'Professor 02', 24, 'E02T01', 6),
+('Escola de teste 2', 'Professor 02', 25, 'E02T02', 6),
+('Escola de teste 3', 'Professor 03', 26, 'E03T01', 7),
+('Escola de teste 3', 'Professor 03', 27, 'E03T02', 7),
+('Escola de teste 4', 'Professor 04', 28, 'E04T01', 8),
+('Escola de teste 4', 'Professor 04', 29, 'E04T02', 8);
 
 -- --------------------------------------------------------
 
@@ -650,8 +680,8 @@ INSERT INTO `turma_horario` (`Turma_Escola`, `Turma_Ano`, `Escola_ID`, `Turma_ID
 ('Escola Dom Pedro I', '1R5', '1', '14', '13 às 14', 'ING', 'ING', 'ING', 'ING', 'MAT'),
 ('Escola Dom Pedro I', '1R5', '1', '14', '14 às 15', 'MAT', 'MAT', 'MAT', 'MAT', 'MAT'),
 ('Escola Dom Pedro I', '1R5', '1', '14', '15 às 16', 'MAT', 'PORT', 'PORT', 'QUI\r\n', 'QUI\r\n'),
-('Escola Dom Pedro I', '1R5', '1', '14', '16 às 17', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n', 'ING', 'PORT'),
-('Escola Dom Pedro I', '1R5', '1', '14', '17 às 18', 'ART', '', '', '', 'QUI\r\n'),
+('Escola Dom Pedro I', '1R5', '1', '14', '16 às 17', 'QUI\r\n', 'PORT', 'MAT', 'ING', 'HIS'),
+('Escola Dom Pedro I', '1R5', '1', '14', '17 às 18', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n'),
 ('Dirce', '1R', '2', '15', '8 às 9', 'Ed. FIS', '', 'ART', '', ''),
 ('Dirce', '1R', '2', '15', '9 às 10', '', '', '', '', ''),
 ('Dirce', '1R', '2', '15', '10 às 11', '', '', 'ART', '', ''),
@@ -659,8 +689,71 @@ INSERT INTO `turma_horario` (`Turma_Escola`, `Turma_Ano`, `Escola_ID`, `Turma_ID
 ('Dirce', '1R', '2', '15', '13 às 14', '', '', '', '', ''),
 ('Dirce', '1R', '2', '15', '14 às 15', '', '', '', '', 'ART'),
 ('Dirce', '1R', '2', '15', '15 às 16', '', '', '', '', ''),
-('Dirce', '1R', '2', '15', '16 às 17', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n', 'ING', 'PORT'),
-('Dirce', '1R', '2', '15', '17 às 18', 'ART', '', '', '', 'QUI\r\n');
+('Dirce', '1R', '2', '15', '16 às 17', 'QUI\r\n', 'PORT', 'MAT', 'ING', 'HIS'),
+('Dirce', '1R', '2', '15', '17 às 18', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n'),
+('Escola de teste 0', 'E00T00', '4', '20', '8 às 9', 'ART', 'BIO', 'Ed. FIS', 'ESP', 'ESP'),
+('Escola de teste 0', 'E00T00', '4', '20', '9 às 10', 'BIO', 'BIO', 'ART', 'ESP', 'HIS'),
+('Escola de teste 0', 'E00T00', '4', '20', '10 às 11', 'PORT', 'HIS', 'GEO\r\n', 'MAT', 'QUI\r\n'),
+('Escola de teste 0', 'E00T00', '4', '20', '11 às 12', 'ING', 'HIS', 'GEO\r\n', 'FIS', 'PORT'),
+('Escola de teste 0', 'E00T00', '4', '20', '13 às 14', 'FIS', 'PORT', 'HIS', 'HIS', 'MAT'),
+('Escola de teste 0', 'E00T00', '4', '20', '14 às 15', 'BIO', 'BIO', 'Ed. FIS', 'Ed. FIS', 'FIS'),
+('Escola de teste 0', 'E00T00', '4', '20', '15 às 16', 'Ed. FIS', 'FIS', 'GEO\r\n', 'HIS', 'ING'),
+('Escola de teste 0', 'E00T00', '4', '20', '16 às 17', 'QUI\r\n', 'PORT', 'MAT', 'ING', 'HIS'),
+('Escola de teste 0', 'E00T00', '4', '20', '17 às 18', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n'),
+('Escola de teste 0', 'E00T01', '4', '21', '8 às 9', 'ART', 'ART', 'ART', 'ART', 'ART'),
+('Escola de teste 0', 'E00T01', '4', '21', '9 às 10', 'ART', 'ART', 'ART', 'ART', 'ART'),
+('Escola de teste 0', 'E00T01', '4', '21', '10 às 11', 'ART', 'ART', 'ART', 'ART', 'ART'),
+('Escola de teste 0', 'E00T01', '4', '21', '11 às 12', 'ART', 'ART', 'ART', 'ART', 'ART'),
+('Escola de teste 0', 'E00T01', '4', '21', '13 às 14', 'ART', 'ART', 'ART', 'ART', 'ART'),
+('Escola de teste 0', 'E00T01', '4', '21', '14 às 15', 'ART', 'ART', 'ART', 'ART', 'ART'),
+('Escola de teste 0', 'E00T01', '4', '21', '15 às 16', 'ART', 'ART', 'ART', 'ART', 'ART'),
+('Escola de teste 0', 'E00T01', '4', '21', '16 às 17', 'ART', 'ART', 'ART', 'ART', 'ART'),
+('Escola de teste 0', 'E00T01', '4', '21', '17 às 18', 'ART', 'ART', 'ART', 'ART', 'ART'),
+('Escola de teste 0', 'E00T02', '4', '22', '8 às 9', 'GEO\r\n', 'FIS', 'GEO\r\n', 'FIS', 'GEO\r\n'),
+('Escola de teste 0', 'E00T02', '4', '22', '9 às 10', 'HIS', 'HIS', 'HIS', 'HIS', 'HIS'),
+('Escola de teste 0', 'E00T02', '4', '22', '10 às 11', 'BIO', 'BIO', 'BIO', 'BIO', 'BIO'),
+('Escola de teste 0', 'E00T02', '4', '22', '11 às 12', 'Ed. FIS', 'Ed. FIS', 'Ed. FIS', 'Ed. FIS', 'Ed. FIS'),
+('Escola de teste 0', 'E00T02', '4', '22', '13 às 14', 'ESP', 'ESP', 'ESP', 'ESP', 'ESP'),
+('Escola de teste 0', 'E00T02', '4', '22', '14 às 15', 'FIS', 'FIS', 'FIS', 'FIS', 'FIS'),
+('Escola de teste 0', 'E00T02', '4', '22', '15 às 16', 'MAT', 'MAT', 'MAT', 'MAT', 'MAT'),
+('Escola de teste 0', 'E00T02', '4', '22', '16 às 17', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n', 'QUI\r\n'),
+('Escola de teste 0', 'E00T02', '4', '22', '17 às 18', 'PORT', 'PORT', 'PORT', 'PORT', 'PORT'),
+('Escola de teste 1', 'E01T01', '5', '22', '8 às 9', 'MAT', 'ING', 'ING', 'HIS', 'FIS'),
+('Escola de teste 1', 'E01T01', '5', '22', '9 às 10', 'GEO\r\n', 'GEO\r\n', 'FIS', 'FIS', 'FIS'),
+('Escola de teste 1', 'E01T01', '5', '22', '10 às 11', 'FIS', 'GEO\r\n', 'HIS', 'ING', 'ESP'),
+('Escola de teste 1', 'E01T01', '5', '22', '11 às 12', 'Ed. FIS', 'Ed. FIS', 'Ed. FIS', 'BIO', 'ESP'),
+('Escola de teste 1', 'E01T01', '5', '22', '13 às 14', 'ESP', 'Ed. FIS', 'Ed. FIS', 'Ed. FIS', 'FIS'),
+('Escola de teste 1', 'E01T01', '5', '22', '14 às 15', 'PORT', 'GEO\r\n', 'ING', 'ING', 'MAT'),
+('Escola de teste 1', 'E01T01', '5', '22', '15 às 16', 'HIS', 'ESP', 'MAT', 'ESP', 'ESP'),
+('Escola de teste 1', 'E01T01', '5', '22', '16 às 17', 'FIS', 'Ed. FIS', 'BIO', 'HIS', 'ESP'),
+('Escola de teste 1', 'E01T01', '5', '22', '17 às 18', 'ESP', 'BIO', 'FIS', 'Ed. FIS', 'BIO'),
+('Escola de teste 1', 'E01T02', '5', '23', '8 às 9', 'MAT', 'FIS', 'GEO\r\n', 'ING', 'HIS'),
+('Escola de teste 1', 'E01T02', '5', '23', '9 às 10', 'FIS', 'HIS', 'GEO\r\n', 'ING', 'ING'),
+('Escola de teste 1', 'E01T02', '5', '23', '10 às 11', 'HIS', 'GEO\r\n', 'MAT', 'MAT', 'HIS'),
+('Escola de teste 1', 'E01T02', '5', '23', '11 às 12', 'FIS', 'FIS', 'ESP', 'ESP', 'GEO\r\n'),
+('Escola de teste 1', 'E01T02', '5', '23', '13 às 14', 'BIO', 'ESP', 'FIS', 'ESP', 'ESP'),
+('Escola de teste 1', 'E01T02', '5', '23', '14 às 15', 'Ed. FIS', 'Ed. FIS', 'ESP', 'ESP', 'Ed. FIS'),
+('Escola de teste 1', 'E01T02', '5', '23', '15 às 16', 'ART', 'Ed. FIS', 'BIO', 'Ed. FIS', 'ESP'),
+('Escola de teste 1', 'E01T02', '5', '23', '16 às 17', 'PORT', 'HIS', 'ING', 'ING', 'MAT'),
+('Escola de teste 1', 'E01T02', '5', '23', '17 às 18', 'ING', 'HIS', 'GEO\r\n', 'FIS', 'ESP'),
+('Escola de teste 2', 'E02T01', '6', '24', '8 às 9', 'PORT', 'MAT', 'ING', 'HIS', 'MAT'),
+('Escola de teste 2', 'E02T01', '6', '24', '9 às 10', 'ING', 'HIS', 'HIS', 'HIS', 'MAT'),
+('Escola de teste 2', 'E02T01', '6', '24', '10 às 11', 'HIS', 'ESP', 'ESP', 'MAT', 'PORT'),
+('Escola de teste 2', 'E02T01', '6', '24', '11 às 12', 'Ed. FIS', 'FIS', 'FIS', 'BIO', 'GEO\r\n'),
+('Escola de teste 2', 'E02T01', '6', '24', '13 às 14', 'BIO', 'BIO', 'BIO', 'Ed. FIS', 'Ed. FIS'),
+('Escola de teste 2', 'E02T01', '6', '24', '14 às 15', 'MAT', 'ING', 'HIS', 'ESP', 'ESP'),
+('Escola de teste 2', 'E02T01', '6', '24', '15 às 16', 'PORT', 'PORT', 'Ed. FIS', 'GEO\r\n', 'BIO'),
+('Escola de teste 2', 'E02T01', '6', '24', '16 às 17', 'PORT', 'QUI\r\n', 'QUI\r\n', 'MAT', 'HIS'),
+('Escola de teste 2', 'E02T01', '6', '24', '17 às 18', 'ING', 'FIS', 'FIS', 'MAT', 'Ed. FIS'),
+('Escola de teste 2', 'E02T02', '6', '25', '8 às 9', 'ING', 'Ed. FIS', 'HIS', 'FIS', 'BIO'),
+('Escola de teste 2', 'E02T02', '6', '25', '9 às 10', 'FIS', 'BIO', 'GEO\r\n', 'FIS', 'ESP'),
+('Escola de teste 2', 'E02T02', '6', '25', '10 às 11', 'GEO\r\n', 'MAT', 'MAT', 'QUI\r\n', 'PORT'),
+('Escola de teste 2', 'E02T02', '6', '25', '11 às 12', 'ING', 'MAT', 'PORT', 'QUI\r\n', 'Ed. FIS'),
+('Escola de teste 2', 'E02T02', '6', '25', '13 às 14', 'HIS', 'HIS', 'FIS', 'BIO', 'Ed. FIS'),
+('Escola de teste 2', 'E02T02', '6', '25', '14 às 15', 'FIS', 'FIS', 'HIS', 'GEO\r\n', 'GEO\r\n'),
+('Escola de teste 2', 'E02T02', '6', '25', '15 às 16', 'ESP', 'BIO', 'FIS', 'Ed. FIS', 'Ed. FIS'),
+('Escola de teste 2', 'E02T02', '6', '25', '16 às 17', 'ING', 'ING', 'HIS', 'GEO\r\n', 'MAT'),
+('Escola de teste 2', 'E02T02', '6', '25', '17 às 18', 'MAT', 'HIS', 'GEO\r\n', 'GEO\r\n', 'MAT');
 
 --
 -- Índices para tabelas despejadas
@@ -689,6 +782,24 @@ ALTER TABLE `escolas`
   ADD PRIMARY KEY (`Escola_Codigo`);
 
 --
+-- Índices para tabela `professores`
+--
+ALTER TABLE `professores`
+  ADD PRIMARY KEY (`RM_Prof`);
+
+--
+-- Índices para tabela `responsáveis`
+--
+ALTER TABLE `responsáveis`
+  ADD PRIMARY KEY (`RM_Responsável`);
+
+--
+-- Índices para tabela `secretaria`
+--
+ALTER TABLE `secretaria`
+  ADD PRIMARY KEY (`RM_Secretaria`);
+
+--
 -- Índices para tabela `turmas`
 --
 ALTER TABLE `turmas`
@@ -708,13 +819,13 @@ ALTER TABLE `alunos_notas`
 -- AUTO_INCREMENT de tabela `escolas`
 --
 ALTER TABLE `escolas`
-  MODIFY `Escola_Codigo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Escola_Codigo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `turmas`
 --
 ALTER TABLE `turmas`
-  MODIFY `ID_Ano` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `ID_Ano` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Restrições para despejos de tabelas
